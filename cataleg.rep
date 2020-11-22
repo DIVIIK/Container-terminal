@@ -1,0 +1,20 @@
+struct node {
+    string _k;
+    string _v;
+    node* _esq;
+    node* _dret;
+};
+
+node* _arrel;
+nat _nElements;
+nat _maxElements;
+
+// Mètodes privats
+// ====================
+
+static node* copia_nodes(node* n);
+static void esborra_nodes(node* n);
+node* assig_avl(string k, string v, node* n);
+node* balancejar(string k, string v, node* n);
+node* rota_r(string k, string v, node* n);
+node* rota_l(string k, string v, node* n);

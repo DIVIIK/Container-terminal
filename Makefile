@@ -10,11 +10,11 @@ OPCIONS = -D_JUDGE_ -D_GLIBCXX_DEBUG -g -O0 -Wall -Wextra -Wno-sign-compare -std
 # main.o: main.cpp llista.hpp
 # 	g++ -c main.cpp $(OPCIONS)
 
-# cataleg.o: cataleg.rep cataleg.cpp cataleg.hpp
-# 	g++ -c cataleg.cpp $(OPCIONS)
+cataleg.o: cataleg.rep cataleg.t cataleg.hpp
+	g++ -c cataleg.t $(OPCIONS)
 
-contenidor.o: contenidor.rep contenidor.cpp contenidor.hpp
-g++ -c contenidor.cpp $(OPCIONS)
+# contenidor.o: contenidor.rep contenidor.cpp contenidor.hpp
+# g++ -c contenidor.cpp $(OPCIONS)
 
 # ubicacio.o: ubicacio.cpp ubicacio.rep ubicacio.hpp
 # 	g++ -c ubicacio.cpp $(OPCIONS)
