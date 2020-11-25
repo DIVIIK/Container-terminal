@@ -1,4 +1,4 @@
-OPCIONS = -D_JUDGE_ -D_GLIBCXX_DEBUG -g -O0 -Wall -Wextra -Wno-sign-compare -std=c++11
+OPCIONS = -D_JUDGE_ -D_GLIBCXX_DEBUG -g -O0 -Wall -Wextra -Wno-sign-compare -std=c++11 -Wno-deprecated
 
 program.exe: driver_gesterm.o ubicacio.o contenidor.o cataleg.o terminal.o
 	g++ -o program.exe driver_gesterm.o ubicacio.o contenidor.o cataleg.o -lesin
