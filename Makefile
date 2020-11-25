@@ -1,23 +1,20 @@
 OPCIONS = -D_JUDGE_ -D_GLIBCXX_DEBUG -g -O0 -Wall -Wextra -Wno-sign-compare -std=c++11 -Wno-deprecated
 
-program.exe: driver_gesterm.o ubicacio.o contenidor.o cataleg.o terminal.o
-	g++ -o program.exe driver_gesterm.o ubicacio.o contenidor.o cataleg.o -lesin
+program.exe: driver_gesterm.o ubicacio.o contenidor.o terminal.o cataleg.rep
+	g++ -o program.exe driver_gesterm.o ubicacio.o contenidor.o cataleg.o terminal.o -lesin
 	rm *.o
 
-driver_gesterm.o: driver_gestterm.cpp
-	g++ -c driver_gestterm.cpp $(OPCIONS)
+ubicacio.o: ubicacio.cpp ubicacio.hpp ubicacio.rep
+	g++ -c ubicacio.cpp $(OPCIONS)
 
-terminal.o: terminal.cpp terminal.hpp
-	g++ -c terminal.cpp $(OPCIONS)
-
-cataleg.o: cataleg.t cataleg.hpp
-	g++ -c cataleg.t $(OPCIONS)
-
-contenidor.o: contenidor.cpp contenidor.hpp
+contenidor.o: contenidor.cpp contenidor.hpp contenidor.rep
 	g++ -c contenidor.cpp $(OPCIONS)
 
-ubicacio.o: ubicacio.cpp ubicacio.hpp
-	g++ -c ubicacio.cpp $(OPCIONS)
+driver_gesterm.o: driver_gestterm.cpp terminal.cpp terminal.hpp terminal.rep contenidor.hpp contenidor.rep ubicacio.hpp ubicacio.rep cataleg.t cataleg.hpp
+	g++ -c driver_gestterm.cpp $(OPCIONS)
+
+terminal.o: terminal.cpp terminal.hpp terminal.rep contenidor.hpp contenidor.rep ubicacio.hpp ubicacio.rep cataleg.t cataleg.hpp
+	g++ -c terminal.cpp $(OPCIONS)
 
 clean:
 	rm *.o

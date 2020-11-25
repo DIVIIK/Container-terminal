@@ -99,7 +99,7 @@ void cataleg<Valor>::elimina(const string &k) throw(error) {
    en cas contrari. */
 template <typename Valor>
 bool cataleg<Valor>::existeix(const string &k) const throw() {
-
+    return true;
 }
 
 /* Retorna el valor associat a la clau k; si no existeix cap parell amb
@@ -109,7 +109,7 @@ bool cataleg<Valor>::existeix(const string &k) const throw() {
      int n = ct["dia"]; */
 template <typename Valor>
 Valor cataleg<Valor>::operator[](const string &k) const throw(error) {
-
+    return null;
 }
 
 /* Retorna el nombre d'elements que s'han inserit en el catàleg
