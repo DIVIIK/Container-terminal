@@ -1,17 +1,20 @@
 #include "terminal.hpp"
 
-
 terminal::terminal(nat n, nat m, nat h, estrategia st) throw(error) {
-
+    _n = n;
+    _m = m;
+    _h = h;
+    st = st;
 }
 
 /* Constructora per còpia, assignació i destructora. */
 terminal::terminal(const terminal& b) throw(error) {
-
+  terminal c = b;
 }
 
 terminal& terminal::operator=(const terminal& b) throw(error) {
-
+  terminal c(b);
+	return *this;
 }
 
 terminal::~terminal() throw() {
@@ -29,7 +32,7 @@ terminal::~terminal() throw() {
    usant. Finalment, genera un error si ja existís a la terminal un
    contenidor amb una matrícula idèntica que la del contenidor c. */
 void terminal::insereix_contenidor(const contenidor &c) throw(error) {
-
+    _n = c.longitud();
 }
 
 /* Retira de la terminal el contenidor c la matrícula del qual és igual
@@ -45,7 +48,7 @@ void terminal::insereix_contenidor(const contenidor &c) throw(error) {
    l'ordre que indiqui l'estratègia que s'està usant. Genera un error si a
    la terminal no hi ha cap contenidor la matrícula del qual sigui igual a m. */
 void terminal::retira_contenidor(const string &m) throw(error) {
-
+    _j = m;
 }
 
 /* Retorna la ubicació <i, j, k> del contenidor la matrícula del qual és
@@ -56,14 +59,17 @@ void terminal::retira_contenidor(const string &m) throw(error) {
    Cal recordar que si un contenidor té més de 10 peus, la seva ubicació
    correspon a la plaça que tingui el número de plaça més petit. */
 ubicacio terminal::on(const string &m) const throw() {
-  return ubicacio c;
+    string n = m;
+    ubicacio c(1,2,3);
+    return c;
 }
 
 /* Retorna la longitud del contenidor la matrícula del qual és igual
    a m. Genera un error si no existeix un contenidor a la terminal
    la matrícula del qual sigui igual a m. */
 nat terminal::longitud(const string &m) const throw(error) {
-  return 1;
+    string n = m;
+    return 1;
 }
 
 /* Retorna la matrícula del contenidor que ocupa la ubicació u = <i, j, k>
@@ -75,6 +81,8 @@ nat terminal::longitud(const string &m) const throw(error) {
    ocupar diverses places i la seva ubicació es correspon amb la de la
    plaça ocupada amb número de plaça més baix. */
 void terminal::contenidor_ocupa(const ubicacio &u, string &m) const throw(error) {
+    string k = m;
+    ubicacio c(u);
 
 }
 
@@ -103,7 +111,7 @@ nat terminal::ops_grua() const throw() {
 /* Retorna la llista de les matrícules de tots els contenidors
    de l'àrea d'espera de la terminal, en ordre alfabètic creixent. */
 void terminal::area_espera(list<string> &l) const throw() {
-
+    list<string> kk = l;
 }
 
 /* Retorna el número de fileres de la terminal. */
@@ -123,6 +131,6 @@ nat terminal::num_pisos() const throw() {
 
 /* Retorna l'estratègia d'inserció i retirada de contenidors de
    la terminal. */
-estrategia terminal::quina_estrategia() const throw() {
+terminal::estrategia terminal::quina_estrategia() const throw() {
   return LLIURE;
 }
