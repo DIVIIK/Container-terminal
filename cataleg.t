@@ -40,7 +40,7 @@ typename cataleg<Valor>::node* cataleg<Valor>::assig_avl(string k, string v, nod
     n->_esq = assig_avl(k, v, n->_esq);
     n = balancejar(n);
   } else if (k > n->_k) {
-    n->_dret = assig_avl(k, v, r->_dret);
+    n->_dret = assig_avl(k, v, n->_dret);
     n = balancejar(n);
   } return n;
 }
@@ -85,7 +85,7 @@ cataleg<Valor>::~cataleg() throw() {
    associat. Genera un error en cas que la clau sigui l'string buit. */
 template <typename Valor>
 void cataleg<Valor>::assig(const string &k, const Valor &v) throw(error) {
-    _arrel = assig_avl(k,v_arrel);
+    _arrel = assig_avl(k,v,_arrel);
 }
 
 /* Elimina del catàleg el parell que té com a clau k.
@@ -109,7 +109,7 @@ bool cataleg<Valor>::existeix(const string &k) const throw() {
      int n = ct["dia"]; */
 template <typename Valor>
 Valor cataleg<Valor>::operator[](const string &k) const throw(error) {
-    return null;
+
 }
 
 /* Retorna el nombre d'elements que s'han inserit en el catàleg
