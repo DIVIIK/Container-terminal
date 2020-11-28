@@ -5,18 +5,18 @@
    formada exclusivament per lletres majúscules i dígits,
    o si l no pertany a {10, 20, 30} */
 contenidor::contenidor(const string &m, nat l) throw(error) {
-  if(l != 10 and l != 20 and l != 30) {
-    throw(LongitudIncorrecta);
-  }
-  else {
+
     for(nat i = 0 ; i < m.length() ; i++) {
-      if((m[i] < 'A' or m[i] > 'Z') and (m[i] < '0' or m[i] > '9')) {
-          throw(MatriculaIncorrecta);
-      }
+        if((m[i] < 'A' or m[i] > 'Z') and (m[i] < '0' or m[i] > '9')) {
+            throw error(MatriculaIncorrecta);
+        }
+    }
+
+    if(l != 10 and l != 20 and l != 30) {
+        throw error(LongitudIncorrecta);
     }
     _mat = m;
     _long = l;
-  }
 }
 
 /* Constructora per còpia, assignació i destructora. */
