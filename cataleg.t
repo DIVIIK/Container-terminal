@@ -1,5 +1,5 @@
 template <typename Valor>
-typename cataleg<Valor>::node* cataleg<Valor>::copia_nodes(node* n) {
+typename cataleg<Valor>::node* cataleg<Valor>::copia_nodes(	node* n) {
     node* aux = NULL;
     if (n != NULL) {
         aux = new node;
@@ -20,14 +20,14 @@ typename cataleg<Valor>::node* cataleg<Valor>::copia_nodes(node* n) {
 template <typename Valor>
 void cataleg<Valor>::esborra_nodes(node* n) {
   if (n != NULL) {
-    esborra_nodes(n->f_esq);
-    esborra_nodes(n->f_dret);
+    esborra_nodes(n->_esq);
+    esborra_nodes(n->_dret);
     delete n;
   }
 }
 
 template <typename Valor>
-typename cataleg<Valor>::node* cataleg<Valor>::assig_avl(string k, string v, node* n) {
+typename cataleg<Valor>::node* cataleg<Valor>::assig_avl(string k, Valor v, node* n) {
   if (n == NULL) {
       n = new node;
       n->_v = v;
@@ -45,6 +45,11 @@ typename cataleg<Valor>::node* cataleg<Valor>::assig_avl(string k, string v, nod
   } return n;
 }
 
+template <typename Valor>
+typename cataleg<Valor>::node* cataleg<Valor>::balancejar(node *n) {
+	return n;
+}
+
 /* Constructora. Crea un catàleg buit on numelems és el nombre
    aproximat d'elements que com a màxim s'inseriran al catàleg. */
 template <typename Valor>
@@ -57,7 +62,7 @@ cataleg<Valor>::cataleg(nat numelems) throw(error) {
 /* Constructora per còpia, assignació i destructora. */
 template <typename Valor>
 cataleg<Valor>::cataleg(const cataleg& c) throw(error) {
-  _arrel = copia_nodes(c);
+  _arrel = copia_nodes(c._arrel);
   _nElements = c._nElements;
   _maxElements = c._maxElements;
 }
@@ -85,13 +90,14 @@ cataleg<Valor>::~cataleg() throw() {
    associat. Genera un error en cas que la clau sigui l'string buit. */
 template <typename Valor>
 void cataleg<Valor>::assig(const string &k, const Valor &v) throw(error) {
-    _arrel = assig_avl(k,v,_arrel);
+    _arrel = assig_avl(k, v, _arrel);
 }
 
 /* Elimina del catàleg el parell que té com a clau k.
     En cas que la clau k no existeixi en el catàleg genera un error. */
 template <typename Valor>
 void cataleg<Valor>::elimina(const string &k) throw(error) {
+	string uri = k;
 
 }
 
@@ -99,6 +105,7 @@ void cataleg<Valor>::elimina(const string &k) throw(error) {
    en cas contrari. */
 template <typename Valor>
 bool cataleg<Valor>::existeix(const string &k) const throw() {
+    string uri = k;
     return true;
 }
 
@@ -109,7 +116,9 @@ bool cataleg<Valor>::existeix(const string &k) const throw() {
      int n = ct["dia"]; */
 template <typename Valor>
 Valor cataleg<Valor>::operator[](const string &k) const throw(error) {
-
+	int oriol = 3;
+	string uri = k;
+	return oriol;
 }
 
 /* Retorna el nombre d'elements que s'han inserit en el catàleg
