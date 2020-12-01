@@ -27,6 +27,44 @@ void cataleg<Valor>::esborra_nodes(node* n) {
 }
 
 template <typename Valor>
+typename cataleg<Valor>::node* cataleg::rota_ee(node* n) {
+    node* aux;
+    aux = n->_esq;
+    n->_esq = aux->_dret;
+    aux->_dret = n;
+    std::cout<<"Rota EE"<<endl;
+    return aux;
+}
+
+template <typename Valor>
+typename cataleg<Valor>::node* cataleg::rota_dd(node* n) {
+    node* aux;
+    aux = n->_dret;
+    n->_dret = aux->_esq;
+    aux->_esq = n;
+    std::cout<<"Rota DD"<<endl;
+    return aux;
+}
+
+template <typename Valor>
+typename cataleg<Valor>::node* cataleg::rota_ed(node* n) {
+    node* aux;
+    aux = n->_esq;
+    n->_esq = rota_dd(aux);
+    std::cout<<"Rota ED"<<endl;
+    return rota_ee(n);
+}
+
+template <typename Valor>
+typename cataleg<Valor>::node* cataleg::rota_de(node* n) {
+    node* aux;
+    aux = n->_dret;
+    n->_dret = rota_ee(n);
+    std::cout<<"Rota DE"<<endl;
+    return rota_dd(n);
+}
+
+template <typename Valor>
 typename cataleg<Valor>::node* cataleg<Valor>::assig_avl(string k, Valor v, node* n) {
   if (n == NULL) {
       n = new node;
@@ -47,7 +85,49 @@ typename cataleg<Valor>::node* cataleg<Valor>::assig_avl(string k, Valor v, node
 
 template <typename Valor>
 typename cataleg<Valor>::node* cataleg<Valor>::balancejar(node *n) {
-	return n;
+    int factor = factor(n);
+    if (factor > 1) {
+      if (factor(n->_esq) > 0)
+         t = ll_rotat(t);
+      else
+         t = lr_rotat(t);
+    } else if (factor < -1) {
+      if (factor(n->_dret) > 0)
+         t = rl_rotat(t);
+      else
+         t = rr_rotat(t);
+    }
+    return t;
+}
+
+template <typename Valor>
+int cataleg::factor(node* n) {
+    return altura(n->_esq) - altura(n->_dret);
+}
+
+template <typename Valor>
+int cataleg::altura(node* n) {
+    nat altura = 0;
+
+    if (n)
+        altura = max(altura(n->_esq), altura(n->_dret)) + 1;
+
+    return altura;
+}
+
+template <typename Valor>
+typename cataleg<Valor>::node* cataleg<Valor>::existeix_avl(node *n, const string &k) {
+	if(n == NULL or n->_k == k) {
+		return n;
+	}
+	else {
+		if(k < n->_k) {
+			return existeix_avl(n->_esq, k);
+		}
+		else {
+			return existeix_avl(n->_dret, k);
+		}
+	}
 }
 
 /* Constructora. Crea un catàleg buit on numelems és el nombre
@@ -105,8 +185,15 @@ void cataleg<Valor>::elimina(const string &k) throw(error) {
    en cas contrari. */
 template <typename Valor>
 bool cataleg<Valor>::existeix(const string &k) const throw() {
-    string uri = k;
-    return true;
+  bool trobat;
+  node *n = consulta_bst(_arrel, k);
+  if(n == NULL) {
+    trobat = false;
+  }
+  else {
+    trobat = true;
+  }
+  return trobat;
 }
 
 /* Retorna el valor associat a la clau k; si no existeix cap parell amb
@@ -114,12 +201,20 @@ bool cataleg<Valor>::existeix(const string &k) const throw() {
      cataleg<int> ct;
      ...
      int n = ct["dia"]; */
-template <typename Valor>
-Valor cataleg<Valor>::operator[](const string &k) const throw(error) {
-	int oriol = 3;
-	string uri = k;
-	return oriol;
-}
+ template <typename Valor>
+ Valor cataleg<Valor>::operator[](const string &k) const throw(error) {
+   node *n = _arrel;
+   while(n != NULL and n->_k != k) {
+     if(n->_k < k) {
+       n = n->_dret;
+     }
+     else if(n->_k > k) {
+       n = n->_esq;
+     }
+   }
+   if(n == NULL) throw(ClauInexistent);
+   return n->_v;
+  }
 
 /* Retorna el nombre d'elements que s'han inserit en el catàleg
    fins aquest moment. */

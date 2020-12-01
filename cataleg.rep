@@ -14,7 +14,12 @@ nat _maxElements;
 
 static node* copia_nodes(node* n);
 static void esborra_nodes(node* n);
-node* assig_avl(string k, Valor v, node* n);
-node* balancejar(node* n);
-node* rota_r(string k, string v, node* n);
-node* rota_l(string k, string v, node* n);
+static node* existeix_avl(node *n, const string &k);
+static node* assig_avl(string k, Valor v, node* n);
+static node* balancejar(node* n);
+static node* rota_ee(node* n);
+static node* rota_dd(node* n);
+static node* rota_ed(node* n);
+static node* rota_de(node* n);
+static int factor(node* n);
+static int altura(node* n);
