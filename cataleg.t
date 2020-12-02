@@ -88,14 +88,14 @@ typename cataleg<Valor>::node* cataleg<Valor>::balancejar(node *n) {
     int factor = factor(n);
     if (factor > 1) {
       if (factor(n->_esq) > 0)
-         t = ll_rotat(t);
+         t = rota_ee(t);
       else
-         t = lr_rotat(t);
+         t = rota_ed(t);
     } else if (factor < -1) {
       if (factor(n->_dret) > 0)
-         t = rl_rotat(t);
+         t = rota_de(t);
       else
-         t = rr_rotat(t);
+         t = rota_dd(t);
     }
     return t;
 }
