@@ -27,40 +27,36 @@ void cataleg<Valor>::esborra_nodes(node* n) {
 }
 
 template <typename Valor>
-typename cataleg<Valor>::node* cataleg::rota_ee(node* n) {
+typename cataleg<Valor>::node* cataleg<Valor>::rota_ee(node* n) {
     node* aux;
     aux = n->_esq;
     n->_esq = aux->_dret;
     aux->_dret = n;
-    std::cout<<"Rota EE"<<endl;
     return aux;
 }
 
 template <typename Valor>
-typename cataleg<Valor>::node* cataleg::rota_dd(node* n) {
+typename cataleg<Valor>::node* cataleg<Valor>::rota_dd(node* n) {
     node* aux;
     aux = n->_dret;
     n->_dret = aux->_esq;
     aux->_esq = n;
-    std::cout<<"Rota DD"<<endl;
     return aux;
 }
 
 template <typename Valor>
-typename cataleg<Valor>::node* cataleg::rota_ed(node* n) {
+typename cataleg<Valor>::node* cataleg<Valor>::rota_ed(node* n) {
     node* aux;
     aux = n->_esq;
     n->_esq = rota_dd(aux);
-    std::cout<<"Rota ED"<<endl;
     return rota_ee(n);
 }
 
 template <typename Valor>
-typename cataleg<Valor>::node* cataleg::rota_de(node* n) {
+typename cataleg<Valor>::node* cataleg<Valor>::rota_de(node* n) {
     node* aux;
     aux = n->_dret;
     n->_dret = rota_ee(n);
-    std::cout<<"Rota DE"<<endl;
     return rota_dd(n);
 }
 
@@ -88,25 +84,25 @@ typename cataleg<Valor>::node* cataleg<Valor>::balancejar(node *n) {
     int factor = factor(n);
     if (factor > 1) {
       if (factor(n->_esq) > 0)
-         t = rota_ee(t);
+        n = rota_ee(n);
       else
-         t = rota_ed(t);
+         n = rota_ed(n);
     } else if (factor < -1) {
       if (factor(n->_dret) > 0)
-         t = rota_de(t);
+         n = rota_de(n);
       else
-         t = rota_dd(t);
+         n = rota_dd(n);
     }
-    return t;
+    return n;
 }
 
 template <typename Valor>
-int cataleg::factor(node* n) {
+int cataleg<Valor>::factor(node* n) {
     return altura(n->_esq) - altura(n->_dret);
 }
 
 template <typename Valor>
-int cataleg::altura(node* n) {
+int cataleg<Valor>::altura(node* n) {
     nat altura = 0;
 
     if (n)

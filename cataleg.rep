@@ -1,6 +1,6 @@
 struct node {
     string _k;
-    string _v; // Seria T
+    T _v; // Seria T
     node* _esq;
     node* _dret;
 };
@@ -15,7 +15,7 @@ nat _maxElements;
 static node* copia_nodes(node* n);
 static void esborra_nodes(node* n);
 static node* existeix_avl(node *n, const string &k);
-static node* assig_avl(string k, Valor v, node* n);
+node* assig_avl(string k, Valor v, node* n);
 static node* balancejar(node* n);
 static node* rota_ee(node* n);
 static node* rota_dd(node* n);
