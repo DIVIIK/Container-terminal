@@ -128,6 +128,55 @@ typename cataleg<Valor>::node* cataleg<Valor>::existeix_avl(node *n, const strin
 	}
 }
 
+template <typename Valor>
+typename cataleg<Valor>::node* cataleg<Valor>::elimina_maxim(node *n) {
+	node *n_orig = n, *pare = NULL;
+	while(n->_dret != NULL) {
+		pare = n;
+		n = n->_dret;
+	}
+	if(pare != NULL) {
+		pare->_dret = n->_esq;
+		n->_esq = n_orig;
+	}
+	return n;
+}
+
+template <typename Valor>
+typename cataleg<Valor>::node* cataleg<Valor>::ajunta(node *n1, node *n2) {
+	if(n1 == NULL) return n2;
+	if(n2 == NULL) return n1;
+	node *p = elimina_maxim(n1);
+	p->_dret = n2;
+	return p;
+}
+
+template <typename Valor>
+typename cataleg<Valor>::node* cataleg<Valor>::elimina_avl(const string &k, node *n) {
+	node *p = n;
+	if(n == NULL) throw(ClauInexistent);
+	else if(k < n->_k) {
+		n->_esq = elimina_avl(k, n->_esq);
+		n = balancejar(n);
+	}
+	else if(k > n->_k) {
+		n->_dret = elimina_avl(k, n->_dret);
+		n = balancejar(n);
+	}
+	else {
+		n = ajunta(n->_esq, n->_dret);
+		n = balancejar(n);
+		delete(p);
+	}
+	return n;
+}
+
+//
+//
+//      METODES PUBLICS
+//
+//
+
 /* Constructora. Crea un catàleg buit on numelems és el nombre
    aproximat d'elements que com a màxim s'inseriran al catàleg. */
 template <typename Valor>
@@ -175,8 +224,7 @@ void cataleg<Valor>::assig(const string &k, const Valor &v) throw(error) {
     En cas que la clau k no existeixi en el catàleg genera un error. */
 template <typename Valor>
 void cataleg<Valor>::elimina(const string &k) throw(error) {
-	string uri = k;
-
+  _arrel = elimina_avl(k, _arrel);
 }
 
 /* Retorna true si i només si la clau k existeix dins del catàleg; false
