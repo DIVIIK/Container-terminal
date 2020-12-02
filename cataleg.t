@@ -154,7 +154,7 @@ typename cataleg<Valor>::node* cataleg<Valor>::ajunta(node *n1, node *n2) {
 template <typename Valor>
 typename cataleg<Valor>::node* cataleg<Valor>::elimina_avl(const string &k, node *n) {
 	node *p = n;
-	if(n == NULL) throw(ClauInexistent);
+	if(n == NULL) throw error(ClauInexistent);
 	else if(k < n->_k) {
 		n->_esq = elimina_avl(k, n->_esq);
 		n = balancejar(n);
@@ -258,7 +258,7 @@ bool cataleg<Valor>::existeix(const string &k) const throw() {
        n = n->_esq;
      }
    }
-   if(n == NULL) throw(ClauInexistent);
+   if(n == NULL) throw error(ClauInexistent);
    return n->_v;
   }
 
