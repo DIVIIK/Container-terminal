@@ -1,3 +1,5 @@
+#include <algorithm>    // std::max
+
 template <typename Valor>
 typename cataleg<Valor>::node* cataleg<Valor>::copia_nodes(	node* n) {
     node* aux = NULL;
@@ -56,7 +58,7 @@ template <typename Valor>
 typename cataleg<Valor>::node* cataleg<Valor>::rota_de(node* n) {
     node* aux;
     aux = n->_dret;
-    n->_dret = rota_ee(n);
+    n->_dret = rota_ee(aux);
     return rota_dd(n);
 }
 
@@ -81,13 +83,13 @@ typename cataleg<Valor>::node* cataleg<Valor>::assig_avl(string k, Valor v, node
 
 template <typename Valor>
 typename cataleg<Valor>::node* cataleg<Valor>::balancejar(node *n) {
-    int factor = factor(n);
-    if (factor > 1) {
+    int fact = factor(n);
+    if (fact > 1) {
       if (factor(n->_esq) > 0)
         n = rota_ee(n);
       else
          n = rota_ed(n);
-    } else if (factor < -1) {
+    } else if (fact < -1) {
       if (factor(n->_dret) > 0)
          n = rota_de(n);
       else
@@ -103,12 +105,12 @@ int cataleg<Valor>::factor(node* n) {
 
 template <typename Valor>
 int cataleg<Valor>::altura(node* n) {
-    nat altura = 0;
+    nat valorAltura = 0;
 
     if (n)
-        altura = max(altura(n->_esq), altura(n->_dret)) + 1;
+        valorAltura = std::max(altura(n->_esq), altura(n->_dret)) + 1;
 
-    return altura;
+    return valorAltura;
 }
 
 template <typename Valor>
@@ -182,7 +184,7 @@ void cataleg<Valor>::elimina(const string &k) throw(error) {
 template <typename Valor>
 bool cataleg<Valor>::existeix(const string &k) const throw() {
   bool trobat;
-  node *n = consulta_bst(_arrel, k);
+  node *n = existeix_avl(_arrel, k);
   if(n == NULL) {
     trobat = false;
   }

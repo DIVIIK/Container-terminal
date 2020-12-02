@@ -1,6 +1,6 @@
 struct node {
     string _k;
-    T _v; // Seria T
+    Valor _v;
     node* _esq;
     node* _dret;
 };
