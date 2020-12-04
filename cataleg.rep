@@ -25,4 +25,4 @@ static int factor(node* n);
 static int altura(node* n);
 static node* elimina_maxim(node *n);
 static node* ajunta(node *n1, node *n2);
-static node* elimina_avl(const string &k, node *n);
+node* elimina_avl(const string &k, node *n);

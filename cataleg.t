@@ -157,15 +157,19 @@ typename cataleg<Valor>::node* cataleg<Valor>::elimina_avl(const string &k, node
 	if(n == NULL) throw error(ClauInexistent);
 	else if(k < n->_k) {
 		n->_esq = elimina_avl(k, n->_esq);
-		n = balancejar(n);
+        if (n)
+		      n = balancejar(n);
 	}
 	else if(k > n->_k) {
 		n->_dret = elimina_avl(k, n->_dret);
-		n = balancejar(n);
+        if (n)
+		      n = balancejar(n);
 	}
 	else {
 		n = ajunta(n->_esq, n->_dret);
-		n = balancejar(n);
+        if (n)
+		      n = balancejar(n);
+        --_nElements;
 		delete(p);
 	}
 	return n;
