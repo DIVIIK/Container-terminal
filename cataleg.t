@@ -1,112 +1,177 @@
-// #include <algorithm>    // std::max
-
 template <typename Valor>
-typename cataleg<Valor>::node* cataleg<Valor>::copia_nodes(node* n) { // Cost lineal respecte al numero de nodes encadenats
-    hash_node* aux = NULL;
-    if(n) {
-      aux = new node(n->_k,n->_v,copia_nodes(n->_seg));
-      // aux->_v = n->_v;
-      // aux->_k = n->_k;
-      // aux->_seg = copia_nodes(n->_seg);
+typename cataleg<Valor>::node* cataleg<Valor>::copia_nodes(	node* n) {
+    node* aux = NULL;
+    if (n != NULL) {
+        aux = new node;
+        try {
+            aux -> _k = n -> _k;
+            aux -> _v = n -> _v;
+            aux -> _esq = copia_nodes(n -> _esq);
+            aux -> _dret = copia_nodes(n -> _dret);
+        }
+        catch (...) {
+            delete n;
+            throw;
+        }
     }
     return aux;
 }
 
 template <typename Valor>
-void cataleg<Valor>::esborra_nodes(node** n) {
-    node *m;
-    node *aux;
-    for (nat i = 0; i < _M; ++i) {
-        m = n[i];
-        while (m != NULL) {
-            aux = m->_seg;
-            delete m;
-            m = aux;
-        }
-    }
-}
-
-bool esPrim(int n) {
-    if (n <= 1)  return false;
-    if (n <= 3)  return true;
-
-    if (n%2 == 0 || n%3 == 0) return false;
-
-    for (int i=5; i*i<=n; i=i+6)
-        if (n%i == 0 || n%(i+2) == 0)
-           return false;
-
-    return true;
-}
-
-// Retorna el seguent numero prim
-int segPrim(int N) {
-    int prim = N;
-    bool trobat = false;
-    while (!trobat) {
-        prim++;
-        if (esPrim(prim))
-            trobat = true;
-    }
-    return prim;
-}
-
-// Funcio que retorna el node corresponent
-cataleg::hash_node* cataleg::pos(nat num) const // Cost constant
-{
-  nat i = hash(num)%_M;
-  bool trobat = false;
-
-  hash_node *aux = NULL;      //?????
-  aux = _taula[i];
-
-  while (aux != NULL && !trobat) {
-    if(aux->_k == num)
-      trobat = true;
-    else
-      aux = aux->_seg;
+void cataleg<Valor>::esborra_nodes(node* n) {
+  if (n != NULL) {
+    esborra_nodes(n->_esq);
+    esborra_nodes(n->_dret);
+    delete n;
   }
-  return aux;
 }
 
-void cataleg<Valor>::redispersio() { // Cost lineal respecte a _M
-    // Calcular factor de carrega
-    double factorCarrega = (double) _quants/ (double) _M;
-
-    // Mirem si cal redispersionar i si es de quina forma. Factor ideal: 0.75
-    double factor = 0;
-
-    if (_quants > 31) { // Valor minim de taula es 31
-    if (factorCarrega > 0.95)
-        factor = 2;
-    else if (factorCarrega < 0.4)
-        factor = 0.5;
-    }
-
-    if (factor) {  //factor != 0
-        nat nova_size = factor*_M; // seria primo
-        node *n;
-        node* p;
-        node ** nova_taula = new node*[nova_size];
-        for(nat j = 0; j<nova_size; ++j) nova_taula[j] = NULL;
-
-        // Reinsertem els valors de la antiga a la nova taula
-        for(nat i = 0; i<_M; ++i) {
-            p = _taula[i];
-            while(p!=NULL) {
-                nat k = hash(p->_v.numero()) % nova_size; //Calculem les noves posicions
-                n = nova_taula[k];
-                nova_taula[k] = new node(p->_v.numero(),p->_v,n);
-                p = p->_seg;
-            }
-        }
-        esborra_nodes(_taula, _M);
-        delete[] _taula;
-        _taula = nova_taula;
-        _M = nova_size;
-    }
+template <typename Valor>
+typename cataleg<Valor>::node* cataleg<Valor>::rota_ee(node* n) {
+    node* aux;
+    aux = n->_esq;
+    n->_esq = aux->_dret;
+    aux->_dret = n;
+    return aux;
 }
 
+template <typename Valor>
+typename cataleg<Valor>::node* cataleg<Valor>::rota_dd(node* n) {
+    node* aux;
+    aux = n->_dret;
+    n->_dret = aux->_esq;
+    aux->_esq = n;
+    return aux;
+}
+
+template <typename Valor>
+typename cataleg<Valor>::node* cataleg<Valor>::rota_ed(node* n) {
+    node* aux;
+    aux = n->_esq;
+    n->_esq = rota_dd(aux);
+    return rota_ee(n);
+}
+
+template <typename Valor>
+typename cataleg<Valor>::node* cataleg<Valor>::rota_de(node* n) {
+    node* aux;
+    aux = n->_dret;
+    n->_dret = rota_ee(aux);
+    return rota_dd(n);
+}
+
+template <typename Valor>
+typename cataleg<Valor>::node* cataleg<Valor>::assig_avl(string k, Valor v, node* n) {
+  if (n == NULL) {
+      n = new node;
+      n->_v = v;
+      n->_k = k;
+      n->_esq = NULL;
+      n->_dret = NULL;
+      _nElements++;
+      return n;
+  } else if (k < n->_k) {
+    n->_esq = assig_avl(k, v, n->_esq);
+    n = balancejar(n);
+  } else if (k > n->_k) {
+    n->_dret = assig_avl(k, v, n->_dret);
+    n = balancejar(n);
+  } return n;
+}
+
+template <typename Valor>
+typename cataleg<Valor>::node* cataleg<Valor>::balancejar(node *n) {
+    int fact = factor(n);
+    if (fact > 1) {
+      if (factor(n->_esq) > 0)
+        n = rota_ee(n);
+      else
+         n = rota_ed(n);
+    } else if (fact < -1) {
+      if (factor(n->_dret) > 0)
+         n = rota_de(n);
+      else
+         n = rota_dd(n);
+    }
+    return n;
+}
+
+template <typename Valor>
+int cataleg<Valor>::factor(node* n) {
+    return altura(n->_esq) - altura(n->_dret);
+}
+
+template <typename Valor>
+int cataleg<Valor>::altura(node* n) {
+    nat valorAltura = 0;
+
+    if (n)
+        valorAltura = std::max(altura(n->_esq), altura(n->_dret)) + 1;
+
+    return valorAltura;
+}
+
+template <typename Valor>
+typename cataleg<Valor>::node* cataleg<Valor>::existeix_avl(node *n, const string &k) {
+	if(n == NULL or n->_k == k) {
+		return n;
+	}
+	else {
+		if(k < n->_k) {
+			return existeix_avl(n->_esq, k);
+		}
+		else {
+			return existeix_avl(n->_dret, k);
+		}
+	}
+}
+
+template <typename Valor>
+typename cataleg<Valor>::node* cataleg<Valor>::elimina_maxim(node *n) {
+	node *n_orig = n, *pare = NULL;
+	while(n->_dret != NULL) {
+		pare = n;
+		n = n->_dret;
+	}
+	if(pare != NULL) {
+		pare->_dret = n->_esq;
+		n->_esq = n_orig;
+	}
+	return n;
+}
+
+template <typename Valor>
+typename cataleg<Valor>::node* cataleg<Valor>::ajunta(node *n1, node *n2) {
+	if(n1 == NULL) return n2;
+	if(n2 == NULL) return n1;
+	node *p = elimina_maxim(n1);
+	p->_dret = n2;
+	return p;
+}
+
+template <typename Valor>
+typename cataleg<Valor>::node* cataleg<Valor>::elimina_avl(const string &k, node *n) {
+	node *p = n;
+	if(n == NULL) throw error(ClauInexistent);
+	else if(k < n->_k) {
+		n->_esq = elimina_avl(k, n->_esq);
+        if (n)
+		      n = balancejar(n);
+	}
+	else if(k > n->_k) {
+		n->_dret = elimina_avl(k, n->_dret);
+        if (n)
+		      n = balancejar(n);
+	}
+	else {
+		n = ajunta(n->_esq, n->_dret);
+        if (n)
+		      n = balancejar(n);
+        --_nElements;
+		delete(p);
+	}
+	return n;
+}
 
 //
 //
@@ -118,94 +183,60 @@ void cataleg<Valor>::redispersio() { // Cost lineal respecte a _M
    aproximat d'elements que com a màxim s'inseriran al catàleg. */
 template <typename Valor>
 cataleg<Valor>::cataleg(nat numelems) throw(error) {
-    if (!numelems%2) numelems++;
-    if(!esPrim(numelems)
-        _M = segPrim(numelems);
-    else
-        _M = numelems;
-    _taula = new node*[_M];
-    for(nat i = 0; i<_M; ++i)
-        _taula[i] = NULL;
-    _quants = 0;
+  _arrel = NULL;
+  _maxElements = numelems;
+  _nElements = 0;
 }
-
 /* Constructora per còpia, assignació i destructora. */
 template <typename Valor>
 cataleg<Valor>::cataleg(const cataleg& c) throw(error) {
-    _taula = new node*[c._M];
-
-    for (nat i = 0; i < c._M; ++i)
-        _taula[i] = copia_nodes(c._taula[i]);
-
-    _M = c._M;
-    _quants = c._quants;
- }
-
+  _arrel = copia_nodes(c._arrel);
+  _nElements = c._nElements;
+  _maxElements = c._maxElements;
+}
 template <typename Valor>
 cataleg<Valor>& cataleg<Valor>::operator=(const cataleg& c) throw(error) {
     if (this != &c) {
-        cataleg aux(c);
-        esborra_nodes(_taula);
-        _taula = aux._taula;
-        _quants = aux._quants;
-        _M = aux._M;
+      node* aux;
+      aux = copia_nodes(c._arrel);
+      esborra_nodes(_arrel);
+      _arrel = aux;
+      _nElements = c._nElements;
+      _maxElements = c._maxElements;
     }
-    return *this;
+    return (*this);
 }
-
 template <typename Valor>
 cataleg<Valor>::~cataleg() throw() {
-    esborra_nodes(_arrel);
-    delete[] _taula;
+  esborra_nodes(_arrel);
 }
-
 /* Mètode modificador. Insereix el parell <clau, valor> indicat.
    En cas que la clau k ja existeixi en el catàleg actualitza el valor
    associat. Genera un error en cas que la clau sigui l'string buit. */
 template <typename Valor>
 void cataleg<Valor>::assig(const string &k, const Valor &v) throw(error) {
-    if(_taula[k%_M] == NULL) {
-
-        _taula[k%_M] = v;
-    }
-    else {
-        _taula[k%_M]
-    }
-    // _arrel = assig_avl(k, v, _arrel);
-
-
-    nat i = hash(k)%_M;
-    node *n = _taula[i];
-
-    // Si el numero existeix
-    if(existeix(k)) {
-      n = pos(k);
-      // Asignar v
-    }
-
-    // El numero no existeix, es crea
-    else {
-      // crear
-      _taula[i] = new node(...);
-      ++_quants;
-    }
-
-    //Consultem el factor de carrega
-    redispersio();
+    _arrel = assig_avl(k, v, _arrel);
 }
-
 /* Elimina del catàleg el parell que té com a clau k.
     En cas que la clau k no existeixi en el catàleg genera un error. */
 template <typename Valor>
 void cataleg<Valor>::elimina(const string &k) throw(error) {
-  // _arrel = elimina_avl(k, _arrel);
+  _arrel = elimina_avl(k, _arrel);
 }
 
 /* Retorna true si i només si la clau k existeix dins del catàleg; false
    en cas contrari. */
 template <typename Valor>
 bool cataleg<Valor>::existeix(const string &k) const throw() {
-    return (pos(num) != NULL);
+  bool trobat;
+  node *n = existeix_avl(_arrel, k);
+  if(n == NULL) {
+    trobat = false;
+  }
+  else {
+    trobat = true;
+  }
+  return trobat;
 }
 
 /* Retorna el valor associat a la clau k; si no existeix cap parell amb
@@ -213,10 +244,20 @@ bool cataleg<Valor>::existeix(const string &k) const throw() {
      cataleg<int> ct;
      ...
      int n = ct["dia"]; */
-template <typename Valor>
-Valor cataleg<Valor>::operator[](const string &k) const throw(error) {
-
-}
+ template <typename Valor>
+ Valor cataleg<Valor>::operator[](const string &k) const throw(error) {
+   node *n = _arrel;
+   while(n != NULL and n->_k != k) {
+     if(n->_k < k) {
+       n = n->_dret;
+     }
+     else if(n->_k > k) {
+       n = n->_esq;
+     }
+   }
+   if(n == NULL) throw error(ClauInexistent);
+   return n->_v;
+  }
 
 /* Retorna el nombre d'elements que s'han inserit en el catàleg
    fins aquest moment. */

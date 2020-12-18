@@ -1,4 +1,9 @@
-nat _n;
-nat _m;
-nat _h;
-string _j;
+nat _n; // Fileres
+nat _m; // Places
+nat _h; // Pisos
+estrategia _st;
+
+
+list<string> _areaEspera;   // Àrea espera
+nat _opsGrua;                // Operacions de grua
+contenidor _c[][][];

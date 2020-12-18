@@ -1,5 +1,5 @@
 #ifndef _TERMINAL_HPP
-#define _TERMINAL_HPP 
+#define _TERMINAL_HPP
 #include <list>
 #include <string>
 #include <esin/error>
@@ -15,9 +15,9 @@ using util::nat;
 
 class terminal {
 public:
-  
+
   static const nat HMAX = 7;
-  
+
   enum estrategia { FIRST_FIT, LLIURE };
 
   /* Constructora. Crea una terminal buida amb n fileres de m places
@@ -77,10 +77,10 @@ public:
      i < 0, i >= n, j < 0, j >= m, k < 0 o k >= h, o sigui si <i, j, k> no
      identifica una ubicació vàlida de l'àrea d'emmagatzematge. Cal observar
      que si m, obtinguda amb t.contenidor_ocupa(u, m), és una matrícula (no
-     la cadena buida) pot succeir que u != t.on(m), ja que un contenidor pot 
+     la cadena buida) pot succeir que u != t.on(m), ja que un contenidor pot
      ocupar diverses places i la seva ubicació es correspon amb la de la
      plaça ocupada amb número de plaça més baix. */
-  void contenidor_ocupa(const ubicacio &u, string &m) const throw(error);  
+  void contenidor_ocupa(const ubicacio &u, string &m) const throw(error);
 
   /* Retorna el nombre de places de la terminal que en aquest instant
      només hi cabrien un contenidor de 10 peus, però no un de més llarg.
@@ -115,7 +115,7 @@ public:
 
   /* Retorna l'estratègia d'inserció i retirada de contenidors de
      la terminal. */
-  estrategia quina_estrategia() const throw(); 
+  estrategia quina_estrategia() const throw();
 
   /* Gestió d'errors */
   static const int NumFileresIncorr = 40;
