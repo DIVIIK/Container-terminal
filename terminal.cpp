@@ -9,7 +9,14 @@ terminal::terminal(nat n, nat m, nat h, estrategia st = FIRST_FIT) throw(error) 
     else _h = h;
     if(st != FIRST_FIT or st != LLIURE) throw error(EstrategiaIncorr);
     else _st = st;
-    _c =
+
+    // _t[_n][_m][_h]
+    _t = new string**[_n];
+    for(int i = 0; i < _n; ++i) {
+        _t[i] = new string*[_m];
+        for (int j = 0; j < _m; ++j)
+            _t[i][j] = new string[_h];
+    }
 }
 
 /* Constructora per còpia, assignació i destructora. */
@@ -18,7 +25,6 @@ terminal::terminal(const terminal& b) throw(error) {
   _m = b._m;
   _h = b._h;
   _st = b._st;
-
 }
 
 terminal& terminal::operator=(const terminal& b) throw(error) {
@@ -29,7 +35,13 @@ terminal& terminal::operator=(const terminal& b) throw(error) {
 }
 
 terminal::~terminal() throw() {
-// En principi no cal
+    // Revisar
+    for(int i = 0; i < _n; ++i) {
+        for (int j = 0; j < _m; ++j)
+            delete _t[i][j];
+        delete _t[i];
+    }
+    delete _t;
 }
 
 /* Col·loca el contenidor c en l'àrea d'emmagatzematge de la terminal o
@@ -44,7 +56,45 @@ terminal::~terminal() throw() {
    contenidor amb una matrícula idèntica que la del contenidor c. */
 void terminal::insereix_contenidor(const contenidor &c) throw(error) {
     if(_st == FIRST_FIT) {
+            if(c.longitud() == 1) {
+                if(_u10 != ubicacio(-1,0,0)) {
+                    _t[_u10.filera()][_u10.placa()][_u10.pis()] = c.matricula();
+                    _u10 = seguent_pos10(_u10);
+                    /*
+                    if(_u10.pis()+1 < _h) {
+                        ++_u10.pis();
+                    }
+                    else {
+                        if(_u10.placa()+1) < _m) {
+                            ++_u10.placa();
+                        }
+                        else {
+                            if(_u10.filera()+1 < _n) {
+                                ++_u10.filera();
+                            }
+                            else {
+                                _u10 = ubicacio(-1,0,0);
+                            }
+                        }
+                        _u10.pis() = 0;
+                        while(_t[_u10.filera()][][] != NULL) {
 
+                        }
+                    }
+                }*/
+                else {
+                    _areaEspera.push_back(c);
+                }
+            }
+            else if(c.longitud() == 2) {
+                _t[_u20.filera()][_u20.placa()][_u20.pis()] = c.matricula();
+                _t[_u20.filera()][_u20.placa()+1][_u20.pis()] = c.matricula();
+            }
+            else {
+                _t[_u20.filera()][_u20.placa()][_u20.pis()] = c.matricula();
+                _t[_u20.filera()][_u20.placa()+1][_u20.pis()] = c.matricula();
+                _t[_u20.filera()][_u20.placa()+2][_u20.pis()] = c.matricula();
+            }
     }
     else {
 
@@ -75,17 +125,14 @@ void terminal::retira_contenidor(const string &m) throw(error) {
    Cal recordar que si un contenidor té més de 10 peus, la seva ubicació
    correspon a la plaça que tingui el número de plaça més petit. */
 ubicacio terminal::on(const string &m) const throw() {
-
-    string n = m;
-    ubicacio c(1,2,3);
-    return c;
+    return _c[m].second;
 }
 
 /* Retorna la longitud del contenidor la matrícula del qual és igual
    a m. Genera un error si no existeix un contenidor a la terminal
    la matrícula del qual sigui igual a m. */
 nat terminal::longitud(const string &m) const throw(error) {
-
+    return _c[m].first.longitud();
 }
 
 /* Retorna la matrícula del contenidor que ocupa la ubicació u = <i, j, k>

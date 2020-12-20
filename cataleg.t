@@ -106,7 +106,7 @@ int cataleg<Valor>::altura(node* n) {
     nat valorAltura = 0;
 
     if (n)
-        valorAltura = std::max(altura(n->_esq), altura(n->_dret)) + 1;
+        valorAltura = max(altura(n->_esq), altura(n->_dret)) + 1;
 
     return valorAltura;
 }

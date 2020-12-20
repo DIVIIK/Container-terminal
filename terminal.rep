@@ -3,7 +3,19 @@ nat _m; // Places
 nat _h; // Pisos
 estrategia _st;
 
+// Operacions de grua
+nat _opsGrua;
 
-list<string> _areaEspera;   // Àrea espera
-nat _opsGrua;                // Operacions de grua
-contenidor _c[][][];
+// Cataleg de contenidors
+cataleg<pair<contenidor,ubicacio> > _c;
+
+// Àrea d'espera
+list<Contenidor> _areaEspera;
+
+// Area emmagatzematge de tipus [_n][_m][_h]
+string ***_t;
+
+// Forats o llocs lliures
+Ubicacio _u10; //Primera ubicació lliure per un contenidor de 10 peus
+Ubicacio _u20; //Primera ubicació lliure per un contenidor de 20 peus
+Ubicacio _u30; //Primera ubicació lliure per un contenidor de 30 peus
