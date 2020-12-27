@@ -1,5 +1,85 @@
 #include "terminal.hpp"
 
+//-----------------------------------------------------
+//
+//  Métodes Privats
+//
+//-----------------------------------------------------
+
+ubicacio terminal::seguent_pos10(ubicacio u) {
+    if((u.pis()+1 < _h) {
+        ++u.pis();
+    }
+    else {
+        u.pis() = 0;
+        if((u.placa()+1) < _m) {
+            ++u.placa();
+            string m = "NULL";
+            while(u.pis() < _h and m != "" and u != ubicacio(-1,0,0)) {
+                contenidor_ocupa(u, m);
+                if(m != "") {
+                    ++u.pis();
+                    if(u.pis() == _h) {
+                        ++u.placa();
+                        u.pis() = 0;
+                        if(u.placa() == _m) {
+                            ++u.filera();
+                            if(u.filera() == _n) {
+                                u = ubicacio(-1, 0, 0);
+                            }
+                            else {
+                                u.placa() = 0;
+                                u = seguent_pos10(u);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        else {
+            if(u.filera()+1 == _n) {
+                u = ubicacio(-1, 0, 0);
+            }
+            else {
+                u.placa() = 0;
+                ++u.filera();
+                u = seguent_pos10(u);
+            }
+        }
+    }
+    return u;
+}
+
+ubicacio terminal::seguent_pos20(ubicacio u) {
+    string m = "NULL";
+    contenidor_ocupa(u, m);
+    if(m != "") {
+        if((u.pis()+1 < _h) {
+            contenidor_ocupa(ubicacio(u.pis(), u.placa()+1, u.filera()), m);
+            if(m != "") {
+
+            }
+            else {
+                ++u.pis();
+            }
+        }
+    }
+}
+
+void terminal::retira_contenidor_aux(const string &m) {
+    ubicacio u = on(m);
+    pair<contenidor,ubicacio> c = _c[m];
+
+    if (c) {
+    }
+}
+
+//-----------------------------------------------------
+//
+//  Métodes de Classe
+//
+//-----------------------------------------------------
+
 terminal::terminal(nat n, nat m, nat h, estrategia st = FIRST_FIT) throw(error) {
     if(n == 0) throw error(NumFileresIncorr);
     else _n = n;
@@ -55,33 +135,15 @@ terminal::~terminal() throw() {
    usant. Finalment, genera un error si ja existís a la terminal un
    contenidor amb una matrícula idèntica que la del contenidor c. */
 void terminal::insereix_contenidor(const contenidor &c) throw(error) {
+    ++ops_Grua;
     if(_st == FIRST_FIT) {
             if(c.longitud() == 1) {
                 if(_u10 != ubicacio(-1,0,0)) {
                     _t[_u10.filera()][_u10.placa()][_u10.pis()] = c.matricula();
                     _u10 = seguent_pos10(_u10);
-                    /*
-                    if(_u10.pis()+1 < _h) {
-                        ++_u10.pis();
-                    }
-                    else {
-                        if(_u10.placa()+1) < _m) {
-                            ++_u10.placa();
-                        }
-                        else {
-                            if(_u10.filera()+1 < _n) {
-                                ++_u10.filera();
-                            }
-                            else {
-                                _u10 = ubicacio(-1,0,0);
-                            }
-                        }
-                        _u10.pis() = 0;
-                        while(_t[_u10.filera()][][] != NULL) {
-
-                        }
-                    }
-                }*/
+                    _u20 = seguent_pos20(_u20);
+                    _u30 = seguent_pos30(_u30);
+                }
                 else {
                     _areaEspera.push_back(c);
                 }
@@ -114,7 +176,34 @@ void terminal::insereix_contenidor(const contenidor &c) throw(error) {
    l'ordre que indiqui l'estratègia que s'està usant. Genera un error si a
    la terminal no hi ha cap contenidor la matrícula del qual sigui igual a m. */
 void terminal::retira_contenidor(const string &m) throw(error) {
-    _m = m;
+    ubicacio areaEspera(-1,0,0);
+    ubicacio u = on(m);
+
+    if (u != areaEspera) {
+        pair<contenidor,ubicacio> c = _c[m];
+
+        if (c) {
+            nat long = c.first.longitud()/10;
+            string anterior = "";
+
+            // Mateixa filera <i, j, k>
+            nat i = u.filera();
+            for (nat k = u.pis(); k < _h; k++) {
+                for (nat j = u.placa(); j < long; j++) {
+                    string mat = _t[i][j][k];
+
+                    if (mat != "" and mat != anterior)
+                        retira_contenidor_aux(mat);
+                    else
+                        anterior = mat;
+                }
+            }
+        }
+        else
+            throw error(MatriculaInexistent);
+
+    } else
+        throw error(UbicacioNoMagatzem);
 }
 
 /* Retorna la ubicació <i, j, k> del contenidor la matrícula del qual és
@@ -125,14 +214,23 @@ void terminal::retira_contenidor(const string &m) throw(error) {
    Cal recordar que si un contenidor té més de 10 peus, la seva ubicació
    correspon a la plaça que tingui el número de plaça més petit. */
 ubicacio terminal::on(const string &m) const throw() {
-    return _c[m].second;
+    ubicacio u = _c[m].second;
+    if (u)
+        return u;
+    else
+        return ubicacio(-1,-1,-1);
 }
 
 /* Retorna la longitud del contenidor la matrícula del qual és igual
    a m. Genera un error si no existeix un contenidor a la terminal
    la matrícula del qual sigui igual a m. */
 nat terminal::longitud(const string &m) const throw(error) {
-    return _c[m].first.longitud();
+    pair<contenidor,ubicacio> aux = _c[m];
+
+    if (aux)
+        return _c[m].first.longitud();
+    else
+        throw error(MatriculaInexistent);
 }
 
 /* Retorna la matrícula del contenidor que ocupa la ubicació u = <i, j, k>
@@ -144,9 +242,16 @@ nat terminal::longitud(const string &m) const throw(error) {
    ocupar diverses places i la seva ubicació es correspon amb la de la
    plaça ocupada amb número de plaça més baix. */
 void terminal::contenidor_ocupa(const ubicacio &u, string &m) const throw(error) {
-    string k = m;
-    ubicacio c(u);
+    ubicacio uMinim(0,0,0);
+    ubicacio uMaxim(_n,_m,_h);
+    nat i = u.filera();
+    nat j = u.placa();
+    nat k = u.pis();
 
+    if (u >= uMinim and u < uMaxim)
+        m = _t[i,j,k];
+    else
+        throw error(NumFileresIncorr);
 }
 
 /* Retorna el nombre de places de la terminal que en aquest instant

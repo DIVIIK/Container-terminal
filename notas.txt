@@ -1,0 +1,3 @@
+Pendiente pasar a hash clase cataleg
+Pendiente mejorar forma de buscar siguiente sitio libre en clase terminal
+Pendiente pensar si no guardar en todas las pociciones la info del contenedor en clase terminal
