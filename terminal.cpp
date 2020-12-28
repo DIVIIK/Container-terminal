@@ -207,8 +207,6 @@ void terminal::insereix_contenidor(const contenidor &c) throw(error) {
                     _areaEspera.push_back(c);
                 }
             }
-            //no hace falta hacer esto en caso de que se meta en el area de espera.
-            //podemos hacer estas 3 lineas en un método¿?
 
             actualitza_pos(_u10.filera());
         }
