@@ -6,71 +6,90 @@
 //
 //-----------------------------------------------------
 
-ubicacio terminal::seguent_pos10(ubicacio u) {
-    if((u.pis()+1 < _h) {
-        ++u.pis();
-    }
-    else {
-        u.pis() = 0;
-        if((u.placa()+1) < _m) {
-            ++u.placa();
-            string m = "NULL";
-            while(u.pis() < _h and m != "" and u != ubicacio(-1,0,0)) {
-                contenidor_ocupa(u, m);
-                if(m != "") {
-                    ++u.pis();
-                    if(u.pis() == _h) {
-                        ++u.placa();
-                        u.pis() = 0;
-                        if(u.placa() == _m) {
-                            ++u.filera();
-                            if(u.filera() == _n) {
-                                u = ubicacio(-1, 0, 0);
-                            }
-                            else {
-                                u.placa() = 0;
-                                u = seguent_pos10(u);
-                            }
-                        }
-                    }
-                }
+
+//revisar!!!!! SIN ACABAR MIS OJOS!
+
+
+//A partir d'una filera, busca la seguent posició on es pot inserir un contenidor de 10 peus
+void terminal::actualitza_pos(int fil) {
+    bool trobat10 = false, trobat20 = false, trobat30 = false;
+    int placa = 0, pis, x;
+    //Comprovem si es necesari actualitzar les posicions.
+    if(_u10.filera() < fil) trobat10 = true;
+    if(_u20.filera() < fil) trobat20 = true;
+    if(_u30.filera() < fil) trobat30 = true;
+
+    while(not trobat30) {
+        if(_p[fil][placa] < _h) {
+            if(not trobat10) {
+                _u10 = ubicacio(fil, placa, pis);
+                trobat10 = true;
+            }
+            if(not trobat20 and _p[fil][placa] == _p[fil][placa+1]) {
+                _u20 = ubicacio(fil, placa, pis);
+                trobat20 = true;
+            }
+            if(_p[fil][placa] == _p[fil][placa+1] and _p[fil][placa] == _p[fil][placa+2]) {
+                _u30 = ubicacio(fil, placa, pis);
+                trobat30 = true;
             }
         }
         else {
-            if(u.filera()+1 == _n) {
-                u = ubicacio(-1, 0, 0);
-            }
-            else {
-                u.placa() = 0;
-                ++u.filera();
-                u = seguent_pos10(u);
-            }
-        }
-    }
-    return u;
-}
-
-ubicacio terminal::seguent_pos20(ubicacio u) {
-    string m = "NULL";
-    contenidor_ocupa(u, m);
-    if(m != "") {
-        if((u.pis()+1 < _h) {
-            contenidor_ocupa(ubicacio(u.pis(), u.placa()+1, u.filera()), m);
-            if(m != "") {
-
-            }
-            else {
-                ++u.pis();
+            ++placa;
+            if(not trobat10) x = 0;
+            else if(not trobat20) x = 1;
+            else if(not trobat30) x = 2;
+            if(placa == _m - x) {
+                ++fil;
+                placa = 0;
+                if(fil == _n) {
+                    if(not trobat10) _u10 = ubicacio(-1,0,0);
+                    if(not trobat20) _u20 = ubicacio(-1,0,0);
+                    if(not trobat30) _u30 = ubicacio(-1,0,0);
+                    trobat30 = true;
+                }
             }
         }
     }
 }
 
-void terminal::retira_contenidor_aux(const string &m) {
+void terminal::retira_contenidor_superior(const string &m) {
     ubicacio u = on(m);
-    pair<contenidor,ubicacio> c = _c[m];
 
-    if (c) {
+    if (_c.existeix(m)) {
+        nat long = _c[m].first.longitud()/10;
+
+        // Mateixa filera <i, j, k>
+        nat i = u.filera();
+        nat j = u.placa();
+        nat k = u.pis() + 1;
+        if (k < _h) {
+            for (nat x = 0; x < long; x++) {
+                string mat = _t[i][j+x][k];
+
+                if (mat != "" and mat != anterior) {
+                    retira_contenidor_superior(mat);
+
+                    // Retirar aquest contenidor
+                    for (nat z = 0; z < long; z++) {
+                        // 1. Eliminar de l'area de emmagatzematge
+                        _t[i][j+z][k] = "";
+
+                        // 2. Actualitzar estructura auxiliar _p
+                        --_p[u.filera().][u.placa() + z];
+                    }
+
+                    // 3. Indicar nova ubicacio al cataleg de contenidors
+                    _c[m].second = ubicacio(-1,0,0);
+
+                    // 4. Afegir a l'area d'espera
+                    _areaEspera.push_back(c.first);
+
+                    // 5. Indicar nova operacio grua
+                    _opsGrua++;
+                }
+            }
+        }
     }
 }
 
@@ -94,9 +113,16 @@ terminal::terminal(nat n, nat m, nat h, estrategia st = FIRST_FIT) throw(error) 
     _t = new string**[_n];
     for(int i = 0; i < _n; ++i) {
         _t[i] = new string*[_m];
-        for (int j = 0; j < _m; ++j)
+        for (int j = 0; j < _m; ++j) {
             _t[i][j] = new string[_h];
+            _p[i][j] = 0;
+        }
     }
+    _opsGrua = 0;
+    _u10 = ubicacio(0,0,0);
+    _u20 = _u10;
+    _u30 = _u10;
+    _c = cataleg(n*m*h);
 }
 
 /* Constructora per còpia, assignació i destructora. */
@@ -105,6 +131,13 @@ terminal::terminal(const terminal& b) throw(error) {
   _m = b._m;
   _h = b._h;
   _st = b._st;
+  _t = b._t;
+  _p = b._p;
+  _areaEspera = b._areaEspera;
+  _u10 = b._u10;
+  _u20 = b._u20;
+  _u30 = b._u30;
+  _opsGrua = b._opsGrua;
 }
 
 terminal& terminal::operator=(const terminal& b) throw(error) {
@@ -112,6 +145,11 @@ terminal& terminal::operator=(const terminal& b) throw(error) {
   _m = b._m;
   _h = b._h;
   _st = b._st;
+  _areaEspera = b._areaEspera;
+  _u10 = b._u10;
+  _u20 = b._u20;
+  _u30 = b._u30;
+  _opsGrua = b._opsGrua;
 }
 
 terminal::~terminal() throw() {
@@ -135,7 +173,51 @@ terminal::~terminal() throw() {
    usant. Finalment, genera un error si ja existís a la terminal un
    contenidor amb una matrícula idèntica que la del contenidor c. */
 void terminal::insereix_contenidor(const contenidor &c) throw(error) {
-    ++ops_Grua;
+
+    if(this->on(c.matricula) == ubicacio(-1,-1,-1)) {
+        ++_opsGrua;
+        if(_st == FIRST_FIT) {
+            if(c.longitud() == 1) {
+                if(_u10 != ubicacio(-1,0,0)) {
+                    _t[_u10.filera()][_u10.placa()][_u10.pis()] = c.matricula();
+                    ++_p[_u10.filera().][_u10.placa()];
+                }
+                else {
+                    _areaEspera.push_back(c);
+                }
+            }
+            else if(c.longitud() == 2) {
+                if(_u20 != ubicacio(-1,0,0)) {
+                    _t[_u20.filera()][_u20.placa()][_u20.pis()] = c.matricula();
+                    ++_p[_u20.filera().][_u20.placa()];
+                    ++_p[_u20.filera().][_u20.placa()+1];
+                }
+                else {
+                    _areaEspera.push_back(c);
+                }
+            }
+            else {
+                if(_u30 != ubicacio(-1,0,0)) {
+                    _t[_u30.filera()][_u30.placa()][_u30.pis()] = c.matricula();
+                    ++_p[_u30.filera().][_u30.placa()];
+                    ++_p[_u30.filera().][_u30.placa()+1];
+                    ++_p[_u30.filera().][_u30.placa()+2];
+                }
+                else {
+                    _areaEspera.push_back(c);
+                }
+            }
+            //no hace falta hacer esto en caso de que se meta en el area de espera.
+            //podemos hacer estas 3 lineas en un método¿?
+
+            actualitza_pos(_u10.filera());
+        }
+        else { //Altra estrategia
+
+        }
+    }
+    else throw error(MatriculaDuplicada);
+
     if(_st == FIRST_FIT) {
             if(c.longitud() == 1) {
                 if(_u10 != ubicacio(-1,0,0)) {
@@ -180,24 +262,27 @@ void terminal::retira_contenidor(const string &m) throw(error) {
     ubicacio u = on(m);
 
     if (u != areaEspera) {
-        pair<contenidor,ubicacio> c = _c[m];
+        if (_c.existeix(m)) {
+            retira_contenidor_superior(m);
 
-        if (c) {
-            nat long = c.first.longitud()/10;
-            string anterior = "";
+            // Retirar aquest contenidor
+            for (nat z = 0; z < long; z++) {
+                // 1. Eliminar de l'area de emmagatzematge
+                _t[i][j+z][k] = "";
 
-            // Mateixa filera <i, j, k>
-            nat i = u.filera();
-            for (nat k = u.pis(); k < _h; k++) {
-                for (nat j = u.placa(); j < long; j++) {
-                    string mat = _t[i][j][k];
-
-                    if (mat != "" and mat != anterior)
-                        retira_contenidor_aux(mat);
-                    else
-                        anterior = mat;
-                }
+                // 2. Actualitzar estructura auxiliar _p
+                --_p[u.filera().][u.placa() + z];
             }
+
+            // 3. Retirar del cataleg de contenidors
+            _c.elimina(m);
+
+            // 4. Buscar seguent ubicacio lliure
+            actualitza_pos(u.filera());
+
+            // 5. Recolocar contenidors del Area d'espera
+            for (Contenidor c : _areaEspera)
+                insereix_contenidor(c);
         }
         else
             throw error(MatriculaInexistent);

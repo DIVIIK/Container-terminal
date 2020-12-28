@@ -15,7 +15,13 @@ list<Contenidor> _areaEspera;
 // Area emmagatzematge de tipus [_n][_m][_h]
 string ***_t;
 
+//Matriu de _n*_m on guardem el número de pisos ocupats per cada plaça.
+int **_p;
+
 // Forats o llocs lliures
 Ubicacio _u10; //Primera ubicació lliure per un contenidor de 10 peus
 Ubicacio _u20; //Primera ubicació lliure per un contenidor de 20 peus
 Ubicacio _u30; //Primera ubicació lliure per un contenidor de 30 peus
+
+
+//Métodes Privats
