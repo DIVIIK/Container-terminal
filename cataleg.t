@@ -189,13 +189,13 @@ cataleg<Valor>::cataleg(nat numelems) throw(error) {
 }
 /* Constructora per còpia, assignació i destructora. */
 template <typename Valor>
-cataleg<Valor>::cataleg(const cataleg& c) throw(error) {
+cataleg<Valor>::cataleg(const cataleg<Valor>& c) throw(error) {
   _arrel = copia_nodes(c._arrel);
   _nElements = c._nElements;
   _maxElements = c._maxElements;
 }
 template <typename Valor>
-cataleg<Valor>& cataleg<Valor>::operator=(const cataleg& c) throw(error) {
+cataleg<Valor>& cataleg<Valor>::operator=(const cataleg<Valor>& c) throw(error) {
     if (this != &c) {
       node* aux;
       aux = copia_nodes(c._arrel);

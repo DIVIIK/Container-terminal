@@ -3,6 +3,7 @@
 #include <string>
 #include <esin/error>
 #include <esin/util>
+#include <algorithm>    // std::max
 
 using std::string;
 using util::nat;

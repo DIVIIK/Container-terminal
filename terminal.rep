@@ -7,10 +7,10 @@ estrategia _st;
 nat _opsGrua;
 
 // Cataleg de contenidors
-cataleg<pair<contenidor,ubicacio> > _c;
+cataleg<std::pair<contenidor,ubicacio> > _c;
 
 // Àrea d'espera
-list<Contenidor> _areaEspera;
+list<contenidor> _areaEspera;
 
 // Area emmagatzematge de tipus [_n][_m][_h]
 string ***_t;
@@ -19,9 +19,13 @@ string ***_t;
 int **_p;
 
 // Forats o llocs lliures
-Ubicacio _u10; //Primera ubicació lliure per un contenidor de 10 peus
-Ubicacio _u20; //Primera ubicació lliure per un contenidor de 20 peus
-Ubicacio _u30; //Primera ubicació lliure per un contenidor de 30 peus
+ubicacio _u10; //Primera ubicació lliure per un contenidor de 10 peus
+ubicacio _u20; //Primera ubicació lliure per un contenidor de 20 peus
+ubicacio _u30; //Primera ubicació lliure per un contenidor de 30 peus
 
+// Fragmentacio
+nat _f;
 
 //Métodes Privats
+void actualitza_pos(int fil);
+void retira_contenidor_superior(const string &m);
