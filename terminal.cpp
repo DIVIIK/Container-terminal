@@ -332,7 +332,24 @@ Per exemple, la filera de la figura 1 de l'enunciat contribuirà amb
 <f, 0, 1>, <f, 1, 2>, <f, 2, 1>, <f, 7, 1>, <f, 8, 0>, <f, 9, 1> i
 <f, 10, 0>). */
 nat terminal::fragmentacio() const throw() {
-    return _f;
+  nat f = 0;
+  bool desnivell = true;
+  for(nat i = 0; i < _n; ++i) {
+  	for(nat j = 0; j < _m; ++j) {
+  		if(j == _m-1) {
+  			if(desnivell) ++f;
+  		}
+  		else if(desnivell) {
+  			if(_p[i][j] == _p[i][j+1]) desnivell = false;
+  			else ++f;
+    		}
+    		else {
+    			if(_p[i][j] != _p[i][j+1]) desnivell = true;
+    		}
+  	}
+  	desnivell = true;
+  }
+  return f;
 }
 
 /* Retorna el número d'operacions de grua realitzades des del moment
