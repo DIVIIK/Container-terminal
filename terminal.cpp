@@ -97,7 +97,7 @@ void terminal::retira_contenidor_superior(const string &m) {
 //
 //-----------------------------------------------------
 
-terminal::terminal(nat n, nat m, nat h, estrategia st = FIRST_FIT) throw(error) {
+terminal::terminal(nat n, nat m, nat h, estrategia st = FIRST_FIT) throw(error) : _c(n*m*h), _u10(0,0,0), _u20(0,0,0), _u30(0,0,0) {
     if(n == 0) throw error(NumFileresIncorr);
     else _n = n;
     if(m == 0) throw error(NumPlacesIncorr);
@@ -117,14 +117,10 @@ terminal::terminal(nat n, nat m, nat h, estrategia st = FIRST_FIT) throw(error) 
         }
     }
     _opsGrua = 0;
-    _u10 = ubicacio(0,0,0);
-    _u20 = _u10;
-    _u30 = _u10;
-    _c = cataleg<std::pair<contenidor,ubicacio> >(n*m*h);
 }
 
 /* Constructora per còpia, assignació i destructora. */
-terminal::terminal(const terminal& b) throw(error) {
+terminal::terminal(const terminal& b) throw(error) : _c(b._c), _u10(b._u10), _u20(b._u20), _u30(b._u30) {
   _n = b._n;
   _m = b._m;
   _h = b._h;
@@ -132,9 +128,6 @@ terminal::terminal(const terminal& b) throw(error) {
   _t = b._t;
   _p = b._p;
   _areaEspera = b._areaEspera;
-  _u10 = b._u10;
-  _u20 = b._u20;
-  _u30 = b._u30;
   _opsGrua = b._opsGrua;
 }
 

@@ -1,5 +1,5 @@
 template <typename Valor>
-typename cataleg<Valor>::node* cataleg<Valor>::copia_nodes(	node* n) {
+typename cataleg<Valor>::node* cataleg<Valor>::copia_nodes(node* n) {
     node* aux = NULL;
     if (n != NULL) {
         aux = new node;
