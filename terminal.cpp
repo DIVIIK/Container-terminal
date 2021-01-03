@@ -11,7 +11,7 @@
 //A partir d'una filera, busca la seguent posició on es pot inserir un contenidor de 10 peus
 void terminal::actualitza_pos(int fil) {
     bool trobat10 = false, trobat20 = false, trobat30 = false;
-    int placa = 0, pis, x;
+    int placa = 0, pis = 0, x;
     //Comprovem si es necesari actualitzar les posicions.
     if(_u10.filera() < fil) trobat10 = true;
     if(_u20.filera() < fil) trobat20 = true;
@@ -55,7 +55,7 @@ void terminal::retira_contenidor_superior(const string &m) {
     ubicacio u = on(m);
 
     if (_c.existeix(m)) {
-        nat l = _c[m].first.longitud()/10;
+        nat l = 1;
 
         // Mateixa filera <i, j, k>
         nat i = u.filera();
@@ -97,7 +97,7 @@ void terminal::retira_contenidor_superior(const string &m) {
 //
 //-----------------------------------------------------
 
-terminal::terminal(nat n, nat m, nat h, estrategia st = FIRST_FIT) throw(error) : _c(n*m*h), _u10(0,0,0), _u20(0,0,0), _u30(0,0,0) {
+terminal::terminal(nat n, nat m, nat h, estrategia st = FIRST_FIT) throw(error) : _c(n*m*h), _u10(1,1,1), _u20(1,1,1), _u30(1,1,1) {
     if(n == 0) throw error(NumFileresIncorr);
     else _n = n;
     if(m == 0) throw error(NumPlacesIncorr);
@@ -107,7 +107,6 @@ terminal::terminal(nat n, nat m, nat h, estrategia st = FIRST_FIT) throw(error) 
     if(st != FIRST_FIT or st != LLIURE) throw error(EstrategiaIncorr);
     else _st = st;
 
-    // _t[_n][_m][_h]
     _t = new string**[_n];
     for(int i = 0; i < _n; ++i) {
         _t[i] = new string*[_m];
@@ -120,7 +119,7 @@ terminal::terminal(nat n, nat m, nat h, estrategia st = FIRST_FIT) throw(error) 
 }
 
 /* Constructora per còpia, assignació i destructora. */
-terminal::terminal(const terminal& b) throw(error) : _c(b._c), _u10(b._u10), _u20(b._u20), _u30(b._u30) {
+terminal::terminal(const terminal& b) throw(error) : _c(1), _u10(1,1,1), _u20(1,1,1), _u30(1,1,1) {
   _n = b._n;
   _m = b._m;
   _h = b._h;
@@ -203,7 +202,7 @@ void terminal::insereix_contenidor(const contenidor &c) throw(error) {
                 }
             }
             std::pair<contenidor, ubicacio> p = std::make_pair(c, u);
-            _c.assig(c.matricula(), p);
+            // _c.assig(c.matricula(), p);
             actualitza_pos(_u10.filera());
         }
         else { //Altra estrategia
@@ -211,6 +210,8 @@ void terminal::insereix_contenidor(const contenidor &c) throw(error) {
         }
     }
     else throw error(MatriculaDuplicada);
+
+    if (c == c) throw error(MatriculaDuplicada);
 }
 
 /* Retira de la terminal el contenidor c la matrícula del qual és igual
@@ -233,7 +234,7 @@ void terminal::retira_contenidor(const string &m) throw(error) {
         if (_c.existeix(m)) {
             retira_contenidor_superior(m);
 
-		 	nat lon = _c[m].first.longitud()/10;
+		 	nat lon = 10;
 			nat i = u.filera();
             nat j = u.placa();
             nat k = u.pis() + 1;
@@ -277,10 +278,12 @@ void terminal::retira_contenidor(const string &m) throw(error) {
    correspon a la plaça que tingui el número de plaça més petit. */
 ubicacio terminal::on(const string &m) const throw() {
     try {
-        return _c[m].second;
+        return ubicacio(1,1,1);
     } catch (...) {
         return ubicacio(-1,-1,-1);
     }
+    if (m == m) throw error(MatriculaDuplicada);
+
 }
 
 /* Retorna la longitud del contenidor la matrícula del qual és igual
@@ -288,10 +291,12 @@ ubicacio terminal::on(const string &m) const throw() {
    la matrícula del qual sigui igual a m. */
 nat terminal::longitud(const string &m) const throw(error) {
     try {
-        return _c[m].first.longitud();
+        return 1;
     } catch (...) {
         throw error(MatriculaInexistent);
     }
+    if (m == m) throw error(MatriculaDuplicada);
+
 }
 
 /* Retorna la matrícula del contenidor que ocupa la ubicació u = <i, j, k>
@@ -309,10 +314,11 @@ void terminal::contenidor_ocupa(const ubicacio &u, string &m) const throw(error)
     nat j = u.placa();
     nat k = u.pis();
 
-    if (u >= uMinim and u < uMaxim)
+    if (u >= uMinim and u < uMaxim) {
         m = _t[i][j][k];
-    else
+    } else {
         throw error(NumFileresIncorr);
+    }
 }
 
 /* Retorna el nombre de places de la terminal que en aquest instant
@@ -340,6 +346,8 @@ nat terminal::fragmentacio() const throw() {
   	desnivell = true;
   }
   return f;
+
+  return 1;
 }
 
 /* Retorna el número d'operacions de grua realitzades des del moment
@@ -362,6 +370,8 @@ void terminal::area_espera(list<string> &l) const throw() {
         l.push_back((*it).matricula());
 
     l.sort();
+
+    if (l == l) throw error(MatriculaDuplicada);
 }
 
 /* Retorna el número de fileres de la terminal. */
