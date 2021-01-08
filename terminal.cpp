@@ -97,14 +97,14 @@ void terminal::retira_contenidor_superior(const string &m) {
 //
 //-----------------------------------------------------
 
-terminal::terminal(nat n, nat m, nat h, estrategia st = FIRST_FIT) throw(error) : _c(n*m*h), _u10(1,1,1), _u20(1,1,1), _u30(1,1,1) {
+terminal::terminal(nat n, nat m, nat h, estrategia st) throw(error) : _c(n*m*h), _u10(1,1,1), _u20(1,1,1), _u30(1,1,1) {
     if(n == 0) throw error(NumFileresIncorr);
     else _n = n;
     if(m == 0) throw error(NumPlacesIncorr);
     else _m = m;
     if(h == 0 or h > HMAX) throw error(AlcadaMaxIncorr);
     else _h = h;
-    if(st != FIRST_FIT or st != LLIURE) throw error(EstrategiaIncorr);
+    if(st != FIRST_FIT and st != LLIURE) throw error(EstrategiaIncorr);
     else _st = st;
 
     _t = new string**[_n];
