@@ -8,7 +8,7 @@ struct node
     string _k; 		// Clau
     Valor _v; 		// Valor
     node* _seg;     // Node seguent
-    node(const nat &k, const Valor &v, node* seg = NULL);	// Constructor de node
+    node(const string &k, const Valor &v, node* seg = NULL);	// Constructor de node
 };
 
 node ** _taula; // taula amb punters a les llistes
@@ -26,15 +26,19 @@ int hash(const string &_k) const throw()
 {
 	int x = 0;
     for (size_t i = 0; i < _k.length(); i++)
-        x = x + k[i]*i;
+        x = x + _k[i]*i;
     return x % _M;
 }
 
 // Borra tots els encadenaments.
-static void esborra_nodes(node **taula, nat size); // Cost lineal respecte a _M
+void esborra_nodes(node **taula); // Cost lineal respecte a _M
 
 // Copia tots els nodes d'una llista.
 static node* copia_nodes(node* m); // Cost lineal respecte a _M
+
+int segPrim(int N);
+
+bool esPrim(int n);
 
 // Funcio que redispersiona la taula.
 // void redispersio(); // Cost lineal respecte a _M

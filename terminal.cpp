@@ -202,7 +202,7 @@ void terminal::insereix_contenidor(const contenidor &c) throw(error) {
                 }
             }
             std::pair<contenidor, ubicacio> p = std::make_pair(c, u);
-            // _c.assig(c.matricula(), p);
+            _c.assig(c.matricula(), p);
             actualitza_pos(_u10.filera());
         }
         else { //Altra estrategia

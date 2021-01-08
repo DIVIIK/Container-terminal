@@ -1,6 +1,6 @@
 template <typename Valor>
 typename cataleg<Valor>::node* cataleg<Valor>::copia_nodes(node* n) { // Cost lineal respecte al numero de nodes encadenats
-    hash_node* aux = NULL;
+    node* aux = NULL;
     if(n) {
       aux = new node(n->_k,n->_v,copia_nodes(n->_seg));
       // aux->_v = n->_v;
@@ -24,7 +24,11 @@ void cataleg<Valor>::esborra_nodes(node** n) {
     }
 }
 
-bool esPrim(int n) {
+template <typename Valor>
+cataleg<Valor>::node::node(const string &k, const Valor &v, node* seg) : _k(k), _v(v), _seg(seg) { }
+
+template <typename Valor>
+bool cataleg<Valor>::esPrim(int n) {
     if (n <= 1)  return false;
     if (n <= 3)  return true;
 
@@ -38,7 +42,8 @@ bool esPrim(int n) {
 }
 
 // Retorna el seguent numero prim
-int segPrim(int N) {
+template <typename Valor>
+int cataleg<Valor>::segPrim(int N) {
     int prim = N;
     bool trobat = false;
     while (!trobat) {
@@ -101,7 +106,7 @@ template <typename Valor>
 cataleg<Valor>::cataleg(nat numelems) throw(error) : _quants(0) {
     if (!numelems%2) numelems++;
 
-    if(!esPrim(numelems)
+    if(!esPrim(numelems))
         _M = segPrim(numelems);
     else
         _M = numelems;
@@ -137,7 +142,7 @@ cataleg<Valor>& cataleg<Valor>::operator=(const cataleg& c) throw(error) {
 
 template <typename Valor>
 cataleg<Valor>::~cataleg() throw() {
-    esborra_nodes(_arrel);
+    esborra_nodes(_taula);
     delete[] _taula;
 }
 
@@ -147,7 +152,7 @@ cataleg<Valor>::~cataleg() throw() {
 template <typename Valor>
 void cataleg<Valor>::assig(const string &k, const Valor &v) throw(error) {
     int i = hash(k);
-    hash* p = _taula[i];
+    node* p = _taula[i];
     bool trobat = false;
     while (p != NULL and not trobat) {
         if (p->_k == k)
@@ -161,7 +166,7 @@ void cataleg<Valor>::assig(const string &k, const Valor &v) throw(error) {
     } else {
         // Cal crear un nou node i l'afegim al principi
         _taula[i] = new node(k,v,_taula[i]);
-        +++_quants;
+        ++_quants;
     }
 }
 
@@ -185,10 +190,10 @@ void cataleg<Valor>::elimina(const string &k) throw(error) {
     }
     if (trobat) {
         if (ant == NULL) {
-            _taula[i] = p->seg; // Era el primer
+            _taula[i] = p->_seg; // Era el primer
         }
         else {
-            ant->seg = p->seg;
+            ant->_seg = p->_seg;
         }
         delete(p);
         --_quants;
@@ -200,7 +205,7 @@ void cataleg<Valor>::elimina(const string &k) throw(error) {
 template <typename Valor>
 bool cataleg<Valor>::existeix(const string &k) const throw() {
     int i = hash(k);
-    hash* p = _taula[i];
+    node* p = _taula[i];
     bool trobat = false;
 
     while (p != NULL and not trobat) {
@@ -221,7 +226,7 @@ bool cataleg<Valor>::existeix(const string &k) const throw() {
 template <typename Valor>
 Valor cataleg<Valor>::operator[](const string &k) const throw(error) {
     int i = hash(k);
-    hash* p = _taula[i];
+    node* p = _taula[i];
     bool trobat = false;
 
     while (p != NULL and not trobat) {
@@ -241,5 +246,5 @@ Valor cataleg<Valor>::operator[](const string &k) const throw(error) {
    fins aquest moment. */
 template <typename Valor>
 nat cataleg<Valor>::quants() const throw() {
-    return _nElements;
+    return _quants;
 }
