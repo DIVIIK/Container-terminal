@@ -1,3 +1,16 @@
-Pendiente pasar a hash clase cataleg
+Pendiente hacer redispersion clase cataleg
 Pendiente mejorar forma de buscar siguiente sitio libre en clase terminal
 Pendiente pensar si no guardar en todas las pociciones la info del contenedor en clase terminal
+Pendiente repasar memoria dinamica
+
+================
+=== Comandos ===
+================
+pm 0 (print_memory)
+pm 1
+test_memory
+
+Nota: Para debugar hemos de añadir el -O0 y -g
+ddd
+nemiver
+valgrind
