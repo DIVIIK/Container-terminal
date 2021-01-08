@@ -197,7 +197,8 @@ void cataleg<Valor>::elimina(const string &k) throw(error) {
         }
         delete(p);
         --_quants;
-    }
+    } else
+        throw error(ClauInexistent);
 }
 
 /* Retorna true si i només si la clau k existeix dins del catàleg; false
