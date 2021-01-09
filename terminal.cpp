@@ -13,10 +13,9 @@ void terminal::actualitza_pos(int fil) {
     bool trobat10 = false, trobat20 = false, trobat30 = false;
     int placa = 0, pis = 0, x;
     //Comprovem si es necesari actualitzar les posicions.
-    if(_u10.filera() < fil) trobat10 = true;
-    if(_u20.filera() < fil) trobat20 = true;
-    if(_u30.filera() < fil) trobat30 = true;
-
+    if(_u10.filera() < fil or fil == -1) trobat10 = true;
+    if(_u20.filera() < fil or fil == -1) trobat20 = true;
+    if(_u30.filera() < fil or fil == -1) trobat30 = true;
     while(not trobat30 or not trobat20 or not trobat10) {
         if(_p[fil][placa] < _h) {
             if(not trobat10) {
@@ -183,13 +182,13 @@ terminal::~terminal() throw() {
 void terminal::insereix_contenidor(const contenidor &c) throw(error) {
 	if(this->on(c.matricula()) == ubicacio(-1,-1,-1)) {
         ubicacio u(-1,0,0);
-        ++_opsGrua;
         if(_st == FIRST_FIT) {
             if(c.longitud() == 10) {
                 if(_u10 != u) {
                     _t[_u10.filera()][_u10.placa()][_u10.pis()] = c.matricula();
                     ++_p[_u10.filera()][_u10.placa()];
                     u = _u10;
+                    ++_opsGrua;
                 }
                 else {
                     _areaEspera.push_back(c);
@@ -201,6 +200,7 @@ void terminal::insereix_contenidor(const contenidor &c) throw(error) {
                     ++_p[_u20.filera()][_u20.placa()];
                     ++_p[_u20.filera()][_u20.placa()+1];
                     u = _u20;
+                    ++_opsGrua;
                 }
                 else {
                     _areaEspera.push_back(c);
@@ -213,6 +213,7 @@ void terminal::insereix_contenidor(const contenidor &c) throw(error) {
                     ++_p[_u30.filera()][_u30.placa()+1];
                     ++_p[_u30.filera()][_u30.placa()+2];
                     u = _u30;
+                    ++_opsGrua;
                 }
                 else {
                     _areaEspera.push_back(c);
