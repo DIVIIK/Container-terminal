@@ -193,8 +193,8 @@ void terminal::insereix_contenidor(const contenidor &c) throw(error) {
             }
             else {
                 if(_u30 != u) {
-                    _t[_u30.filera()][_u30.placa()][_u30.pis()] = c.matricula();
-                    ++_p[_u30.filera()][_u30.placa()];
+                    _t[_u30.filera()-1][_u30.placa()-1][_u30.pis()-1] = c.matricula();  // REVISAR !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                    ++_p[_u30.filera()-1][_u30.placa()-1];
                     ++_p[_u30.filera()][_u30.placa()+1];
                     ++_p[_u30.filera()][_u30.placa()+2];
                     u = _u30;
