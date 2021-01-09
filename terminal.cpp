@@ -281,10 +281,16 @@ void terminal::retira_contenidor(const string &m) throw(error) {
             throw error(MatriculaInexistent);
 
     } else {
-        //throw error(UbicacioNoMagatzem);
     	list<contenidor>::const_iterator it;
-    	for (it = _areaEspera.begin(); it != _areaEspera.end(); ++it)
-        	if((*it).matricula() == m) _areaEspera.remove(*it);
+    	bool fi = false;
+    	it = _areaEspera.begin();
+    	while(it != _areaEspera.end() and not fi)
+        	if((*it).matricula() == m) {
+        		_areaEspera.remove(*it);
+        		_c.elimina(m);
+        		fi = true;
+        	} else 
+        		 ++it;
   	}
 }
 
@@ -348,7 +354,7 @@ nat terminal::fragmentacio() const throw() {
   bool desnivell = true;
   for(nat i = 0; i < _n; ++i) {
   	for(nat j = 0; j < _m; ++j) {
-  		if(j == _m-1) {
+  		if(j == _m-1 and _m != 1) {
   			if(desnivell) ++f;
   		}
   		else if(desnivell) {
@@ -362,8 +368,6 @@ nat terminal::fragmentacio() const throw() {
   	desnivell = true;
   }
   return f;
-
-  return 1;
 }
 
 /* Retorna el número d'operacions de grua realitzades des del moment
