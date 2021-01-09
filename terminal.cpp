@@ -56,7 +56,7 @@ void terminal::retira_contenidor_superior(const string &m) {
     ubicacio u = on(m);
 
     if (_c.existeix(m)) {
-        nat l = 1;
+        nat l = _c[m].first.longitud()/10;
 
         // Mateixa filera <i, j, k>
         nat i = u.filera();
@@ -249,7 +249,7 @@ void terminal::retira_contenidor(const string &m) throw(error) {
         if (_c.existeix(m)) {
             retira_contenidor_superior(m);
 
-		 	nat lon = 10;
+		 	nat lon = _c[m].first.longitud()/10;
 			nat i = u.filera();
             nat j = u.placa();
             nat k = u.pis() + 1;
@@ -289,7 +289,7 @@ void terminal::retira_contenidor(const string &m) throw(error) {
         		_areaEspera.remove(*it);
         		_c.elimina(m);
         		fi = true;
-        	} else 
+        	} else
         		 ++it;
   	}
 }
