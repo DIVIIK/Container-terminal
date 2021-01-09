@@ -252,7 +252,7 @@ void terminal::retira_contenidor(const string &m) throw(error) {
 		 	nat lon = _c[m].first.longitud()/10;
 			nat i = u.filera();
             nat j = u.placa();
-            nat k = u.pis() + 1;
+            nat k = u.pis();
 
             // Retirar aquest contenidor
             for (nat z = 0; z < lon; z++) {
