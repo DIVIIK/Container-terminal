@@ -205,7 +205,7 @@ void terminal::insereix_contenidor(const contenidor &c) throw(error) {
             }
             else {
                 if(_u30 != u) {
-                    _t[_u30.filera()][_u30.placa()][_u30.pis()] = c.matricula(); 
+                    _t[_u30.filera()][_u30.placa()][_u30.pis()] = c.matricula();
                     ++_p[_u30.filera()][_u30.placa()];
                     ++_p[_u30.filera()][_u30.placa()+1];
                     ++_p[_u30.filera()][_u30.placa()+2];
@@ -315,12 +315,15 @@ nat terminal::longitud(const string &m) const throw(error) {
    ocupar diverses places i la seva ubicació es correspon amb la de la
    plaça ocupada amb número de plaça més baix. */
 void terminal::contenidor_ocupa(const ubicacio &u, string &m) const throw(error) {
-    nat i = u.filera();
-    nat j = u.placa();
-    nat k = u.pis();
+    int i = u.filera();
+    int j = u.placa();
+    int k = u.pis();
 
     try {
-        m = _t[i][j][k];
+        if ( (i < _n) and (j < _m) and (k < _h) )
+            m = _t[i][j][k];
+        else
+            throw error();
     } catch (...) {
         throw error(UbicacioNoMagatzem);
     }
