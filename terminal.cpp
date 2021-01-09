@@ -97,7 +97,7 @@ void terminal::retira_contenidor_superior(const string &m) {
 //
 //-----------------------------------------------------
 
-terminal::terminal(nat n, nat m, nat h, estrategia st) throw(error) : _c(n*m*h), _u10(1,1,1), _u20(1,1,1), _u30(1,1,1) {
+terminal::terminal(nat n, nat m, nat h, estrategia st) throw(error) : _c(n*m*h), _u10(0,0,0), _u20(0,0,0), _u30(0,0,0) {
     if(n == 0) throw error(NumFileresIncorr);
     else _n = n;
     if(m == 0) throw error(NumPlacesIncorr);
@@ -107,12 +107,22 @@ terminal::terminal(nat n, nat m, nat h, estrategia st) throw(error) : _c(n*m*h),
     if(st != FIRST_FIT and st != LLIURE) throw error(EstrategiaIncorr);
     else _st = st;
 
+    if (m < 3) {
+        _u30 = ubicacio(-1,0,0);
+        if (m < 2) {
+            _u20 = ubicacio(-1,0,0);
+        }
+    }
+
     _t = new string**[_n];
+    _p = new int*[_n];
     for(int i = 0; i < _n; ++i) {
         _t[i] = new string*[_m];
+        _p[i] = new int[_m];
         for (int j = 0; j < _m; ++j) {
             _t[i][j] = new string[_h];
-            for(int k = 0; k<_h;k++){
+            _p[i][j] = 0;
+            for(int k = 0; k<_h;k++) {
                _t[i][j][k] = "";
             }
         }
@@ -193,8 +203,8 @@ void terminal::insereix_contenidor(const contenidor &c) throw(error) {
             }
             else {
                 if(_u30 != u) {
-                    _t[_u30.filera()-1][_u30.placa()-1][_u30.pis()-1] = c.matricula();  // REVISAR !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                    ++_p[_u30.filera()-1][_u30.placa()-1];
+                    _t[_u30.filera()][_u30.placa()][_u30.pis()] = c.matricula();  // REVISAR !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                    ++_p[_u30.filera()][_u30.placa()];
                     ++_p[_u30.filera()][_u30.placa()+1];
                     ++_p[_u30.filera()][_u30.placa()+2];
                     u = _u30;
@@ -212,8 +222,6 @@ void terminal::insereix_contenidor(const contenidor &c) throw(error) {
         }
     }
     else throw error(MatriculaDuplicada);
-
-    if (c == c) throw error(MatriculaDuplicada);
 }
 
 /* Retira de la terminal el contenidor c la matrícula del qual és igual
@@ -284,8 +292,6 @@ ubicacio terminal::on(const string &m) const throw() {
     } catch (...) {
         return ubicacio(-1,-1,-1);
     }
-    if (m == m) throw error(MatriculaDuplicada);
-
 }
 
 /* Retorna la longitud del contenidor la matrícula del qual és igual
@@ -308,18 +314,12 @@ nat terminal::longitud(const string &m) const throw(error) {
    ocupar diverses places i la seva ubicació es correspon amb la de la
    plaça ocupada amb número de plaça més baix. */
 void terminal::contenidor_ocupa(const ubicacio &u, string &m) const throw(error) {
-    ubicacio uMinim(0,0,0);
-    ubicacio uMaxim(_n,_m,_h);
     nat i = u.filera();
     nat j = u.placa();
     nat k = u.pis();
 
     try {
-        if ( (i < _n) and (j < _m) and (k < _h) ) {
-            m = _t[i][j][k];
-        } else {
-            throw error(UbicacioNoMagatzem);
-        }
+        m = _t[i][j][k];
     } catch (...) {
         throw error(UbicacioNoMagatzem);
     }
