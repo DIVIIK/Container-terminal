@@ -280,7 +280,7 @@ void terminal::retira_contenidor(const string &m) throw(error) {
    correspon a la plaça que tingui el número de plaça més petit. */
 ubicacio terminal::on(const string &m) const throw() {
     try {
-        return ubicacio(1,1,1);
+        return _c[m].second;
     } catch (...) {
         return ubicacio(-1,-1,-1);
     }
@@ -293,12 +293,10 @@ ubicacio terminal::on(const string &m) const throw() {
    la matrícula del qual sigui igual a m. */
 nat terminal::longitud(const string &m) const throw(error) {
     try {
-        return 1;
+        return _c[m].first.longitud();
     } catch (...) {
         throw error(MatriculaInexistent);
     }
-    if (m == m) throw error(MatriculaDuplicada);
-
 }
 
 /* Retorna la matrícula del contenidor que ocupa la ubicació u = <i, j, k>
@@ -316,10 +314,14 @@ void terminal::contenidor_ocupa(const ubicacio &u, string &m) const throw(error)
     nat j = u.placa();
     nat k = u.pis();
 
-    if (u >= uMinim and u < uMaxim) {
-        m = _t[i][j][k];
-    } else {
-        throw error(NumFileresIncorr);
+    try {
+        if ( (i < _n) and (j < _m) and (k < _h) ) {
+            m = _t[i][j][k];
+        } else {
+            throw error(UbicacioNoMagatzem);
+        }
+    } catch (...) {
+        throw error(UbicacioNoMagatzem);
     }
 }
 
