@@ -280,8 +280,12 @@ void terminal::retira_contenidor(const string &m) throw(error) {
         else
             throw error(MatriculaInexistent);
 
-    } else
-        throw error(UbicacioNoMagatzem);
+    } else {
+        //throw error(UbicacioNoMagatzem);
+    	list<contenidor>::const_iterator it;
+    	for (it = _areaEspera.begin(); it != _areaEspera.end(); ++it)
+        	if((*it).matricula() == m) _areaEspera.remove(*it);
+  	}
 }
 
 /* Retorna la ubicació <i, j, k> del contenidor la matrícula del qual és
