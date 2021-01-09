@@ -108,14 +108,14 @@ terminal::terminal(nat n, nat m, nat h, estrategia st) throw(error) : _c(n*m*h),
     else _h = h;
     if(st != FIRST_FIT and st != LLIURE) throw error(EstrategiaIncorr);
     else _st = st;
-	
-	if(m < 3) {
-		_u30 = ubicacio(-1,0,0);
-		if(m < 2) {
-			_u20 = ubicacio(-1,0,0);
-		}
-	}
-		
+
+    if (m < 3) {
+        _u30 = ubicacio(-1,0,0);
+        if (m < 2) {
+            _u20 = ubicacio(-1,0,0);
+        }
+    }
+
     _t = new string**[_n];
     _p = new int*[_n];
     for(int i = 0; i < _n; ++i) {
@@ -315,18 +315,12 @@ nat terminal::longitud(const string &m) const throw(error) {
    ocupar diverses places i la seva ubicació es correspon amb la de la
    plaça ocupada amb número de plaça més baix. */
 void terminal::contenidor_ocupa(const ubicacio &u, string &m) const throw(error) {
-    ubicacio uMinim(0,0,0);
-    ubicacio uMaxim(_n,_m,_h);
     nat i = u.filera();
     nat j = u.placa();
     nat k = u.pis();
 
     try {
-        if ( (i < _n) and (j < _m) and (k < _h) ) {
-            m = _t[i][j][k];
-        } else {
-            throw error(UbicacioNoMagatzem);
-        }
+        m = _t[i][j][k];
     } catch (...) {
         throw error(UbicacioNoMagatzem);
     }
