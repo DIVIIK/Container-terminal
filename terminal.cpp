@@ -133,7 +133,7 @@ terminal::terminal(nat n, nat m, nat h, estrategia st) throw(error) : _c(n*m*h),
 }
 
 /* Constructora per còpia, assignació i destructora. */
-terminal::terminal(const terminal& b) throw(error) : _c(1) {
+terminal::terminal(const terminal& b) throw(error) : _c(1), _u10(0,0,0), _u20(0,0,0), _u30(0,0,0) {
   _n = b._n;
   _m = b._m;
   _h = b._h;
