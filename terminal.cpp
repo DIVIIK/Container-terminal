@@ -112,7 +112,9 @@ terminal::terminal(nat n, nat m, nat h, estrategia st) throw(error) : _c(n*m*h),
         _t[i] = new string*[_m];
         for (int j = 0; j < _m; ++j) {
             _t[i][j] = new string[_h];
-            _p[i][j] = 0;
+            for(int k = 0; k<_h;k++){
+               _t[i][j][k] = "";
+            }
         }
     }
     _opsGrua = 0;
@@ -150,7 +152,7 @@ terminal::~terminal() throw() {
             delete _t[i][j];
         delete _t[i];
     }
-    delete _t;
+    delete[] _t;
 }
 
 /* Col·loca el contenidor c en l'àrea d'emmagatzematge de la terminal o
