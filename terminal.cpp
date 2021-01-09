@@ -17,7 +17,7 @@ void terminal::actualitza_pos(int fil) {
     if(_u20.filera() < fil) trobat20 = true;
     if(_u30.filera() < fil) trobat30 = true;
 
-    while(not trobat30) {
+    while(not trobat30 or not trobat20 or not trobat10) {
         if(_p[fil][placa] < _h) {
             if(not trobat10) {
                 _u10 = ubicacio(fil, placa, pis);
@@ -37,14 +37,16 @@ void terminal::actualitza_pos(int fil) {
             if(not trobat10) x = 0;
             else if(not trobat20) x = 1;
             else if(not trobat30) x = 2;
-            if(placa == _m - x) {
+            if(placa <= _m - x) {
                 ++fil;
                 placa = 0;
-                if(fil == _n) {
+                if(fil <= _n) {
                     if(not trobat10) _u10 = ubicacio(-1,0,0);
                     if(not trobat20) _u20 = ubicacio(-1,0,0);
                     if(not trobat30) _u30 = ubicacio(-1,0,0);
                     trobat30 = true;
+                    trobat20 = true;
+                    trobat10 = true;
                 }
             }
         }
@@ -97,7 +99,7 @@ void terminal::retira_contenidor_superior(const string &m) {
 //
 //-----------------------------------------------------
 
-terminal::terminal(nat n, nat m, nat h, estrategia st) throw(error) : _c(n*m*h), _u10(1,1,1), _u20(1,1,1), _u30(1,1,1) {
+terminal::terminal(nat n, nat m, nat h, estrategia st) throw(error) : _c(n*m*h), _u10(0,0,0), _u20(0,0,0), _u30(0,0,0) {
     if(n == 0) throw error(NumFileresIncorr);
     else _n = n;
     if(m == 0) throw error(NumPlacesIncorr);
@@ -106,13 +108,23 @@ terminal::terminal(nat n, nat m, nat h, estrategia st) throw(error) : _c(n*m*h),
     else _h = h;
     if(st != FIRST_FIT and st != LLIURE) throw error(EstrategiaIncorr);
     else _st = st;
-
+	
+	if(m < 3) {
+		_u30 = ubicacio(-1,0,0);
+		if(m < 2) {
+			_u20 = ubicacio(-1,0,0);
+		}
+	}
+		
     _t = new string**[_n];
+    _p = new int*[_n];
     for(int i = 0; i < _n; ++i) {
         _t[i] = new string*[_m];
+        _p[i] = new int[_m];
         for (int j = 0; j < _m; ++j) {
             _t[i][j] = new string[_h];
-            for(int k = 0; k<_h;k++){
+            _p[i][j] = 0;
+            for(int k = 0; k<_h;k++) {
                _t[i][j][k] = "";
             }
         }
@@ -170,7 +182,7 @@ void terminal::insereix_contenidor(const contenidor &c) throw(error) {
         ubicacio u(-1,0,0);
         ++_opsGrua;
         if(_st == FIRST_FIT) {
-            if(c.longitud() == 1) {
+            if(c.longitud() == 10) {
                 if(_u10 != u) {
                     _t[_u10.filera()][_u10.placa()][_u10.pis()] = c.matricula();
                     ++_p[_u10.filera()][_u10.placa()];
@@ -180,7 +192,7 @@ void terminal::insereix_contenidor(const contenidor &c) throw(error) {
                     _areaEspera.push_back(c);
                 }
             }
-            else if(c.longitud() == 2) {
+            else if(c.longitud() == 20) {
                 if(_u20 != u) {
                     _t[_u20.filera()][_u20.placa()][_u20.pis()] = c.matricula();
                     ++_p[_u20.filera()][_u20.placa()];
@@ -193,8 +205,8 @@ void terminal::insereix_contenidor(const contenidor &c) throw(error) {
             }
             else {
                 if(_u30 != u) {
-                    _t[_u30.filera()-1][_u30.placa()-1][_u30.pis()-1] = c.matricula();  // REVISAR !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                    ++_p[_u30.filera()-1][_u30.placa()-1];
+                    _t[_u30.filera()][_u30.placa()][_u30.pis()] = c.matricula(); 
+                    ++_p[_u30.filera()][_u30.placa()];
                     ++_p[_u30.filera()][_u30.placa()+1];
                     ++_p[_u30.filera()][_u30.placa()+2];
                     u = _u30;
@@ -212,10 +224,7 @@ void terminal::insereix_contenidor(const contenidor &c) throw(error) {
         }
     }
     else throw error(MatriculaDuplicada);
-
-    if (c == c) throw error(MatriculaDuplicada);
 }
-
 /* Retira de la terminal el contenidor c la matrícula del qual és igual
    a m. Aquest contenidor pot estar a l'àrea d'emmagatzematge o a l'àrea
    d'espera. Si el contenidor estigués a l'àrea d'emmagatzematge llavors
@@ -284,8 +293,6 @@ ubicacio terminal::on(const string &m) const throw() {
     } catch (...) {
         return ubicacio(-1,-1,-1);
     }
-    if (m == m) throw error(MatriculaDuplicada);
-
 }
 
 /* Retorna la longitud del contenidor la matrícula del qual és igual
