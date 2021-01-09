@@ -374,8 +374,6 @@ void terminal::area_espera(list<string> &l) const throw() {
         l.push_back((*it).matricula());
 
     l.sort();
-
-    if (l == l) throw error(MatriculaDuplicada);
 }
 
 /* Retorna el número de fileres de la terminal. */
