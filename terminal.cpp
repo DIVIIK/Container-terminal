@@ -20,16 +20,16 @@ void terminal::actualitza_pos(int fil) {
         if(_p[fil][placa] < _h) {
             if(not trobat10) {
                 _u10 = ubicacio(fil, placa, pis);
-                trobat10 = true;
             }
+            trobat10 = true; // Lo saco fuera para evitar bucle infnito
             if(not trobat20 and _p[fil][placa] == _p[fil][placa+1]) {
                 _u20 = ubicacio(fil, placa, pis);
-                trobat20 = true;
             }
+            trobat20 = true; // Lo saco fuera para evitar bucle infnito
             if(_p[fil][placa] == _p[fil][placa+1] and _p[fil][placa] == _p[fil][placa+2]) {
                 _u30 = ubicacio(fil, placa, pis);
-                trobat30 = true;
             }
+            trobat30 = true; // Lo saco fuera para evitar bucle infnito
         }
         else {
             ++placa;
