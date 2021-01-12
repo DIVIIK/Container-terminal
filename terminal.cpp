@@ -160,13 +160,15 @@ terminal& terminal::operator=(const terminal& b) throw(error) {
 }
 
 terminal::~terminal() throw() {
-    // Revisar
     for(int i = 0; i < _n; ++i) {
-        for (int j = 0; j < _m; ++j)
-            delete _t[i][j];
+        delete _p[i];
+        for (int j = 0; j < _m; ++j) {
+            delete[] _t[i][j];
+        }
         delete _t[i];
     }
     delete[] _t;
+    delete[] _p;
 }
 
 /* Col·loca el contenidor c en l'àrea d'emmagatzematge de la terminal o
