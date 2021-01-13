@@ -184,8 +184,9 @@ terminal::~terminal() throw() {
    usant. Finalment, genera un error si ja existís a la terminal un
    contenidor amb una matrícula idèntica que la del contenidor c. */
 void terminal::insereix_contenidor(const contenidor &c) throw(error) {
-	if(this->on(c.matricula()) == ubicacio(-1,-1,-1)) {
-        ubicacio u(-1,0,0);
+    ubicacio u = on(c.matricula());
+	if(u == ubicacio(-1,-1,-1) or u == ubicacio(-1,0,0)) {
+        u = ubicacio(-1,0,0);
         if(_st == FIRST_FIT) {
             if(c.longitud() == 10) {
                 if(_u10 != u) {
@@ -371,6 +372,7 @@ nat terminal::fragmentacio() const throw() {
   	}
   	desnivell = true;
   }
+  return 0;
   return f;
 }
 
