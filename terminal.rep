@@ -7,7 +7,7 @@ estrategia _st;
 nat _opsGrua;
 
 // Cataleg de contenidors
-cataleg<std::pair<contenidor,ubicacio> > _c;
+cataleg<std::pair<nat,ubicacio> > _c;
 
 // Àrea d'espera
 list<contenidor> _areaEspera;

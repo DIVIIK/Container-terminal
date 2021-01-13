@@ -56,7 +56,7 @@ void terminal::retira_contenidor_superior(const string &m) {
     ubicacio u = on(m);
 
     if (_c.existeix(m)) {
-        nat l = _c[m].first.longitud()/10;
+        nat l = _c[m].first/10;
 
         // Mateixa filera <i, j, k>
         nat i = u.filera();
@@ -82,7 +82,7 @@ void terminal::retira_contenidor_superior(const string &m) {
                     _c[m].second = ubicacio(-1,0,0);
 
                     // 4. Afegir a l'area d'espera
-                    _areaEspera.push_back(_c[m].first);
+                    _areaEspera.push_back(contenidor(mat,_c[m].first));
 
                     // 5. Indicar nova operacio grua
                     _opsGrua++;
@@ -133,30 +133,32 @@ terminal::terminal(nat n, nat m, nat h, estrategia st) throw(error) : _c(n*m*h),
 
 /* Constructora per còpia, assignació i destructora. */
 terminal::terminal(const terminal& b) throw(error) : _c(1), _u10(0,0,0), _u20(0,0,0), _u30(0,0,0) {
-  _n = b._n;
-  _m = b._m;
-  _h = b._h;
-  _st = b._st;
-  _t = b._t;
-  _p = b._p;
-  _areaEspera = b._areaEspera;
-  _u10 = b._u10;
-  _u20 = b._u20;
-  _u30 = b._u30;
-  _opsGrua = b._opsGrua;
+    _n = b._n;
+    _m = b._m;
+    _h = b._h;
+    _st = b._st;
+    _t = b._t;
+    _p = b._p;
+    _u10 = b._u10;
+    _u20 = b._u20;
+    _u30 = b._u30;
+    _areaEspera = b._areaEspera;
+    _opsGrua = b._opsGrua;
 }
 
 terminal& terminal::operator=(const terminal& b) throw(error) {
-  _n = b._n;
-  _m = b._m;
-  _h = b._h;
-  _st = b._st;
-  _areaEspera = b._areaEspera;
-  _u10 = b._u10;
-  _u20 = b._u20;
-  _u30 = b._u30;
-  _opsGrua = b._opsGrua;
-  return *this;
+    _n = b._n;
+    _m = b._m;
+    _h = b._h;
+    _st = b._st;
+    _t = b._t;
+    _p = b._p;
+    _u10 = b._u10;
+    _u20 = b._u20;
+    _u30 = b._u30;
+    _areaEspera = b._areaEspera;
+    _opsGrua = b._opsGrua;
+    return *this;
 }
 
 terminal::~terminal() throw() {
@@ -221,7 +223,7 @@ void terminal::insereix_contenidor(const contenidor &c) throw(error) {
                     _areaEspera.push_back(c);
                 }
             }
-            std::pair<contenidor, ubicacio> p = std::make_pair(c, u);
+            std::pair<nat, ubicacio> p = std::make_pair(c.longitud(), u);
             _c.assig(c.matricula(), p);
             actualitza_pos(_u10.filera());
         }
@@ -251,7 +253,7 @@ void terminal::retira_contenidor(const string &m) throw(error) {
         if (_c.existeix(m)) {
             retira_contenidor_superior(m);
 
-		 	nat lon = _c[m].first.longitud()/10;
+		 	nat lon = _c[m].first/10;
 			nat i = u.filera();
             nat j = u.placa();
             nat k = u.pis();
@@ -316,7 +318,7 @@ ubicacio terminal::on(const string &m) const throw() {
    la matrícula del qual sigui igual a m. */
 nat terminal::longitud(const string &m) const throw(error) {
     try {
-        return _c[m].first.longitud();
+        return _c[m].first;
     } catch (...) {
         throw error(MatriculaInexistent);
     }
