@@ -25,7 +25,9 @@ ubicacio _u30; //Primera ubicació lliure per un contenidor de 30 peus
 
 // Fragmentacio
 nat _f;
+nat *_fFila;
 
 //Métodes Privats
 void actualitza_pos(int fil);
 void retira_contenidor_superior(const string &m);
+void act_fragmentacio(const nat &filera);

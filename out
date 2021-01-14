@@ -1,3 +1,5219 @@
+###!===========================================================
+###! JOC DE PROVES PUBLIC
+###!===========================================================
+###!
+###! Memoria general
+#set_memory 100000 1000000000
+###!
+###!
+###!
+###!-----------------------------------------------------------
+###! JOC DE PROVES DE CONTENIDOR
+###!-----------------------------------------------------------
+###!
+#load jp_public_contenidor.in
+###!----------------------------------------------
+###!
+###! JOCS DE PROVES DE LA CLASSE CONTENIDOR
+###!
+###!----------------------------------------------
+###!
+###!
+###!------------------------------------------------------------------
+###1 Errors
+###!------------------------------------------------------------------
+###!
+###!------------------------------------------------------------------
+###1.1 Error 20: Matricula incorrecta
+###!------------------------------------------------------------------
+###!
+#init c contenidor AAAAAAAAAAAa 10
+Error::contenidor:20:Matricula incorrecta.
+##Error::contenidor:20:Matricula incorrecta.
+#init c contenidor ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstxyz 10
+Error::contenidor:20:Matricula incorrecta.
+##Error::contenidor:20:Matricula incorrecta.
+#init c contenidor ABCÇDEFGHIJKLMNÑOPQRSTUVWXYZ 10
+Error::contenidor:20:Matricula incorrecta.
+##Error::contenidor:20:Matricula incorrecta.
+#init c contenidor ABCDEFGHIJKLMNOPQRSTUVWXYZÁÀÉÈÍÌÓÒÚÙÄËÏÖÜÂÊÎÔÛ 10
+Error::contenidor:20:Matricula incorrecta.
+##Error::contenidor:20:Matricula incorrecta.
+#init c contenidor ABCDEFGHIJKLMNOPQRSTUVWXYZÇÑÁÀÉÈÍÌÓÒÚÙÄËÏÖÜÂÊÎÔÛabcdefghijklmnopqrstxyzçñáàéèíìóòúùäëïöüâêîôû[]()!"·$%&/=?¿*-_.:,;\ºª@#~¬{}´`^ 10
+Error::contenidor:20:Matricula incorrecta.
+##Error::contenidor:20:Matricula incorrecta.
+#init c contenidor ABCDEFGHIJKLMNOPQRSTUVWXYZÇÑÁÀÉÈÍÌÓÒÚÙÄËÏÖÜÂÊÎÔÛabcdefghijklmnopqrstxyzçñáàéèíìóòúùäëïöüâêîôû 11
+Error::contenidor:20:Matricula incorrecta.
+##Error::contenidor:20:Matricula incorrecta.
+###!
+###!
+###!----------------------------------------------
+###1.2 Error 21: Longitud incorrecta
+###!----------------------------------------------
+###!
+#init c contenidor ABCDEFGHIJKLMNOPQRSTUVWXYZ 11
+Error::contenidor:21:Longitud incorrecta.
+##Error::contenidor:21:Longitud incorrecta.
+#init c contenidor ABCDEFGHIJKLMNOPQRSTUVWXYZ 100
+Error::contenidor:21:Longitud incorrecta.
+##Error::contenidor:21:Longitud incorrecta.
+#init c contenidor ABCDEFGHIJKLMNOPQRSTUVWXYZ 12
+Error::contenidor:21:Longitud incorrecta.
+##Error::contenidor:21:Longitud incorrecta.
+#init c contenidor ABCDEFGHIJKLMNOPQRSTUVWXYZ 210
+Error::contenidor:21:Longitud incorrecta.
+##Error::contenidor:21:Longitud incorrecta.
+###!
+###!
+###!
+###!----------------------------------------------
+###2. Mètodes consultors
+###!----------------------------------------------
+###!
+#init a1 contenidor A1 10
+#init a2 contenidor A1 20
+#init a3 contenidor A1 30
+#init b1 contenidor B1 10
+#init b2 contenidor B1 20
+#init b3 contenidor B1 30
+###!
+###!
+###!----------------------------------------------
+###2.1 Matricula
+###!----------------------------------------------
+###!
+#a1 matricula
+A1
+##A1
+#a2 matricula
+A1
+##A1
+#a3 matricula
+A1
+##A1
+#b1 matricula
+B1
+##B1
+#b2 matricula
+B1
+##B1
+#b3 matricula
+B1
+##B1
+###!
+###!
+###!----------------------------------------------
+###2.2 Longitud
+###!----------------------------------------------
+###!
+#a1 longitud
+10
+##10
+#a2 longitud
+20
+##20
+#a3 longitud
+30
+##30
+#b1 longitud
+10
+##10
+#b2 longitud
+20
+##20
+#b3 longitud
+30
+##30
+###!
+###!
+###!
+###!----------------------------------------------
+###3 Operadors de comparacio
+###!----------------------------------------------
+###!
+###!----------------------------------------------
+###3.1 Operador ==
+###!----------------------------------------------
+###!
+#a1 == a1
+true
+##true
+#a1 == a2
+false
+##false
+#a1 == a3
+false
+##false
+#a1 == b1
+false
+##false
+#a1 == b2
+false
+##false
+#a1 == b3
+false
+##false
+#a2 == a1
+false
+##false
+#a2 == a2
+true
+##true
+#a2 == a3
+false
+##false
+#a2 == b1
+false
+##false
+#a2 == b2
+false
+##false
+#a2 == b3
+false
+##false
+#a3 == a1
+false
+##false
+#a3 == a2
+false
+##false
+#a3 == a3
+true
+##true
+#a3 == b1
+false
+##false
+#a3 == b2
+false
+##false
+#a3 == b3
+false
+##false
+#b1 == a1
+false
+##false
+#b1 == a2
+false
+##false
+#b1 == a3
+false
+##false
+#b1 == b1
+true
+##true
+#b1 == b2
+false
+##false
+#b1 == b3
+false
+##false
+#b2 == a1
+false
+##false
+#b2 == a2
+false
+##false
+#b2 == a3
+false
+##false
+#b2 == b1
+false
+##false
+#b2 == b2
+true
+##true
+#b2 == b3
+false
+##false
+#b3 == a1
+false
+##false
+#b3 == a2
+false
+##false
+#b3 == a3
+false
+##false
+#b3 == b1
+false
+##false
+#b3 == b2
+false
+##false
+#b3 == b3
+true
+##true
+###!
+###!
+###!----------------------------------------------
+###3.2 Operador =!
+###!----------------------------------------------
+###!
+#a1 != a1
+false
+##false
+#a1 != a2
+true
+##true
+#a1 != a3
+true
+##true
+#a1 != b1
+true
+##true
+#a1 != b2
+true
+##true
+#a1 != b3
+true
+##true
+#a2 != a1
+true
+##true
+#a2 != a2
+false
+##false
+#a2 != a3
+true
+##true
+#a2 != b1
+true
+##true
+#a2 != b2
+true
+##true
+#a2 != b3
+true
+##true
+#a3 != a1
+true
+##true
+#a3 != a2
+true
+##true
+#a3 != a3
+false
+##false
+#a3 != b1
+true
+##true
+#a3 != b2
+true
+##true
+#a3 != b3
+true
+##true
+#b1 != a1
+true
+##true
+#b1 != a2
+true
+##true
+#b1 != a3
+true
+##true
+#b1 != b1
+false
+##false
+#b1 != b2
+true
+##true
+#b1 != b3
+true
+##true
+#b2 != a2
+true
+##true
+#b2 != a3
+true
+##true
+#b2 != b1
+true
+##true
+#b2 != b2
+false
+##false
+#b2 != b3
+true
+##true
+#b3 != a1
+true
+##true
+#b3 != a2
+true
+##true
+#b3 != a3
+true
+##true
+#b3 != b1
+true
+##true
+#b3 != b2
+true
+##true
+#b3 != b3
+false
+##false
+###!
+###!
+###!----------------------------------------------
+###3.3 Operador <
+###!----------------------------------------------
+###!
+#a1 < a1
+false
+##false
+#a1 < a2
+true
+##true
+#a1 < a3
+true
+##true
+#a1 < b1
+true
+##true
+#a1 < b2
+true
+##true
+#a1 < b3
+true
+##true
+#a2 < a1
+false
+##false
+#a2 < a2
+false
+##false
+#a2 < a3
+true
+##true
+#a2 < b1
+true
+##true
+#a2 < b2
+true
+##true
+#a2 < b3
+true
+##true
+#a3 < a1
+false
+##false
+#a3 < a2
+false
+##false
+#a3 < a3
+false
+##false
+#a3 < b1
+true
+##true
+#a3 < b2
+true
+##true
+#a3 < b3
+true
+##true
+#b1 < a1
+false
+##false
+#b1 < a2
+false
+##false
+#b1 < a3
+false
+##false
+#b1 < b1
+false
+##false
+#b1 < b2
+true
+##true
+#b1 < b3
+true
+##true
+#b2 < a1
+false
+##false
+#b2 < a2
+false
+##false
+#b2 < a3
+false
+##false
+#b2 < b1
+false
+##false
+#b2 < b2
+false
+##false
+#b2 < b3
+true
+##true
+#b3 < a1
+false
+##false
+#b3 < a2
+false
+##false
+#b3 < a3
+false
+##false
+#b3 < b1
+false
+##false
+#b3 < b2
+false
+##false
+#b3 < b3
+false
+##false
+###!
+###!
+###!----------------------------------------------
+###3.4 Operador <=
+###!----------------------------------------------
+###!
+#a1 <= a1
+true
+##true
+#a1 <= a2
+true
+##true
+#a1 <= a3
+true
+##true
+#a1 <= b1
+true
+##true
+#a1 <= b2
+true
+##true
+#a1 <= b3
+true
+##true
+#a2 <= a1
+false
+##false
+#a2 <= a2
+true
+##true
+#a2 <= a3
+true
+##true
+#a2 <= b1
+true
+##true
+#a2 <= b2
+true
+##true
+#a2 <= b3
+true
+##true
+#a3 <= a1
+false
+##false
+#a3 <= a2
+false
+##false
+#a3 <= a3
+true
+##true
+#a3 <= b1
+true
+##true
+#a3 <= b2
+true
+##true
+#a3 <= b3
+true
+##true
+#b1 <= a1
+false
+##false
+#b1 <= a2
+false
+##false
+#b1 <= a3
+false
+##false
+#b1 <= b1
+true
+##true
+#b1 <= b2
+true
+##true
+#b1 <= b3
+true
+##true
+#b2 <= a1
+false
+##false
+#b2 <= a2
+false
+##false
+#b2 <= a3
+false
+##false
+#b2 <= b1
+false
+##false
+#b2 <= b2
+true
+##true
+#b2 <= b3
+true
+##true
+#b3 <= a1
+false
+##false
+#b3 <= a2
+false
+##false
+#b3 <= a3
+false
+##false
+#b3 <= b1
+false
+##false
+#b3 <= b2
+false
+##false
+#b3 <= b3
+true
+##true
+###!
+###!
+###!----------------------------------------------
+###3.5 Operador >
+###!----------------------------------------------
+###!
+#a1 > a1
+false
+##false
+#a1 > a2
+false
+##false
+#a1 > a3
+false
+##false
+#a1 > b1
+false
+##false
+#a1 > b2
+false
+##false
+#a1 > b3
+false
+##false
+#a2 > a1
+true
+##true
+#a2 > a2
+false
+##false
+#a2 > a3
+false
+##false
+#a2 > b1
+false
+##false
+#a2 > b2
+false
+##false
+#a2 > b3
+false
+##false
+#a3 > a1
+true
+##true
+#a3 > a2
+true
+##true
+#a3 > a3
+false
+##false
+#a3 > b1
+false
+##false
+#a3 > b2
+false
+##false
+#a3 > b3
+false
+##false
+#b1 > a1
+true
+##true
+#b1 > a2
+true
+##true
+#b1 > a3
+true
+##true
+#b1 > b1
+false
+##false
+#b1 > b2
+false
+##false
+#b1 > b3
+false
+##false
+#b2 > a1
+true
+##true
+#b2 > a2
+true
+##true
+#b2 > a3
+true
+##true
+#b2 > b1
+true
+##true
+#b2 > b2
+false
+##false
+#b2 > b3
+false
+##false
+#b3 > a1
+true
+##true
+#b3 > a2
+true
+##true
+#b3 > a3
+true
+##true
+#b3 > b1
+true
+##true
+#b3 > b2
+true
+##true
+#b3 > b3
+false
+##false
+###!
+###!
+###!----------------------------------------------
+###3.6 Operador >=
+###!----------------------------------------------
+###!
+#a1 >= a1
+true
+##true
+#a1 >= a2
+false
+##false
+#a1 >= a3
+false
+##false
+#a1 >= b1
+false
+##false
+#a1 >= b2
+false
+##false
+#a1 >= b3
+false
+##false
+#a2 >= a1
+true
+##true
+#a2 >= a2
+true
+##true
+#a2 >= a3
+false
+##false
+#a2 >= b1
+false
+##false
+#a2 >= b2
+false
+##false
+#a2 >= b3
+false
+##false
+#a3 >= a1
+true
+##true
+#a3 >= a2
+true
+##true
+#a3 >= a3
+true
+##true
+#a3 >= b1
+false
+##false
+#a3 >= b2
+false
+##false
+#a3 >= b3
+false
+##false
+#b1 >= a1
+true
+##true
+#b1 >= a2
+true
+##true
+#b1 >= a3
+true
+##true
+#b1 >= b1
+true
+##true
+#b1 >= b2
+false
+##false
+#b1 >= b3
+false
+##false
+#b2 >= a1
+true
+##true
+#b2 >= a2
+true
+##true
+#b2 >= a3
+true
+##true
+#b2 >= b1
+true
+##true
+#b2 >= b2
+true
+##true
+#b2 >= b3
+false
+##false
+#b3 >= a1
+true
+##true
+#b3 >= a2
+true
+##true
+#b3 >= a3
+true
+##true
+#b3 >= b1
+true
+##true
+#b3 >= b2
+true
+##true
+#b3 >= b3
+true
+##true
+###!
+###!
+###!
+###!----------------------------------------------
+###4 Constructora per copia
+###!----------------------------------------------
+###!
+#initcopy c1 = b1
+#initcopy c2 = b2
+#initcopy c3 = b3
+###!
+###!
+###!----------------------------------------------
+###4.1 Matricula
+###!----------------------------------------------
+###!
+#c1 matricula
+B1
+##B1
+#c2 matricula
+B1
+##B1
+#c3 matricula
+B1
+##B1
+###!
+###!
+###!----------------------------------------------
+###4.2 Longitud
+###!----------------------------------------------
+###!
+#c1 longitud
+10
+##10
+#c2 longitud
+20
+##20
+#c3 longitud
+30
+##30
+###!
+###!
+###!----------------------------------------------
+###4.3 Operador ==
+###!----------------------------------------------
+###!
+#a1 == a1
+true
+##true
+#a1 == a2
+false
+##false
+#a1 == a3
+false
+##false
+#a1 == c1
+false
+##false
+#a1 == c2
+false
+##false
+#a1 == c3
+false
+##false
+#a2 == a1
+false
+##false
+#a2 == a2
+true
+##true
+#a2 == a3
+false
+##false
+#a2 == c1
+false
+##false
+#a2 == c2
+false
+##false
+#a2 == c3
+false
+##false
+#a3 == a1
+false
+##false
+#a3 == a2
+false
+##false
+#a3 == a3
+true
+##true
+#a3 == c1
+false
+##false
+#a3 == c2
+false
+##false
+#a3 == c3
+false
+##false
+#c1 == a1
+false
+##false
+#c1 == a2
+false
+##false
+#c1 == a3
+false
+##false
+#c1 == c1
+true
+##true
+#c1 == c2
+false
+##false
+#c1 == c3
+false
+##false
+#c2 == a1
+false
+##false
+#c2 == a2
+false
+##false
+#c2 == a3
+false
+##false
+#c2 == c1
+false
+##false
+#c2 == c2
+true
+##true
+#c2 == c3
+false
+##false
+#c3 == a1
+false
+##false
+#c3 == a2
+false
+##false
+#c3 == a3
+false
+##false
+#c3 == c1
+false
+##false
+#c3 == c2
+false
+##false
+#c3 == c3
+true
+##true
+###!
+###!
+###!----------------------------------------------
+###4.4 Operador =!
+###!----------------------------------------------
+###!
+#a1 != a1
+false
+##false
+#a1 != a2
+true
+##true
+#a1 != a3
+true
+##true
+#a1 != c1
+true
+##true
+#a1 != c2
+true
+##true
+#a1 != c3
+true
+##true
+#a2 != a1
+true
+##true
+#a2 != a2
+false
+##false
+#a2 != a3
+true
+##true
+#a2 != c1
+true
+##true
+#a2 != c2
+true
+##true
+#a2 != c3
+true
+##true
+#a3 != a1
+true
+##true
+#a3 != a2
+true
+##true
+#a3 != a3
+false
+##false
+#a3 != c1
+true
+##true
+#a3 != c2
+true
+##true
+#a3 != c3
+true
+##true
+#c1 != a1
+true
+##true
+#c1 != a2
+true
+##true
+#c1 != a3
+true
+##true
+#c1 != c1
+false
+##false
+#c1 != c2
+true
+##true
+#c1 != c3
+true
+##true
+#c2 != a2
+true
+##true
+#c2 != a3
+true
+##true
+#c2 != c1
+true
+##true
+#c2 != c2
+false
+##false
+#c2 != c3
+true
+##true
+#c3 != a1
+true
+##true
+#c3 != a2
+true
+##true
+#c3 != a3
+true
+##true
+#c3 != c1
+true
+##true
+#c3 != c2
+true
+##true
+#c3 != c3
+false
+##false
+###!
+###!
+###!----------------------------------------------
+###4.5 Operador <
+###!----------------------------------------------
+###!
+#a1 < a1
+false
+##false
+#a1 < a2
+true
+##true
+#a1 < a3
+true
+##true
+#a1 < c1
+true
+##true
+#a1 < c2
+true
+##true
+#a1 < c3
+true
+##true
+#a2 < a1
+false
+##false
+#a2 < a2
+false
+##false
+#a2 < a3
+true
+##true
+#a2 < c1
+true
+##true
+#a2 < c2
+true
+##true
+#a2 < c3
+true
+##true
+#a3 < a1
+false
+##false
+#a3 < a2
+false
+##false
+#a3 < a3
+false
+##false
+#a3 < c1
+true
+##true
+#a3 < c2
+true
+##true
+#a3 < c3
+true
+##true
+#c1 < a1
+false
+##false
+#c1 < a2
+false
+##false
+#c1 < a3
+false
+##false
+#c1 < c1
+false
+##false
+#c1 < c2
+true
+##true
+#c1 < c3
+true
+##true
+#c2 < a1
+false
+##false
+#c2 < a2
+false
+##false
+#c2 < a3
+false
+##false
+#c2 < c1
+false
+##false
+#c2 < c2
+false
+##false
+#c2 < c3
+true
+##true
+#c3 < a1
+false
+##false
+#c3 < a2
+false
+##false
+#c3 < a3
+false
+##false
+#c3 < c1
+false
+##false
+#c3 < c2
+false
+##false
+#c3 < c3
+false
+##false
+###!
+###!
+###!----------------------------------------------
+###4.6 Operador <=
+###!----------------------------------------------
+###!
+#a1 <= a1
+true
+##true
+#a1 <= a2
+true
+##true
+#a1 <= a3
+true
+##true
+#a1 <= c1
+true
+##true
+#a1 <= c2
+true
+##true
+#a1 <= c3
+true
+##true
+#a2 <= a1
+false
+##false
+#a2 <= a2
+true
+##true
+#a2 <= a3
+true
+##true
+#a2 <= c1
+true
+##true
+#a2 <= c2
+true
+##true
+#a2 <= c3
+true
+##true
+#a3 <= a1
+false
+##false
+#a3 <= a2
+false
+##false
+#a3 <= a3
+true
+##true
+#a3 <= c1
+true
+##true
+#a3 <= c2
+true
+##true
+#a3 <= c3
+true
+##true
+#c1 <= a1
+false
+##false
+#c1 <= a2
+false
+##false
+#c1 <= a3
+false
+##false
+#c1 <= c1
+true
+##true
+#c1 <= c2
+true
+##true
+#c1 <= c3
+true
+##true
+#c2 <= a1
+false
+##false
+#c2 <= a2
+false
+##false
+#c2 <= a3
+false
+##false
+#c2 <= c1
+false
+##false
+#c2 <= c2
+true
+##true
+#c2 <= c3
+true
+##true
+#c3 <= a1
+false
+##false
+#c3 <= a2
+false
+##false
+#c3 <= a3
+false
+##false
+#c3 <= c1
+false
+##false
+#c3 <= c2
+false
+##false
+#c3 <= c3
+true
+##true
+###!
+###!
+###!----------------------------------------------
+###4.7 Operador >
+###!----------------------------------------------
+###!
+#a1 > a1
+false
+##false
+#a1 > a2
+false
+##false
+#a1 > a3
+false
+##false
+#a1 > c1
+false
+##false
+#a1 > c2
+false
+##false
+#a1 > c3
+false
+##false
+#a2 > a1
+true
+##true
+#a2 > a2
+false
+##false
+#a2 > a3
+false
+##false
+#a2 > c1
+false
+##false
+#a2 > c2
+false
+##false
+#a2 > c3
+false
+##false
+#a3 > a1
+true
+##true
+#a3 > a2
+true
+##true
+#a3 > a3
+false
+##false
+#a3 > c1
+false
+##false
+#a3 > c2
+false
+##false
+#a3 > c3
+false
+##false
+#c1 > a1
+true
+##true
+#c1 > a2
+true
+##true
+#c1 > a3
+true
+##true
+#c1 > c1
+false
+##false
+#c1 > c2
+false
+##false
+#c1 > c3
+false
+##false
+#c2 > a1
+true
+##true
+#c2 > a2
+true
+##true
+#c2 > a3
+true
+##true
+#c2 > c1
+true
+##true
+#c2 > c2
+false
+##false
+#c2 > c3
+false
+##false
+#c3 > a1
+true
+##true
+#c3 > a2
+true
+##true
+#c3 > a3
+true
+##true
+#c3 > c1
+true
+##true
+#c3 > c2
+true
+##true
+#c3 > c3
+false
+##false
+###!
+###!
+###!----------------------------------------------
+###4.8 Operador >=
+###!----------------------------------------------
+###!
+#a1 >= a1
+true
+##true
+#a1 >= a2
+false
+##false
+#a1 >= a3
+false
+##false
+#a1 >= c1
+false
+##false
+#a1 >= c2
+false
+##false
+#a1 >= c3
+false
+##false
+#a2 >= a1
+true
+##true
+#a2 >= a2
+true
+##true
+#a2 >= a3
+false
+##false
+#a2 >= c1
+false
+##false
+#a2 >= c2
+false
+##false
+#a2 >= c3
+false
+##false
+#a3 >= a1
+true
+##true
+#a3 >= a2
+true
+##true
+#a3 >= a3
+true
+##true
+#a3 >= c1
+false
+##false
+#a3 >= c2
+false
+##false
+#a3 >= c3
+false
+##false
+#c1 >= a1
+true
+##true
+#c1 >= a2
+true
+##true
+#c1 >= a3
+true
+##true
+#c1 >= c1
+true
+##true
+#c1 >= c2
+false
+##false
+#c1 >= c3
+false
+##false
+#c2 >= a1
+true
+##true
+#c2 >= a2
+true
+##true
+#c2 >= a3
+true
+##true
+#c2 >= c1
+true
+##true
+#c2 >= c2
+true
+##true
+#c2 >= c3
+false
+##false
+#c3 >= a1
+true
+##true
+#c3 >= a2
+true
+##true
+#c3 >= a3
+true
+##true
+#c3 >= c1
+true
+##true
+#c3 >= c2
+true
+##true
+#c3 >= c3
+true
+##true
+###!
+###!
+###!
+###!----------------------------------------------
+###5 Operador d'assignacio
+###!----------------------------------------------
+###!
+#init z1 contenidor Z1 30
+#init z2 contenidor Z1 10
+#init z3 contenidor Z1 20
+#init x1 contenidor X1 10
+#init x2 contenidor X1 20
+#init x3 contenidor X1 30
+#z1 = x1
+#z2 = x2
+#z3 = x3
+###!
+###!
+###!----------------------------------------------
+###5.1 Matricula
+###!----------------------------------------------
+###!
+#z1 matricula
+X1
+##X1
+#z2 matricula
+X1
+##X1
+#z3 matricula
+X1
+##X1
+###!
+###!
+###!----------------------------------------------
+###5.2 Longitud
+###!----------------------------------------------
+###!
+#z1 longitud
+10
+##10
+#z2 longitud
+20
+##20
+#z3 longitud
+30
+##30
+###!
+###!
+###!----------------------------------------------
+###5.3 Operador ==
+###!----------------------------------------------
+###!
+#a1 == a1
+true
+##true
+#a1 == a2
+false
+##false
+#a1 == a3
+false
+##false
+#a1 == b1
+false
+##false
+#a1 == b2
+false
+##false
+#a1 == b3
+false
+##false
+#a1 == z1
+false
+##false
+#a1 == z2
+false
+##false
+#a1 == z3
+false
+##false
+#a2 == a1
+false
+##false
+#a2 == a2
+true
+##true
+#a2 == a3
+false
+##false
+#a2 == b1
+false
+##false
+#a2 == b2
+false
+##false
+#a2 == b3
+false
+##false
+#a2 == z1
+false
+##false
+#a2 == z2
+false
+##false
+#a2 == z3
+false
+##false
+#a3 == a1
+false
+##false
+#a3 == a2
+false
+##false
+#a3 == a3
+true
+##true
+#a3 == b1
+false
+##false
+#a3 == b2
+false
+##false
+#a3 == b3
+false
+##false
+#a3 == z1
+false
+##false
+#a3 == z2
+false
+##false
+#a3 == z3
+false
+##false
+#b1 == a1
+false
+##false
+#b1 == a2
+false
+##false
+#b1 == a3
+false
+##false
+#b1 == b1
+true
+##true
+#b1 == b2
+false
+##false
+#b1 == b3
+false
+##false
+#b1 == z1
+false
+##false
+#b1 == z2
+false
+##false
+#b1 == z3
+false
+##false
+#b2 == a1
+false
+##false
+#b2 == a2
+false
+##false
+#b2 == a3
+false
+##false
+#b2 == b1
+false
+##false
+#b2 == b2
+true
+##true
+#b2 == b3
+false
+##false
+#b2 == z1
+false
+##false
+#b2 == z2
+false
+##false
+#b2 == z3
+false
+##false
+#b3 == a1
+false
+##false
+#b3 == a2
+false
+##false
+#b3 == a3
+false
+##false
+#b3 == b1
+false
+##false
+#b3 == b2
+false
+##false
+#b3 == b3
+true
+##true
+#b3 == z1
+false
+##false
+#b3 == z2
+false
+##false
+#b3 == z3
+false
+##false
+#z1 == a1
+false
+##false
+#z1 == a2
+false
+##false
+#z1 == a3
+false
+##false
+#z1 == b1
+false
+##false
+#z1 == b2
+false
+##false
+#z1 == b3
+false
+##false
+#z1 == z1
+true
+##true
+#z1 == z2
+false
+##false
+#z1 == z3
+false
+##false
+#z2 == a1
+false
+##false
+#z2 == a2
+false
+##false
+#z2 == a3
+false
+##false
+#z2 == b1
+false
+##false
+#z2 == b2
+false
+##false
+#z2 == b3
+false
+##false
+#z2 == z1
+false
+##false
+#z2 == z2
+true
+##true
+#z2 == z3
+false
+##false
+#z3 == a1
+false
+##false
+#z3 == a2
+false
+##false
+#z3 == a3
+false
+##false
+#z3 == b1
+false
+##false
+#z3 == b2
+false
+##false
+#z3 == b3
+false
+##false
+#z3 == z1
+false
+##false
+#z3 == z2
+false
+##false
+#z3 == z3
+true
+##true
+###!
+###!
+###!----------------------------------------------
+###5.4 Operador =!
+###!----------------------------------------------
+###!
+#a1 != a1
+false
+##false
+#a1 != a2
+true
+##true
+#a1 != a3
+true
+##true
+#a1 != b1
+true
+##true
+#a1 != b2
+true
+##true
+#a1 != b3
+true
+##true
+#a1 != z1
+true
+##true
+#a1 != z2
+true
+##true
+#a1 != z3
+true
+##true
+#a2 != a1
+true
+##true
+#a2 != a2
+false
+##false
+#a2 != a3
+true
+##true
+#a2 != b1
+true
+##true
+#a2 != b2
+true
+##true
+#a2 != b3
+true
+##true
+#a2 != z1
+true
+##true
+#a2 != z2
+true
+##true
+#a2 != z3
+true
+##true
+#a3 != a1
+true
+##true
+#a3 != a2
+true
+##true
+#a3 != a3
+false
+##false
+#a3 != b1
+true
+##true
+#a3 != b2
+true
+##true
+#a3 != b3
+true
+##true
+#a3 != z1
+true
+##true
+#a3 != z2
+true
+##true
+#a3 != z3
+true
+##true
+#b1 != a1
+true
+##true
+#b1 != a2
+true
+##true
+#b1 != a3
+true
+##true
+#b1 != b1
+false
+##false
+#b1 != b2
+true
+##true
+#b1 != b3
+true
+##true
+#b1 != z1
+true
+##true
+#b1 != z2
+true
+##true
+#b1 != z3
+true
+##true
+#b2 != a1
+true
+##true
+#b2 != a2
+true
+##true
+#b2 != a3
+true
+##true
+#b2 != b1
+true
+##true
+#b2 != b2
+false
+##false
+#b2 != b3
+true
+##true
+#b2 != z1
+true
+##true
+#b2 != z2
+true
+##true
+#b2 != z3
+true
+##true
+#b3 != a1
+true
+##true
+#b3 != a2
+true
+##true
+#b3 != a3
+true
+##true
+#b3 != b1
+true
+##true
+#b3 != b2
+true
+##true
+#b3 != b3
+false
+##false
+#b3 != z1
+true
+##true
+#b3 != z2
+true
+##true
+#b3 != z3
+true
+##true
+#z1 != a1
+true
+##true
+#z1 != a2
+true
+##true
+#z1 != a3
+true
+##true
+#z1 != b1
+true
+##true
+#z1 != b2
+true
+##true
+#z1 != b3
+true
+##true
+#z1 != z1
+false
+##false
+#z1 != z2
+true
+##true
+#z1 != z3
+true
+##true
+#z2 != a1
+true
+##true
+#z2 != a2
+true
+##true
+#z2 != a3
+true
+##true
+#z2 != b1
+true
+##true
+#z2 != b2
+true
+##true
+#z2 != b3
+true
+##true
+#z2 != z1
+true
+##true
+#z2 != z2
+false
+##false
+#z2 != z3
+true
+##true
+#z3 != a1
+true
+##true
+#z3 != a2
+true
+##true
+#z3 != a3
+true
+##true
+#z3 != b1
+true
+##true
+#z3 != b2
+true
+##true
+#z3 != b3
+true
+##true
+#z3 != z1
+true
+##true
+#z3 != z2
+true
+##true
+#z3 != z3
+false
+##false
+###!
+###!
+###!----------------------------------------------
+###5.5 Operador <
+###!----------------------------------------------
+###!
+#a1 < a1
+false
+##false
+#a1 < a2
+true
+##true
+#a1 < a3
+true
+##true
+#a1 < b1
+true
+##true
+#a1 < b2
+true
+##true
+#a1 < b3
+true
+##true
+#a1 < z1
+true
+##true
+#a1 < z2
+true
+##true
+#a1 < z3
+true
+##true
+#a2 < a1
+false
+##false
+#a2 < a2
+false
+##false
+#a2 < a3
+true
+##true
+#a2 < b1
+true
+##true
+#a2 < b2
+true
+##true
+#a2 < b3
+true
+##true
+#a2 < z1
+true
+##true
+#a2 < z2
+true
+##true
+#a2 < z3
+true
+##true
+#a3 < a1
+false
+##false
+#a3 < a2
+false
+##false
+#a3 < a3
+false
+##false
+#a3 < b1
+true
+##true
+#a3 < b2
+true
+##true
+#a3 < b3
+true
+##true
+#a3 < z1
+true
+##true
+#a3 < z2
+true
+##true
+#a3 < z3
+true
+##true
+#b1 < a1
+false
+##false
+#b1 < a2
+false
+##false
+#b1 < a3
+false
+##false
+#b1 < b1
+false
+##false
+#b1 < b2
+true
+##true
+#b1 < b3
+true
+##true
+#b1 < z1
+true
+##true
+#b1 < z2
+true
+##true
+#b1 < z3
+true
+##true
+#b2 < a1
+false
+##false
+#b2 < a2
+false
+##false
+#b2 < a3
+false
+##false
+#b2 < b1
+false
+##false
+#b2 < b2
+false
+##false
+#b2 < b3
+true
+##true
+#b2 < z1
+true
+##true
+#b2 < z2
+true
+##true
+#b2 < z3
+true
+##true
+#b3 < a1
+false
+##false
+#b3 < a2
+false
+##false
+#b3 < a3
+false
+##false
+#b3 < b1
+false
+##false
+#b3 < b2
+false
+##false
+#b3 < b3
+false
+##false
+#b3 < z1
+true
+##true
+#b3 < z2
+true
+##true
+#b3 < z3
+true
+##true
+#z1 < a1
+false
+##false
+#z1 < a2
+false
+##false
+#z1 < a3
+false
+##false
+#z1 < b1
+false
+##false
+#z1 < b2
+false
+##false
+#z1 < b3
+false
+##false
+#z1 < z1
+false
+##false
+#z1 < z2
+true
+##true
+#z1 < z3
+true
+##true
+#z2 < a1
+false
+##false
+#z2 < a2
+false
+##false
+#z2 < a3
+false
+##false
+#z2 < b1
+false
+##false
+#z2 < b2
+false
+##false
+#z2 < b3
+false
+##false
+#z2 < z1
+false
+##false
+#z2 < z2
+false
+##false
+#z2 < z3
+true
+##true
+#z3 < a1
+false
+##false
+#z3 < a2
+false
+##false
+#z3 < a3
+false
+##false
+#z3 < b1
+false
+##false
+#z3 < b2
+false
+##false
+#z3 < b3
+false
+##false
+#z3 < z1
+false
+##false
+#z3 < z2
+false
+##false
+#z3 < z3
+false
+##false
+###!
+###!
+###!----------------------------------------------
+###5.6 Operador <=
+###!----------------------------------------------
+###!
+#a1 <= a1
+true
+##true
+#a1 <= a2
+true
+##true
+#a1 <= a3
+true
+##true
+#a1 <= b1
+true
+##true
+#a1 <= b2
+true
+##true
+#a1 <= b3
+true
+##true
+#a1 <= z1
+true
+##true
+#a1 <= z2
+true
+##true
+#a1 <= z3
+true
+##true
+#a2 <= a1
+false
+##false
+#a2 <= a2
+true
+##true
+#a2 <= a3
+true
+##true
+#a2 <= b1
+true
+##true
+#a2 <= b2
+true
+##true
+#a2 <= b3
+true
+##true
+#a2 <= z1
+true
+##true
+#a2 <= z2
+true
+##true
+#a2 <= z3
+true
+##true
+#a3 <= a1
+false
+##false
+#a3 <= a2
+false
+##false
+#a3 <= a3
+true
+##true
+#a3 <= b1
+true
+##true
+#a3 <= b2
+true
+##true
+#a3 <= b3
+true
+##true
+#a3 <= z1
+true
+##true
+#a3 <= z2
+true
+##true
+#a3 <= z3
+true
+##true
+#b1 <= a1
+false
+##false
+#b1 <= a2
+false
+##false
+#b1 <= a3
+false
+##false
+#b1 <= b1
+true
+##true
+#b1 <= b2
+true
+##true
+#b1 <= b3
+true
+##true
+#b1 <= z1
+true
+##true
+#b1 <= z2
+true
+##true
+#b1 <= z3
+true
+##true
+#b2 <= a1
+false
+##false
+#b2 <= a2
+false
+##false
+#b2 <= a3
+false
+##false
+#b2 <= b1
+false
+##false
+#b2 <= b2
+true
+##true
+#b2 <= b3
+true
+##true
+#b2 <= z1
+true
+##true
+#b2 <= z2
+true
+##true
+#b2 <= z3
+true
+##true
+#b3 <= a1
+false
+##false
+#b3 <= a2
+false
+##false
+#b3 <= a3
+false
+##false
+#b3 <= b1
+false
+##false
+#b3 <= b2
+false
+##false
+#b3 <= b3
+true
+##true
+#b3 <= z1
+true
+##true
+#b3 <= z2
+true
+##true
+#b3 <= z3
+true
+##true
+#z1 <= a1
+false
+##false
+#z1 <= a2
+false
+##false
+#z1 <= a3
+false
+##false
+#z1 <= b1
+false
+##false
+#z1 <= b2
+false
+##false
+#z1 <= b3
+false
+##false
+#z1 <= z1
+true
+##true
+#z1 <= z2
+true
+##true
+#z1 <= z3
+true
+##true
+#z2 <= a1
+false
+##false
+#z2 <= a2
+false
+##false
+#z2 <= a3
+false
+##false
+#z2 <= b1
+false
+##false
+#z2 <= b2
+false
+##false
+#z2 <= b3
+false
+##false
+#z2 <= z1
+false
+##false
+#z2 <= z2
+true
+##true
+#z2 <= z3
+true
+##true
+#z3 <= a1
+false
+##false
+#z3 <= a2
+false
+##false
+#z3 <= a3
+false
+##false
+#z3 <= b1
+false
+##false
+#z3 <= b2
+false
+##false
+#z3 <= b3
+false
+##false
+#z3 <= z1
+false
+##false
+#z3 <= z2
+false
+##false
+#z3 <= z3
+true
+##true
+###!
+###!
+###!----------------------------------------------
+###5.7 Operador >
+###!----------------------------------------------
+###!
+#a1 > a1
+false
+##false
+#a1 > a2
+false
+##false
+#a1 > a3
+false
+##false
+#a1 > b1
+false
+##false
+#a1 > b2
+false
+##false
+#a1 > b3
+false
+##false
+#a1 > z1
+false
+##false
+#a1 > z2
+false
+##false
+#a1 > z3
+false
+##false
+#a2 > a1
+true
+##true
+#a2 > a2
+false
+##false
+#a2 > a3
+false
+##false
+#a2 > b1
+false
+##false
+#a2 > b2
+false
+##false
+#a2 > b3
+false
+##false
+#a2 > z1
+false
+##false
+#a2 > z2
+false
+##false
+#a2 > z3
+false
+##false
+#a3 > a1
+true
+##true
+#a3 > a2
+true
+##true
+#a3 > a3
+false
+##false
+#a3 > b1
+false
+##false
+#a3 > b2
+false
+##false
+#a3 > b3
+false
+##false
+#a3 > z1
+false
+##false
+#a3 > z2
+false
+##false
+#a3 > z3
+false
+##false
+#b1 > a1
+true
+##true
+#b1 > a2
+true
+##true
+#b1 > a3
+true
+##true
+#b1 > b1
+false
+##false
+#b1 > b2
+false
+##false
+#b1 > b3
+false
+##false
+#b1 > z1
+false
+##false
+#b1 > z2
+false
+##false
+#b1 > z3
+false
+##false
+#b2 > a1
+true
+##true
+#b2 > a2
+true
+##true
+#b2 > a3
+true
+##true
+#b2 > b1
+true
+##true
+#b2 > b2
+false
+##false
+#b2 > b3
+false
+##false
+#b2 > z1
+false
+##false
+#b2 > z2
+false
+##false
+#b2 > z3
+false
+##false
+#b3 > a1
+true
+##true
+#b3 > a2
+true
+##true
+#b3 > a3
+true
+##true
+#b3 > b1
+true
+##true
+#b3 > b2
+true
+##true
+#b3 > b3
+false
+##false
+#b3 > z1
+false
+##false
+#b3 > z2
+false
+##false
+#b3 > z3
+false
+##false
+#z1 > a1
+true
+##true
+#z1 > a2
+true
+##true
+#z1 > a3
+true
+##true
+#z1 > b1
+true
+##true
+#z1 > b2
+true
+##true
+#z1 > b3
+true
+##true
+#z1 > z1
+false
+##false
+#z1 > z2
+false
+##false
+#z1 > z3
+false
+##false
+#z2 > a1
+true
+##true
+#z2 > a2
+true
+##true
+#z2 > a3
+true
+##true
+#z2 > b1
+true
+##true
+#z2 > b2
+true
+##true
+#z2 > b3
+true
+##true
+#z2 > z1
+true
+##true
+#z2 > z2
+false
+##false
+#z2 > z3
+false
+##false
+#z3 > a1
+true
+##true
+#z3 > a2
+true
+##true
+#z3 > a3
+true
+##true
+#z3 > b1
+true
+##true
+#z3 > b2
+true
+##true
+#z3 > b3
+true
+##true
+#z3 > z1
+true
+##true
+#z3 > z2
+true
+##true
+#z3 > z3
+false
+##false
+###!
+###!
+###!----------------------------------------------
+###5.8 Operador >=
+###!----------------------------------------------
+###!
+#a1 >= a1
+true
+##true
+#a1 >= a2
+false
+##false
+#a1 >= a3
+false
+##false
+#a1 >= b1
+false
+##false
+#a1 >= b2
+false
+##false
+#a1 >= b3
+false
+##false
+#a1 >= z1
+false
+##false
+#a1 >= z2
+false
+##false
+#a1 >= z3
+false
+##false
+#a2 >= a1
+true
+##true
+#a2 >= a2
+true
+##true
+#a2 >= a3
+false
+##false
+#a2 >= b1
+false
+##false
+#a2 >= b2
+false
+##false
+#a2 >= b3
+false
+##false
+#a2 >= z1
+false
+##false
+#a2 >= z2
+false
+##false
+#a2 >= z3
+false
+##false
+#a3 >= a1
+true
+##true
+#a3 >= a2
+true
+##true
+#a3 >= a3
+true
+##true
+#a3 >= b1
+false
+##false
+#a3 >= b2
+false
+##false
+#a3 >= b3
+false
+##false
+#a3 >= z1
+false
+##false
+#a3 >= z2
+false
+##false
+#a3 >= z3
+false
+##false
+#b1 >= a1
+true
+##true
+#b1 >= a2
+true
+##true
+#b1 >= a3
+true
+##true
+#b1 >= b1
+true
+##true
+#b1 >= b2
+false
+##false
+#b1 >= b3
+false
+##false
+#b1 >= z1
+false
+##false
+#b1 >= z2
+false
+##false
+#b1 >= z3
+false
+##false
+#b2 >= a1
+true
+##true
+#b2 >= a2
+true
+##true
+#b2 >= a3
+true
+##true
+#b2 >= b1
+true
+##true
+#b2 >= b2
+true
+##true
+#b2 >= b3
+false
+##false
+#b2 >= z1
+false
+##false
+#b2 >= z2
+false
+##false
+#b2 >= z3
+false
+##false
+#b3 >= a1
+true
+##true
+#b3 >= a2
+true
+##true
+#b3 >= a3
+true
+##true
+#b3 >= b1
+true
+##true
+#b3 >= b2
+true
+##true
+#b3 >= b3
+true
+##true
+#b3 >= z1
+false
+##false
+#b3 >= z2
+false
+##false
+#b3 >= z3
+false
+##false
+#z1 >= a1
+true
+##true
+#z1 >= a2
+true
+##true
+#z1 >= a3
+true
+##true
+#z1 >= b1
+true
+##true
+#z1 >= b2
+true
+##true
+#z1 >= b3
+true
+##true
+#z1 >= z1
+true
+##true
+#z1 >= z2
+false
+##false
+#z1 >= z3
+false
+##false
+#z2 >= a1
+true
+##true
+#z2 >= a2
+true
+##true
+#z2 >= a3
+true
+##true
+#z2 >= b1
+true
+##true
+#z2 >= b2
+true
+##true
+#z2 >= b3
+true
+##true
+#z2 >= z1
+true
+##true
+#z2 >= z2
+true
+##true
+#z2 >= z3
+false
+##false
+#z3 >= a1
+true
+##true
+#z3 >= a2
+true
+##true
+#z3 >= a3
+true
+##true
+#z3 >= b1
+true
+##true
+#z3 >= b2
+true
+##true
+#z3 >= b3
+true
+##true
+#z3 >= z1
+true
+##true
+#z3 >= z2
+true
+##true
+#z3 >= z3
+true
+##true
+###!
+###!
+###!
+###!----------------------------------------------
+###6 Destructora
+###!----------------------------------------------
+###!
+#a1 destroy
+#a2 destroy
+#a3 destroy
+#b1 destroy
+#b2 destroy
+#b3 destroy
+#c1 destroy
+#c2 destroy
+#c3 destroy
+#x1 destroy
+#x2 destroy
+#x3 destroy
+#z1 destroy
+#z2 destroy
+#z3 destroy
+###!
+###!
+###!
+###!
+###!-----------------------------------------------------------
+###! JOC DE PROVES DE UBICACIO
+###!-----------------------------------------------------------
+###!
+#load jp_public_ubicacio.in
+###!----------------------------------------------
+###!
+###! JOC DE PROVES DE LA CLASSE UBICACIO
+###!
+###!----------------------------------------------
+###!
+###!
+###!------------------------------------------------------------------
+###1 Errors
+###!------------------------------------------------------------------
+###!
+###!------------------------------------------------------------------
+###1.1 Error 10: Ubicacio incorrecta
+###!------------------------------------------------------------------
+###!
+#init u ubicacio -2 0 0
+Error::ubicacio:10:Ubicacio incorrecta.
+##Error::ubicacio:10:Ubicacio incorrecta.
+#init u ubicacio -2 -1 -1
+Error::ubicacio:10:Ubicacio incorrecta.
+##Error::ubicacio:10:Ubicacio incorrecta.
+#init u ubicacio -1 -2 -1
+Error::ubicacio:10:Ubicacio incorrecta.
+##Error::ubicacio:10:Ubicacio incorrecta.
+#init u ubicacio -1 -1 -2
+Error::ubicacio:10:Ubicacio incorrecta.
+##Error::ubicacio:10:Ubicacio incorrecta.
+#init u ubicacio -1 10 10
+Error::ubicacio:10:Ubicacio incorrecta.
+##Error::ubicacio:10:Ubicacio incorrecta.
+###!
+###!
+###!
+###!------------------------------------------------------------------
+###2 Mètodes consultors
+###!------------------------------------------------------------------
+###!
+#init u000 ubicacio 0 0 0
+#init u007 ubicacio 0 0 7
+#init u064 ubicacio 0 6 4
+#init u_100 ubicacio -1 0 0
+#init u_1_1_1 ubicacio -1 -1 -1
+###!
+###!
+###!------------------------------------------------------------------
+###2.1 Filera
+###!------------------------------------------------------------------
+###!
+#u000 filera
+0
+##0
+#u007 filera
+0
+##0
+#u064 filera
+0
+##0
+#u_100 filera
+-1
+##-1
+#u_1_1_1 filera
+-1
+##-1
+###!
+###!
+###!------------------------------------------------------------------
+###2.2 Placa
+###!------------------------------------------------------------------
+###!
+#u000 placa
+0
+##0
+#u007 placa
+0
+##0
+#u064 placa
+6
+##6
+#u_100 placa
+0
+##0
+#u_1_1_1 placa
+-1
+##-1
+###!
+###!
+###!------------------------------------------------------------------
+###2.3 Pis
+###!------------------------------------------------------------------
+###!
+#u000 pis
+0
+##0
+#u007 pis
+7
+##7
+#u064 pis
+4
+##4
+#u_100 pis
+0
+##0
+#u_1_1_1 pis
+-1
+##-1
+###!
+###!
+###!
+###!----------------------------------------------
+###3 Operadors de comparacio
+###!----------------------------------------------
+###!
+###!----------------------------------------------
+###3.1 Operador ==
+###!----------------------------------------------
+###!
+#u000 == u000
+true
+##true
+#u000 == u007
+false
+##false
+#u000 == u064
+false
+##false
+#u000 == u_100
+false
+##false
+#u000 == u_1_1_1
+false
+##false
+#u007 == u000
+false
+##false
+#u007 == u007
+true
+##true
+#u007 == u064
+false
+##false
+#u007 == u_100
+false
+##false
+#u007 == u_1_1_1
+false
+##false
+#u064 == u000
+false
+##false
+#u064 == u007
+false
+##false
+#u064 == u064
+true
+##true
+#u064 == u_100
+false
+##false
+#u064 == u_1_1_1
+false
+##false
+#u_100 == u000
+false
+##false
+#u_100 == u007
+false
+##false
+#u_100 == u064
+false
+##false
+#u_100 == u_100
+true
+##true
+#u_100 == u_1_1_1
+false
+##false
+#u_1_1_1 == u000
+false
+##false
+#u_1_1_1 == u007
+false
+##false
+#u_1_1_1 == u064
+false
+##false
+#u_1_1_1 == u_100
+false
+##false
+#u_1_1_1 == u_1_1_1
+true
+##true
+###!
+###!
+###!----------------------------------------------
+###3.2 Operador !=
+###!----------------------------------------------
+###!
+#u000 != u000
+false
+##false
+#u000 != u007
+true
+##true
+#u000 != u064
+true
+##true
+#u000 != u_100
+true
+##true
+#u000 != u_1_1_1
+true
+##true
+#u007 != u000
+true
+##true
+#u007 != u007
+false
+##false
+#u007 != u064
+true
+##true
+#u007 != u_100
+true
+##true
+#u007 != u_1_1_1
+true
+##true
+#u064 != u000
+true
+##true
+#u064 != u007
+true
+##true
+#u064 != u064
+false
+##false
+#u064 != u_100
+true
+##true
+#u064 != u_1_1_1
+true
+##true
+#u_100 != u000
+true
+##true
+#u_100 != u007
+true
+##true
+#u_100 != u064
+true
+##true
+#u_100 != u_100
+false
+##false
+#u_100 != u_1_1_1
+true
+##true
+#u_1_1_1 != u000
+true
+##true
+#u_1_1_1 != u007
+true
+##true
+#u_1_1_1 != u064
+true
+##true
+#u_1_1_1 != u_100
+true
+##true
+#u_1_1_1 != u_1_1_1
+false
+##false
+###!
+###!
+###!----------------------------------------------
+###3.3 Operador <
+###!----------------------------------------------
+###!
+#u000 < u000
+false
+##false
+#u000 < u007
+true
+##true
+#u000 < u064
+true
+##true
+#u000 < u_100
+false
+##false
+#u000 < u_1_1_1
+false
+##false
+#u007 < u000
+false
+##false
+#u007 < u007
+false
+##false
+#u007 < u064
+true
+##true
+#u007 < u_100
+false
+##false
+#u007 < u_1_1_1
+false
+##false
+#u064 < u000
+false
+##false
+#u064 < u007
+false
+##false
+#u064 < u064
+false
+##false
+#u064 < u_100
+false
+##false
+#u064 < u_1_1_1
+false
+##false
+#u_100 < u000
+true
+##true
+#u_100 < u007
+true
+##true
+#u_100 < u064
+true
+##true
+#u_100 < u_100
+false
+##false
+#u_100 < u_1_1_1
+false
+##false
+#u_1_1_1 < u000
+true
+##true
+#u_1_1_1 < u007
+true
+##true
+#u_1_1_1 < u064
+true
+##true
+#u_1_1_1 < u_100
+true
+##true
+#u_1_1_1 < u_1_1_1
+false
+##false
+###!
+###!
+###!----------------------------------------------
+###3.4 Operador <=
+###!----------------------------------------------
+###!
+#u000 <= u000
+true
+##true
+#u000 <= u007
+true
+##true
+#u000 <= u064
+true
+##true
+#u000 <= u_100
+false
+##false
+#u000 <= u_1_1_1
+false
+##false
+#u007 <= u000
+false
+##false
+#u007 <= u007
+true
+##true
+#u007 <= u064
+true
+##true
+#u007 <= u_100
+false
+##false
+#u007 <= u_1_1_1
+false
+##false
+#u064 <= u000
+false
+##false
+#u064 <= u007
+false
+##false
+#u064 <= u064
+true
+##true
+#u064 <= u_100
+false
+##false
+#u064 <= u_1_1_1
+false
+##false
+#u_100 <= u000
+true
+##true
+#u_100 <= u007
+true
+##true
+#u_100 <= u064
+true
+##true
+#u_100 <= u_100
+true
+##true
+#u_100 <= u_1_1_1
+false
+##false
+#u_1_1_1 <= u000
+true
+##true
+#u_1_1_1 <= u007
+true
+##true
+#u_1_1_1 <= u064
+true
+##true
+#u_1_1_1 <= u_100
+true
+##true
+#u_1_1_1 <= u_1_1_1
+true
+##true
+###!
+###!
+###!----------------------------------------------
+###3.5 Operador >
+###!----------------------------------------------
+###!
+#u000 > u000
+false
+##false
+#u000 > u007
+false
+##false
+#u000 > u064
+false
+##false
+#u000 > u_100
+true
+##true
+#u000 > u_1_1_1
+true
+##true
+#u007 > u000
+true
+##true
+#u007 > u007
+false
+##false
+#u007 > u064
+false
+##false
+#u007 > u_100
+true
+##true
+#u007 > u_1_1_1
+true
+##true
+#u064 > u000
+true
+##true
+#u064 > u007
+true
+##true
+#u064 > u064
+false
+##false
+#u064 > u_100
+true
+##true
+#u064 > u_1_1_1
+true
+##true
+#u_100 > u000
+false
+##false
+#u_100 > u007
+false
+##false
+#u_100 > u064
+false
+##false
+#u_100 > u_100
+false
+##false
+#u_100 > u_1_1_1
+true
+##true
+#u_1_1_1 > u000
+false
+##false
+#u_1_1_1 > u007
+false
+##false
+#u_1_1_1 > u064
+false
+##false
+#u_1_1_1 > u_100
+false
+##false
+#u_1_1_1 > u_1_1_1
+false
+##false
+###!
+###!
+###!----------------------------------------------
+###3.6 Operador >=
+###!----------------------------------------------
+###!
+#u000 >= u000
+true
+##true
+#u000 >= u007
+false
+##false
+#u000 >= u064
+false
+##false
+#u000 >= u_100
+true
+##true
+#u000 >= u_1_1_1
+true
+##true
+#u007 >= u000
+true
+##true
+#u007 >= u007
+true
+##true
+#u007 >= u064
+false
+##false
+#u007 >= u_100
+true
+##true
+#u007 >= u_1_1_1
+true
+##true
+#u064 >= u000
+true
+##true
+#u064 >= u007
+true
+##true
+#u064 >= u064
+true
+##true
+#u064 >= u_100
+true
+##true
+#u064 >= u_1_1_1
+true
+##true
+#u_100 >= u000
+false
+##false
+#u_100 >= u007
+false
+##false
+#u_100 >= u064
+false
+##false
+#u_100 >= u_100
+true
+##true
+#u_100 >= u_1_1_1
+true
+##true
+#u_1_1_1 >= u000
+false
+##false
+#u_1_1_1 >= u007
+false
+##false
+#u_1_1_1 >= u064
+false
+##false
+#u_1_1_1 >= u_100
+false
+##false
+#u_1_1_1 >= u_1_1_1
+true
+##true
+###!
+###!
+###!
+###!----------------------------------------------
+###4 Constructora per copia
+###!----------------------------------------------
+###!
+#initcopy c000 = u000
+#initcopy c007 = u007
+#initcopy c064 = u064
+#initcopy c_100 = u_100
+#initcopy c_1_1_1 = u_1_1_1
+###!
+###!
+###!------------------------------------------------------------------
+###4.1 Filera
+###!------------------------------------------------------------------
+###!
+#c000 filera
+0
+##0
+#c007 filera
+0
+##0
+#c064 filera
+0
+##0
+#c_100 filera
+-1
+##-1
+#c_1_1_1 filera
+-1
+##-1
+###!
+###!
+###!------------------------------------------------------------------
+###4.2 Placa
+###!------------------------------------------------------------------
+###!
+#c000 placa
+0
+##0
+#c007 placa
+0
+##0
+#c064 placa
+6
+##6
+#c_100 placa
+0
+##0
+#c_1_1_1 placa
+-1
+##-1
+###!
+###!
+###!------------------------------------------------------------------
+###4.3 Pis
+###!------------------------------------------------------------------
+###!
+#c000 pis
+0
+##0
+#c007 pis
+7
+##7
+#c064 pis
+4
+##4
+#c_100 pis
+0
+##0
+#c_1_1_1 pis
+-1
+##-1
+###!
+###!
+###!----------------------------------------------
+###4.4 Operador ==
+###!----------------------------------------------
+###!
+#c000 == c000
+true
+##true
+#c000 == c007
+false
+##false
+#c000 == c064
+false
+##false
+#c000 == c_100
+false
+##false
+#c000 == c_1_1_1
+false
+##false
+#c007 == c000
+false
+##false
+#c007 == c007
+true
+##true
+#c007 == c064
+false
+##false
+#c007 == c_100
+false
+##false
+#c007 == c_1_1_1
+false
+##false
+#c064 == c000
+false
+##false
+#c064 == c007
+false
+##false
+#c064 == c064
+true
+##true
+#c064 == c_100
+false
+##false
+#c064 == c_1_1_1
+false
+##false
+#c_100 == c000
+false
+##false
+#c_100 == c007
+false
+##false
+#c_100 == c064
+false
+##false
+#c_100 == c_100
+true
+##true
+#c_100 == c_1_1_1
+false
+##false
+#c_1_1_1 == c000
+false
+##false
+#c_1_1_1 == c007
+false
+##false
+#c_1_1_1 == c064
+false
+##false
+#c_1_1_1 == c_100
+false
+##false
+#c_1_1_1 == c_1_1_1
+true
+##true
+###!
+###!
+###!----------------------------------------------
+###4.5 Operador !=
+###!----------------------------------------------
+###!
+#c000 != c000
+false
+##false
+#c000 != c007
+true
+##true
+#c000 != c064
+true
+##true
+#c000 != c_100
+true
+##true
+#c000 != c_1_1_1
+true
+##true
+#c007 != c000
+true
+##true
+#c007 != c007
+false
+##false
+#c007 != c064
+true
+##true
+#c007 != c_100
+true
+##true
+#c007 != c_1_1_1
+true
+##true
+#c064 != c000
+true
+##true
+#c064 != c007
+true
+##true
+#c064 != c064
+false
+##false
+#c064 != c_100
+true
+##true
+#c064 != c_1_1_1
+true
+##true
+#c_100 != c000
+true
+##true
+#c_100 != c007
+true
+##true
+#c_100 != c064
+true
+##true
+#c_100 != c_100
+false
+##false
+#c_100 != c_1_1_1
+true
+##true
+#c_1_1_1 != c000
+true
+##true
+#c_1_1_1 != c007
+true
+##true
+#c_1_1_1 != c064
+true
+##true
+#c_1_1_1 != c_100
+true
+##true
+#c_1_1_1 != c_1_1_1
+false
+##false
+###!
+###!
+###!----------------------------------------------
+###4.6 Operador <
+###!----------------------------------------------
+###!
+#c000 < c000
+false
+##false
+#c000 < c007
+true
+##true
+#c000 < c064
+true
+##true
+#c000 < c_100
+false
+##false
+#c000 < c_1_1_1
+false
+##false
+#c007 < c000
+false
+##false
+#c007 < c007
+false
+##false
+#c007 < c064
+true
+##true
+#c007 < c_100
+false
+##false
+#c007 < c_1_1_1
+false
+##false
+#c064 < c000
+false
+##false
+#c064 < c007
+false
+##false
+#c064 < c064
+false
+##false
+#c064 < c_100
+false
+##false
+#c064 < c_1_1_1
+false
+##false
+#c_100 < c000
+true
+##true
+#c_100 < c007
+true
+##true
+#c_100 < c064
+true
+##true
+#c_100 < c_100
+false
+##false
+#c_100 < c_1_1_1
+false
+##false
+#c_1_1_1 < c000
+true
+##true
+#c_1_1_1 < c007
+true
+##true
+#c_1_1_1 < c064
+true
+##true
+#c_1_1_1 < c_100
+true
+##true
+#c_1_1_1 < c_1_1_1
+false
+##false
+###!
+###!
+###!----------------------------------------------
+###4.7 Operador <=
+###!----------------------------------------------
+###!
+#c000 <= c000
+true
+##true
+#c000 <= c007
+true
+##true
+#c000 <= c064
+true
+##true
+#c000 <= c_100
+false
+##false
+#c000 <= c_1_1_1
+false
+##false
+#c007 <= c000
+false
+##false
+#c007 <= c007
+true
+##true
+#c007 <= c064
+true
+##true
+#c007 <= c_100
+false
+##false
+#c007 <= c_1_1_1
+false
+##false
+#c064 <= c000
+false
+##false
+#c064 <= c007
+false
+##false
+#c064 <= c064
+true
+##true
+#c064 <= c_100
+false
+##false
+#c064 <= c_1_1_1
+false
+##false
+#c_100 <= c000
+true
+##true
+#c_100 <= c007
+true
+##true
+#c_100 <= c064
+true
+##true
+#c_100 <= c_100
+true
+##true
+#c_100 <= c_1_1_1
+false
+##false
+#c_1_1_1 <= c000
+true
+##true
+#c_1_1_1 <= c007
+true
+##true
+#c_1_1_1 <= c064
+true
+##true
+#c_1_1_1 <= c_100
+true
+##true
+#c_1_1_1 <= c_1_1_1
+true
+##true
+###!
+###!
+###!----------------------------------------------
+###4.8 Operador >
+###!----------------------------------------------
+###!
+#c000 > c000
+false
+##false
+#c000 > c007
+false
+##false
+#c000 > c064
+false
+##false
+#c000 > c_100
+true
+##true
+#c000 > c_1_1_1
+true
+##true
+#c007 > c000
+true
+##true
+#c007 > c007
+false
+##false
+#c007 > c064
+false
+##false
+#c007 > c_100
+true
+##true
+#c007 > c_1_1_1
+true
+##true
+#c064 > c000
+true
+##true
+#c064 > c007
+true
+##true
+#c064 > c064
+false
+##false
+#c064 > c_100
+true
+##true
+#c064 > c_1_1_1
+true
+##true
+#c_100 > c000
+false
+##false
+#c_100 > c007
+false
+##false
+#c_100 > c064
+false
+##false
+#c_100 > c_100
+false
+##false
+#c_100 > c_1_1_1
+true
+##true
+#c_1_1_1 > c000
+false
+##false
+#c_1_1_1 > c007
+false
+##false
+#c_1_1_1 > c064
+false
+##false
+#c_1_1_1 > c_100
+false
+##false
+#c_1_1_1 > c_1_1_1
+false
+##false
+###!
+###!
+###!----------------------------------------------
+###4.9 Operador >=
+###!----------------------------------------------
+###!
+#c000 >= c000
+true
+##true
+#c000 >= c007
+false
+##false
+#c000 >= c064
+false
+##false
+#c000 >= c_100
+true
+##true
+#c000 >= c_1_1_1
+true
+##true
+#c007 >= c000
+true
+##true
+#c007 >= c007
+true
+##true
+#c007 >= c064
+false
+##false
+#c007 >= c_100
+true
+##true
+#c007 >= c_1_1_1
+true
+##true
+#c064 >= c000
+true
+##true
+#c064 >= c007
+true
+##true
+#c064 >= c064
+true
+##true
+#c064 >= c_100
+true
+##true
+#c064 >= c_1_1_1
+true
+##true
+#c_100 >= c000
+false
+##false
+#c_100 >= c007
+false
+##false
+#c_100 >= c064
+false
+##false
+#c_100 >= c_100
+true
+##true
+#c_100 >= c_1_1_1
+true
+##true
+#c_1_1_1 >= c000
+false
+##false
+#c_1_1_1 >= c007
+false
+##false
+#c_1_1_1 >= c064
+false
+##false
+#c_1_1_1 >= c_100
+false
+##false
+#c_1_1_1 >= c_1_1_1
+true
+##true
+###!
+###!
+###!
+###!----------------------------------------------
+###5 Operador d'assignacio
+###!----------------------------------------------
+###!
+#init x000 ubicacio 1 2 3
+#init x007 ubicacio 4 5 6
+#init x064 ubicacio 6 7 8
+#init x_100 ubicacio 9 10 11
+#init x_1_1_1 ubicacio 12 13 14
+###!
+###!
+###!------------------------------------------------------------------
+###5.1 Filera
+###!------------------------------------------------------------------
+###!
+#x000 filera
+1
+##1
+#x007 filera
+4
+##4
+#x064 filera
+6
+##6
+#x_100 filera
+9
+##9
+#x_1_1_1 filera
+12
+##12
+###!
+###!
+###!------------------------------------------------------------------
+###5.2 Placa
+###!------------------------------------------------------------------
+###!
+#x000 placa
+2
+##2
+#x007 placa
+5
+##5
+#x064 placa
+7
+##7
+#x_100 placa
+10
+##10
+#x_1_1_1 placa
+13
+##13
+###!
+###!
+###!------------------------------------------------------------------
+###5.3 Pis
+###!------------------------------------------------------------------
+###!
+#x000 pis
+3
+##3
+#x007 pis
+6
+##6
+#x064 pis
+8
+##8
+#x_100 pis
+11
+##11
+#x_1_1_1 pis
+14
+##14
+###!
+###!
+###!------------------------------------------------------------------
+###5.4 Assignacio
+###!------------------------------------------------------------------
+###!
+#x000 = c000
+#x007 = c007
+#x064 = c064
+#x_100 = c_100
+#x_1_1_1 = c_1_1_1
+###!
+###!
+###!----------------------------------------------
+###5.5 Operador ==
+###!----------------------------------------------
+###!
+#x000 == x000
+true
+##true
+#x000 == x007
+false
+##false
+#x000 == x064
+false
+##false
+#x000 == x_100
+false
+##false
+#x000 == x_1_1_1
+false
+##false
+#x007 == x000
+false
+##false
+#x007 == x007
+true
+##true
+#x007 == x064
+false
+##false
+#x007 == x_100
+false
+##false
+#x007 == x_1_1_1
+false
+##false
+#x064 == x000
+false
+##false
+#x064 == x007
+false
+##false
+#x064 == x064
+true
+##true
+#x064 == x_100
+false
+##false
+#x064 == x_1_1_1
+false
+##false
+#x_100 == x000
+false
+##false
+#x_100 == x007
+false
+##false
+#x_100 == x064
+false
+##false
+#x_100 == x_100
+true
+##true
+#x_100 == x_1_1_1
+false
+##false
+#x_1_1_1 == x000
+false
+##false
+#x_1_1_1 == x007
+false
+##false
+#x_1_1_1 == x064
+false
+##false
+#x_1_1_1 == x_100
+false
+##false
+#x_1_1_1 == x_1_1_1
+true
+##true
+###!
+###!
+###!----------------------------------------------
+###5.6 Operador !=
+###!----------------------------------------------
+###!
+#x000 != x000
+false
+##false
+#x000 != x007
+true
+##true
+#x000 != x064
+true
+##true
+#x000 != x_100
+true
+##true
+#x000 != x_1_1_1
+true
+##true
+#x007 != x000
+true
+##true
+#x007 != x007
+false
+##false
+#x007 != x064
+true
+##true
+#x007 != x_100
+true
+##true
+#x007 != x_1_1_1
+true
+##true
+#x064 != x000
+true
+##true
+#x064 != x007
+true
+##true
+#x064 != x064
+false
+##false
+#x064 != x_100
+true
+##true
+#x064 != x_1_1_1
+true
+##true
+#x_100 != x000
+true
+##true
+#x_100 != x007
+true
+##true
+#x_100 != x064
+true
+##true
+#x_100 != x_100
+false
+##false
+#x_100 != x_1_1_1
+true
+##true
+#x_1_1_1 != x000
+true
+##true
+#x_1_1_1 != x007
+true
+##true
+#x_1_1_1 != x064
+true
+##true
+#x_1_1_1 != x_100
+true
+##true
+#x_1_1_1 != x_1_1_1
+false
+##false
+###!
+###!
+###!----------------------------------------------
+###5.7 Operador <
+###!----------------------------------------------
+###!
+#x000 < x000
+false
+##false
+#x000 < x007
+true
+##true
+#x000 < x064
+true
+##true
+#x000 < x_100
+false
+##false
+#x000 < x_1_1_1
+false
+##false
+#x007 < x000
+false
+##false
+#x007 < x007
+false
+##false
+#x007 < x064
+true
+##true
+#x007 < x_100
+false
+##false
+#x007 < x_1_1_1
+false
+##false
+#x064 < x000
+false
+##false
+#x064 < x007
+false
+##false
+#x064 < x064
+false
+##false
+#x064 < x_100
+false
+##false
+#x064 < x_1_1_1
+false
+##false
+#x_100 < x000
+true
+##true
+#x_100 < x007
+true
+##true
+#x_100 < x064
+true
+##true
+#x_100 < x_100
+false
+##false
+#x_100 < x_1_1_1
+false
+##false
+#x_1_1_1 < x000
+true
+##true
+#x_1_1_1 < x007
+true
+##true
+#x_1_1_1 < x064
+true
+##true
+#x_1_1_1 < x_100
+true
+##true
+#x_1_1_1 < x_1_1_1
+false
+##false
+###!
+###!
+###!----------------------------------------------
+###5.8 Operador <=
+###!----------------------------------------------
+###!
+#x000 <= x000
+true
+##true
+#x000 <= x007
+true
+##true
+#x000 <= x064
+true
+##true
+#x000 <= x_100
+false
+##false
+#x000 <= x_1_1_1
+false
+##false
+#x007 <= x000
+false
+##false
+#x007 <= x007
+true
+##true
+#x007 <= x064
+true
+##true
+#x007 <= x_100
+false
+##false
+#x007 <= x_1_1_1
+false
+##false
+#x064 <= x000
+false
+##false
+#x064 <= x007
+false
+##false
+#x064 <= x064
+true
+##true
+#x064 <= x_100
+false
+##false
+#x064 <= x_1_1_1
+false
+##false
+#x_100 <= x000
+true
+##true
+#x_100 <= x007
+true
+##true
+#x_100 <= x064
+true
+##true
+#x_100 <= x_100
+true
+##true
+#x_100 <= x_1_1_1
+false
+##false
+#x_1_1_1 <= x000
+true
+##true
+#x_1_1_1 <= x007
+true
+##true
+#x_1_1_1 <= x064
+true
+##true
+#x_1_1_1 <= x_100
+true
+##true
+#x_1_1_1 <= x_1_1_1
+true
+##true
+###!
+###!
+###!----------------------------------------------
+###5.9 Operador >
+###!----------------------------------------------
+###!
+#x000 > x000
+false
+##false
+#x000 > x007
+false
+##false
+#x000 > x064
+false
+##false
+#x000 > x_100
+true
+##true
+#x000 > x_1_1_1
+true
+##true
+#x007 > x000
+true
+##true
+#x007 > x007
+false
+##false
+#x007 > x064
+false
+##false
+#x007 > x_100
+true
+##true
+#x007 > x_1_1_1
+true
+##true
+#x064 > x000
+true
+##true
+#x064 > x007
+true
+##true
+#x064 > x064
+false
+##false
+#x064 > x_100
+true
+##true
+#x064 > x_1_1_1
+true
+##true
+#x_100 > x000
+false
+##false
+#x_100 > x007
+false
+##false
+#x_100 > x064
+false
+##false
+#x_100 > x_100
+false
+##false
+#x_100 > x_1_1_1
+true
+##true
+#x_1_1_1 > x000
+false
+##false
+#x_1_1_1 > x007
+false
+##false
+#x_1_1_1 > x064
+false
+##false
+#x_1_1_1 > x_100
+false
+##false
+#x_1_1_1 > x_1_1_1
+false
+##false
+###!
+###!
+###!----------------------------------------------
+###5.10 Operador >=
+###!----------------------------------------------
+###!
+#x000 >= x000
+true
+##true
+#x000 >= x007
+false
+##false
+#x000 >= x064
+false
+##false
+#x000 >= x_100
+true
+##true
+#x000 >= x_1_1_1
+true
+##true
+#x007 >= x000
+true
+##true
+#x007 >= x007
+true
+##true
+#x007 >= x064
+false
+##false
+#x007 >= x_100
+true
+##true
+#x007 >= x_1_1_1
+true
+##true
+#x064 >= x000
+true
+##true
+#x064 >= x007
+true
+##true
+#x064 >= x064
+true
+##true
+#x064 >= x_100
+true
+##true
+#x064 >= x_1_1_1
+true
+##true
+#x_100 >= x000
+false
+##false
+#x_100 >= x007
+false
+##false
+#x_100 >= x064
+false
+##false
+#x_100 >= x_100
+true
+##true
+#x_100 >= x_1_1_1
+true
+##true
+#x_1_1_1 >= x000
+false
+##false
+#x_1_1_1 >= x007
+false
+##false
+#x_1_1_1 >= x064
+false
+##false
+#x_1_1_1 >= x_100
+false
+##false
+#x_1_1_1 >= x_1_1_1
+true
+##true
+###!
+###!
+###!
+###!----------------------------------------------
+###6 Destructora
+###!----------------------------------------------
+###!
+#u000 destroy
+#u007 destroy
+#u064 destroy
+#u_100 destroy
+#u_1_1_1 destroy
+#c000 destroy
+#c007 destroy
+#c064 destroy
+#c_100 destroy
+#c_1_1_1 destroy
+#x000 destroy
+#x007 destroy
+#x064 destroy
+#x_100 destroy
+#x_1_1_1 destroy
+###!
+###!
+###!
+###!-----------------------------------------------------------
+###! JOC DE PROVES DE CATALEG
+###!-----------------------------------------------------------
+###!
+#load jp_public_cataleg.in
+###!----------------------------------------------
+###!
+###! JOCS DE PROVES DE LA CLASSE CATALEG
+###!
+###!----------------------------------------------
+###!
+###!------------------------------------------------------------------
+###1 Cataleg buit
+###!------------------------------------------------------------------
+###!
+#init a1 cataleg<int> 0
+###!
+#val KuCha12
+Error::cataleg:31:Clau inexistent.
+##Error::cataleg:31:Clau inexistent.
+###!
+#existeix KuCha12
+false
+##false
+#quants
+0
+##0
+###!
+#elimina KuCha12
+Error::cataleg:31:Clau inexistent.
+##Error::cataleg:31:Clau inexistent.
+#existeix KuCha12
+false
+##false
+#quants
+0
+##0
+###!
+#a1 destroy
+###!
+###!
+###!
+###!------------------------------------------------------------------
+###2 Una clau
+###!------------------------------------------------------------------
+###!
+###!------------------------------
+###2.1 Clau NO present al cataleg
+###!------------------------------
+###!
+#init a2 cataleg<int> 1
+###!
+#assig KuCha12 12
+###!
+#val KuCha12
+12
+##12
+#val KuCha13
+Error::cataleg:31:Clau inexistent.
+##Error::cataleg:31:Clau inexistent.
+###!
+#existeix KuCha12
+true
+##true
+#existeix KuCha13
+false
+##false
+#quants
+1
+##1
+###!
+###!
+###!------------------------------
+###2.2 Clau present al cataleg
+###!------------------------------
+###!
+#assig KuCha12 12
+###!
+#val KuCha12
+12
+##12
+#val KuCha13
+Error::cataleg:31:Clau inexistent.
+##Error::cataleg:31:Clau inexistent.
+###!
+#existeix KuCha12
+true
+##true
+#existeix KuCha13
+false
+##false
+#quants
+1
+##1
+###!
+#elimina KuCha12
+#existeix KuCha12
+false
+##false
+#quants
+0
+##0
+###!
+#a2 destroy
+###!
+###!
+###!
+###!------------------------------------------------------------------
+###3 Dues claus
+###!------------------------------------------------------------------
+###!
+###!------------------------------
+###3.1 Clau assignada al principi
+###!------------------------------
+###!
+#init a31 cataleg<int> 2
+###!
+#assig KuCha1 1
+#assig HuCha2 2
+###!
+#val KuCha1
+1
+##1
+#val HuCha2
+2
+##2
+#val HuCha13
+Error::cataleg:31:Clau inexistent.
+##Error::cataleg:31:Clau inexistent.
+###!
+#existeix KuCha1
+true
+##true
+#existeix HuCha2
+true
+##true
+#existeix HuCha13
+false
+##false
+#quants
+2
+##2
+###!
+#elimina KuCha1
+#elimina HuCha2
+#existeix KuCha1
+false
+##false
+#existeix HuCha2
+false
+##false
+#existeix HuCha13
+false
+##false
+#quants
+0
+##0
+###!
+#a31 destroy
+###!
+###!
+###!------------------------------
+###3.2 Clau assignada al final
+###!------------------------------
+###!
+#init a32 cataleg<int> 2
+###!
+#assig HuCha1 1
+#assig KuCha2 2
+###!
+#val KuCha2
+2
+##2
+#val HuCha1
+1
+##1
+#val HuCha13
+Error::cataleg:31:Clau inexistent.
+##Error::cataleg:31:Clau inexistent.
+###!
+#existeix HuCha1
+true
+##true
+#existeix KuCha2
+true
+##true
+#existeix HuCha13
+false
+##false
+###!
+#quants
+2
+##2
+###!
+#a32 destroy
+###!
+###!
+###!
+###!------------------------------------------------------------------
+###4 Tres claus
+###!------------------------------------------------------------------
+###!
+###!------------------------------
+###4.1 Clau assignada al principi
+###!------------------------------
+###!
+#init a41 cataleg<int> 3
+###!
+#assig HuCha1 1
+#assig KuCha2 2
+#assig AuCha3 3
+###!
+#val KuCha2
+2
+##2
+#val HuCha1
+1
+##1
+#val AuCha3
+3
+##3
+#val HuCha13
+Error::cataleg:31:Clau inexistent.
+##Error::cataleg:31:Clau inexistent.
+###!
+#existeix KuCha2
+true
+##true
+#existeix HuCha1
+true
+##true
+#existeix AuCha3
+true
+##true
+#existeix HuCha13
+false
+##false
+#quants
+3
+##3
+###!
+#elimina KuCha2
+#elimina HuCha1
+#elimina AuCha3
+#existeix KuCha2
+false
+##false
+#existeix HuCha1
+false
+##false
+#existeix AuCha3
+false
+##false
+#existeix HuCha13
+false
+##false
+#quants
+0
+##0
+###!
+#a41 destroy
+###!
+###!
+###!------------------------------
+###4.2 Clau assignada al mig
+###!------------------------------
+###!
+#init a42 cataleg<int> 3
+###!
+#assig KuCha2 2
+#assig HuCha1 1
+#assig IuCha3 3
+###!
+#val KuCha2
+2
+##2
+#val HuCha1
+1
+##1
+#val IuCha3
+3
+##3
+#val HuCha13
+Error::cataleg:31:Clau inexistent.
+##Error::cataleg:31:Clau inexistent.
+###!
+#existeix KuCha2
+true
+##true
+#existeix HuCha1
+true
+##true
+#existeix IuCha3
+true
+##true
+#existeix HuCha13
+false
+##false
+###!
+#quants
+3
+##3
+###!
+#a42 destroy
+###!
+###!
+###!------------------------------
+###4.3 Clau assignada al final
+###!------------------------------
+###!
+#init a43 cataleg<int> 3
+###!
+#assig HuCha1 1
+#assig KuCha2 2
+#assig ZuCha3 3
+###!
+#val KuCha2
+2
+##2
+#val ZuCha3
+3
+##3
+#val HuCha1
+1
+##1
+#val HuCha13
+Error::cataleg:31:Clau inexistent.
+##Error::cataleg:31:Clau inexistent.
+###!
+#existeix KuCha2
+true
+##true
+#existeix ZuCha3
+true
+##true
+#existeix HuCha1
+true
+##true
+#existeix HuCha13
+false
+##false
+###!
+#quants
+3
+##3
+###!
+#a43 destroy
+###!
+###!
+###!
+###!
+###!
+###!
+###!-----------------------------------------------------------
+###! JOC DE PROVES DE TERMINAL
+###!-----------------------------------------------------------
+###!
+#load jp_public_terminal.in
 ###!----------------------------------------------
 ###!
 ###! JOCS DE PROVES DE LA CLASSE TERMINAL FIRST_FIT
@@ -278,7 +5494,7 @@ Error::terminal:46:Ubicacio no pertany al magatzem.
 ###!
 #mapa
 espera: []
-fragmentacio: 0
+fragmentacio: 1
 ops_grua: 0
 
 filera 0
@@ -300,12 +5516,16 @@ pis 0  ___
 ###!------------------------------------------------------------------
 ###!
 #insereix_c cA30
+debug fil 0
 #insereix_c cA10
+debug fil 0
 #insereix_c cRE1
 Error::terminal:44:Matricula duplicada.
 ##Error::terminal:44:Matricula duplicada.
 #insereix_c cD20
+debug fil -1
 #insereix_c cB10
+debug fil -1
 ###!
 ###!------------------------------------------------------------------
 ###2.2.1 On
@@ -525,7 +5745,13 @@ pis 0  A10
 ###!------------------------------------------------------------------
 ###!
 #retira_c A10
-Error::terminal:44:Matricula duplicada.
+debug _t antes A10
+debug fil 0
+debug _t despues 
+debug _u10d -100
+debug _u20 -100
+debug _u30 -100
+debug fil -1
 ###!
 ###!------------------------------------------------------------------
 ###2.3.8 On
@@ -610,7 +5836,7 @@ Error::terminal:46:Ubicacio no pertany al magatzem.
 ###!
 #mapa
 espera: [A30, B10]
-fragmentacio: 0
+fragmentacio: 1
 ops_grua: 1
 
 filera 0
@@ -767,14 +5993,23 @@ pis 0  ___ ___
 ###!------------------------------------------------------------------
 ###!
 #insereix_c cB10
+debug fil 0
 #insereix_c cB20
+debug fil -1
 #insereix_c cB30
+debug fil -1
 #insereix_c cC10
+debug fil -1
 #insereix_c cC20
+debug fil -1
 #insereix_c cC30
+debug fil -1
 #insereix_c cD10
+debug fil -1
 #insereix_c cD20
+debug fil -1
 #insereix_c cD30
+debug fil -1
 ###!
 ###!------------------------------------------------------------------
 ###3.2.2 On
@@ -893,7 +6128,7 @@ Error::terminal:46:Ubicacio no pertany al magatzem.
 ###!
 #mapa
 espera: [B20, B30, C10, C20, C30, D10, D20, D30]
-fragmentacio: 0
+fragmentacio: 1
 ops_grua: 1
 
 filera 0
@@ -927,7 +6162,7 @@ pis 0  B10 ___
 ###!
 #mapa
 espera: [B20, B30, C20, C30, D10, D20, D30]
-fragmentacio: 0
+fragmentacio: 1
 ops_grua: 1
 
 filera 0
@@ -955,7 +6190,13 @@ pis 0  B10 ___
 ###!------------------------------------------------------------------
 ###!
 #retira_c B10
-Error::terminal:44:Matricula duplicada.
+debug _t antes B10
+debug fil 0
+debug _t despues 
+debug _u10d -100
+debug _u20 -100
+debug _u30 -100
+debug fil -1
 ###!
 #mapa
 espera: [B20, B30, C20, C30, D10, D20, D30]
@@ -1241,14 +6482,23 @@ pis 0  ___ ___ ___
 ###!------------------------------------------------------------------
 ###!
 #insereix_c cB10
+debug fil 0
 #insereix_c cB20
+debug fil -1
 #insereix_c cB30
+debug fil -1
 #insereix_c cC10
+debug fil -1
 #insereix_c cC20
+debug fil -1
 #insereix_c cC30
+debug fil -1
 #insereix_c cD10
+debug fil -1
 #insereix_c cD20
+debug fil -1
 #insereix_c cD30
+debug fil -1
 ###!
 ###!------------------------------------------------------------------
 ###4.2.2 On
@@ -1397,7 +6647,13 @@ pis 0  B10 ___ ___
 ###!------------------------------------------------------------------
 ###!
 #retira_c B10
-Error::terminal:44:Matricula duplicada.
+debug _t antes B10
+debug fil 0
+debug _t despues 
+debug _u10d -100
+debug _u20 -100
+debug _u30 -100
+debug fil -1
 ###!
 #mapa
 espera: [B20, B30, C10, C20, C30, D10, D20, D30]
@@ -1838,16 +7094,27 @@ pis 0  ___ ___ ___ ___ ___ ___ ___ ___ ___ ___
 ###!------------------------------------------------------------------
 ###!
 #insereix_c cB10
+debug fil 0
 #insereix_c cB20
+debug fil -1
 #insereix_c cB30
+debug fil -1
 #insereix_c cC10
+debug fil -1
 #insereix_c cC20
+debug fil -1
 #insereix_c cC30
+debug fil -1
 #insereix_c cD10
+debug fil -1
 #insereix_c cD20
+debug fil -1
 #insereix_c cD30
+debug fil -1
 #insereix_c cE10
+debug fil -1
 #insereix_c cE20
+debug fil -1
 ###!
 ###!------------------------------------------------------------------
 ###5.2.2 On
@@ -2153,7 +7420,13 @@ pis 0  B10 ___ ___ ___ ___ ___ ___ ___ ___ ___
 ###!------------------------------------------------------------------
 ###!
 #retira_c B10
-Error::terminal:44:Matricula duplicada.
+debug _t antes B10
+debug fil 0
+debug _t despues 
+debug _u10d -100
+debug _u20 -100
+debug _u30 -100
+debug fil -1
 ###!
 #mapa
 espera: [B20, C10, C20, C30, D10, D20, D30, E20]
@@ -2449,6 +7722,7 @@ pis 0  ___ ___ ___ ___ ___ ___ ___ ___ ___ ___
 ###!------------------------------------------------------------------
 ###!
 #insereix_c cF10
+debug fil -1
 ###!
 #mapa
 espera: [C20, C30, D30, E20, F10]
@@ -2845,6 +8119,7 @@ pis 0  ___ ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_11 terminal 1 10 3
 ###!
 #insereix_c cA10
+debug fil 0
 ###!
 #on A10
 <0, 0, 0>
@@ -2858,7 +8133,7 @@ A10
 ###!
 #mapa
 espera: []
-fragmentacio: 0
+fragmentacio: 1
 ops_grua: 1
 
 filera 0
@@ -2885,6 +8160,7 @@ pis 0  A10 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_12 terminal 1 10 3
 ###!
 #insereix_c cA20
+debug fil 0
 ###!
 #on A20
 <0, 0, 0>
@@ -2919,6 +8195,7 @@ pis 0  A20 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_13 terminal 1 10 3
 ###!
 #insereix_c cA30
+debug fil 0
 ###!
 #on A30
 <0, 0, 0>
@@ -2986,7 +8263,9 @@ pis 0  A30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_21 terminal 1 10 3
 ###!
 #insereix_c cA30
+debug fil 0
 #insereix_c cB10
+debug fil 0
 ###!
 #on B10
 <0, 0, 0>
@@ -2994,7 +8273,7 @@ pis 0  A30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 ###!
 #mapa
 espera: []
-fragmentacio: 0
+fragmentacio: 1
 ops_grua: 2
 
 filera 0
@@ -3021,14 +8300,16 @@ pis 0  B10 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_22 terminal 1 10 3
 ###!
 #insereix_c cA30
+debug fil 0
 #insereix_c cB20
+debug fil 0
 ###!
 #on B20
 <0, 0, 0>
 ##<0, 0, 1>
 #mapa
 espera: []
-fragmentacio: 0
+fragmentacio: 1
 ops_grua: 2
 
 filera 0
@@ -3055,7 +8336,9 @@ pis 0  B20 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_23 terminal 1 10 3
 ###!
 #insereix_c cA30
+debug fil 0
 #insereix_c cB30
+debug fil 0
 ###!
 #on B30
 <0, 0, 0>
@@ -3105,18 +8388,26 @@ pis 0  B30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_31 terminal 1 10 3
 ###!
 #insereix_c cA30
+debug fil 0
 #insereix_c cB30
+debug fil 0
 #insereix_c cC30
+debug fil 0
 #insereix_c cD30
+debug fil -1
 #insereix_c cE30
+debug fil -1
 ###!
 #long_terminal A30
 30
 ##30
 ###!
 #insereix_c cF30
+debug fil -1
 #insereix_c cG20
+debug fil -1
 #insereix_c cH10
+debug fil -1
 ###!
 #on H10
 <-1, 0, 0>
@@ -3151,18 +8442,26 @@ pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_32 terminal 1 10 3
 ###!
 #insereix_c cA30
+debug fil 0
 #insereix_c cB30
+debug fil 0
 #insereix_c cC30
+debug fil 0
 #insereix_c cD30
+debug fil -1
 ###!
 #num_fileres 
 1
 ##1
 ###!
 #insereix_c cE30
+debug fil -1
 #insereix_c cF30
+debug fil -1
 #insereix_c cG20
+debug fil -1
 #insereix_c cH20
+debug fil -1
 ###!
 #on H20
 <-1, 0, 0>
@@ -3197,18 +8496,26 @@ pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_33 terminal 1 10 3
 ###!
 #insereix_c cA30
+debug fil 0
 #insereix_c cB30
+debug fil 0
 #insereix_c cC30
+debug fil 0
 #insereix_c cD30
+debug fil -1
 #insereix_c cE30
+debug fil -1
 ###!
 #num_places
 10
 ##10
 ###!
 #insereix_c cF30
+debug fil -1
 #insereix_c cG20
+debug fil -1
 #insereix_c cH30
+debug fil -1
 ###!
 #on H30
 <-1, 0, 0>
@@ -3258,20 +8565,30 @@ pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_41 terminal 1 10 3
 ###!
 #insereix_c cA30
+debug fil 0
 #insereix_c cB30
+debug fil 0
 #insereix_c cC30
+debug fil 0
 #insereix_c cD30
+debug fil -1
 #insereix_c cE30
+debug fil -1
 ###!
 #num_pisos
 3
 ##3
 ###!
 #insereix_c cF30
+debug fil -1
 #insereix_c cG30
+debug fil -1
 #insereix_c cH30
+debug fil -1
 #insereix_c cI30
+debug fil -1
 #insereix_c cJ10
+debug fil -1
 ###!
 #on J10
 <-1, 0, 0>
@@ -3306,15 +8623,25 @@ pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_42 terminal 1 10 3
 ###!
 #insereix_c cA30
+debug fil 0
 #insereix_c cB30
+debug fil 0
 #insereix_c cC30
+debug fil 0
 #insereix_c cD30
+debug fil -1
 #insereix_c cE30
+debug fil -1
 #insereix_c cF30
+debug fil -1
 #insereix_c cG30
+debug fil -1
 #insereix_c cH30
+debug fil -1
 #insereix_c cI30
+debug fil -1
 #insereix_c cJ20
+debug fil -1
 ###!
 #on J20
 <-1, 0, 0>
@@ -3349,15 +8676,25 @@ pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_43 terminal 1 10 3
 ###!
 #insereix_c cA30
+debug fil 0
 #insereix_c cB30
+debug fil 0
 #insereix_c cC30
+debug fil 0
 #insereix_c cD30
+debug fil -1
 #insereix_c cE30
+debug fil -1
 #insereix_c cF30
+debug fil -1
 #insereix_c cG30
+debug fil -1
 #insereix_c cH30
+debug fil -1
 #insereix_c cI30
+debug fil -1
 #insereix_c cJ30
+debug fil -1
 ###!
 #on J30
 <-1, 0, 0>
@@ -3407,18 +8744,31 @@ pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_51 terminal 1 10 3
 ###!
 #insereix_c cA30
+debug fil 0
 #insereix_c cB30
+debug fil 0
 #insereix_c cC30
+debug fil 0
 #insereix_c cD30
+debug fil -1
 #insereix_c cE30
+debug fil -1
 #insereix_c cF30
+debug fil -1
 #insereix_c cG30
+debug fil -1
 #insereix_c cH30
+debug fil -1
 #insereix_c cI30
+debug fil -1
 #insereix_c cJ10
+debug fil -1
 #insereix_c cK10
+debug fil -1
 #insereix_c cL10
+debug fil -1
 #insereix_c cM10
+debug fil -1
 #on M10
 <-1, 0, 0>
 ##<-1, 0, 0>
@@ -3452,23 +8802,36 @@ pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_52 terminal 1 10 3
 ###!
 #insereix_c cA30
+debug fil 0
 #insereix_c cB30
+debug fil 0
 #insereix_c cC30
+debug fil 0
 #insereix_c cD30
+debug fil -1
 #insereix_c cE30
+debug fil -1
 #insereix_c cF30
+debug fil -1
 ###!
 #num_pisos
 3
 ##3
 ###!
 #insereix_c cG30
+debug fil -1
 #insereix_c cH30
+debug fil -1
 #insereix_c cI30
+debug fil -1
 #insereix_c cJ10
+debug fil -1
 #insereix_c cK10
+debug fil -1
 #insereix_c cL10
+debug fil -1
 #insereix_c cM20
+debug fil -1
 ###!
 #on M20
 <-1, 0, 0>
@@ -3503,23 +8866,36 @@ pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_53 terminal 1 10 3
 ###!
 #insereix_c cA30
+debug fil 0
 #insereix_c cB30
+debug fil 0
 #insereix_c cC30
+debug fil 0
 #insereix_c cD30
+debug fil -1
 #insereix_c cE30
+debug fil -1
 #insereix_c cF30
+debug fil -1
 #insereix_c cG30
+debug fil -1
 #insereix_c cH30
+debug fil -1
 #insereix_c cI30
+debug fil -1
 ###!
 #num_places
 10
 ##10
 ###!
 #insereix_c cJ10
+debug fil -1
 #insereix_c cK10
+debug fil -1
 #insereix_c cL10
+debug fil -1
 #insereix_c cM30
+debug fil -1
 ###!
 #on M30
 <-1, 0, 0>
@@ -3569,20 +8945,30 @@ pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_61 terminal 1 10 3
 ###!
 #insereix_c cA30
+debug fil 0
 #insereix_c cB30
+debug fil 0
 #insereix_c cC30
+debug fil 0
 #insereix_c cD30
+debug fil -1
 #insereix_c cE30
+debug fil -1
 #insereix_c cF30
+debug fil -1
 #insereix_c cG20
+debug fil -1
 #insereix_c cH30
+debug fil -1
 ###!
 #num_fileres
 1
 ##1
 ###!
 #insereix_c cI30
+debug fil -1
 #insereix_c cK10
+debug fil -1
 ###!
 #on K10
 <-1, 0, 0>
@@ -3617,20 +9003,30 @@ pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_62 terminal 1 10 3
 ###!
 #insereix_c cA30
+debug fil 0
 #insereix_c cB30
+debug fil 0
 #insereix_c cC30
+debug fil 0
 #insereix_c cD30
+debug fil -1
 #insereix_c cE30
+debug fil -1
 #insereix_c cF30
+debug fil -1
 #insereix_c cG20
+debug fil -1
 #insereix_c cH30
+debug fil -1
 ###!
 #long_terminal C30
 30
 ##30
 ###!
 #insereix_c cI30
+debug fil -1
 #insereix_c cK20
+debug fil -1
 ###!
 #on K20
 <-1, 0, 0>
@@ -3665,20 +9061,30 @@ pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_63 terminal 1 10 3
 ###!
 #insereix_c cA30
+debug fil 0
 #insereix_c cB30
+debug fil 0
 #insereix_c cC30
+debug fil 0
 #insereix_c cD30
+debug fil -1
 #insereix_c cE30
+debug fil -1
 #insereix_c cF30
+debug fil -1
 #insereix_c cG20
+debug fil -1
 #insereix_c cH30
+debug fil -1
 ###!
 #num_fileres
 1
 ##1
 ###!
 #insereix_c cI30
+debug fil -1
 #insereix_c cK30
+debug fil -1
 ###!
 #on K30
 <-1, 0, 0>
@@ -3728,16 +9134,27 @@ pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_71 terminal 1 10 3
 ###!
 #insereix_c cA30
+debug fil 0
 #insereix_c cB30
+debug fil 0
 #insereix_c cC30
+debug fil 0
 #insereix_c cD20
+debug fil -1
 #insereix_c cE20
+debug fil -1
 #insereix_c cF20
+debug fil -1
 #insereix_c cG30
+debug fil -1
 #insereix_c cK10
+debug fil -1
 #insereix_c cH30
+debug fil -1
 #insereix_c cI30
+debug fil -1
 #insereix_c cL20
+debug fil -1
 ###!
 #on L20
 <-1, 0, 0>
@@ -3775,16 +9192,27 @@ pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_72 terminal 1 10 3
 ###!
 #insereix_c cA30
+debug fil 0
 #insereix_c cB30
+debug fil 0
 #insereix_c cC30
+debug fil 0
 #insereix_c cD20
+debug fil -1
 #insereix_c cE20
+debug fil -1
 #insereix_c cF20
+debug fil -1
 #insereix_c cG30
+debug fil -1
 #insereix_c cL20
+debug fil -1
 #insereix_c cH30
+debug fil -1
 #insereix_c cI30
+debug fil -1
 #insereix_c cK10
+debug fil -1
 ###!
 #on L20
 <-1, 0, 0>
@@ -3836,19 +9264,33 @@ pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_81 terminal 1 10 3
 ###!
 #insereix_c cA30
+debug fil 0
 #insereix_c cB30
+debug fil 0
 #insereix_c cC30
+debug fil 0
 #insereix_c cD30
+debug fil -1
 #insereix_c cE30
+debug fil -1
 #insereix_c cF30
+debug fil -1
 #insereix_c cG30
+debug fil -1
 #insereix_c cH30
+debug fil -1
 #insereix_c cI30
+debug fil -1
 #insereix_c cL30
+debug fil -1
 #insereix_c cM20
+debug fil -1
 #insereix_c cN30
+debug fil -1
 #insereix_c cO20
+debug fil -1
 #insereix_c cJ10
+debug fil -1
 ###!
 #on J10
 <-1, 0, 0>
@@ -3883,19 +9325,33 @@ pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_82 terminal 1 10 3
 ###!
 #insereix_c cA30
+debug fil 0
 #insereix_c cB30
+debug fil 0
 #insereix_c cC30
+debug fil 0
 #insereix_c cD30
+debug fil -1
 #insereix_c cE30
+debug fil -1
 #insereix_c cF30
+debug fil -1
 #insereix_c cG30
+debug fil -1
 #insereix_c cH30
+debug fil -1
 #insereix_c cI30
+debug fil -1
 #insereix_c cL30
+debug fil -1
 #insereix_c cM20
+debug fil -1
 #insereix_c cN30
+debug fil -1
 #insereix_c cO20
+debug fil -1
 #insereix_c cJ20
+debug fil -1
 ###!
 #on J20
 <-1, 0, 0>
@@ -3930,19 +9386,33 @@ pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_83 terminal 1 10 3
 ###!
 #insereix_c cA30
+debug fil 0
 #insereix_c cB30
+debug fil 0
 #insereix_c cC30
+debug fil 0
 #insereix_c cD30
+debug fil -1
 #insereix_c cE30
+debug fil -1
 #insereix_c cF30
+debug fil -1
 #insereix_c cG30
+debug fil -1
 #insereix_c cH30
+debug fil -1
 #insereix_c cI30
+debug fil -1
 #insereix_c cL30
+debug fil -1
 #insereix_c cM20
+debug fil -1
 #insereix_c cN30
+debug fil -1
 #insereix_c cO20
+debug fil -1
 #insereix_c cJ30
+debug fil -1
 ###!
 #on J30
 <-1, 0, 0>
@@ -3990,17 +9460,29 @@ pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_91 terminal 1 10 3
 ###!
 #insereix_c cA30
+debug fil 0
 #insereix_c cB30
+debug fil 0
 #insereix_c cC30
+debug fil 0
 #insereix_c cD30
+debug fil -1
 #insereix_c cE30
+debug fil -1
 #insereix_c cF30
+debug fil -1
 #insereix_c cG30
+debug fil -1
 #insereix_c cH30
+debug fil -1
 #insereix_c cI30
+debug fil -1
 #insereix_c cM20
+debug fil -1
 #insereix_c cO20
+debug fil -1
 #insereix_c cJ10
+debug fil -1
 ###!
 #on J10
 <-1, 0, 0>
@@ -4035,17 +9517,29 @@ pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_92 terminal 1 10 3
 ###!
 #insereix_c cA30
+debug fil 0
 #insereix_c cB30
+debug fil 0
 #insereix_c cC30
+debug fil 0
 #insereix_c cD30
+debug fil -1
 #insereix_c cE30
+debug fil -1
 #insereix_c cF30
+debug fil -1
 #insereix_c cG30
+debug fil -1
 #insereix_c cH30
+debug fil -1
 #insereix_c cI30
+debug fil -1
 #insereix_c cM20
+debug fil -1
 #insereix_c cO20
+debug fil -1
 #insereix_c cJ20
+debug fil -1
 ###!
 #on J20
 <-1, 0, 0>
@@ -4080,17 +9574,29 @@ pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_93 terminal 1 10 3
 ###!
 #insereix_c cA30
+debug fil 0
 #insereix_c cB30
+debug fil 0
 #insereix_c cC30
+debug fil 0
 #insereix_c cD30
+debug fil -1
 #insereix_c cE30
+debug fil -1
 #insereix_c cF30
+debug fil -1
 #insereix_c cG30
+debug fil -1
 #insereix_c cH30
+debug fil -1
 #insereix_c cI30
+debug fil -1
 #insereix_c cM20
+debug fil -1
 #insereix_c cO20
+debug fil -1
 #insereix_c cJ30
+debug fil -1
 ###!
 #on J30
 <-1, 0, 0>
@@ -4139,17 +9645,29 @@ pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_101 terminal 1 10 3
 ###!
 #insereix_c cA30
+debug fil 0
 #insereix_c cB30
+debug fil 0
 #insereix_c cC30
+debug fil 0
 #insereix_c cD30
+debug fil -1
 #insereix_c cE30
+debug fil -1
 #insereix_c cF30
+debug fil -1
 #insereix_c cG30
+debug fil -1
 #insereix_c cH30
+debug fil -1
 #insereix_c cI30
+debug fil -1
 #insereix_c cL30
+debug fil -1
 #insereix_c cN30
+debug fil -1
 #insereix_c cJ10
+debug fil -1
 ###!
 #on J10
 <-1, 0, 0>
@@ -4184,17 +9702,29 @@ pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_102 terminal 1 10 3
 ###!
 #insereix_c cA30
+debug fil 0
 #insereix_c cB30
+debug fil 0
 #insereix_c cC30
+debug fil 0
 #insereix_c cD30
+debug fil -1
 #insereix_c cE30
+debug fil -1
 #insereix_c cF30
+debug fil -1
 #insereix_c cG30
+debug fil -1
 #insereix_c cH30
+debug fil -1
 #insereix_c cI30
+debug fil -1
 #insereix_c cL30
+debug fil -1
 #insereix_c cN30
+debug fil -1
 #insereix_c cJ20
+debug fil -1
 ###!
 #on J20
 <-1, 0, 0>
@@ -4229,17 +9759,29 @@ pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_103 terminal 1 10 3
 ###!
 #insereix_c cA30
+debug fil 0
 #insereix_c cB30
+debug fil 0
 #insereix_c cC30
+debug fil 0
 #insereix_c cD30
+debug fil -1
 #insereix_c cE30
+debug fil -1
 #insereix_c cF30
+debug fil -1
 #insereix_c cG30
+debug fil -1
 #insereix_c cH30
+debug fil -1
 #insereix_c cI30
+debug fil -1
 #insereix_c cL30
+debug fil -1
 #insereix_c cN30
+debug fil -1
 #insereix_c cJ30
+debug fil -1
 ###!
 #on J30
 <-1, 0, 0>
@@ -4287,24 +9829,40 @@ pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_111 terminal 1 10 3
 ###!
 #insereix_c cA30
+debug fil 0
 #insereix_c cB30
+debug fil 0
 #insereix_c cC30
+debug fil 0
 #insereix_c cD30
+debug fil -1
 #insereix_c cE30
+debug fil -1
 #insereix_c cF30
+debug fil -1
 #insereix_c cG10
+debug fil -1
 #insereix_c cH10
+debug fil -1
 #insereix_c cI10
+debug fil -1
 #insereix_c cX10
+debug fil -1
 #insereix_c cY10
+debug fil -1
 #insereix_c cZ10
+debug fil -1
 #insereix_c cJ10
+debug fil -1
 #retira_c Z10
 #retira_c Y10
 #retira_c X10
 #insereix_c cM20
+debug fil -1
 #insereix_c cO20
+debug fil -1
 #insereix_c cK10
+debug fil -1
 ###!
 #on K10
 <-1, 0, 0>
@@ -4345,26 +9903,44 @@ pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_112 terminal 1 10 3
 ###!
 #insereix_c cA30
+debug fil 0
 #insereix_c cB30
+debug fil 0
 #insereix_c cC30
+debug fil 0
 #insereix_c cD30
+debug fil -1
 #insereix_c cE30
+debug fil -1
 #insereix_c cF30
+debug fil -1
 #insereix_c cG10
+debug fil -1
 #insereix_c cH10
+debug fil -1
 #insereix_c cI10
+debug fil -1
 #insereix_c cX10
+debug fil -1
 #insereix_c cY10
+debug fil -1
 #insereix_c cZ10
+debug fil -1
 #insereix_c cJ10
+debug fil -1
 #retira_c Z10
 #retira_c Y10
 #retira_c X10
 #insereix_c cL30
+debug fil -1
 #insereix_c cM20
+debug fil -1
 #insereix_c cN30
+debug fil -1
 #insereix_c cO20
+debug fil -1
 #insereix_c cK10
+debug fil -1
 ###!
 #on K10
 <-1, 0, 0>
@@ -4405,26 +9981,42 @@ pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_113 terminal 1 10 3
 ###!
 #insereix_c cA30
+debug fil 0
 #insereix_c cB30
+debug fil 0
 #insereix_c cC30
+debug fil 0
 #insereix_c cD30
+debug fil -1
 #insereix_c cE30
+debug fil -1
 #insereix_c cF30
+debug fil -1
 #insereix_c cX20
+debug fil -1
 #insereix_c cY20
+debug fil -1
 #insereix_c cZ20
+debug fil -1
 #insereix_c cJ20
+debug fil -1
 #insereix_c cU10
+debug fil -1
 #insereix_c cW10
+debug fil -1
 #insereix_c cH10
+debug fil -1
 #retira_c Z20
 #retira_c Y20
 #retira_c X20
 #retira_c W10
 #retira_c U10
 #insereix_c cL30
+debug fil -1
 #insereix_c cN30
+debug fil -1
 #insereix_c cK20
+debug fil -1
 ###!
 #on K20
 <-1, 0, 0>
@@ -4480,24 +10072,43 @@ pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_121 terminal 1 10 3
 ###!
 #insereix_c cA30
+debug fil 0
 #insereix_c cB30
+debug fil 0
 #insereix_c cC30
+debug fil 0
 #insereix_c cD30
+debug fil -1
 #insereix_c cE30
+debug fil -1
 #insereix_c cF30
+debug fil -1
 #insereix_c cG30
+debug fil -1
 #insereix_c cH30
+debug fil -1
 #insereix_c cI30
+debug fil -1
 #insereix_c cJ10
+debug fil -1
 #insereix_c cK10
+debug fil -1
 #insereix_c cL10
+debug fil -1
 #insereix_c cM30
+debug fil -1
 #insereix_c cN30
+debug fil -1
 #insereix_c cO20
+debug fil -1
 #insereix_c cP20
+debug fil -1
 #insereix_c cQ10
+debug fil -1
 #insereix_c cR10
+debug fil -1
 #insereix_c cS10
+debug fil -1
 ###!
 #mapa
 espera: [D30, E30, F30, G30, H30, I30, J10, K10, L10, M30, N30, O20, P20, Q10, R10, S10]
@@ -4528,24 +10139,43 @@ pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_122 terminal 1 10 3
 ###!
 #insereix_c cA30
+debug fil 0
 #insereix_c cB30
+debug fil 0
 #insereix_c cC30
+debug fil 0
 #insereix_c cD30
+debug fil -1
 #insereix_c cE30
+debug fil -1
 #insereix_c cF30
+debug fil -1
 #insereix_c cG30
+debug fil -1
 #insereix_c cH30
+debug fil -1
 #insereix_c cI30
+debug fil -1
 #insereix_c cJ10
+debug fil -1
 #insereix_c cK10
+debug fil -1
 #insereix_c cL10
+debug fil -1
 #insereix_c cM30
+debug fil -1
 #insereix_c cN30
+debug fil -1
 #insereix_c cO20
+debug fil -1
 #insereix_c cP20
+debug fil -1
 #insereix_c cQ10
+debug fil -1
 #insereix_c cR10
+debug fil -1
 #insereix_c cS20
+debug fil -1
 ###!
 #mapa
 espera: [D30, E30, F30, G30, H30, I30, J10, K10, L10, M30, N30, O20, P20, Q10, R10, S20]
@@ -4576,29 +10206,48 @@ pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_123 terminal 1 10 3
 ###!
 #insereix_c cA30
+debug fil 0
 #insereix_c cB30
+debug fil 0
 #insereix_c cC30
+debug fil 0
 #insereix_c cD30
+debug fil -1
 #insereix_c cE30
+debug fil -1
 #insereix_c cF30
+debug fil -1
 #insereix_c cG30
+debug fil -1
 #insereix_c cH30
+debug fil -1
 #insereix_c cI30
+debug fil -1
 #insereix_c cJ10
+debug fil -1
 #insereix_c cK10
+debug fil -1
 #insereix_c cL10
+debug fil -1
 #insereix_c cM30
+debug fil -1
 #insereix_c cN30
+debug fil -1
 #insereix_c cO20
+debug fil -1
 #insereix_c cP20
+debug fil -1
 #insereix_c cQ10
+debug fil -1
 #insereix_c cR10
+debug fil -1
 ###!
 #long_terminal Q10
 10
 ##10
 ###!
 #insereix_c cS30
+debug fil -1
 ###!
 #mapa
 espera: [D30, E30, F30, G30, H30, I30, J10, K10, L10, M30, N30, O20, P20, Q10, R10, S30]
@@ -4644,27 +10293,44 @@ pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_131 terminal 1 10 3
 ###!
 #insereix_c cA30
+debug fil 0
 #insereix_c cB30
+debug fil 0
 #insereix_c cC30
+debug fil 0
 #insereix_c cD30
+debug fil -1
 #insereix_c cE30
+debug fil -1
 #insereix_c cF30
+debug fil -1
 #insereix_c cG30
+debug fil -1
 #insereix_c cH30
+debug fil -1
 #insereix_c cI30
+debug fil -1
 #insereix_c cJ10
+debug fil -1
 #insereix_c cK10
+debug fil -1
 #insereix_c cL10
+debug fil -1
 #insereix_c cO20
+debug fil -1
 #insereix_c cP20
+debug fil -1
 #insereix_c cQ10
+debug fil -1
 #insereix_c cR10
+debug fil -1
 ###!
 #long_terminal P20
 20
 ##20
 ###!
 #insereix_c cS10
+debug fil -1
 ###!
 #mapa
 espera: [D30, E30, F30, G30, H30, I30, J10, K10, L10, O20, P20, Q10, R10, S10]
@@ -4695,22 +10361,39 @@ pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_132 terminal 1 10 3
 ###!
 #insereix_c cA30
+debug fil 0
 #insereix_c cB30
+debug fil 0
 #insereix_c cC30
+debug fil 0
 #insereix_c cD30
+debug fil -1
 #insereix_c cE30
+debug fil -1
 #insereix_c cF30
+debug fil -1
 #insereix_c cG30
+debug fil -1
 #insereix_c cH30
+debug fil -1
 #insereix_c cI30
+debug fil -1
 #insereix_c cJ10
+debug fil -1
 #insereix_c cK10
+debug fil -1
 #insereix_c cL10
+debug fil -1
 #insereix_c cO20
+debug fil -1
 #insereix_c cP20
+debug fil -1
 #insereix_c cQ10
+debug fil -1
 #insereix_c cR10
+debug fil -1
 #insereix_c cS20
+debug fil -1
 ###!
 #mapa
 espera: [D30, E30, F30, G30, H30, I30, J10, K10, L10, O20, P20, Q10, R10, S20]
@@ -4741,22 +10424,39 @@ pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_133 terminal 1 10 3
 ###!
 #insereix_c cA30
+debug fil 0
 #insereix_c cB30
+debug fil 0
 #insereix_c cC30
+debug fil 0
 #insereix_c cD30
+debug fil -1
 #insereix_c cE30
+debug fil -1
 #insereix_c cF30
+debug fil -1
 #insereix_c cG30
+debug fil -1
 #insereix_c cH30
+debug fil -1
 #insereix_c cI30
+debug fil -1
 #insereix_c cJ10
+debug fil -1
 #insereix_c cK10
+debug fil -1
 #insereix_c cL10
+debug fil -1
 #insereix_c cO20
+debug fil -1
 #insereix_c cP20
+debug fil -1
 #insereix_c cQ10
+debug fil -1
 #insereix_c cR10
+debug fil -1
 #insereix_c cS30
+debug fil -1
 ###!
 #mapa
 espera: [D30, E30, F30, G30, H30, I30, J10, K10, L10, O20, P20, Q10, R10, S30]
@@ -4802,22 +10502,39 @@ pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_141 terminal 1 10 3
 ###!
 #insereix_c cA30
+debug fil 0
 #insereix_c cB30
+debug fil 0
 #insereix_c cC30
+debug fil 0
 #insereix_c cD30
+debug fil -1
 #insereix_c cE30
+debug fil -1
 #insereix_c cF30
+debug fil -1
 #insereix_c cG30
+debug fil -1
 #insereix_c cH30
+debug fil -1
 #insereix_c cI30
+debug fil -1
 #insereix_c cJ10
+debug fil -1
 #insereix_c cK10
+debug fil -1
 #insereix_c cL10
+debug fil -1
 #insereix_c cM30
+debug fil -1
 #insereix_c cN30
+debug fil -1
 #insereix_c cQ10
+debug fil -1
 #insereix_c cR10
+debug fil -1
 #insereix_c cS10
+debug fil -1
 ###!
 #mapa
 espera: [D30, E30, F30, G30, H30, I30, J10, K10, L10, M30, N30, Q10, R10, S10]
@@ -4848,22 +10565,39 @@ pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_142 terminal 1 10 3
 ###!
 #insereix_c cA30
+debug fil 0
 #insereix_c cB30
+debug fil 0
 #insereix_c cC30
+debug fil 0
 #insereix_c cD30
+debug fil -1
 #insereix_c cE30
+debug fil -1
 #insereix_c cF30
+debug fil -1
 #insereix_c cG30
+debug fil -1
 #insereix_c cH30
+debug fil -1
 #insereix_c cI30
+debug fil -1
 #insereix_c cJ10
+debug fil -1
 #insereix_c cK10
+debug fil -1
 #insereix_c cL10
+debug fil -1
 #insereix_c cM30
+debug fil -1
 #insereix_c cN30
+debug fil -1
 #insereix_c cQ10
+debug fil -1
 #insereix_c cR10
+debug fil -1
 #insereix_c cS20
+debug fil -1
 ###!
 #mapa
 espera: [D30, E30, F30, G30, H30, I30, J10, K10, L10, M30, N30, Q10, R10, S20]
@@ -4894,22 +10628,39 @@ pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_143 terminal 1 10 3
 ###!
 #insereix_c cA30
+debug fil 0
 #insereix_c cB30
+debug fil 0
 #insereix_c cC30
+debug fil 0
 #insereix_c cD30
+debug fil -1
 #insereix_c cE30
+debug fil -1
 #insereix_c cF30
+debug fil -1
 #insereix_c cG30
+debug fil -1
 #insereix_c cH30
+debug fil -1
 #insereix_c cI30
+debug fil -1
 #insereix_c cJ10
+debug fil -1
 #insereix_c cK10
+debug fil -1
 #insereix_c cL10
+debug fil -1
 #insereix_c cM30
+debug fil -1
 #insereix_c cN30
+debug fil -1
 #insereix_c cQ10
+debug fil -1
 #insereix_c cR10
+debug fil -1
 #insereix_c cS30
+debug fil -1
 ###!
 #mapa
 espera: [D30, E30, F30, G30, H30, I30, J10, K10, L10, M30, N30, Q10, R10, S30]
@@ -4955,20 +10706,35 @@ pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_151 terminal 1 10 3
 ###!
 #insereix_c cA30
+debug fil 0
 #insereix_c cB30
+debug fil 0
 #insereix_c cC30
+debug fil 0
 #insereix_c cD30
+debug fil -1
 #insereix_c cE30
+debug fil -1
 #insereix_c cF30
+debug fil -1
 #insereix_c cG30
+debug fil -1
 #insereix_c cH30
+debug fil -1
 #insereix_c cI30
+debug fil -1
 #insereix_c cJ10
+debug fil -1
 #insereix_c cK10
+debug fil -1
 #insereix_c cL10
+debug fil -1
 #insereix_c cQ10
+debug fil -1
 #insereix_c cR10
+debug fil -1
 #insereix_c cS10
+debug fil -1
 ###!
 #mapa
 espera: [D30, E30, F30, G30, H30, I30, J10, K10, L10, Q10, R10, S10]
@@ -4999,20 +10765,35 @@ pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_152 terminal 1 10 3
 ###!
 #insereix_c cA30
+debug fil 0
 #insereix_c cB30
+debug fil 0
 #insereix_c cC30
+debug fil 0
 #insereix_c cD30
+debug fil -1
 #insereix_c cE30
+debug fil -1
 #insereix_c cF30
+debug fil -1
 #insereix_c cG30
+debug fil -1
 #insereix_c cH30
+debug fil -1
 #insereix_c cI30
+debug fil -1
 #insereix_c cJ10
+debug fil -1
 #insereix_c cK10
+debug fil -1
 #insereix_c cL10
+debug fil -1
 #insereix_c cQ10
+debug fil -1
 #insereix_c cR10
+debug fil -1
 #insereix_c cS20
+debug fil -1
 ###!
 #mapa
 espera: [D30, E30, F30, G30, H30, I30, J10, K10, L10, Q10, R10, S20]
@@ -5043,20 +10824,35 @@ pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_153 terminal 1 10 3
 ###!
 #insereix_c cA30
+debug fil 0
 #insereix_c cB30
+debug fil 0
 #insereix_c cC30
+debug fil 0
 #insereix_c cD30
+debug fil -1
 #insereix_c cE30
+debug fil -1
 #insereix_c cF30
+debug fil -1
 #insereix_c cG30
+debug fil -1
 #insereix_c cH30
+debug fil -1
 #insereix_c cI30
+debug fil -1
 #insereix_c cJ10
+debug fil -1
 #insereix_c cK10
+debug fil -1
 #insereix_c cL10
+debug fil -1
 #insereix_c cQ10
+debug fil -1
 #insereix_c cR10
+debug fil -1
 #insereix_c cS30
+debug fil -1
 ###!
 #mapa
 espera: [D30, E30, F30, G30, H30, I30, J10, K10, L10, Q10, R10, S30]
@@ -5102,22 +10898,39 @@ pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_161 terminal 1 10 3
 ###!
 #insereix_c cA30
+debug fil 0
 #insereix_c cB30
+debug fil 0
 #insereix_c cC30
+debug fil 0
 #insereix_c cD30
+debug fil -1
 #insereix_c cE30
+debug fil -1
 #insereix_c cF30
+debug fil -1
 #insereix_c cG30
+debug fil -1
 #insereix_c cH30
+debug fil -1
 #insereix_c cI30
+debug fil -1
 #insereix_c cJ10
+debug fil -1
 #insereix_c cK10
+debug fil -1
 #insereix_c cL10
+debug fil -1
 #insereix_c cM30
+debug fil -1
 #insereix_c cN30
+debug fil -1
 #insereix_c cO20
+debug fil -1
 #insereix_c cP20
+debug fil -1
 #insereix_c cS10
+debug fil -1
 ###!
 #mapa
 espera: [D30, E30, F30, G30, H30, I30, J10, K10, L10, M30, N30, O20, P20, S10]
@@ -5148,22 +10961,39 @@ pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_162 terminal 1 10 3
 ###!
 #insereix_c cA30
+debug fil 0
 #insereix_c cB30
+debug fil 0
 #insereix_c cC30
+debug fil 0
 #insereix_c cD30
+debug fil -1
 #insereix_c cE30
+debug fil -1
 #insereix_c cF30
+debug fil -1
 #insereix_c cG30
+debug fil -1
 #insereix_c cH30
+debug fil -1
 #insereix_c cI30
+debug fil -1
 #insereix_c cJ10
+debug fil -1
 #insereix_c cK10
+debug fil -1
 #insereix_c cL10
+debug fil -1
 #insereix_c cM30
+debug fil -1
 #insereix_c cN30
+debug fil -1
 #insereix_c cO20
+debug fil -1
 #insereix_c cP20
+debug fil -1
 #insereix_c cS20
+debug fil -1
 #mapa
 espera: [D30, E30, F30, G30, H30, I30, J10, K10, L10, M30, N30, O20, P20, S20]
 fragmentacio: 0
@@ -5193,22 +11023,39 @@ pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_163 terminal 1 10 3
 ###!
 #insereix_c cA30
+debug fil 0
 #insereix_c cB30
+debug fil 0
 #insereix_c cC30
+debug fil 0
 #insereix_c cD30
+debug fil -1
 #insereix_c cE30
+debug fil -1
 #insereix_c cF30
+debug fil -1
 #insereix_c cG30
+debug fil -1
 #insereix_c cH30
+debug fil -1
 #insereix_c cI30
+debug fil -1
 #insereix_c cJ10
+debug fil -1
 #insereix_c cK10
+debug fil -1
 #insereix_c cL10
+debug fil -1
 #insereix_c cM30
+debug fil -1
 #insereix_c cN30
+debug fil -1
 #insereix_c cO20
+debug fil -1
 #insereix_c cP20
+debug fil -1
 #insereix_c cS30
+debug fil -1
 ###!
 #mapa
 espera: [D30, E30, F30, G30, H30, I30, J10, K10, L10, M30, N30, O20, P20, S30]
@@ -5254,20 +11101,35 @@ pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_171 terminal 1 10 3
 ###!
 #insereix_c cA30
+debug fil 0
 #insereix_c cB30
+debug fil 0
 #insereix_c cC30
+debug fil 0
 #insereix_c cD30
+debug fil -1
 #insereix_c cE30
+debug fil -1
 #insereix_c cF30
+debug fil -1
 #insereix_c cG30
+debug fil -1
 #insereix_c cH30
+debug fil -1
 #insereix_c cI30
+debug fil -1
 #insereix_c cJ10
+debug fil -1
 #insereix_c cK10
+debug fil -1
 #insereix_c cL10
+debug fil -1
 #insereix_c cO20
+debug fil -1
 #insereix_c cP20
+debug fil -1
 #insereix_c cS10
+debug fil -1
 ###!
 #mapa
 espera: [D30, E30, F30, G30, H30, I30, J10, K10, L10, O20, P20, S10]
@@ -5298,20 +11160,35 @@ pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_172 terminal 1 10 3
 ###!
 #insereix_c cA30
+debug fil 0
 #insereix_c cB30
+debug fil 0
 #insereix_c cC30
+debug fil 0
 #insereix_c cD30
+debug fil -1
 #insereix_c cE30
+debug fil -1
 #insereix_c cF30
+debug fil -1
 #insereix_c cG30
+debug fil -1
 #insereix_c cH30
+debug fil -1
 #insereix_c cI30
+debug fil -1
 #insereix_c cJ10
+debug fil -1
 #insereix_c cK10
+debug fil -1
 #insereix_c cL10
+debug fil -1
 #insereix_c cO20
+debug fil -1
 #insereix_c cP20
+debug fil -1
 #insereix_c cS20
+debug fil -1
 ###!
 #mapa
 espera: [D30, E30, F30, G30, H30, I30, J10, K10, L10, O20, P20, S20]
@@ -5342,20 +11219,35 @@ pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_173 terminal 1 10 3
 ###!
 #insereix_c cA30
+debug fil 0
 #insereix_c cB30
+debug fil 0
 #insereix_c cC30
+debug fil 0
 #insereix_c cD30
+debug fil -1
 #insereix_c cE30
+debug fil -1
 #insereix_c cF30
+debug fil -1
 #insereix_c cG30
+debug fil -1
 #insereix_c cH30
+debug fil -1
 #insereix_c cI30
+debug fil -1
 #insereix_c cJ10
+debug fil -1
 #insereix_c cK10
+debug fil -1
 #insereix_c cL10
+debug fil -1
 #insereix_c cO20
+debug fil -1
 #insereix_c cP20
+debug fil -1
 #insereix_c cS30
+debug fil -1
 ###!
 #mapa
 espera: [D30, E30, F30, G30, H30, I30, J10, K10, L10, O20, P20, S30]
@@ -5401,20 +11293,35 @@ pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_181 terminal 1 10 3
 ###!
 #insereix_c cA30
+debug fil 0
 #insereix_c cB30
+debug fil 0
 #insereix_c cC30
+debug fil 0
 #insereix_c cD30
+debug fil -1
 #insereix_c cE30
+debug fil -1
 #insereix_c cF30
+debug fil -1
 #insereix_c cG30
+debug fil -1
 #insereix_c cH30
+debug fil -1
 #insereix_c cI30
+debug fil -1
 #insereix_c cJ10
+debug fil -1
 #insereix_c cK10
+debug fil -1
 #insereix_c cL10
+debug fil -1
 #insereix_c cM30
+debug fil -1
 #insereix_c cN30
+debug fil -1
 #insereix_c cS10
+debug fil -1
 ###!
 #mapa
 espera: [D30, E30, F30, G30, H30, I30, J10, K10, L10, M30, N30, S10]
@@ -5445,20 +11352,35 @@ pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_182 terminal 1 10 3
 ###!
 #insereix_c cA30
+debug fil 0
 #insereix_c cB30
+debug fil 0
 #insereix_c cC30
+debug fil 0
 #insereix_c cD30
+debug fil -1
 #insereix_c cE30
+debug fil -1
 #insereix_c cF30
+debug fil -1
 #insereix_c cG30
+debug fil -1
 #insereix_c cH30
+debug fil -1
 #insereix_c cI30
+debug fil -1
 #insereix_c cJ10
+debug fil -1
 #insereix_c cK10
+debug fil -1
 #insereix_c cL10
+debug fil -1
 #insereix_c cM30
+debug fil -1
 #insereix_c cN30
+debug fil -1
 #insereix_c cS20
+debug fil -1
 ###!
 #mapa
 espera: [D30, E30, F30, G30, H30, I30, J10, K10, L10, M30, N30, S20]
@@ -5489,20 +11411,35 @@ pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_183 terminal 1 10 3
 ###!
 #insereix_c cA30
+debug fil 0
 #insereix_c cB30
+debug fil 0
 #insereix_c cC30
+debug fil 0
 #insereix_c cD30
+debug fil -1
 #insereix_c cE30
+debug fil -1
 #insereix_c cF30
+debug fil -1
 #insereix_c cG30
+debug fil -1
 #insereix_c cH30
+debug fil -1
 #insereix_c cI30
+debug fil -1
 #insereix_c cJ10
+debug fil -1
 #insereix_c cK10
+debug fil -1
 #insereix_c cL10
+debug fil -1
 #insereix_c cM30
+debug fil -1
 #insereix_c cN30
+debug fil -1
 #insereix_c cS30
+debug fil -1
 ###!
 #mapa
 espera: [D30, E30, F30, G30, H30, I30, J10, K10, L10, M30, N30, S30]
@@ -5551,16 +11488,27 @@ pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t352_11 terminal 3 5 2
 ###!
 #insereix_c cA10
+debug fil 0
 #insereix_c cC30
+debug fil 0
 #insereix_c cB10
+debug fil -1
 #insereix_c cD20
+debug fil -1
 #insereix_c cE20
+debug fil -1
 #insereix_c cF20
+debug fil -1
 #insereix_c cG20
+debug fil -1
 #insereix_c cH30
+debug fil -1
 #insereix_c cI30
+debug fil -1
 #insereix_c cJ20
+debug fil -1
 #insereix_c cK20
+debug fil -1
 ###!
 #mapa
 espera: [B10, D20, E20, F20, G20, H30, I30, J20, K20]
@@ -5616,15 +11564,21 @@ pis 0  ___ ___ ___ ___ ___
 #init t352_12 terminal 3 5 2
 ###!
 #insereix_c cA30
+debug fil 0
 #insereix_c cB20
+debug fil 0
 #insereix_c cC30
+debug fil -1
 #insereix_c cB30
+debug fil -1
 #insereix_c cE30
+debug fil -1
 #insereix_c cA20
+debug fil -1
 ###!
 #mapa
 espera: [A20, B30, C30, E30]
-fragmentacio: 0
+fragmentacio: 1
 ops_grua: 2
 
 filera 0
@@ -5707,12 +11661,13 @@ Error::terminal:45:Matricula inexistent.
 #init t111_21 terminal 1 1 1
 ###!
 #insereix_c cB20
+debug fil 0
 ###!
 #retira_c B20
 ###!
 #mapa
 espera: []
-fragmentacio: 0
+fragmentacio: 1
 ops_grua: 0
 
 filera 0
@@ -5735,11 +11690,17 @@ pis 0  ___
 #init t111_22 terminal 1 1 1
 ###!
 #insereix_c cB10
+debug fil 0
 #insereix_c cC20
+debug fil -1
 #insereix_c cD30
+debug fil -1
 #insereix_c cE20
+debug fil -1
 #insereix_c cF20
+debug fil -1
 #insereix_c cG10
+debug fil -1
 ###!
 #retira_c G10
 ###!
@@ -5768,11 +11729,17 @@ pis 0  B10
 #init t111_23 terminal 1 1 1
 ###!
 #insereix_c cB10
+debug fil 0
 #insereix_c cC20
+debug fil -1
 #insereix_c cD30
+debug fil -1
 #insereix_c cE20
+debug fil -1
 #insereix_c cF20
+debug fil -1
 #insereix_c cG10
+debug fil -1
 ###!
 #retira_c C20
 ###!
@@ -5801,11 +11768,17 @@ pis 0  B10
 #init t111_24 terminal 1 1 1
 ###!
 #insereix_c cB10
+debug fil 0
 #insereix_c cC20
+debug fil -1
 #insereix_c cD30
+debug fil -1
 #insereix_c cE20
+debug fil -1
 #insereix_c cF20
+debug fil -1
 #insereix_c cG10
+debug fil -1
 ###!
 #retira_c E20
 ###!
@@ -5850,13 +11823,24 @@ pis 0  B10
 #init t111_31 terminal 1 10 3
 ###!
 #insereix_c cA20
+debug fil 0
 #insereix_c cB20
+debug fil 0
 #insereix_c cC20
+debug fil 0
 #insereix_c cD30
+debug fil -1
 #insereix_c cE30
+debug fil -1
 ###!
 #retira_c C20
-Error::terminal:44:Matricula duplicada.
+debug _t antes C20
+debug fil 0
+debug _t despues 
+debug _u10d -100
+debug _u20 -100
+debug _u30 -100
+debug fil -1
 ###!
 #mapa
 espera: [D30, E30]
@@ -5887,17 +11871,29 @@ pis 0  ___ ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t111_32 terminal 1 10 3
 ###!
 #insereix_c cA10
+debug fil 0
 #insereix_c cB10
+debug fil 0
 #insereix_c cD10
+debug fil 0
 #insereix_c cE30
+debug fil -1
 #insereix_c cF30
+debug fil -1
 #insereix_c cL30
+debug fil -1
 #insereix_c cG20
+debug fil -1
 #insereix_c cH20
+debug fil -1
 #insereix_c cC20
+debug fil -1
 #insereix_c cI30
+debug fil -1
 #insereix_c cJ30
+debug fil -1
 #insereix_c cK30
+debug fil -1
 ###!
 #retira_c C20
 ###!
@@ -5930,17 +11926,29 @@ pis 0  D10 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t111_33 terminal 1 10 3
 ###!
 #insereix_c cA20
+debug fil 0
 #insereix_c cB20
+debug fil 0
 #insereix_c cD20
+debug fil 0
 #insereix_c cE30
+debug fil -1
 #insereix_c cF30
+debug fil -1
 #insereix_c cG30
+debug fil -1
 #insereix_c cH30
+debug fil -1
 #insereix_c cI30
+debug fil -1
 #insereix_c cJ30
+debug fil -1
 #insereix_c cK20
+debug fil -1
 #insereix_c cL20
+debug fil -1
 #insereix_c cC20
+debug fil -1
 ###!
 #retira_c C20
 ###!
@@ -5973,15 +11981,32 @@ pis 0  D20 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t111_34 terminal 1 10 3
 ###!
 #insereix_c cA20
+debug fil 0
 #insereix_c cC20
+debug fil 0
 #insereix_c cX20
+debug fil 0
 #insereix_c cB30
+debug fil -1
 #insereix_c cD30
+debug fil -1
 ###!
 #retira_c X20
-Error::terminal:44:Matricula duplicada.
+debug _t antes X20
+debug fil 0
+debug _t despues 
+debug _u10d -100
+debug _u20 -100
+debug _u30 -100
+debug fil -1
 #retira_c C20
-Error::terminal:44:Matricula duplicada.
+debug _t antes 
+debug fil 0
+debug _t despues 
+debug _u10d -100
+debug _u20 -100
+debug _u30 -100
+debug fil -1
 ###!
 #mapa
 espera: [B30, D30]
@@ -6012,17 +12037,29 @@ pis 0  ___ ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t111_35 terminal 1 10 3
 ###!
 #insereix_c cA10
+debug fil 0
 #insereix_c cB10
+debug fil 0
 #insereix_c cD10
+debug fil 0
 #insereix_c cE30
+debug fil -1
 #insereix_c cF30
+debug fil -1
 #insereix_c cX30
+debug fil -1
 #insereix_c cG20
+debug fil -1
 #insereix_c cH20
+debug fil -1
 #insereix_c cC20
+debug fil -1
 #insereix_c cI30
+debug fil -1
 #insereix_c cJ30
+debug fil -1
 #insereix_c cK30
+debug fil -1
 ###!
 #retira_c X30
 #retira_c C20
@@ -6056,15 +12093,25 @@ pis 0  D10 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t111_36 terminal 1 10 3
 ###!
 #insereix_c cA20
+debug fil 0
 #insereix_c cB20
+debug fil 0
 #insereix_c cD20
+debug fil 0
 #insereix_c cE30
+debug fil -1
 #insereix_c cF30
+debug fil -1
 #insereix_c cG30
+debug fil -1
 #insereix_c cH20
+debug fil -1
 #insereix_c cC20
+debug fil -1
 #insereix_c cX20
+debug fil -1
 #insereix_c cI30
+debug fil -1
 ###!
 #retira_c X20
 #retira_c C20
@@ -6098,15 +12145,25 @@ pis 0  D20 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t111_37 terminal 1 10 3
 ###!
 #insereix_c cA30
+debug fil 0
 #insereix_c cB30
+debug fil 0
 #insereix_c cD30
+debug fil 0
 #insereix_c cE20
+debug fil -1
 #insereix_c cF20
+debug fil -1
 #insereix_c cG20
+debug fil -1
 #insereix_c cX30
+debug fil -1
 #insereix_c cY30
+debug fil -1
 #insereix_c cZ30
+debug fil -1
 #insereix_c cC20
+debug fil -1
 #retira_c Z30
 #retira_c Y30
 #retira_c X30
@@ -6140,18 +12197,37 @@ pis 0  D30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t111_38 terminal 1 10 3
 ###!
 #insereix_c cA30
+debug fil 0
 #insereix_c cX30
+debug fil 0
 #insereix_c cY30
+debug fil 0
 #insereix_c cD20
+debug fil -1
 #insereix_c cC20
+debug fil -1
 #insereix_c cZ20
+debug fil -1
 #insereix_c cE30
+debug fil -1
 ###!
 #retira_c Z20
 #retira_c Y30
-Error::terminal:44:Matricula duplicada.
+debug _t antes Y30
+debug fil 0
+debug _t despues 
+debug _u10d -100
+debug _u20 -100
+debug _u30 -100
+debug fil -1
 #retira_c X30
-Error::terminal:44:Matricula duplicada.
+debug _t antes 
+debug fil 0
+debug _t despues 
+debug _u10d -100
+debug _u20 -100
+debug _u30 -100
+debug fil -1
 #retira_c C20
 ###!
 #mapa
@@ -6203,18 +12279,30 @@ pis 0  ___ ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t41 terminal 1 3 3
 ###!
 #insereix_c cA10
+debug fil 0
 #insereix_c cB20
+debug fil 0
 #insereix_c cC30
+debug fil 0
 #insereix_c cD10
+debug fil -1
 #insereix_c cE10
+debug fil -1
 #insereix_c cF10
+debug fil -1
 ###!
 #retira_c A10
-Error::terminal:44:Matricula duplicada.
+debug _t antes C30
+debug fil 0
+debug _t despues 
+debug _u10d -100
+debug _u20 -100
+debug _u30 -100
+debug fil -1
 ###!
 #mapa
 espera: [D10, E10, F10]
-fragmentacio: 0
+fragmentacio: 1
 ops_grua: 3
 
 filera 0
@@ -6241,26 +12329,48 @@ pis 0  ___ ___ ___
 #init t42 terminal 1 4 3
 ###!
 #insereix_c cA10
+debug fil 0
 #insereix_c cB20
+debug fil 0
 #insereix_c cC20
+debug fil 0
 #insereix_c cD20
+debug fil -1
 #insereix_c cE10
+debug fil -1
 #insereix_c cF10
+debug fil -1
 #insereix_c cG10
+debug fil -1
 ###!
 #retira_c F10
 #retira_c E10
 ###!
 #insereix_c cH20
+debug fil -1
 #insereix_c cI10
+debug fil -1
 #insereix_c cJ10
+debug fil -1
 ###!
 #retira_c I10
 #retira_c D20
 #retira_c C20
-Error::terminal:44:Matricula duplicada.
+debug _t antes C20
+debug fil 0
+debug _t despues 
+debug _u10d -100
+debug _u20 -100
+debug _u30 -100
+debug fil -1
 #retira_c A10
-Error::terminal:44:Matricula duplicada.
+debug _t antes 
+debug fil 0
+debug _t despues 
+debug _u10d -100
+debug _u20 -100
+debug _u30 -100
+debug fil -1
 #retira_c G10
 ###!
 #mapa
@@ -6292,15 +12402,25 @@ pis 0  ___ ___ ___ ___
 #init t43 terminal 1 7 2
 ###!
 #insereix_c cA20
+debug fil 0
 #insereix_c cB10
+debug fil 0
 #insereix_c cC10
+debug fil -1
 #insereix_c cD10
+debug fil -1
 #insereix_c cE10
+debug fil -1
 #insereix_c cF10
+debug fil -1
 #insereix_c cG10
+debug fil -1
 #insereix_c cH10
+debug fil -1
 #insereix_c cI20
+debug fil -1
 #insereix_c cJ10
+debug fil -1
 ###!
 #retira_c G10
 #retira_c E10
@@ -6310,7 +12430,7 @@ pis 0  ___ ___ ___ ___
 ###!
 #mapa
 espera: [F10, I20, J10]
-fragmentacio: 0
+fragmentacio: 1
 ops_grua: 2
 
 filera 0
@@ -6335,37 +12455,66 @@ pis 0  B10 ___ ___ ___ ___ ___ ___
 #init t44 terminal 1 8 3
 ###!
 #insereix_c cA10
+debug fil 0
 #insereix_c cB10
+debug fil 0
 #insereix_c cC10
+debug fil 0
 #insereix_c cD10
+debug fil -1
 #insereix_c cE10
+debug fil -1
 #insereix_c cF10
+debug fil -1
 #insereix_c cG10
+debug fil -1
 #insereix_c cH10
+debug fil -1
 #insereix_c cI10
+debug fil -1
 #insereix_c cJ10
+debug fil -1
 #insereix_c cK10
+debug fil -1
 #insereix_c cL10
+debug fil -1
 #insereix_c cM10
+debug fil -1
 #retira_c L10
 #retira_c K10
 #retira_c I10
 #retira_c H10
 #insereix_c cN30
+debug fil -1
 #insereix_c cO10
+debug fil -1
 #insereix_c cP10
+debug fil -1
 #insereix_c cQ10
+debug fil -1
 #retira_c F10
 #retira_c E10
 #retira_c D10
 #retira_c C10
-Error::terminal:44:Matricula duplicada.
+debug _t antes C10
+debug fil 0
+debug _t despues 
+debug _u10d -100
+debug _u20 -100
+debug _u30 -100
+debug fil -1
 #retira_c B10
-Error::terminal:44:Matricula duplicada.
+debug _t antes 
+debug fil 0
+debug _t despues 
+debug _u10d -100
+debug _u20 -100
+debug _u30 -100
+debug fil -1
 #retira_c J10
 #mapa
 espera: [G10, M10, N30, O10, P10, Q10]
-fragmentacio: 0
+fragmentacio: 1
 ops_grua: 3
 
 filera 0
@@ -6392,15 +12541,32 @@ pis 0  ___ ___ ___ ___ ___ ___ ___ ___
 #init t45 terminal 1 8 2
 ###!
 #insereix_c cA20
+debug fil 0
 #insereix_c cB20
+debug fil 0
 #insereix_c cC10
+debug fil -1
 #insereix_c cD20
+debug fil -1
 #insereix_c cE30
+debug fil -1
 ###!
 #retira_c B20
-Error::terminal:44:Matricula duplicada.
+debug _t antes B20
+debug fil 0
+debug _t despues 
+debug _u10d -100
+debug _u20 -100
+debug _u30 -100
+debug fil -1
 #retira_c A20
-Error::terminal:44:Matricula duplicada.
+debug _t antes 
+debug fil 0
+debug _t despues 
+debug _u10d -100
+debug _u20 -100
+debug _u30 -100
+debug fil -1
 #retira_c C10
 ###!
 #mapa
@@ -6430,31 +12596,56 @@ pis 0  ___ ___ ___ ___ ___ ___ ___ ___
 #init t46 terminal 1 6 3
 ###!
 #insereix_c cA20
+debug fil 0
 #insereix_c cB10
+debug fil 0
 #insereix_c cC20
+debug fil 0
 #insereix_c cD30
+debug fil -1
 #insereix_c cE30
+debug fil -1
 #insereix_c cF10
+debug fil -1
 #insereix_c cG10
+debug fil -1
 #insereix_c cH10
+debug fil -1
 #insereix_c cI10
+debug fil -1
 #insereix_c cJ10
+debug fil -1
 ###!
 #retira_c I10
 #retira_c H10
 ###!
 #insereix_c cK20
+debug fil -1
 #insereix_c cL10
+debug fil -1
 #insereix_c cM10
+debug fil -1
 ###!
 #retira_c E30
 #retira_c F10
 #retira_c L10
 #retira_c D30
 #retira_c C20
-Error::terminal:44:Matricula duplicada.
+debug _t antes C20
+debug fil 0
+debug _t despues 
+debug _u10d -100
+debug _u20 -100
+debug _u30 -100
+debug fil -1
 #retira_c B10
-Error::terminal:44:Matricula duplicada.
+debug _t antes 
+debug fil 0
+debug _t despues 
+debug _u10d -100
+debug _u20 -100
+debug _u30 -100
+debug fil -1
 #retira_c J10
 ###!
 #mapa
@@ -6486,14 +12677,23 @@ pis 0  ___ ___ ___ ___ ___ ___
 #init t47 terminal 1 2 3
 ###!
 #insereix_c cA10
+debug fil 0
 #insereix_c cB10
+debug fil 0
 #insereix_c cC10
+debug fil 0
 ###!
 #retira_c A10
+debug _t antes C10
+debug fil 0
+debug _t despues 
+debug _u10d -100
+debug _u20 -100
+debug _u30 -100
 ###!
 #mapa
 espera: []
-fragmentacio: 0
+fragmentacio: 2
 ops_grua: 3
 
 filera 0
@@ -6520,19 +12720,37 @@ pis 0  ___ ___
 #init t48 terminal 1 7 2
 ###!
 #insereix_c cA20
+debug fil 0
 #insereix_c cB20
+debug fil 0
 #insereix_c cC20
+debug fil -1
 #insereix_c cD20
+debug fil -1
 #insereix_c cE10
+debug fil -1
 ###!
 #retira_c D20
 ###!
 #insereix_c cF30
+debug fil -1
 ###!
 #retira_c B20
-Error::terminal:44:Matricula duplicada.
+debug _t antes B20
+debug fil 0
+debug _t despues 
+debug _u10d -100
+debug _u20 -100
+debug _u30 -100
+debug fil -1
 #retira_c A20
-Error::terminal:44:Matricula duplicada.
+debug _t antes 
+debug fil 0
+debug _t despues 
+debug _u10d -100
+debug _u20 -100
+debug _u30 -100
+debug fil -1
 #retira_c E10
 ###!
 #mapa
@@ -6582,16 +12800,26 @@ pis 0  ___ ___ ___ ___ ___ ___ ___
 #init t51 terminal 1 3 2
 ###!
 #insereix_c cA20
+debug fil 0
 #insereix_c cB10
+debug fil 0
 #insereix_c cC10
+debug fil -1
 #insereix_c cD10
+debug fil -1
 ###!
 #retira_c A20
-Error::terminal:44:Matricula duplicada.
+debug _t antes B10
+debug fil 0
+debug _t despues 
+debug _u10d -100
+debug _u20 -100
+debug _u30 -100
+debug fil -1
 ###!
 #mapa
 espera: [C10, D10]
-fragmentacio: 0
+fragmentacio: 1
 ops_grua: 2
 
 filera 0
@@ -6616,16 +12844,26 @@ pis 0  ___ ___ ___
 #init t52 terminal 1 4 2
 ###!
 #insereix_c cA20
+debug fil 0
 #insereix_c cB10
+debug fil 0
 #insereix_c cC20
+debug fil -1
 #insereix_c cD20
+debug fil -1
 ###!
 #retira_c A20
-Error::terminal:44:Matricula duplicada.
+debug _t antes B10
+debug fil 0
+debug _t despues 
+debug _u10d -100
+debug _u20 -100
+debug _u30 -100
+debug fil -1
 ###!
 #mapa
 espera: [C20, D20]
-fragmentacio: 0
+fragmentacio: 1
 ops_grua: 2
 
 filera 0
@@ -6650,15 +12888,22 @@ pis 0  ___ ___ ___ ___
 #init t53 terminal 1 5 2
 ###!
 #insereix_c cA20
+debug fil 0
 #insereix_c cB20
+debug fil 0
 #insereix_c cD10
+debug fil -1
 #insereix_c cE10
+debug fil -1
 #insereix_c cF20
+debug fil -1
 ###!
 #retira_c E10
 ###!
 #insereix_c cG20
+debug fil -1
 #insereix_c cH10
+debug fil -1
 ###!
 #retira_c F20
 ###!
@@ -6689,14 +12934,23 @@ pis 0  B20 ___ ___ ___ ___
 #init t54 terminal 1 4 3
 ###!
 #insereix_c cA10
+debug fil 0
 #insereix_c cB10
+debug fil 0
 #insereix_c cC10
+debug fil 0
 #insereix_c cD20
+debug fil -1
 #insereix_c cE10
+debug fil -1
 #insereix_c cF10
+debug fil -1
 #insereix_c cG10
+debug fil -1
 #insereix_c cH10
+debug fil -1
 #insereix_c cI10
+debug fil -1
 ###!
 #retira_c H10
 #retira_c G10
@@ -6731,15 +12985,32 @@ pis 0  C10 ___ ___ ___
 #init t55 terminal 1 3 2
 ###!
 #insereix_c cA10
+debug fil 0
 #insereix_c cB10
+debug fil 0
 #insereix_c cC20
+debug fil -1
 #insereix_c cD10
+debug fil -1
 #insereix_c cE10
+debug fil -1
 ###!
 #retira_c B10
-Error::terminal:44:Matricula duplicada.
+debug _t antes B10
+debug fil 0
+debug _t despues 
+debug _u10d -100
+debug _u20 -100
+debug _u30 -100
+debug fil -1
 #retira_c A10
-Error::terminal:44:Matricula duplicada.
+debug _t antes 
+debug fil 0
+debug _t despues 
+debug _u10d -100
+debug _u20 -100
+debug _u30 -100
+debug fil -1
 #retira_c C20
 ###!
 #mapa
@@ -6769,24 +13040,39 @@ pis 0  ___ ___ ___
 #init t56 terminal 1 6 3
 ###!
 #insereix_c cA20
+debug fil 0
 #insereix_c cB10
+debug fil 0
 #insereix_c cC10
+debug fil 0
 #insereix_c cX10
+debug fil -1
 #insereix_c cY10
+debug fil -1
 #insereix_c cZ10
+debug fil -1
 #insereix_c cD20
+debug fil -1
 #insereix_c cT10
+debug fil -1
 #insereix_c cW10
+debug fil -1
 #insereix_c cS20
+debug fil -1
 #insereix_c cR20
+debug fil -1
 #insereix_c cE10
+debug fil -1
 ###!
 #retira_c R20
 #retira_c S20
 ###!
 #insereix_c cF30
+debug fil -1
 #insereix_c cG10
+debug fil -1
 #insereix_c cH20
+debug fil -1
 ###!
 #retira_c Y10
 #retira_c X10
@@ -6797,7 +13083,7 @@ pis 0  ___ ___ ___
 ###!
 #mapa
 espera: [E10, F30, G10, H20]
-fragmentacio: 0
+fragmentacio: 1
 ops_grua: 3
 
 filera 0
@@ -6824,21 +13110,38 @@ pis 0  C10 ___ ___ ___ ___ ___
 #init t57 terminal 1 3 3
 ###!
 #insereix_c cA20
+debug fil 0
 #insereix_c cB10
+debug fil 0
 #insereix_c cX10
+debug fil 0
 #insereix_c cC10
+debug fil -1
 ###!
 #retira_c X10
-Error::terminal:44:Matricula duplicada.
+debug _t antes X10
+debug fil 0
+debug _t despues 
+debug _u10d -100
+debug _u20 -100
+debug _u30 -100
+debug fil -1
 ###!
 #insereix_c cD20
+debug fil -1
 ###!
 #retira_c A20
-Error::terminal:44:Matricula duplicada.
+debug _t antes 
+debug fil 0
+debug _t despues 
+debug _u10d -100
+debug _u20 -100
+debug _u30 -100
+debug fil -1
 ###!
 #mapa
 espera: [C10, D20]
-fragmentacio: 0
+fragmentacio: 1
 ops_grua: 3
 
 filera 0
@@ -6865,15 +13168,24 @@ pis 0  ___ ___ ___
 #init t58 terminal 1 5 2
 ###!
 #insereix_c cA10
+debug fil 0
 #insereix_c cB20
+debug fil 0
 #insereix_c cC30
+debug fil -1
 ###!
 #retira_c B20
-Error::terminal:44:Matricula duplicada.
+debug _t antes B20
+debug fil 0
+debug _t despues 
+debug _u10d -100
+debug _u20 -100
+debug _u30 -100
+debug fil -1
 ###!
 #mapa
 espera: [C30]
-fragmentacio: 0
+fragmentacio: 1
 ops_grua: 2
 
 filera 0
@@ -6918,12 +13230,22 @@ pis 0  ___ ___ ___ ___ ___
 #init t61 terminal 1 4 2
 ###!
 #insereix_c cA30
+debug fil 0
 #insereix_c cB20
+debug fil 0
 #insereix_c cC10
+debug fil -1
 #insereix_c cD10
+debug fil -1
 ###!
 #retira_c A30
-Error::terminal:44:Matricula duplicada.
+debug _t antes B20
+debug fil 0
+debug _t despues 
+debug _u10d -100
+debug _u20 -100
+debug _u30 -100
+debug fil -1
 ###!
 #mapa
 espera: [C10, D10]
@@ -6952,26 +13274,42 @@ pis 0  ___ ___ ___ ___
 #init t62 terminal 1 4 3
 ###!
 #insereix_c cA30
+debug fil 0
 #insereix_c cB10
+debug fil 0
 #insereix_c cC10
+debug fil 0
 #insereix_c cX10
+debug fil -1
 #insereix_c cD10
+debug fil -1
 ###!
 #retira_c X10
 ###!
 #insereix_c cE20
+debug fil -1
 #insereix_c cX10
+debug fil -1
 #insereix_c cF10
+debug fil -1
 #insereix_c cG10
+debug fil -1
 #insereix_c cH10
+debug fil -1
 ###!
 #retira_c X10
 #retira_c A30
-Error::terminal:44:Matricula duplicada.
+debug _t antes C10
+debug fil 0
+debug _t despues 
+debug _u10d -100
+debug _u20 -100
+debug _u30 -100
+debug fil -1
 ###!
 #mapa
 espera: [D10, E20, F10, G10, H10]
-fragmentacio: 0
+fragmentacio: 1
 ops_grua: 3
 
 filera 0
@@ -6998,18 +13336,37 @@ pis 0  ___ ___ ___ ___
 #init t63 terminal 1 6 2
 ###!
 #insereix_c cX20
+debug fil 0
 #insereix_c cY20
+debug fil 0
 #insereix_c cA10
+debug fil -1
 #insereix_c cB30
+debug fil -1
 #insereix_c cC20
+debug fil -1
 #insereix_c cZ10
+debug fil -1
 #insereix_c cD10
+debug fil -1
 ###!
 #retira_c Z10
 #retira_c Y20
-Error::terminal:44:Matricula duplicada.
+debug _t antes Y20
+debug fil 0
+debug _t despues 
+debug _u10d -100
+debug _u20 -100
+debug _u30 -100
+debug fil -1
 #retira_c X20
-Error::terminal:44:Matricula duplicada.
+debug _t antes 
+debug fil 0
+debug _t despues 
+debug _u10d -100
+debug _u20 -100
+debug _u30 -100
+debug fil -1
 #retira_c B30
 ###!
 #mapa
@@ -7039,19 +13396,40 @@ pis 0  ___ ___ ___ ___ ___ ___
 #init t64 terminal 1 7 2
 ###!
 #insereix_c cX10
+debug fil 0
 #insereix_c cY10
+debug fil 0
 #insereix_c cA10
+debug fil -1
 #insereix_c cB30
+debug fil -1
 #insereix_c cC20
+debug fil -1
 #insereix_c cZ10
+debug fil -1
 #insereix_c cT10
+debug fil -1
 #insereix_c cD10
+debug fil -1
 #insereix_c cE20
+debug fil -1
 ###!
 #retira_c Y10
-Error::terminal:44:Matricula duplicada.
+debug _t antes Y10
+debug fil 0
+debug _t despues 
+debug _u10d -100
+debug _u20 -100
+debug _u30 -100
+debug fil -1
 #retira_c X10
-Error::terminal:44:Matricula duplicada.
+debug _t antes 
+debug fil 0
+debug _t despues 
+debug _u10d -100
+debug _u20 -100
+debug _u30 -100
+debug fil -1
 #retira_c T10
 #retira_c Z10
 #retira_c B30
@@ -7083,15 +13461,31 @@ pis 0  ___ ___ ___ ___ ___ ___ ___
 #init t65 terminal 1 5 2
 ###!
 #insereix_c cX20
+debug fil 0
 #insereix_c cA30
+debug fil 0
 #insereix_c cY20
+debug fil -1
 #insereix_c cB30
+debug fil -1
 ###!
 #retira_c Y20
 #retira_c X20
-Error::terminal:44:Matricula duplicada.
+debug _t antes A30
+debug fil 0
+debug _t despues 
+debug _u10d -100
+debug _u20 -100
+debug _u30 -100
+debug fil -1
 #retira_c A30
-Error::terminal:44:Matricula duplicada.
+debug _t antes 
+debug fil 0
+debug _t despues 
+debug _u10d -100
+debug _u20 -100
+debug _u30 -100
+debug fil -1
 ###!
 #mapa
 espera: [B30]
@@ -7120,20 +13514,45 @@ pis 0  ___ ___ ___ ___ ___
 #init t66 terminal 1 4 3
 ###!
 #insereix_c cZ10
+debug fil 0
 #insereix_c cX10
+debug fil 0
 #insereix_c cA30
+debug fil 0
 #insereix_c cB10
+debug fil -1
 #insereix_c cY20
+debug fil -1
 #insereix_c cC20
+debug fil -1
 #insereix_c cD20
+debug fil -1
 ###!
 #retira_c Y20
 #retira_c X10
-Error::terminal:44:Matricula duplicada.
+debug _t antes A30
+debug fil 0
+debug _t despues 
+debug _u10d -100
+debug _u20 -100
+debug _u30 -100
+debug fil -1
 #retira_c Z10
-Error::terminal:44:Matricula duplicada.
+debug _t antes 
+debug fil 0
+debug _t despues 
+debug _u10d -100
+debug _u20 -100
+debug _u30 -100
+debug fil -1
 #retira_c A30
-Error::terminal:44:Matricula duplicada.
+debug _t antes 
+debug fil 0
+debug _t despues 
+debug _u10d -100
+debug _u20 -100
+debug _u30 -100
+debug fil -1
 ###!
 #mapa
 espera: [B10, C20, D20]
@@ -7181,20 +13600,44 @@ pis 0  ___ ___ ___ ___
 #init t71 terminal 1 4 3
 ###!
 #insereix_c cA20
+debug fil 0
 #insereix_c cX20
+debug fil 0
 #insereix_c cY20
+debug fil 0
 #insereix_c cB20
+debug fil -1
 ###!
 #retira_c Y20
-Error::terminal:44:Matricula duplicada.
+debug _t antes Y20
+debug fil 0
+debug _t despues 
+debug _u10d -100
+debug _u20 -100
+debug _u30 -100
+debug fil -1
 #retira_c X20
-Error::terminal:44:Matricula duplicada.
+debug _t antes 
+debug fil 0
+debug _t despues 
+debug _u10d -100
+debug _u20 -100
+debug _u30 -100
+debug fil -1
 ###!
 #insereix_c cC30
+debug fil -1
 #insereix_c cD10
+debug fil -1
 ###!
 #retira_c A20
-Error::terminal:44:Matricula duplicada.
+debug _t antes 
+debug fil 0
+debug _t despues 
+debug _u10d -100
+debug _u20 -100
+debug _u30 -100
+debug fil -1
 ###!
 #mapa
 espera: [B20, C30, D10]
@@ -7225,17 +13668,35 @@ pis 0  ___ ___ ___ ___
 #init t72 terminal 1 4 3
 ###!
 #insereix_c cA20
+debug fil 0
 #insereix_c cX20
+debug fil 0
 #insereix_c cY20
+debug fil 0
 #insereix_c cB20
+debug fil -1
 ###!
 #retira_c Y20
-Error::terminal:44:Matricula duplicada.
+debug _t antes Y20
+debug fil 0
+debug _t despues 
+debug _u10d -100
+debug _u20 -100
+debug _u30 -100
+debug fil -1
 #retira_c X20
-Error::terminal:44:Matricula duplicada.
+debug _t antes 
+debug fil 0
+debug _t despues 
+debug _u10d -100
+debug _u20 -100
+debug _u30 -100
+debug fil -1
 ###!
 #insereix_c cC30
+debug fil -1
 #insereix_c cD10
+debug fil -1
 ###!
 #retira_c B20
 ###!
@@ -7268,30 +13729,60 @@ pis 0  ___ ___ ___ ___
 #init t73 terminal 1 5 3
 ###!
 #insereix_c cX10
+debug fil 0
 #insereix_c cY10
+debug fil 0
 #insereix_c cZ10
+debug fil 0
 #insereix_c cA20
+debug fil -1
 #insereix_c cX20
+debug fil -1
 #insereix_c cY20
+debug fil -1
 #insereix_c cB10
+debug fil -1
 ###!
 #retira_c Y20
 #retira_c X20
 ###!
 #insereix_c cC30
+debug fil -1
 #insereix_c cD10
+debug fil -1
 #insereix_c cE10
+debug fil -1
 #insereix_c cF10
+debug fil -1
 ###!
 #retira_c Z10
-Error::terminal:44:Matricula duplicada.
+debug _t antes Z10
+debug fil 0
+debug _t despues 
+debug _u10d -100
+debug _u20 -100
+debug _u30 -100
+debug fil -1
 #retira_c Y10
-Error::terminal:44:Matricula duplicada.
+debug _t antes 
+debug fil 0
+debug _t despues 
+debug _u10d -100
+debug _u20 -100
+debug _u30 -100
+debug fil -1
 #retira_c X10
-Error::terminal:44:Matricula duplicada.
+debug _t antes 
+debug fil 0
+debug _t despues 
+debug _u10d -100
+debug _u20 -100
+debug _u30 -100
+debug fil -1
 #retira_c B10
 ###!
 #insereix_c cG30
+debug fil -1
 ###!
 #mapa
 espera: [A20, C30, D10, E10, F10, G30]
@@ -7335,23 +13826,41 @@ pis 0  ___ ___ ___ ___ ___
 #init t81 terminal 1 10 3
 ###!
 #insereix_c cA30
+debug fil 0
 #insereix_c cB30
+debug fil 0
 #insereix_c cD30
+debug fil 0
 #insereix_c cE20
+debug fil -1
 #insereix_c cF20
+debug fil -1
 #insereix_c cG20
+debug fil -1
 #insereix_c cH10
+debug fil -1
 #insereix_c cI10
+debug fil -1
 #insereix_c cC10
+debug fil -1
 #insereix_c cJ30
+debug fil -1
 #insereix_c cK30
+debug fil -1
 #insereix_c cL30
+debug fil -1
 #insereix_c cM10
+debug fil -1
 #insereix_c cN10
+debug fil -1
 #insereix_c cO10
+debug fil -1
 #insereix_c cT30
+debug fil -1
 #insereix_c cQ10
+debug fil -1
 #insereix_c cS20
+debug fil -1
 ###!
 #retira_c C10
 ###!
@@ -7384,24 +13893,40 @@ pis 0  D30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t82 terminal 1 10 3
 ###!
 #insereix_c cA30
+debug fil 0
 #insereix_c cB30
+debug fil 0
 #insereix_c cD30
+debug fil 0
 #insereix_c cE20
+debug fil -1
 #insereix_c cP20
+debug fil -1
 #insereix_c cC10
+debug fil -1
 #insereix_c cX10
+debug fil -1
 #insereix_c cF20
+debug fil -1
 #insereix_c cG20
+debug fil -1
 #insereix_c cH20
+debug fil -1
 #insereix_c cI20
+debug fil -1
 #insereix_c cJ20
+debug fil -1
 #insereix_c cK20
+debug fil -1
 ###!
 #retira_c X10
 ###!
 #insereix_c cQ30
+debug fil -1
 #insereix_c cN30
+debug fil -1
 #insereix_c cL20
+debug fil -1
 ###!
 #retira_c C10
 ###!
@@ -7434,24 +13959,39 @@ pis 0  D30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t83 terminal 1 10 3
 ###!
 #insereix_c cA30
+debug fil 0
 #insereix_c cB30
+debug fil 0
 #insereix_c cD30
+debug fil 0
 #insereix_c cE30
+debug fil -1
 #insereix_c cF30
+debug fil -1
 #insereix_c cG10
+debug fil -1
 #insereix_c cX10
+debug fil -1
 #insereix_c cC10
+debug fil -1
 #insereix_c cH30
+debug fil -1
 #insereix_c cI30
+debug fil -1
 #insereix_c cY10
+debug fil -1
 #insereix_c cJ20
+debug fil -1
 ###!
 #retira_c X10
 #retira_c Y10
 ###!
 #insereix_c cM30
+debug fil -1
 #insereix_c cN30
+debug fil -1
 #insereix_c cL20
+debug fil -1
 ###!
 #retira_c C10
 ###!
@@ -7484,26 +14024,46 @@ pis 0  D30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t84 terminal 1 10 3
 ###!
 #insereix_c cA10
+debug fil 0
 #insereix_c cB10
+debug fil 0
 #insereix_c cC10
+debug fil 0
 #insereix_c cD30
+debug fil -1
 #insereix_c cE30
+debug fil -1
 #insereix_c cF30
+debug fil -1
 #insereix_c cG30
+debug fil -1
 #insereix_c cH30
+debug fil -1
 #insereix_c cI30
+debug fil -1
 #insereix_c cJ30
+debug fil -1
 #insereix_c cK30
+debug fil -1
 #insereix_c cL30
+debug fil -1
 #insereix_c cP30
+debug fil -1
 #insereix_c cQ20
+debug fil -1
 ###!
 #retira_c C10
-Error::terminal:44:Matricula duplicada.
+debug _t antes C10
+debug fil 0
+debug _t despues 
+debug _u10d -100
+debug _u20 -100
+debug _u30 -100
+debug fil -1
 ###!
 #mapa
 espera: [D30, E30, F30, G30, H30, I30, J30, K30, L30, P30, Q20]
-fragmentacio: 0
+fragmentacio: 1
 ops_grua: 3
 
 filera 0
@@ -7530,20 +14090,35 @@ pis 0  ___ ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t85 terminal 1 10 3
 ###!
 #insereix_c cA30
+debug fil 0
 #insereix_c cB30
+debug fil 0
 #insereix_c cD30
+debug fil 0
 #insereix_c cE30
+debug fil -1
 #insereix_c cF30
+debug fil -1
 #insereix_c cG30
+debug fil -1
 #insereix_c cH30
+debug fil -1
 #insereix_c cI30
+debug fil -1
 #insereix_c cJ30
+debug fil -1
 #insereix_c cK10
+debug fil -1
 #insereix_c cL10
+debug fil -1
 #insereix_c cC10
+debug fil -1
 #insereix_c cM20
+debug fil -1
 #insereix_c cN30
+debug fil -1
 #insereix_c cO30
+debug fil -1
 ###!
 #retira_c C10
 ###!
@@ -7576,22 +14151,39 @@ pis 0  D30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t86 terminal 1 10 3
 ###!
 #insereix_c cA30
+debug fil 0
 #insereix_c cB30
+debug fil 0
 #insereix_c cD30
+debug fil 0
 #insereix_c cE20
+debug fil -1
 #insereix_c cF20
+debug fil -1
 #insereix_c cG20
+debug fil -1
 #insereix_c cH10
+debug fil -1
 #insereix_c cI10
+debug fil -1
 #insereix_c cC10
+debug fil -1
 #insereix_c cJ30
+debug fil -1
 #insereix_c cK30
+debug fil -1
 #insereix_c cL30
+debug fil -1
 #insereix_c cM10
+debug fil -1
 #insereix_c cN10
+debug fil -1
 #insereix_c cO10
+debug fil -1
 #insereix_c cT30
+debug fil -1
 #insereix_c cS20
+debug fil -1
 ###!
 #retira_c C10
 ###!
@@ -7624,24 +14216,40 @@ pis 0  D30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t87 terminal 1 10 3
 ###!
 #insereix_c cA20
+debug fil 0
 #insereix_c cB20
+debug fil 0
 #insereix_c cD20
+debug fil 0
 #insereix_c cE30
+debug fil -1
 #insereix_c cF30
+debug fil -1
 #insereix_c cG30
+debug fil -1
 #insereix_c cH30
+debug fil -1
 #insereix_c cI30
+debug fil -1
 #insereix_c cJ30
+debug fil -1
 #insereix_c cK20
+debug fil -1
 #insereix_c cM20
+debug fil -1
 #insereix_c cX10
+debug fil -1
 #insereix_c cC10
+debug fil -1
 ###!
 #retira_c X10
 ###!
 #insereix_c cO30
+debug fil -1
 #insereix_c cN30
+debug fil -1
 #insereix_c cL30
+debug fil -1
 ###!
 #retira_c C10
 ###!
@@ -7674,18 +14282,31 @@ pis 0  D20 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t88 terminal 1 10 3
 ###!
 #insereix_c cA30
+debug fil 0
 #insereix_c cB30
+debug fil 0
 #insereix_c cD30
+debug fil 0
 #insereix_c cX10
+debug fil -1
 #insereix_c cY10
+debug fil -1
 #insereix_c cZ10
+debug fil -1
 #insereix_c cC10
+debug fil -1
 #insereix_c cW10
+debug fil -1
 #insereix_c cU10
+debug fil -1
 #insereix_c cE30
+debug fil -1
 #insereix_c cF30
+debug fil -1
 #insereix_c cV10
+debug fil -1
 #insereix_c cG20
+debug fil -1
 ###!
 #retira_c V10
 #retira_c U10
@@ -7695,8 +14316,11 @@ pis 0  D20 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #retira_c X10
 ###!
 #insereix_c cR30
+debug fil -1
 #insereix_c cQ30
+debug fil -1
 #insereix_c cP30
+debug fil -1
 ###!
 #retira_c C10
 ###!
@@ -7729,25 +14353,45 @@ pis 0  D30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t89 terminal 1 10 3
 ###!
 #insereix_c cA30
+debug fil 0
 #insereix_c cB30
+debug fil 0
 #insereix_c cC10
+debug fil 0
 #insereix_c cX10
+debug fil -1
 #insereix_c cK10
+debug fil -1
 #insereix_c cD30
+debug fil -1
 #insereix_c cE30
+debug fil -1
 #insereix_c cF30
+debug fil -1
 #insereix_c cG30
+debug fil -1
 #insereix_c cH30
+debug fil -1
 #insereix_c cI30
+debug fil -1
 ###!
 #retira_c X10
 ###!
 #insereix_c cL30
+debug fil -1
 #insereix_c cM30
+debug fil -1
 #insereix_c cR30
+debug fil -1
 ###!
 #retira_c C10
-Error::terminal:44:Matricula duplicada.
+debug _t antes C10
+debug fil 0
+debug _t despues 
+debug _u10d -100
+debug _u20 -100
+debug _u30 -100
+debug fil -1
 ###!
 #mapa
 espera: [D30, E30, F30, G30, H30, I30, K10, L30, M30, R30]
@@ -7778,23 +14422,38 @@ pis 0  ___ ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t810 terminal 1 10 3
 ###!
 #insereix_c cA30
+debug fil 0
 #insereix_c cB30
+debug fil 0
 #insereix_c cD30
+debug fil 0
 #insereix_c cE20
+debug fil -1
 #insereix_c cP20
+debug fil -1
 #insereix_c cC10
+debug fil -1
 #insereix_c cX10
+debug fil -1
 #insereix_c cF20
+debug fil -1
 #insereix_c cG20
+debug fil -1
 #insereix_c cH20
+debug fil -1
 #insereix_c cI20
+debug fil -1
 #insereix_c cJ20
+debug fil -1
 #insereix_c cK20
+debug fil -1
 ###!
 #retira_c X10
 ###!
 #insereix_c cN30
+debug fil -1
 #insereix_c cQ30
+debug fil -1
 ###!
 #retira_c C10
 ###!
@@ -7840,3 +14499,9 @@ pis 0  D30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #clear_all
 ###!
 ###!
+###!
+###!
+###!
+###!
+#exit
+[0/0]**

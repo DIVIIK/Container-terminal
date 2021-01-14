@@ -13,7 +13,8 @@ void terminal::actualitza_pos(int fil) {
     bool trobat10 = false, trobat20 = false, trobat30 = false;
     int placa = 0, pis = 0, x;
     //Comprovem si es necesari actualitzar les posicions.
-    if(_u10.filera() < fil or fil == -1) trobat10 = true;
+    std::cout << "debug fil " << fil << std::endl;
+    if(_u10.filera() < fil or fil == -1) trobat10 = true; // Arreglar xd ponemos boolean?
     if(_u20.filera() < fil or fil == -1) trobat20 = true;
     if(_u30.filera() < fil or fil == -1) trobat30 = true;
     while(not trobat30 or not trobat20 or not trobat10) {
@@ -92,6 +93,29 @@ void terminal::retira_contenidor_superior(const string &m) {
     }
 }
 
+void terminal::act_fragmentacio(const nat& filera) {
+    _f -= _fFila[filera];
+    _fFila[filera] = 0;
+    bool desnivell = true;
+    for (nat i = 0; i < _m; i++) {
+        if(desnivell) {
+            if(i < _m-1) {
+                if(_p[filera][i] != _p[filera][i+1]) {
+                    if(_p[filera][i] != _h)  ++_fFila[filera];
+                }
+                else desnivell = false;
+            }
+            else if(i == _m-1 and _p[filera][i] != _h) ++_fFila[filera];
+        }
+        else {
+            if(i < _m-1) {
+                if(_p[filera][i] != _p[filera][i+1]) desnivell = true;
+            }
+        }
+    }
+    _f += _fFila[filera];
+}
+
 //-----------------------------------------------------
 //
 //  Métodes de Classe
@@ -117,9 +141,12 @@ terminal::terminal(nat n, nat m, nat h, estrategia st) throw(error) : _c(n*m*h),
 
     _t = new string**[_n];
     _p = new int*[_n];
+    _fFila = new nat[_n];
     for(int i = 0; i < _n; ++i) {
         _t[i] = new string*[_m];
         _p[i] = new int[_m];
+        if (_m == 1) _fFila[i] = 1;
+        else _fFila[i] = 0;
         for (int j = 0; j < _m; ++j) {
             _t[i][j] = new string[_h];
             _p[i][j] = 0;
@@ -128,6 +155,9 @@ terminal::terminal(nat n, nat m, nat h, estrategia st) throw(error) : _c(n*m*h),
             }
         }
     }
+
+    if (_m == 1) _f = _n;
+    else _f = 0;
     _opsGrua = 0;
 }
 
@@ -194,6 +224,7 @@ void terminal::insereix_contenidor(const contenidor &c) throw(error) {
                     ++_p[_u10.filera()][_u10.placa()];
                     u = _u10;
                     ++_opsGrua;
+                    act_fragmentacio(_u10.filera());
                 }
                 else {
                     _areaEspera.push_back(c);
@@ -206,6 +237,7 @@ void terminal::insereix_contenidor(const contenidor &c) throw(error) {
                     ++_p[_u20.filera()][_u20.placa()+1];
                     u = _u20;
                     ++_opsGrua;
+                    act_fragmentacio(_u20.filera());
                 }
                 else {
                     _areaEspera.push_back(c);
@@ -219,6 +251,7 @@ void terminal::insereix_contenidor(const contenidor &c) throw(error) {
                     ++_p[_u30.filera()][_u30.placa()+2];
                     u = _u30;
                     ++_opsGrua;
+                    act_fragmentacio(_u30.filera());
                 }
                 else {
                     _areaEspera.push_back(c);
@@ -228,7 +261,7 @@ void terminal::insereix_contenidor(const contenidor &c) throw(error) {
             _c.assig(c.matricula(), p);
             actualitza_pos(_u10.filera());
         }
-        else { //Altra estrategia
+        else { // Altra estrategia
 
         }
     }
@@ -259,6 +292,8 @@ void terminal::retira_contenidor(const string &m) throw(error) {
             nat j = u.placa();
             nat k = u.pis();
 
+            std::cout << "debug _t antes " << _t[0][0][0] << std::endl;
+
             // Retirar aquest contenidor
             for (nat z = 0; z < lon; z++) {
                 // 1. Eliminar de l'area de emmagatzematge
@@ -274,13 +309,26 @@ void terminal::retira_contenidor(const string &m) throw(error) {
             // 4. Buscar seguent ubicacio lliure
             actualitza_pos(u.filera());
 
-            // 5. Recolocar contenidors del Area d'espera
+
+
+            std::cout << "debug _t despues " << _t[0][0][0] << std::endl;
+            std::cout << "debug _u10d " << _u10.filera() << _u10.placa() << _u10.pis() << std::endl;
+            std::cout << "debug _u20 " << _u20.filera() << _u20.placa() << _u20.pis() << std::endl;
+            std::cout << "debug _u30 " << _u30.filera() << _u30.placa() << _u30.pis() << std::endl;
+
+
+            // 5. Actualizar fragmentacio
+            act_fragmentacio(u.filera());
+
+            // 6. Recolocar contenidors del Area d'espera
             string anterior = "";
             while (not _areaEspera.empty() and anterior != _areaEspera.back().matricula() ) {
                 anterior = _areaEspera.back().matricula();
                 insereix_contenidor(_areaEspera.back());
                 _areaEspera.pop_back();
             }
+
+
         }
         else
             throw error(MatriculaInexistent);
@@ -355,25 +403,7 @@ void terminal::contenidor_ocupa(const ubicacio &u, string &m) const throw(error)
    <f, 0, 1>, <f, 1, 2>, <f, 2, 1>, <f, 7, 1>, <f, 8, 0>, <f, 9, 1> i
    <f, 10, 0>). */
 nat terminal::fragmentacio() const throw() {
-  nat f = 0;
-  bool desnivell = true;
-  for(nat i = 0; i < _n; ++i) {
-  	for(nat j = 0; j < _m; ++j) {
-  		if(j == _m-1 and _m != 1) {
-  			if(desnivell) ++f;
-  		}
-  		else if(desnivell) {
-  			if(_p[i][j] == _p[i][j+1]) desnivell = false;
-  			else ++f;
-    		}
-    		else {
-    			if(_p[i][j] != _p[i][j+1]) desnivell = true;
-    		}
-  	}
-  	desnivell = true;
-  }
-  return 0;
-  return f;
+  return _f;
 }
 
 /* Retorna el número d'operacions de grua realitzades des del moment
