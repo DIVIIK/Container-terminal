@@ -9517,7 +9517,6 @@ pis 0  A30 A30 A30 D30 D30 D30 G30 G30 G30 ___
 #insereix_c cM20
 #insereix_c cO20
 #insereix_c cK10
-Error::terminal:44:Matricula duplicada.
 ###!
 #on K10
 <0, 7, 0>
@@ -9526,17 +9525,17 @@ Error::terminal:44:Matricula duplicada.
 <0, 7, 1>
 ##<0, 7, 1>
 #on M20
-<-1, 0, 0>
+<0, 7, 2>
 ##<0, 7, 2>
 ###!
 #mapa
-espera: [M20, O20]
+espera: []
 fragmentacio: 1
-ops_grua: 18
+ops_grua: 19
 
 filera 0
 ---------
-pis 2  C30 C30 C30 F30 F30 F30 I10            
+pis 2  C30 C30 C30 F30 F30 F30 I10 M20 M20    
 pis 1  B30 B30 B30 E30 E30 E30 H10 O20 O20    
 pis 0  A30 A30 A30 D30 D30 D30 G10 K10 J10 ___
         0   1   2   3   4   5   6   7   8   9  
@@ -9578,7 +9577,6 @@ pis 0  A30 A30 A30 D30 D30 D30 G10 K10 J10 ___
 #insereix_c cN30
 #insereix_c cO20
 #insereix_c cK10
-Error::terminal:44:Matricula duplicada.
 ###!
 #on K10
 <0, 7, 0>
@@ -9587,17 +9585,17 @@ Error::terminal:44:Matricula duplicada.
 <0, 7, 1>
 ##<0, 7, 1>
 #on M20
-<-1, 0, 0>
+<0, 7, 2>
 ##<0, 7, 2>
 ###!
 #mapa 
-espera: [L30, M20, N30, O20]
+espera: [L30, N30]
 fragmentacio: 1
-ops_grua: 18
+ops_grua: 19
 
 filera 0
 ---------
-pis 2  C30 C30 C30 F30 F30 F30 I10            
+pis 2  C30 C30 C30 F30 F30 F30 I10 M20 M20    
 pis 1  B30 B30 B30 E30 E30 E30 H10 O20 O20    
 pis 0  A30 A30 A30 D30 D30 D30 G10 K10 J10 ___
         0   1   2   3   4   5   6   7   8   9  
@@ -9639,7 +9637,6 @@ pis 0  A30 A30 A30 D30 D30 D30 G10 K10 J10 ___
 #insereix_c cL30
 #insereix_c cN30
 #insereix_c cK20
-Error::terminal:44:Matricula duplicada.
 ###!
 #on K20
 <0, 6, 0>
@@ -9648,17 +9645,17 @@ Error::terminal:44:Matricula duplicada.
 <0, 6, 1>
 ##<0, 6, 1>
 #on L30
-<-1, 0, 0>
+<0, 6, 2>
 ##<0, 6, 2>
 ###!
 #mapa
-espera: [L30, N30]
-fragmentacio: 0
-ops_grua: 20
+espera: []
+fragmentacio: 1
+ops_grua: 21
 
 filera 0
 ---------
-pis 2  C30 C30 C30 F30 F30 F30                
+pis 2  C30 C30 C30 F30 F30 F30 L30 L30 L30    
 pis 1  B30 B30 B30 E30 E30 E30 N30 N30 N30 H10
 pis 0  A30 A30 A30 D30 D30 D30 K20 K20 J20 J20
         0   1   2   3   4   5   6   7   8   9  
@@ -12314,14 +12311,11 @@ pis 0  ___ ___ ___ ___ ___
 #retira_c Y20
 Error::terminal:44:Matricula duplicada.
 #retira_c X10
-Error::terminal:44:Matricula duplicada.
 #retira_c Z10
-Error::terminal:44:Matricula duplicada.
 #retira_c A30
-Error::terminal:44:Matricula duplicada.
 ###!
 #mapa
-espera: [B10, C20, D20]
+espera: [B10, D20]
 fragmentacio: 0
 ops_grua: 12
 

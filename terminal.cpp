@@ -122,6 +122,8 @@ void terminal::act_fragmentacio(const nat& filera) {
 }
 
 void terminal::recolocarAreaEspera() {
+    // std::cout << "Recolocar" << std::endl;
+
     ubicacio areaEspera(-1,0,0);
     list<contenidor>::const_iterator it;
     bool fi = false, b10 = true, b20 = true, b30 = true;
@@ -133,19 +135,20 @@ void terminal::recolocarAreaEspera() {
         if(_c30 == 0 or _u30 == areaEspera) b30 = false;
 
         if(b10 and (*it).longitud() == 10) {
-            insereix_contenidor(*it);
             _areaEspera.remove(*it);
             --_c10;
+            insereix_contenidor(*it);
         }
         else if(b20 and (*it).longitud() == 20) {
-            insereix_contenidor(*it);
+            // std::cout << " insereix contenidor de 20 " << std::endl;
             _areaEspera.remove(*it);
             --_c20;
+            insereix_contenidor(*it);
         }
         else if(b30 and (*it).longitud() == 30) {
-            insereix_contenidor(*it);
             _areaEspera.remove(*it);
             --_c30;
+            insereix_contenidor(*it);
         }
 
         if (it == _areaEspera.begin()) fi = true;
@@ -260,7 +263,7 @@ terminal::~terminal() throw() {
    usant. Finalment, genera un error si ja existís a la terminal un
    contenidor amb una matrícula idèntica que la del contenidor c. */
 void terminal::insereix_contenidor(const contenidor &c) throw(error) {
-    // std::cout << "DEBUG: Inserir contenidor " << c.matricula() << std::endl;
+    //std::cout << "DEBUG: Inserir contenidor " << c.matricula() << " " << on(c.matricula()).filera() << on(c.matricula()).placa() << on(c.matricula()).pis() << std::endl;
     // std::cout << "_u10: " << _u10.filera() << _u10.placa() << _u10.pis() << " | _u20: " << _u20.filera() << _u20.placa() << _u20.pis() << " | _u30: " << _u30.filera() << _u30.placa() << _u30.pis() << std::endl;
 
     ubicacio u = on(c.matricula());
