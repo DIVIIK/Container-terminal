@@ -11,6 +11,7 @@ cataleg<std::pair<nat,ubicacio> > _c;
 
 // Àrea d'espera
 list<contenidor> _areaEspera;
+nat _c10, _c20, _c30;
 
 // Area emmagatzematge de tipus [_n][_m][_h]
 string ***_t;

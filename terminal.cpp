@@ -162,6 +162,9 @@ terminal::terminal(nat n, nat m, nat h, estrategia st) throw(error) : _c(n*m*h),
     if (_m == 1) _f = _n;
     else _f = 0;
     _opsGrua = 0;
+    _c10 = 0;
+    _c20 = 0;
+    _c30 = 0;
 }
 
 /* Constructora per còpia, assignació i destructora. */
@@ -177,6 +180,9 @@ terminal::terminal(const terminal& b) throw(error) : _c(1), _u10(0,0,0), _u20(0,
     _u30 = b._u30;
     _areaEspera = b._areaEspera;
     _opsGrua = b._opsGrua;
+    _c10 = b._c10;
+    _c20 = b._c20;
+    _c30 = b._c30;
 }
 
 terminal& terminal::operator=(const terminal& b) throw(error) {
@@ -191,6 +197,9 @@ terminal& terminal::operator=(const terminal& b) throw(error) {
     _u30 = b._u30;
     _areaEspera = b._areaEspera;
     _opsGrua = b._opsGrua;
+    _c10 = b._c10;
+    _c20 = b._c20;
+    _c30 = b._c30;
     return *this;
 }
 
@@ -231,6 +240,7 @@ void terminal::insereix_contenidor(const contenidor &c) throw(error) {
                 }
                 else {
                     _areaEspera.push_back(c);
+                    ++_c10;
                 }
             }
             else if(c.longitud() == 20) {
@@ -245,6 +255,7 @@ void terminal::insereix_contenidor(const contenidor &c) throw(error) {
                 }
                 else {
                     _areaEspera.push_back(c);
+                    ++_c20;
                 }
             }
             else {
@@ -261,6 +272,7 @@ void terminal::insereix_contenidor(const contenidor &c) throw(error) {
                 }
                 else {
                     _areaEspera.push_back(c);
+                    ++_c30;
                 }
             }
             std::pair<nat, ubicacio> p = std::make_pair(c.longitud(), u);
@@ -320,12 +332,46 @@ void terminal::retira_contenidor(const string &m) throw(error) {
             _opsGrua++;
 
             // 7. Recolocar contenidors del Area d'espera
-            string anterior = "";
-            while (not _areaEspera.empty() and anterior != _areaEspera.back().matricula() ) {
-                anterior = _areaEspera.back().matricula();
-                insereix_contenidor(_areaEspera.back());
-                _areaEspera.pop_back();
+            list<contenidor>::const_iterator it;
+        	bool b10 = true, b20 = true, b30 = true;
+            /*if(_u10 == areaEspera)  b10 = false;
+            if(_u20 == areaEspera)  b20 = false;
+            if(_u30 == areaEspera)  b30 = false;*/
+
+            it = _areaEspera.end();
+            while(it != _areaEspera.begin() and (b10 or b20 or b30)) {
+                if(_c10 == 0 or _u10 == areaEspera) b10 = false;
+                if(_c20 == 0 or _u20 == areaEspera) b20 = false;
+                if(_c30 == 0 or _u30 == areaEspera) b30 = false;
+
+                if(b10 and (*it).longitud() == 10) {
+                    // std::cout << "ara 1" << std::endl;
+                    insereix_contenidor(*it);
+                    _areaEspera.remove(*it);
+                    --_c10;
+                }
+                else if(b20 and (*it).longitud() == 20) {
+                    // std::cout << "ara 2" << std::endl;
+                    insereix_contenidor(*it);
+                    _areaEspera.remove(*it);
+                    --_c20;
+                }
+                else if(b30 and (*it).longitud() == 30) {
+                    // std::cout << "ara 3" << std::endl;
+                    insereix_contenidor(*it);
+                    _areaEspera.remove(*it);
+                    --_c30;
+                }
+
+                --it;
             }
+
+            // while (not _areaEspera.empty() and anterior != _areaEspera.back().matricula() ) {
+            //     std::cout << "Ara ara~" << std::endl;
+            //     anterior = _areaEspera.back().matricula();
+            //     insereix_contenidor(_areaEspera.back());
+            //     _areaEspera.pop_back();
+            // }
 
         }
         else

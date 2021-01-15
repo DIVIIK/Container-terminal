@@ -6141,13 +6141,13 @@ pis 0  B10 C10
 #retira_c C10
 ###!
 #mapa
-espera: [B20, B30, C20, C30, D10, D20, D30]
-fragmentacio: 1
-ops_grua: 3
+espera: [B20, B30, C20, C30, D20, D30]
+fragmentacio: 0
+ops_grua: 4
 
 filera 0
 ---------
-pis 0  B10 ___
+pis 0  B10 D10
         0   1  
 ##espera: [B20, B30, C20, C30, D20, D30]
 ##fragmentacio: 0
@@ -6162,7 +6162,7 @@ pis 0  B10 ___
 <-1, -1, -1>
 ##<-1, -1, -1>
 #on D10
-<-1, 0, 0>
+<0, 1, 0>
 ##<0, 1, 0>
 ###!
 ###!------------------------------------------------------------------
@@ -6172,13 +6172,13 @@ pis 0  B10 ___
 #retira_c B10
 ###!
 #mapa
-espera: [B20, B30, C20, C30, D10, D20, D30]
-fragmentacio: 0
-ops_grua: 4
+espera: [B20, B30, C20, C30, D20, D30]
+fragmentacio: 1
+ops_grua: 5
 
 filera 0
 ---------
-pis 0  ___ ___
+pis 0  ___ D10
         0   1  
 ##espera: [B20, B30, C20, C30, D20, D30]
 ##fragmentacio: 1
@@ -6200,13 +6200,13 @@ pis 0  ___ ___
 #retira_c D10
 ###!
 #mapa
-espera: [B20, B30, C20, C30, D20, D30]
+espera: [B20, B30, C20, C30, D30]
 fragmentacio: 0
-ops_grua: 4
+ops_grua: 7
 
 filera 0
 ---------
-pis 0  ___ ___
+pis 0  D20 D20
         0   1  
 ##espera: [B20, B30, C20, C30, D30]
 ##fragmentacio: 0
@@ -6221,7 +6221,7 @@ pis 0  ___ ___
 <-1, -1, -1>
 ##<-1, -1, -1>
 #on D20
-<-1, 0, 0>
+<0, 0, 0>
 ##<0, 0, 0>
 ###!
 ###!------------------------------------------------------------------
@@ -6231,13 +6231,13 @@ pis 0  ___ ___
 #retira_c D20
 ###!
 #mapa
-espera: [B20, B30, C20, C30, D30]
+espera: [B20, B30, C30, D30]
 fragmentacio: 0
-ops_grua: 4
+ops_grua: 9
 
 filera 0
 ---------
-pis 0  ___ ___
+pis 0  C20 C20
         0   1  
 ##espera: [B20, B30, C30, D30]
 ##fragmentacio: 0
@@ -6252,7 +6252,7 @@ pis 0  ___ ___
 <-1, -1, -1>
 ##<-1, -1, -1>
 #on C20
-<-1, 0, 0>
+<0, 0, 0>
 ##<0, 0, 0>
 ###!
 ###!------------------------------------------------------------------
@@ -6264,7 +6264,7 @@ pis 0  ___ ___
 #mapa
 espera: [B20, B30, C30, D30]
 fragmentacio: 0
-ops_grua: 4
+ops_grua: 10
 
 filera 0
 ---------
@@ -6295,7 +6295,7 @@ pis 0  ___ ___
 #mapa
 espera: [B30, C30, D30]
 fragmentacio: 0
-ops_grua: 4
+ops_grua: 10
 
 filera 0
 ---------
@@ -6613,13 +6613,13 @@ pis 0  B10 B20 B20
 #retira_c B10
 ###!
 #mapa
-espera: [B30, C10, C20, C30, D10, D20, D30]
-fragmentacio: 1
-ops_grua: 3
+espera: [B30, C10, C20, C30, D20, D30]
+fragmentacio: 0
+ops_grua: 4
 
 filera 0
 ---------
-pis 0  ___ B20 B20
+pis 0  D10 B20 B20
         0   1   2  
 ##espera: [B30, C10, C20, C30, D20, D30]
 ##fragmentacio: 0
@@ -6634,7 +6634,7 @@ pis 0  ___ B20 B20
 <-1, -1, -1>
 ##<-1, -1, -1>
 #on D10
-<-1, 0, 0>
+<0, 0, 0>
 ##<0, 0, 0>
 #on B20
 <0, 1, 0>
@@ -6647,13 +6647,13 @@ pis 0  ___ B20 B20
 #retira_c D10
 ###!
 #mapa
-espera: [B30, C10, C20, C30, D20, D30]
-fragmentacio: 1
-ops_grua: 3
+espera: [B30, C20, C30, D20, D30]
+fragmentacio: 0
+ops_grua: 6
 
 filera 0
 ---------
-pis 0  ___ B20 B20
+pis 0  C10 B20 B20
         0   1   2  
 ##espera: [B30, C20, C30, D20, D30]
 ##fragmentacio: 0
@@ -6668,7 +6668,7 @@ pis 0  ___ B20 B20
 <-1, -1, -1>
 ##<-1, -1, -1>
 #on C10
-<-1, 0, 0>
+<0, 0, 0>
 ##<0, 0, 0>
 #on B20
 <0, 1, 0>
@@ -6683,7 +6683,7 @@ pis 0  ___ B20 B20
 #mapa
 espera: [B30, C20, C30, D20, D30]
 fragmentacio: 1
-ops_grua: 3
+ops_grua: 7
 
 filera 0
 ---------
@@ -6714,7 +6714,7 @@ pis 0  ___ B20 B20
 #mapa
 espera: [B30, C20, C30, D20]
 fragmentacio: 0
-ops_grua: 5
+ops_grua: 9
 
 filera 0
 ---------
@@ -6745,7 +6745,7 @@ pis 0  D30 D30 D30
 #mapa
 espera: [B30, C30, D20]
 fragmentacio: 0
-ops_grua: 5
+ops_grua: 9
 
 filera 0
 ---------
@@ -6776,7 +6776,7 @@ pis 0  D30 D30 D30
 #mapa
 espera: [B30, C30]
 fragmentacio: 1
-ops_grua: 7
+ops_grua: 11
 
 filera 0
 ---------
@@ -6807,7 +6807,7 @@ pis 0  D20 D20 ___
 #mapa
 espera: [B30]
 fragmentacio: 0
-ops_grua: 9
+ops_grua: 13
 
 filera 0
 ---------
@@ -6836,13 +6836,13 @@ pis 0  C30 C30 C30
 #retira_c C30
 ###!
 #mapa
-espera: []
+espera: [B30]
 fragmentacio: 0
-ops_grua: 11
+ops_grua: 14
 
 filera 0
 ---------
-pis 0  B30 B30 B30
+pis 0  ___ ___ ___
         0   1   2  
 ##espera: []
 ##fragmentacio: 0
@@ -6857,7 +6857,7 @@ pis 0  B30 B30 B30
 <-1, -1, -1>
 ##<-1, -1, -1>
 #on B30
-<0, 0, 0>
+<-1, 0, 0>
 ##<0, 0, 0>
 ###!
 ###!------------------------------------------------------------------
@@ -6869,7 +6869,7 @@ pis 0  B30 B30 B30
 #mapa
 espera: []
 fragmentacio: 0
-ops_grua: 12
+ops_grua: 14
 
 filera 0
 ---------
@@ -7426,13 +7426,13 @@ pis 0  ___ B20 B20 E20 E20 ___ C10 C20 C20 D10
 #retira_c C10
 ###!
 #mapa
-espera: [C30, D20, D30]
+espera: [C30, D30]
 fragmentacio: 1
-ops_grua: 10
+ops_grua: 11
 
 filera 0
 ---------
-pis 0  ___ B20 B20 E20 E20 ___ ___ C20 C20 D10
+pis 0  ___ B20 B20 E20 E20 D20 D20 C20 C20 D10
         0   1   2   3   4   5   6   7   8   9  
 ##espera: [C30, D30]
 ##fragmentacio: 1
@@ -7465,7 +7465,7 @@ pis 0  ___ B20 B20 E20 E20 ___ ___ C20 C20 D10
 <0, 9, 0>
 ##<0, 9, 0>
 #on D20
-<-1, 0, 0>
+<0, 5, 0>
 ##<0, 5, 0>
 #on D30
 <-1, 0, 0>
@@ -7730,13 +7730,13 @@ pis 0  D30 D30 D30 E20 E20 F10 ___ C20 C20 ___
 #retira_c C20
 ###!
 #mapa
-espera: []
-fragmentacio: 1
-ops_grua: 18
+espera: [C30]
+fragmentacio: 0
+ops_grua: 17
 
 filera 0
 ---------
-pis 0  D30 D30 D30 E20 E20 F10 C30 C30 C30 ___
+pis 0  D30 D30 D30 E20 E20 F10 ___ ___ ___ ___
         0   1   2   3   4   5   6   7   8   9  
 ##espera: []
 ##fragmentacio: 1
@@ -7763,7 +7763,7 @@ pis 0  D30 D30 D30 E20 E20 F10 C30 C30 C30 ___
 <-1, -1, -1>
 ##<-1, -1, -1>
 #on C30
-<0, 6, 0>
+<-1, 0, 0>
 ##<0, 6, 0>
 #on D10
 <-1, -1, -1>
@@ -7791,13 +7791,13 @@ pis 0  D30 D30 D30 E20 E20 F10 C30 C30 C30 ___
 #retira_c D30
 ###!
 #mapa
-espera: []
-fragmentacio: 1
-ops_grua: 19
+espera: [C30]
+fragmentacio: 0
+ops_grua: 18
 
 filera 0
 ---------
-pis 0  ___ ___ ___ E20 E20 F10 C30 C30 C30 ___
+pis 0  ___ ___ ___ E20 E20 F10 ___ ___ ___ ___
         0   1   2   3   4   5   6   7   8   9  
 ##espera: []
 ##fragmentacio: 1
@@ -7824,7 +7824,7 @@ pis 0  ___ ___ ___ E20 E20 F10 C30 C30 C30 ___
 <-1, -1, -1>
 ##<-1, -1, -1>
 #on C30
-<0, 6, 0>
+<-1, 0, 0>
 ##<0, 6, 0>
 #on D10
 <-1, -1, -1>
@@ -7854,7 +7854,7 @@ pis 0  ___ ___ ___ E20 E20 F10 C30 C30 C30 ___
 #mapa
 espera: []
 fragmentacio: 0
-ops_grua: 20
+ops_grua: 18
 
 filera 0
 ---------
@@ -7915,7 +7915,7 @@ pis 0  ___ ___ ___ E20 E20 F10 ___ ___ ___ ___
 #mapa
 espera: []
 fragmentacio: 0
-ops_grua: 21
+ops_grua: 19
 
 filera 0
 ---------
@@ -7976,7 +7976,7 @@ pis 0  ___ ___ ___ ___ ___ F10 ___ ___ ___ ___
 #mapa
 espera: []
 fragmentacio: 0
-ops_grua: 22
+ops_grua: 20
 
 filera 0
 ---------
@@ -12240,14 +12240,14 @@ pis 0  ___ ___ C20 ___ ___ ___
 #retira_c B30
 ###!
 #mapa
-espera: []
-fragmentacio: 5
-ops_grua: 14
+espera: [E20]
+fragmentacio: 4
+ops_grua: 13
 
 filera 0
 ---------
 pis 1                             
-pis 0  ___ C20 ___ ___ ___ E20 ___
+pis 0  ___ C20 ___ ___ ___ D10 ___
         0   1   2   3   4   5   6  
 ##espera: []
 ##fragmentacio: 5
@@ -12314,9 +12314,9 @@ pis 0  ___ ___ ___ ___ ___
 #retira_c A30
 ###!
 #mapa
-espera: []
-fragmentacio: 2
-ops_grua: 11
+espera: [D20]
+fragmentacio: 1
+ops_grua: 10
 
 filera 0
 ---------
@@ -12526,15 +12526,15 @@ pis 0  ___ D10 E10 ___ ___
 #retira_c C10
 ###!
 #mapa
-espera: [Q10, S20, T30]
-fragmentacio: 1
-ops_grua: 16
+espera: [S20, T30]
+fragmentacio: 0
+ops_grua: 17
 
 filera 0
 ---------
 pis 2                                         
 pis 1                                         
-pis 0  D30 D30 D30 G20 G20 ___ L30 L30 L30 O10
+pis 0  D30 D30 D30 G20 G20 Q10 L30 L30 L30 O10
         0   1   2   3   4   5   6   7   8   9  
 ##espera: [S20, T30]
 ##fragmentacio: 0
