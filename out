@@ -5516,16 +5516,12 @@ pis 0  ___
 ###!------------------------------------------------------------------
 ###!
 #insereix_c cA30
-debug fil 0
 #insereix_c cA10
-debug fil 0
 #insereix_c cRE1
 Error::terminal:44:Matricula duplicada.
 ##Error::terminal:44:Matricula duplicada.
 #insereix_c cD20
-debug fil -1
 #insereix_c cB10
-debug fil -1
 ###!
 ###!------------------------------------------------------------------
 ###2.2.1 On
@@ -5745,13 +5741,6 @@ pis 0  A10
 ###!------------------------------------------------------------------
 ###!
 #retira_c A10
-debug _t antes A10
-debug fil 0
-debug _t despues 
-debug _u10d -100
-debug _u20 -100
-debug _u30 -100
-debug fil -1
 ###!
 ###!------------------------------------------------------------------
 ###2.3.8 On
@@ -5764,7 +5753,7 @@ debug fil -1
 <-1, 0, 0>
 ##<-1, 0, 0>
 #on B10
-<-1, 0, 0>
+<0, 0, 0>
 ##<0, 0, 0>
 #on B20
 <-1, -1, -1>
@@ -5813,7 +5802,7 @@ Error::terminal:46:Ubicacio no pertany al magatzem.
 Error::terminal:46:Ubicacio no pertany al magatzem.
 ##Error::terminal:46:Ubicacio no pertany al magatzem.
 #contenidor_ocupa u000
-
+B10
 ##B10
 ###!
 ###!------------------------------------------------------------------
@@ -5835,13 +5824,13 @@ Error::terminal:46:Ubicacio no pertany al magatzem.
 ###!------------------------------------------------------------------
 ###!
 #mapa
-espera: [A30, B10]
-fragmentacio: 1
-ops_grua: 1
+espera: [A30]
+fragmentacio: 0
+ops_grua: 3
 
 filera 0
 ---------
-pis 0  ___
+pis 0  B10
         0  
 ##espera: [A30]
 ##fragmentacio: 0
@@ -5993,23 +5982,14 @@ pis 0  ___ ___
 ###!------------------------------------------------------------------
 ###!
 #insereix_c cB10
-debug fil 0
 #insereix_c cB20
-debug fil -1
 #insereix_c cB30
-debug fil -1
 #insereix_c cC10
-debug fil -1
 #insereix_c cC20
-debug fil -1
 #insereix_c cC30
-debug fil -1
 #insereix_c cD10
-debug fil -1
 #insereix_c cD20
-debug fil -1
 #insereix_c cD30
-debug fil -1
 ###!
 ###!------------------------------------------------------------------
 ###3.2.2 On
@@ -6025,7 +6005,7 @@ debug fil -1
 <-1, 0, 0>
 ##<-1, 0, 0>
 #on C10
-<-1, 0, 0>
+<0, 1, 0>
 ##<0, 1, 0>
 #on C20
 <-1, 0, 0>
@@ -6102,7 +6082,7 @@ Error::terminal:46:Ubicacio no pertany al magatzem.
 B10
 ##B10
 #contenidor_ocupa u010
-
+C10
 ##C10
 #contenidor_ocupa u020
 Error::terminal:46:Ubicacio no pertany al magatzem.
@@ -6127,13 +6107,13 @@ Error::terminal:46:Ubicacio no pertany al magatzem.
 ###!------------------------------------------------------------------
 ###!
 #mapa
-espera: [B20, B30, C10, C20, C30, D10, D20, D30]
-fragmentacio: 1
-ops_grua: 1
+espera: [B20, B30, C20, C30, D10, D20, D30]
+fragmentacio: 0
+ops_grua: 2
 
 filera 0
 ---------
-pis 0  B10 ___
+pis 0  B10 C10
         0   1  
 ##espera: [B20, B30, C20, C30, D10, D20, D30]
 ##fragmentacio: 0
@@ -6163,7 +6143,7 @@ pis 0  B10 ___
 #mapa
 espera: [B20, B30, C20, C30, D10, D20, D30]
 fragmentacio: 1
-ops_grua: 1
+ops_grua: 3
 
 filera 0
 ---------
@@ -6190,18 +6170,11 @@ pis 0  B10 ___
 ###!------------------------------------------------------------------
 ###!
 #retira_c B10
-debug _t antes B10
-debug fil 0
-debug _t despues 
-debug _u10d -100
-debug _u20 -100
-debug _u30 -100
-debug fil -1
 ###!
 #mapa
 espera: [B20, B30, C20, C30, D10, D20, D30]
 fragmentacio: 0
-ops_grua: 1
+ops_grua: 4
 
 filera 0
 ---------
@@ -6229,7 +6202,7 @@ pis 0  ___ ___
 #mapa
 espera: [B20, B30, C20, C30, D20, D30]
 fragmentacio: 0
-ops_grua: 1
+ops_grua: 4
 
 filera 0
 ---------
@@ -6260,7 +6233,7 @@ pis 0  ___ ___
 #mapa
 espera: [B20, B30, C20, C30, D30]
 fragmentacio: 0
-ops_grua: 1
+ops_grua: 4
 
 filera 0
 ---------
@@ -6291,7 +6264,7 @@ pis 0  ___ ___
 #mapa
 espera: [B20, B30, C30, D30]
 fragmentacio: 0
-ops_grua: 1
+ops_grua: 4
 
 filera 0
 ---------
@@ -6322,7 +6295,7 @@ pis 0  ___ ___
 #mapa
 espera: [B30, C30, D30]
 fragmentacio: 0
-ops_grua: 1
+ops_grua: 4
 
 filera 0
 ---------
@@ -6482,23 +6455,14 @@ pis 0  ___ ___ ___
 ###!------------------------------------------------------------------
 ###!
 #insereix_c cB10
-debug fil 0
 #insereix_c cB20
-debug fil -1
 #insereix_c cB30
-debug fil -1
 #insereix_c cC10
-debug fil -1
 #insereix_c cC20
-debug fil -1
 #insereix_c cC30
-debug fil -1
 #insereix_c cD10
-debug fil -1
 #insereix_c cD20
-debug fil -1
 #insereix_c cD30
-debug fil -1
 ###!
 ###!------------------------------------------------------------------
 ###4.2.2 On
@@ -6508,7 +6472,7 @@ debug fil -1
 <0, 0, 0>
 ##<0, 0, 0>
 #on B20
-<-1, 0, 0>
+<0, 1, 0>
 ##<0, 1, 0>
 #on B30
 <-1, 0, 0>
@@ -6590,10 +6554,10 @@ Error::terminal:46:Ubicacio no pertany al magatzem.
 B10
 ##B10
 #contenidor_ocupa u010
-
+B20
 ##B20
 #contenidor_ocupa u020
-
+B20
 ##B20
 ###!
 ###!------------------------------------------------------------------
@@ -6615,13 +6579,13 @@ B10
 ###!------------------------------------------------------------------
 ###!
 #mapa
-espera: [B20, B30, C10, C20, C30, D10, D20, D30]
+espera: [B30, C10, C20, C30, D10, D20, D30]
 fragmentacio: 0
-ops_grua: 1
+ops_grua: 2
 
 filera 0
 ---------
-pis 0  B10 ___ ___
+pis 0  B10 B20 B20
         0   1   2  
 ##espera: [B30, C10, C20, C30, D10, D20, D30]
 ##fragmentacio: 0
@@ -6647,22 +6611,15 @@ pis 0  B10 ___ ___
 ###!------------------------------------------------------------------
 ###!
 #retira_c B10
-debug _t antes B10
-debug fil 0
-debug _t despues 
-debug _u10d -100
-debug _u20 -100
-debug _u30 -100
-debug fil -1
 ###!
 #mapa
-espera: [B20, B30, C10, C20, C30, D10, D20, D30]
-fragmentacio: 0
-ops_grua: 1
+espera: [B30, C10, C20, C30, D10, D20, D30]
+fragmentacio: 1
+ops_grua: 3
 
 filera 0
 ---------
-pis 0  ___ ___ ___
+pis 0  ___ B20 B20
         0   1   2  
 ##espera: [B30, C10, C20, C30, D20, D30]
 ##fragmentacio: 0
@@ -6680,7 +6637,7 @@ pis 0  ___ ___ ___
 <-1, 0, 0>
 ##<0, 0, 0>
 #on B20
-<-1, 0, 0>
+<0, 1, 0>
 ##<0, 1, 0>
 ###!
 ###!------------------------------------------------------------------
@@ -6690,13 +6647,13 @@ pis 0  ___ ___ ___
 #retira_c D10
 ###!
 #mapa
-espera: [B20, B30, C10, C20, C30, D20, D30]
-fragmentacio: 0
-ops_grua: 1
+espera: [B30, C10, C20, C30, D20, D30]
+fragmentacio: 1
+ops_grua: 3
 
 filera 0
 ---------
-pis 0  ___ ___ ___
+pis 0  ___ B20 B20
         0   1   2  
 ##espera: [B30, C20, C30, D20, D30]
 ##fragmentacio: 0
@@ -6714,7 +6671,7 @@ pis 0  ___ ___ ___
 <-1, 0, 0>
 ##<0, 0, 0>
 #on B20
-<-1, 0, 0>
+<0, 1, 0>
 ##<0, 1, 0>
 ###!
 ###!------------------------------------------------------------------
@@ -6724,13 +6681,13 @@ pis 0  ___ ___ ___
 #retira_c C10
 ###!
 #mapa
-espera: [B20, B30, C20, C30, D20, D30]
-fragmentacio: 0
-ops_grua: 1
+espera: [B30, C20, C30, D20, D30]
+fragmentacio: 1
+ops_grua: 3
 
 filera 0
 ---------
-pis 0  ___ ___ ___
+pis 0  ___ B20 B20
         0   1   2  
 ##espera: [B30, C20, C30, D20, D30]
 ##fragmentacio: 1
@@ -6745,7 +6702,7 @@ pis 0  ___ ___ ___
 <-1, -1, -1>
 ##<-1, -1, -1>
 #on B20
-<-1, 0, 0>
+<0, 1, 0>
 ##<0, 1, 0>
 ###!
 ###!------------------------------------------------------------------
@@ -6755,13 +6712,13 @@ pis 0  ___ ___ ___
 #retira_c B20
 ###!
 #mapa
-espera: [B30, C20, C30, D20, D30]
+espera: [B30, C20, C30, D20]
 fragmentacio: 0
-ops_grua: 1
+ops_grua: 5
 
 filera 0
 ---------
-pis 0  ___ ___ ___
+pis 0  D30 D30 D30
         0   1   2  
 ##espera: [B30, C20, C30, D20]
 ##fragmentacio: 0
@@ -6776,7 +6733,7 @@ pis 0  ___ ___ ___
 <-1, -1, -1>
 ##<-1, -1, -1>
 #on D30
-<-1, 0, 0>
+<0, 0, 0>
 ##<0, 0, 0>
 ###!
 ###!------------------------------------------------------------------
@@ -6786,13 +6743,13 @@ pis 0  ___ ___ ___
 #retira_c C20
 ###!
 #mapa
-espera: [B30, C30, D20, D30]
+espera: [B30, C30, D20]
 fragmentacio: 0
-ops_grua: 1
+ops_grua: 5
 
 filera 0
 ---------
-pis 0  ___ ___ ___
+pis 0  D30 D30 D30
         0   1   2  
 ##espera: [B30, C30, D20]
 ##fragmentacio: 0
@@ -6807,7 +6764,7 @@ pis 0  ___ ___ ___
 <-1, -1, -1>
 ##<-1, -1, -1>
 #on D30
-<-1, 0, 0>
+<0, 0, 0>
 ##<0, 0, 0>
 ###!
 ###!------------------------------------------------------------------
@@ -6817,13 +6774,13 @@ pis 0  ___ ___ ___
 #retira_c D30
 ###!
 #mapa
-espera: [B30, C30, D20]
-fragmentacio: 0
-ops_grua: 1
+espera: [B30, C30]
+fragmentacio: 1
+ops_grua: 7
 
 filera 0
 ---------
-pis 0  ___ ___ ___
+pis 0  D20 D20 ___
         0   1   2  
 ##espera: [B30, C30]
 ##fragmentacio: 1
@@ -6838,7 +6795,7 @@ pis 0  ___ ___ ___
 <-1, -1, -1>
 ##<-1, -1, -1>
 #on D20
-<-1, 0, 0>
+<0, 0, 0>
 ##<0, 0, 0>
 ###!
 ###!------------------------------------------------------------------
@@ -6848,13 +6805,13 @@ pis 0  ___ ___ ___
 #retira_c D20
 ###!
 #mapa
-espera: [B30, C30]
+espera: [B30]
 fragmentacio: 0
-ops_grua: 1
+ops_grua: 9
 
 filera 0
 ---------
-pis 0  ___ ___ ___
+pis 0  C30 C30 C30
         0   1   2  
 ##espera: [B30]
 ##fragmentacio: 0
@@ -6869,7 +6826,7 @@ pis 0  ___ ___ ___
 <-1, -1, -1>
 ##<-1, -1, -1>
 #on C30
-<-1, 0, 0>
+<0, 0, 0>
 ##<0, 0, 0>
 ###!
 ###!------------------------------------------------------------------
@@ -6879,13 +6836,13 @@ pis 0  ___ ___ ___
 #retira_c C30
 ###!
 #mapa
-espera: [B30]
+espera: []
 fragmentacio: 0
-ops_grua: 1
+ops_grua: 11
 
 filera 0
 ---------
-pis 0  ___ ___ ___
+pis 0  B30 B30 B30
         0   1   2  
 ##espera: []
 ##fragmentacio: 0
@@ -6900,7 +6857,7 @@ pis 0  ___ ___ ___
 <-1, -1, -1>
 ##<-1, -1, -1>
 #on B30
-<-1, 0, 0>
+<0, 0, 0>
 ##<0, 0, 0>
 ###!
 ###!------------------------------------------------------------------
@@ -6912,7 +6869,7 @@ pis 0  ___ ___ ___
 #mapa
 espera: []
 fragmentacio: 0
-ops_grua: 1
+ops_grua: 12
 
 filera 0
 ---------
@@ -7094,27 +7051,16 @@ pis 0  ___ ___ ___ ___ ___ ___ ___ ___ ___ ___
 ###!------------------------------------------------------------------
 ###!
 #insereix_c cB10
-debug fil 0
 #insereix_c cB20
-debug fil -1
 #insereix_c cB30
-debug fil -1
 #insereix_c cC10
-debug fil -1
 #insereix_c cC20
-debug fil -1
 #insereix_c cC30
-debug fil -1
 #insereix_c cD10
-debug fil -1
 #insereix_c cD20
-debug fil -1
 #insereix_c cD30
-debug fil -1
 #insereix_c cE10
-debug fil -1
 #insereix_c cE20
-debug fil -1
 ###!
 ###!------------------------------------------------------------------
 ###5.2.2 On
@@ -7124,22 +7070,22 @@ debug fil -1
 <0, 0, 0>
 ##<0, 0, 0>
 #on B20
-<-1, 0, 0>
+<0, 1, 0>
 ##<0, 1, 0>
 #on B30
-<-1, 0, 0>
+<0, 3, 0>
 ##<0, 3, 0>
 #on C10
-<-1, 0, 0>
+<0, 6, 0>
 ##<0, 6, 0>
 #on C20
-<-1, 0, 0>
+<0, 7, 0>
 ##<0, 7, 0>
 #on C30
 <-1, 0, 0>
 ##<-1, 0, 0>
 #on D10
-<-1, 0, 0>
+<0, 9, 0>
 ##<0, 9, 0>
 #on D20
 <-1, 0, 0>
@@ -7224,31 +7170,31 @@ Error::terminal:46:Ubicacio no pertany al magatzem.
 B10
 ##B10
 #contenidor_ocupa u010
-
+B20
 ##B20
 #contenidor_ocupa u020
-
+B20
 ##B20
 #contenidor_ocupa u030
-
+B30
 ##B30
 #contenidor_ocupa u040
-
+B30
 ##B30
 #contenidor_ocupa u050
-
+B30
 ##B30
 #contenidor_ocupa u060
-
+C10
 ##C10
 #contenidor_ocupa u070
-
+C20
 ##C20
 #contenidor_ocupa u080
-
+C20
 ##C20
 #contenidor_ocupa u090
-
+D10
 ##D10
 #contenidor_ocupa u0100
 Error::terminal:46:Ubicacio no pertany al magatzem.
@@ -7273,13 +7219,13 @@ Error::terminal:46:Ubicacio no pertany al magatzem.
 ###!------------------------------------------------------------------
 ###!
 #mapa
-espera: [B20, B30, C10, C20, C30, D10, D20, D30, E10, E20]
+espera: [C30, D20, D30, E10, E20]
 fragmentacio: 0
-ops_grua: 1
+ops_grua: 6
 
 filera 0
 ---------
-pis 0  B10 ___ ___ ___ ___ ___ ___ ___ ___ ___
+pis 0  B10 B20 B20 B30 B30 B30 C10 C20 C20 D10
         0   1   2   3   4   5   6   7   8   9  
 ##espera: [C30, D20, D30, E10, E20]
 ##fragmentacio: 0
@@ -7306,13 +7252,13 @@ pis 0  B10 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #retira_c E10
 ###!
 #mapa
-espera: [B20, B30, C10, C20, C30, D10, D20, D30, E20]
+espera: [C30, D20, D30, E20]
 fragmentacio: 0
-ops_grua: 1
+ops_grua: 6
 
 filera 0
 ---------
-pis 0  B10 ___ ___ ___ ___ ___ ___ ___ ___ ___
+pis 0  B10 B20 B20 B30 B30 B30 C10 C20 C20 D10
         0   1   2   3   4   5   6   7   8   9  
 ##espera: [C30, D20, D30, E20]
 ##fragmentacio: 0
@@ -7327,22 +7273,22 @@ pis 0  B10 ___ ___ ___ ___ ___ ___ ___ ___ ___
 <0, 0, 0>
 ##<0, 0, 0>
 #on B20
-<-1, 0, 0>
+<0, 1, 0>
 ##<0, 1, 0>
 #on B30
-<-1, 0, 0>
+<0, 3, 0>
 ##<0, 3, 0>
 #on C10
-<-1, 0, 0>
+<0, 6, 0>
 ##<0, 6, 0>
 #on C20
-<-1, 0, 0>
+<0, 7, 0>
 ##<0, 7, 0>
 #on C30
 <-1, 0, 0>
 ##<-1, 0, 0>
 #on D10
-<-1, 0, 0>
+<0, 9, 0>
 ##<0, 9, 0>
 #on D20
 <-1, 0, 0>
@@ -7364,13 +7310,13 @@ pis 0  B10 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #retira_c B30
 ###!
 #mapa
-espera: [B20, C10, C20, C30, D10, D20, D30, E20]
-fragmentacio: 0
-ops_grua: 1
+espera: [C30, D20, D30]
+fragmentacio: 1
+ops_grua: 8
 
 filera 0
 ---------
-pis 0  B10 ___ ___ ___ ___ ___ ___ ___ ___ ___
+pis 0  B10 B20 B20 E20 E20 ___ C10 C20 C20 D10
         0   1   2   3   4   5   6   7   8   9  
 ##espera: [C30, D20, D30]
 ##fragmentacio: 1
@@ -7385,22 +7331,22 @@ pis 0  B10 ___ ___ ___ ___ ___ ___ ___ ___ ___
 <0, 0, 0>
 ##<0, 0, 0>
 #on B20
-<-1, 0, 0>
+<0, 1, 0>
 ##<0, 1, 0>
 #on B30
 <-1, -1, -1>
 ##<-1, -1, -1>
 #on C10
-<-1, 0, 0>
+<0, 6, 0>
 ##<0, 6, 0>
 #on C20
-<-1, 0, 0>
+<0, 7, 0>
 ##<0, 7, 0>
 #on C30
 <-1, 0, 0>
 ##<-1, 0, 0>
 #on D10
-<-1, 0, 0>
+<0, 9, 0>
 ##<0, 9, 0>
 #on D20
 <-1, 0, 0>
@@ -7412,7 +7358,7 @@ pis 0  B10 ___ ___ ___ ___ ___ ___ ___ ___ ___
 <-1, -1, -1>
 ##<-1, -1, -1>
 #on E20
-<-1, 0, 0>
+<0, 3, 0>
 ##<0, 3, 0>
 ###!
 ###!------------------------------------------------------------------
@@ -7420,22 +7366,15 @@ pis 0  B10 ___ ___ ___ ___ ___ ___ ___ ___ ___
 ###!------------------------------------------------------------------
 ###!
 #retira_c B10
-debug _t antes B10
-debug fil 0
-debug _t despues 
-debug _u10d -100
-debug _u20 -100
-debug _u30 -100
-debug fil -1
 ###!
 #mapa
-espera: [B20, C10, C20, C30, D10, D20, D30, E20]
-fragmentacio: 0
-ops_grua: 1
+espera: [C30, D20, D30]
+fragmentacio: 2
+ops_grua: 9
 
 filera 0
 ---------
-pis 0  ___ ___ ___ ___ ___ ___ ___ ___ ___ ___
+pis 0  ___ B20 B20 E20 E20 ___ C10 C20 C20 D10
         0   1   2   3   4   5   6   7   8   9  
 ##espera: [C30, D20, D30]
 ##fragmentacio: 2
@@ -7450,22 +7389,22 @@ pis 0  ___ ___ ___ ___ ___ ___ ___ ___ ___ ___
 <-1, -1, -1>
 ##<-1, -1, -1>
 #on B20
-<-1, 0, 0>
+<0, 1, 0>
 ##<0, 1, 0>
 #on B30
 <-1, -1, -1>
 ##<-1, -1, -1>
 #on C10
-<-1, 0, 0>
+<0, 6, 0>
 ##<0, 6, 0>
 #on C20
-<-1, 0, 0>
+<0, 7, 0>
 ##<0, 7, 0>
 #on C30
 <-1, 0, 0>
 ##<-1, 0, 0>
 #on D10
-<-1, 0, 0>
+<0, 9, 0>
 ##<0, 9, 0>
 #on D20
 <-1, 0, 0>
@@ -7477,7 +7416,7 @@ pis 0  ___ ___ ___ ___ ___ ___ ___ ___ ___ ___
 <-1, -1, -1>
 ##<-1, -1, -1>
 #on E20
-<-1, 0, 0>
+<0, 3, 0>
 ##<0, 3, 0>
 ###!
 ###!------------------------------------------------------------------
@@ -7487,13 +7426,13 @@ pis 0  ___ ___ ___ ___ ___ ___ ___ ___ ___ ___
 #retira_c C10
 ###!
 #mapa
-espera: [B20, C20, C30, D10, D20, D30, E20]
-fragmentacio: 0
-ops_grua: 1
+espera: [C30, D20, D30]
+fragmentacio: 1
+ops_grua: 10
 
 filera 0
 ---------
-pis 0  ___ ___ ___ ___ ___ ___ ___ ___ ___ ___
+pis 0  ___ B20 B20 E20 E20 ___ ___ C20 C20 D10
         0   1   2   3   4   5   6   7   8   9  
 ##espera: [C30, D30]
 ##fragmentacio: 1
@@ -7508,7 +7447,7 @@ pis 0  ___ ___ ___ ___ ___ ___ ___ ___ ___ ___
 <-1, -1, -1>
 ##<-1, -1, -1>
 #on B20
-<-1, 0, 0>
+<0, 1, 0>
 ##<0, 1, 0>
 #on B30
 <-1, -1, -1>
@@ -7517,13 +7456,13 @@ pis 0  ___ ___ ___ ___ ___ ___ ___ ___ ___ ___
 <-1, -1, -1>
 ##<-1, -1, -1>
 #on C20
-<-1, 0, 0>
+<0, 7, 0>
 ##<0, 7, 0>
 #on C30
 <-1, 0, 0>
 ##<-1, 0, 0>
 #on D10
-<-1, 0, 0>
+<0, 9, 0>
 ##<0, 9, 0>
 #on D20
 <-1, 0, 0>
@@ -7535,7 +7474,7 @@ pis 0  ___ ___ ___ ___ ___ ___ ___ ___ ___ ___
 <-1, -1, -1>
 ##<-1, -1, -1>
 #on E20
-<-1, 0, 0>
+<0, 3, 0>
 ##<0, 3, 0>
 ###!
 ###!------------------------------------------------------------------
@@ -7545,13 +7484,13 @@ pis 0  ___ ___ ___ ___ ___ ___ ___ ___ ___ ___
 #retira_c B20
 ###!
 #mapa
-espera: [C20, C30, D10, D20, D30, E20]
+espera: [C30]
 fragmentacio: 0
-ops_grua: 1
+ops_grua: 13
 
 filera 0
 ---------
-pis 0  ___ ___ ___ ___ ___ ___ ___ ___ ___ ___
+pis 0  D30 D30 D30 E20 E20 D20 D20 C20 C20 D10
         0   1   2   3   4   5   6   7   8   9  
 ##espera: [C30]
 ##fragmentacio: 0
@@ -7575,25 +7514,25 @@ pis 0  ___ ___ ___ ___ ___ ___ ___ ___ ___ ___
 <-1, -1, -1>
 ##<-1, -1, -1>
 #on C20
-<-1, 0, 0>
+<0, 7, 0>
 ##<0, 7, 0>
 #on C30
 <-1, 0, 0>
 ##<-1, 0, 0>
 #on D10
-<-1, 0, 0>
+<0, 9, 0>
 ##<0, 9, 0>
 #on D20
-<-1, 0, 0>
+<0, 5, 0>
 ##<0, 5, 0>
 #on D30
-<-1, 0, 0>
+<0, 0, 0>
 ##<0, 0, 0>
 #on E10
 <-1, -1, -1>
 ##<-1, -1, -1>
 #on E20
-<-1, 0, 0>
+<0, 3, 0>
 ##<0, 3, 0>
 ###!
 ###!------------------------------------------------------------------
@@ -7603,13 +7542,13 @@ pis 0  ___ ___ ___ ___ ___ ___ ___ ___ ___ ___
 #retira_c D20
 ###!
 #mapa
-espera: [C20, C30, D10, D30, E20]
+espera: [C30]
 fragmentacio: 0
-ops_grua: 1
+ops_grua: 14
 
 filera 0
 ---------
-pis 0  ___ ___ ___ ___ ___ ___ ___ ___ ___ ___
+pis 0  D30 D30 D30 E20 E20 ___ ___ C20 C20 D10
         0   1   2   3   4   5   6   7   8   9  
 ##espera: [C30]
 ##fragmentacio: 0
@@ -7633,25 +7572,25 @@ pis 0  ___ ___ ___ ___ ___ ___ ___ ___ ___ ___
 <-1, -1, -1>
 ##<-1, -1, -1>
 #on C20
-<-1, 0, 0>
+<0, 7, 0>
 ##<0, 7, 0>
 #on C30
 <-1, 0, 0>
 ##<-1, 0, 0>
 #on D10
-<-1, 0, 0>
+<0, 9, 0>
 ##<0, 9, 0>
 #on D20
 <-1, -1, -1>
 ##<-1, -1, -1>
 #on D30
-<-1, 0, 0>
+<0, 0, 0>
 ##<0, 0, 0>
 #on E10
 <-1, -1, -1>
 ##<-1, -1, -1>
 #on E20
-<-1, 0, 0>
+<0, 3, 0>
 ##<0, 3, 0>
 ###!
 ###!------------------------------------------------------------------
@@ -7661,13 +7600,13 @@ pis 0  ___ ___ ___ ___ ___ ___ ___ ___ ___ ___
 #retira_c D10
 ###!
 #mapa
-espera: [C20, C30, D30, E20]
-fragmentacio: 0
-ops_grua: 1
+espera: [C30]
+fragmentacio: 1
+ops_grua: 15
 
 filera 0
 ---------
-pis 0  ___ ___ ___ ___ ___ ___ ___ ___ ___ ___
+pis 0  D30 D30 D30 E20 E20 ___ ___ C20 C20 ___
         0   1   2   3   4   5   6   7   8   9  
 ##espera: [C30]
 ##fragmentacio: 1
@@ -7691,7 +7630,7 @@ pis 0  ___ ___ ___ ___ ___ ___ ___ ___ ___ ___
 <-1, -1, -1>
 ##<-1, -1, -1>
 #on C20
-<-1, 0, 0>
+<0, 7, 0>
 ##<0, 7, 0>
 #on C30
 <-1, 0, 0>
@@ -7703,13 +7642,13 @@ pis 0  ___ ___ ___ ___ ___ ___ ___ ___ ___ ___
 <-1, -1, -1>
 ##<-1, -1, -1>
 #on D30
-<-1, 0, 0>
+<0, 0, 0>
 ##<0, 0, 0>
 #on E10
 <-1, -1, -1>
 ##<-1, -1, -1>
 #on E20
-<-1, 0, 0>
+<0, 3, 0>
 ##<0, 3, 0>
 ###!
 ###!
@@ -7722,16 +7661,15 @@ pis 0  ___ ___ ___ ___ ___ ___ ___ ___ ___ ___
 ###!------------------------------------------------------------------
 ###!
 #insereix_c cF10
-debug fil -1
 ###!
 #mapa
-espera: [C20, C30, D30, E20, F10]
-fragmentacio: 0
-ops_grua: 1
+espera: [C30]
+fragmentacio: 2
+ops_grua: 16
 
 filera 0
 ---------
-pis 0  ___ ___ ___ ___ ___ ___ ___ ___ ___ ___
+pis 0  D30 D30 D30 E20 E20 F10 ___ C20 C20 ___
         0   1   2   3   4   5   6   7   8   9  
 ##espera: [C30]
 ##fragmentacio: 2
@@ -7755,7 +7693,7 @@ pis 0  ___ ___ ___ ___ ___ ___ ___ ___ ___ ___
 <-1, -1, -1>
 ##<-1, -1, -1>
 #on C20
-<-1, 0, 0>
+<0, 7, 0>
 ##<0, 7, 0>
 #on C30
 <-1, 0, 0>
@@ -7767,16 +7705,16 @@ pis 0  ___ ___ ___ ___ ___ ___ ___ ___ ___ ___
 <-1, -1, -1>
 ##<-1, -1, -1>
 #on D30
-<-1, 0, 0>
+<0, 0, 0>
 ##<0, 0, 0>
 #on E10
 <-1, -1, -1>
 ##<-1, -1, -1>
 #on E20
-<-1, 0, 0>
+<0, 3, 0>
 ##<0, 3, 0>
 #on F10
-<-1, 0, 0>
+<0, 5, 0>
 ##<0, 5, 0>
 ###!
 ###!
@@ -7792,13 +7730,13 @@ pis 0  ___ ___ ___ ___ ___ ___ ___ ___ ___ ___
 #retira_c C20
 ###!
 #mapa
-espera: [C30, D30, E20, F10]
-fragmentacio: 0
-ops_grua: 1
+espera: []
+fragmentacio: 1
+ops_grua: 18
 
 filera 0
 ---------
-pis 0  ___ ___ ___ ___ ___ ___ ___ ___ ___ ___
+pis 0  D30 D30 D30 E20 E20 F10 C30 C30 C30 ___
         0   1   2   3   4   5   6   7   8   9  
 ##espera: []
 ##fragmentacio: 1
@@ -7825,7 +7763,7 @@ pis 0  ___ ___ ___ ___ ___ ___ ___ ___ ___ ___
 <-1, -1, -1>
 ##<-1, -1, -1>
 #on C30
-<-1, 0, 0>
+<0, 6, 0>
 ##<0, 6, 0>
 #on D10
 <-1, -1, -1>
@@ -7834,16 +7772,16 @@ pis 0  ___ ___ ___ ___ ___ ___ ___ ___ ___ ___
 <-1, -1, -1>
 ##<-1, -1, -1>
 #on D30
-<-1, 0, 0>
+<0, 0, 0>
 ##<0, 0, 0>
 #on E10
 <-1, -1, -1>
 ##<-1, -1, -1>
 #on E20
-<-1, 0, 0>
+<0, 3, 0>
 ##<0, 3, 0>
 #on F10
-<-1, 0, 0>
+<0, 5, 0>
 ##<0, 5, 0>
 ###!
 ###!------------------------------------------------------------------
@@ -7853,13 +7791,13 @@ pis 0  ___ ___ ___ ___ ___ ___ ___ ___ ___ ___
 #retira_c D30
 ###!
 #mapa
-espera: [C30, E20, F10]
-fragmentacio: 0
-ops_grua: 1
+espera: []
+fragmentacio: 1
+ops_grua: 19
 
 filera 0
 ---------
-pis 0  ___ ___ ___ ___ ___ ___ ___ ___ ___ ___
+pis 0  ___ ___ ___ E20 E20 F10 C30 C30 C30 ___
         0   1   2   3   4   5   6   7   8   9  
 ##espera: []
 ##fragmentacio: 1
@@ -7886,7 +7824,7 @@ pis 0  ___ ___ ___ ___ ___ ___ ___ ___ ___ ___
 <-1, -1, -1>
 ##<-1, -1, -1>
 #on C30
-<-1, 0, 0>
+<0, 6, 0>
 ##<0, 6, 0>
 #on D10
 <-1, -1, -1>
@@ -7901,10 +7839,10 @@ pis 0  ___ ___ ___ ___ ___ ___ ___ ___ ___ ___
 <-1, -1, -1>
 ##<-1, -1, -1>
 #on E20
-<-1, 0, 0>
+<0, 3, 0>
 ##<0, 3, 0>
 #on F10
-<-1, 0, 0>
+<0, 5, 0>
 ##<0, 5, 0>
 ###!
 ###!------------------------------------------------------------------
@@ -7914,13 +7852,13 @@ pis 0  ___ ___ ___ ___ ___ ___ ___ ___ ___ ___
 #retira_c C30
 ###!
 #mapa
-espera: [E20, F10]
+espera: []
 fragmentacio: 0
-ops_grua: 1
+ops_grua: 20
 
 filera 0
 ---------
-pis 0  ___ ___ ___ ___ ___ ___ ___ ___ ___ ___
+pis 0  ___ ___ ___ E20 E20 F10 ___ ___ ___ ___
         0   1   2   3   4   5   6   7   8   9  
 ##espera: []
 ##fragmentacio: 0
@@ -7962,10 +7900,10 @@ pis 0  ___ ___ ___ ___ ___ ___ ___ ___ ___ ___
 <-1, -1, -1>
 ##<-1, -1, -1>
 #on E20
-<-1, 0, 0>
+<0, 3, 0>
 ##<0, 3, 0>
 #on F10
-<-1, 0, 0>
+<0, 5, 0>
 ##<0, 5, 0>
 ###!
 ###!------------------------------------------------------------------
@@ -7975,13 +7913,13 @@ pis 0  ___ ___ ___ ___ ___ ___ ___ ___ ___ ___
 #retira_c E20
 ###!
 #mapa
-espera: [F10]
+espera: []
 fragmentacio: 0
-ops_grua: 1
+ops_grua: 21
 
 filera 0
 ---------
-pis 0  ___ ___ ___ ___ ___ ___ ___ ___ ___ ___
+pis 0  ___ ___ ___ ___ ___ F10 ___ ___ ___ ___
         0   1   2   3   4   5   6   7   8   9  
 ##espera: []
 ##fragmentacio: 0
@@ -8026,7 +7964,7 @@ pis 0  ___ ___ ___ ___ ___ ___ ___ ___ ___ ___
 <-1, -1, -1>
 ##<-1, -1, -1>
 #on F10
-<-1, 0, 0>
+<0, 5, 0>
 ##<0, 5, 0>
 ###!
 ###!------------------------------------------------------------------
@@ -8038,7 +7976,7 @@ pis 0  ___ ___ ___ ___ ___ ___ ___ ___ ___ ___
 #mapa
 espera: []
 fragmentacio: 0
-ops_grua: 1
+ops_grua: 22
 
 filera 0
 ---------
@@ -8119,7 +8057,6 @@ pis 0  ___ ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_11 terminal 1 10 3
 ###!
 #insereix_c cA10
-debug fil 0
 ###!
 #on A10
 <0, 0, 0>
@@ -8160,7 +8097,6 @@ pis 0  A10 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_12 terminal 1 10 3
 ###!
 #insereix_c cA20
-debug fil 0
 ###!
 #on A20
 <0, 0, 0>
@@ -8175,7 +8111,7 @@ filera 0
 ---------
 pis 2                                         
 pis 1                                         
-pis 0  A20 ___ ___ ___ ___ ___ ___ ___ ___ ___
+pis 0  A20 A20 ___ ___ ___ ___ ___ ___ ___ ___
         0   1   2   3   4   5   6   7   8   9  
 ##espera: []
 ##fragmentacio: 0
@@ -8195,7 +8131,6 @@ pis 0  A20 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_13 terminal 1 10 3
 ###!
 #insereix_c cA30
-debug fil 0
 ###!
 #on A30
 <0, 0, 0>
@@ -8205,10 +8140,10 @@ debug fil 0
 A30
 ##A30
 #contenidor_ocupa u010
-
+A30
 ##A30
 #contenidor_ocupa u020
-
+A30
 ##A30
 #contenidor_ocupa u030 
 
@@ -8228,7 +8163,7 @@ filera 0
 ---------
 pis 2                                         
 pis 1                                         
-pis 0  A30 ___ ___ ___ ___ ___ ___ ___ ___ ___
+pis 0  A30 A30 A30 ___ ___ ___ ___ ___ ___ ___
         0   1   2   3   4   5   6   7   8   9  
 ##espera: []
 ##fragmentacio: 0
@@ -8263,9 +8198,7 @@ pis 0  A30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_21 terminal 1 10 3
 ###!
 #insereix_c cA30
-debug fil 0
 #insereix_c cB10
-debug fil 0
 ###!
 #on B10
 <0, 0, 0>
@@ -8280,7 +8213,7 @@ filera 0
 ---------
 pis 2                                         
 pis 1                                         
-pis 0  B10 ___ ___ ___ ___ ___ ___ ___ ___ ___
+pis 0  B10 A30 A30 ___ ___ ___ ___ ___ ___ ___
         0   1   2   3   4   5   6   7   8   9  
 ##espera: []
 ##fragmentacio: 1
@@ -8300,9 +8233,7 @@ pis 0  B10 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_22 terminal 1 10 3
 ###!
 #insereix_c cA30
-debug fil 0
 #insereix_c cB20
-debug fil 0
 ###!
 #on B20
 <0, 0, 0>
@@ -8316,7 +8247,7 @@ filera 0
 ---------
 pis 2                                         
 pis 1                                         
-pis 0  B20 ___ ___ ___ ___ ___ ___ ___ ___ ___
+pis 0  B20 B20 A30 ___ ___ ___ ___ ___ ___ ___
         0   1   2   3   4   5   6   7   8   9  
 ##espera: []
 ##fragmentacio: 1
@@ -8336,9 +8267,7 @@ pis 0  B20 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_23 terminal 1 10 3
 ###!
 #insereix_c cA30
-debug fil 0
 #insereix_c cB30
-debug fil 0
 ###!
 #on B30
 <0, 0, 0>
@@ -8353,7 +8282,7 @@ filera 0
 ---------
 pis 2                                         
 pis 1                                         
-pis 0  B30 ___ ___ ___ ___ ___ ___ ___ ___ ___
+pis 0  B30 B30 B30 ___ ___ ___ ___ ___ ___ ___
         0   1   2   3   4   5   6   7   8   9  
 ##espera: []
 ##fragmentacio: 0
@@ -8388,41 +8317,33 @@ pis 0  B30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_31 terminal 1 10 3
 ###!
 #insereix_c cA30
-debug fil 0
 #insereix_c cB30
-debug fil 0
 #insereix_c cC30
-debug fil 0
 #insereix_c cD30
-debug fil -1
 #insereix_c cE30
-debug fil -1
 ###!
 #long_terminal A30
 30
 ##30
 ###!
 #insereix_c cF30
-debug fil -1
 #insereix_c cG20
-debug fil -1
 #insereix_c cH10
-debug fil -1
 ###!
 #on H10
-<-1, 0, 0>
+<0, 6, 0>
 ##<0, 6, 1>
 ###!
 #mapa
-espera: [D30, E30, F30, G20, H10]
-fragmentacio: 0
-ops_grua: 3
+espera: []
+fragmentacio: 2
+ops_grua: 8
 
 filera 0
 ---------
 pis 2                                         
 pis 1                                         
-pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
+pis 0  C30 C30 C30 F30 F30 F30 H10 G20 ___ ___
         0   1   2   3   4   5   6   7   8   9  
 ##espera: []
 ##fragmentacio: 2
@@ -8442,41 +8363,33 @@ pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_32 terminal 1 10 3
 ###!
 #insereix_c cA30
-debug fil 0
 #insereix_c cB30
-debug fil 0
 #insereix_c cC30
-debug fil 0
 #insereix_c cD30
-debug fil -1
 ###!
 #num_fileres 
 1
 ##1
 ###!
 #insereix_c cE30
-debug fil -1
 #insereix_c cF30
-debug fil -1
 #insereix_c cG20
-debug fil -1
 #insereix_c cH20
-debug fil -1
 ###!
 #on H20
-<-1, 0, 0>
+<0, 6, 0>
 ##<0, 6, 1>
 ###!
 #mapa
-espera: [D30, E30, F30, G20, H20]
+espera: []
 fragmentacio: 0
-ops_grua: 3
+ops_grua: 8
 
 filera 0
 ---------
 pis 2                                         
 pis 1                                         
-pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
+pis 0  C30 C30 C30 F30 F30 F30 H20 H20 ___ ___
         0   1   2   3   4   5   6   7   8   9  
 ##espera: []
 ##fragmentacio: 0
@@ -8496,41 +8409,33 @@ pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_33 terminal 1 10 3
 ###!
 #insereix_c cA30
-debug fil 0
 #insereix_c cB30
-debug fil 0
 #insereix_c cC30
-debug fil 0
 #insereix_c cD30
-debug fil -1
 #insereix_c cE30
-debug fil -1
 ###!
 #num_places
 10
 ##10
 ###!
 #insereix_c cF30
-debug fil -1
 #insereix_c cG20
-debug fil -1
 #insereix_c cH30
-debug fil -1
 ###!
 #on H30
 <-1, 0, 0>
 ##<-1, 0, 0>
 ###!
 #mapa
-espera: [D30, E30, F30, G20, H30]
+espera: [H30]
 fragmentacio: 0
-ops_grua: 3
+ops_grua: 7
 
 filera 0
 ---------
 pis 2                                         
 pis 1                                         
-pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
+pis 0  C30 C30 C30 F30 F30 F30 G20 G20 ___ ___
         0   1   2   3   4   5   6   7   8   9  
 ##espera: [H30]
 ##fragmentacio: 0
@@ -8565,45 +8470,35 @@ pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_41 terminal 1 10 3
 ###!
 #insereix_c cA30
-debug fil 0
 #insereix_c cB30
-debug fil 0
 #insereix_c cC30
-debug fil 0
 #insereix_c cD30
-debug fil -1
 #insereix_c cE30
-debug fil -1
 ###!
 #num_pisos
 3
 ##3
 ###!
 #insereix_c cF30
-debug fil -1
 #insereix_c cG30
-debug fil -1
 #insereix_c cH30
-debug fil -1
 #insereix_c cI30
-debug fil -1
 #insereix_c cJ10
-debug fil -1
 ###!
 #on J10
-<-1, 0, 0>
+<0, 9, 0>
 ##<0, 9, 0>
 ###!
 #mapa
-espera: [D30, E30, F30, G30, H30, I30, J10]
-fragmentacio: 0
-ops_grua: 3
+espera: []
+fragmentacio: 1
+ops_grua: 10
 
 filera 0
 ---------
 pis 2                                         
 pis 1                                         
-pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
+pis 0  C30 C30 C30 F30 F30 F30 I30 I30 I30 J10
         0   1   2   3   4   5   6   7   8   9  
 ##espera: []
 ##fragmentacio: 1
@@ -8623,40 +8518,30 @@ pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_42 terminal 1 10 3
 ###!
 #insereix_c cA30
-debug fil 0
 #insereix_c cB30
-debug fil 0
 #insereix_c cC30
-debug fil 0
 #insereix_c cD30
-debug fil -1
 #insereix_c cE30
-debug fil -1
 #insereix_c cF30
-debug fil -1
 #insereix_c cG30
-debug fil -1
 #insereix_c cH30
-debug fil -1
 #insereix_c cI30
-debug fil -1
 #insereix_c cJ20
-debug fil -1
 ###!
 #on J20
 <-1, 0, 0>
 ##<-1, 0, 0>
 ###!
 #mapa
-espera: [D30, E30, F30, G30, H30, I30, J20]
-fragmentacio: 0
-ops_grua: 3
+espera: [J20]
+fragmentacio: 1
+ops_grua: 9
 
 filera 0
 ---------
 pis 2                                         
 pis 1                                         
-pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
+pis 0  C30 C30 C30 F30 F30 F30 I30 I30 I30 ___
         0   1   2   3   4   5   6   7   8   9  
 ##espera: [J20]
 ##fragmentacio: 1
@@ -8676,40 +8561,30 @@ pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_43 terminal 1 10 3
 ###!
 #insereix_c cA30
-debug fil 0
 #insereix_c cB30
-debug fil 0
 #insereix_c cC30
-debug fil 0
 #insereix_c cD30
-debug fil -1
 #insereix_c cE30
-debug fil -1
 #insereix_c cF30
-debug fil -1
 #insereix_c cG30
-debug fil -1
 #insereix_c cH30
-debug fil -1
 #insereix_c cI30
-debug fil -1
 #insereix_c cJ30
-debug fil -1
 ###!
 #on J30
 <-1, 0, 0>
 ##<-1, 0, 0>
 ###!
 #mapa
-espera: [D30, E30, F30, G30, H30, I30, J30]
-fragmentacio: 0
-ops_grua: 3
+espera: [J30]
+fragmentacio: 1
+ops_grua: 9
 
 filera 0
 ---------
 pis 2                                         
 pis 1                                         
-pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
+pis 0  C30 C30 C30 F30 F30 F30 I30 I30 I30 ___
         0   1   2   3   4   5   6   7   8   9  
 ##espera: [J30]
 ##fragmentacio: 1
@@ -8744,45 +8619,32 @@ pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_51 terminal 1 10 3
 ###!
 #insereix_c cA30
-debug fil 0
 #insereix_c cB30
-debug fil 0
 #insereix_c cC30
-debug fil 0
 #insereix_c cD30
-debug fil -1
 #insereix_c cE30
-debug fil -1
 #insereix_c cF30
-debug fil -1
 #insereix_c cG30
-debug fil -1
 #insereix_c cH30
-debug fil -1
 #insereix_c cI30
-debug fil -1
 #insereix_c cJ10
-debug fil -1
 #insereix_c cK10
-debug fil -1
 #insereix_c cL10
-debug fil -1
 #insereix_c cM10
-debug fil -1
 #on M10
 <-1, 0, 0>
 ##<-1, 0, 0>
 ###!
 #mapa
-espera: [D30, E30, F30, G30, H30, I30, J10, K10, L10, M10]
+espera: [M10]
 fragmentacio: 0
-ops_grua: 3
+ops_grua: 12
 
 filera 0
 ---------
 pis 2                                         
 pis 1                                         
-pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
+pis 0  C30 C30 C30 F30 F30 F30 I30 I30 I30 L10
         0   1   2   3   4   5   6   7   8   9  
 ##espera: [M10]
 ##fragmentacio: 0
@@ -8802,51 +8664,38 @@ pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_52 terminal 1 10 3
 ###!
 #insereix_c cA30
-debug fil 0
 #insereix_c cB30
-debug fil 0
 #insereix_c cC30
-debug fil 0
 #insereix_c cD30
-debug fil -1
 #insereix_c cE30
-debug fil -1
 #insereix_c cF30
-debug fil -1
 ###!
 #num_pisos
 3
 ##3
 ###!
 #insereix_c cG30
-debug fil -1
 #insereix_c cH30
-debug fil -1
 #insereix_c cI30
-debug fil -1
 #insereix_c cJ10
-debug fil -1
 #insereix_c cK10
-debug fil -1
 #insereix_c cL10
-debug fil -1
 #insereix_c cM20
-debug fil -1
 ###!
 #on M20
 <-1, 0, 0>
 ##<-1, 0, 0>
 ###!
 #mapa
-espera: [D30, E30, F30, G30, H30, I30, J10, K10, L10, M20]
+espera: [M20]
 fragmentacio: 0
-ops_grua: 3
+ops_grua: 12
 
 filera 0
 ---------
 pis 2                                         
 pis 1                                         
-pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
+pis 0  C30 C30 C30 F30 F30 F30 I30 I30 I30 L10
         0   1   2   3   4   5   6   7   8   9  
 ##espera: [M20]
 ##fragmentacio: 0
@@ -8866,51 +8715,38 @@ pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_53 terminal 1 10 3
 ###!
 #insereix_c cA30
-debug fil 0
 #insereix_c cB30
-debug fil 0
 #insereix_c cC30
-debug fil 0
 #insereix_c cD30
-debug fil -1
 #insereix_c cE30
-debug fil -1
 #insereix_c cF30
-debug fil -1
 #insereix_c cG30
-debug fil -1
 #insereix_c cH30
-debug fil -1
 #insereix_c cI30
-debug fil -1
 ###!
 #num_places
 10
 ##10
 ###!
 #insereix_c cJ10
-debug fil -1
 #insereix_c cK10
-debug fil -1
 #insereix_c cL10
-debug fil -1
 #insereix_c cM30
-debug fil -1
 ###!
 #on M30
 <-1, 0, 0>
 ##<-1, 0, 0>
 ###!
 #mapa
-espera: [D30, E30, F30, G30, H30, I30, J10, K10, L10, M30]
+espera: [M30]
 fragmentacio: 0
-ops_grua: 3
+ops_grua: 12
 
 filera 0
 ---------
 pis 2                                         
 pis 1                                         
-pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
+pis 0  C30 C30 C30 F30 F30 F30 I30 I30 I30 L10
         0   1   2   3   4   5   6   7   8   9  
 ##espera: [M30]
 ##fragmentacio: 0
@@ -8945,45 +8781,35 @@ pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_61 terminal 1 10 3
 ###!
 #insereix_c cA30
-debug fil 0
 #insereix_c cB30
-debug fil 0
 #insereix_c cC30
-debug fil 0
 #insereix_c cD30
-debug fil -1
 #insereix_c cE30
-debug fil -1
 #insereix_c cF30
-debug fil -1
 #insereix_c cG20
-debug fil -1
 #insereix_c cH30
-debug fil -1
 ###!
 #num_fileres
 1
 ##1
 ###!
 #insereix_c cI30
-debug fil -1
 #insereix_c cK10
-debug fil -1
 ###!
 #on K10
-<-1, 0, 0>
+<0, 6, 0>
 ##<0, 6, 1>
 ###!
 #mapa
-espera: [D30, E30, F30, G20, H30, I30, K10]
-fragmentacio: 0
-ops_grua: 3
+espera: [H30, I30]
+fragmentacio: 2
+ops_grua: 8
 
 filera 0
 ---------
 pis 2                                         
 pis 1                                         
-pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
+pis 0  C30 C30 C30 F30 F30 F30 K10 G20 ___ ___
         0   1   2   3   4   5   6   7   8   9  
 ##espera: [H30, I30]
 ##fragmentacio: 2
@@ -9003,45 +8829,35 @@ pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_62 terminal 1 10 3
 ###!
 #insereix_c cA30
-debug fil 0
 #insereix_c cB30
-debug fil 0
 #insereix_c cC30
-debug fil 0
 #insereix_c cD30
-debug fil -1
 #insereix_c cE30
-debug fil -1
 #insereix_c cF30
-debug fil -1
 #insereix_c cG20
-debug fil -1
 #insereix_c cH30
-debug fil -1
 ###!
 #long_terminal C30
 30
 ##30
 ###!
 #insereix_c cI30
-debug fil -1
 #insereix_c cK20
-debug fil -1
 ###!
 #on K20
-<-1, 0, 0>
+<0, 6, 0>
 ##<0, 6, 1>
 ###!
 #mapa
-espera: [D30, E30, F30, G20, H30, I30, K20]
+espera: [H30, I30]
 fragmentacio: 0
-ops_grua: 3
+ops_grua: 8
 
 filera 0
 ---------
 pis 2                                         
 pis 1                                         
-pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
+pis 0  C30 C30 C30 F30 F30 F30 K20 K20 ___ ___
         0   1   2   3   4   5   6   7   8   9  
 ##espera: [H30, I30]
 ##fragmentacio: 0
@@ -9061,45 +8877,35 @@ pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_63 terminal 1 10 3
 ###!
 #insereix_c cA30
-debug fil 0
 #insereix_c cB30
-debug fil 0
 #insereix_c cC30
-debug fil 0
 #insereix_c cD30
-debug fil -1
 #insereix_c cE30
-debug fil -1
 #insereix_c cF30
-debug fil -1
 #insereix_c cG20
-debug fil -1
 #insereix_c cH30
-debug fil -1
 ###!
 #num_fileres
 1
 ##1
 ###!
 #insereix_c cI30
-debug fil -1
 #insereix_c cK30
-debug fil -1
 ###!
 #on K30
 <-1, 0, 0>
 ##<-1, 0, 0>
 ###!
 #mapa
-espera: [D30, E30, F30, G20, H30, I30, K30]
+espera: [H30, I30, K30]
 fragmentacio: 0
-ops_grua: 3
+ops_grua: 7
 
 filera 0
 ---------
 pis 2                                         
 pis 1                                         
-pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
+pis 0  C30 C30 C30 F30 F30 F30 G20 G20 ___ ___
         0   1   2   3   4   5   6   7   8   9  
 ##espera: [H30, I30, K30]
 ##fragmentacio: 0
@@ -9134,45 +8940,34 @@ pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_71 terminal 1 10 3
 ###!
 #insereix_c cA30
-debug fil 0
 #insereix_c cB30
-debug fil 0
 #insereix_c cC30
-debug fil 0
 #insereix_c cD20
-debug fil -1
 #insereix_c cE20
-debug fil -1
 #insereix_c cF20
-debug fil -1
 #insereix_c cG30
-debug fil -1
 #insereix_c cK10
-debug fil -1
 #insereix_c cH30
-debug fil -1
 #insereix_c cI30
-debug fil -1
 #insereix_c cL20
-debug fil -1
 ###!
 #on L20
-<-1, 0, 0>
+<0, 6, 0>
 ##<0, 6, 1>
 #on I30
 <-1, 0, 0>
 ##<0, 5, 2>
 ###!
 #mapa
-espera: [D20, E20, F20, G30, H30, I30, K10, L20]
+espera: [H30, I30]
 fragmentacio: 0
-ops_grua: 3
+ops_grua: 9
 
 filera 0
 ---------
 pis 2                                         
 pis 1                                         
-pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
+pis 0  C30 C30 C30 F20 F20 K10 L20 L20 ___ ___
         0   1   2   3   4   5   6   7   8   9  
 ##espera: [H30]
 ##fragmentacio: 0
@@ -9192,45 +8987,34 @@ pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_72 terminal 1 10 3
 ###!
 #insereix_c cA30
-debug fil 0
 #insereix_c cB30
-debug fil 0
 #insereix_c cC30
-debug fil 0
 #insereix_c cD20
-debug fil -1
 #insereix_c cE20
-debug fil -1
 #insereix_c cF20
-debug fil -1
 #insereix_c cG30
-debug fil -1
 #insereix_c cL20
-debug fil -1
 #insereix_c cH30
-debug fil -1
 #insereix_c cI30
-debug fil -1
 #insereix_c cK10
-debug fil -1
 ###!
 #on L20
-<-1, 0, 0>
+<0, 5, 0>
 ##<0, 5, 1>
 #on I30
 <-1, 0, 0>
 ##<-1, 0, 0>
 ###!
 #mapa
-espera: [D20, E20, F20, G30, H30, I30, K10, L20]
-fragmentacio: 0
-ops_grua: 3
+espera: [H30, I30]
+fragmentacio: 2
+ops_grua: 9
 
 filera 0
 ---------
 pis 2                                         
 pis 1                                         
-pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
+pis 0  C30 C30 C30 F20 F20 K10 L20 G30 ___ ___
         0   1   2   3   4   5   6   7   8   9  
 ##espera: [H30, I30]
 ##fragmentacio: 2
@@ -9264,48 +9048,34 @@ pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_81 terminal 1 10 3
 ###!
 #insereix_c cA30
-debug fil 0
 #insereix_c cB30
-debug fil 0
 #insereix_c cC30
-debug fil 0
 #insereix_c cD30
-debug fil -1
 #insereix_c cE30
-debug fil -1
 #insereix_c cF30
-debug fil -1
 #insereix_c cG30
-debug fil -1
 #insereix_c cH30
-debug fil -1
 #insereix_c cI30
-debug fil -1
 #insereix_c cL30
-debug fil -1
 #insereix_c cM20
-debug fil -1
 #insereix_c cN30
-debug fil -1
 #insereix_c cO20
-debug fil -1
 #insereix_c cJ10
-debug fil -1
 ###!
 #on J10
-<-1, 0, 0>
+<0, 9, 0>
 ##<0, 9, 0>
 ###!
 #mapa
-espera: [D30, E30, F30, G30, H30, I30, J10, L30, M20, N30, O20]
-fragmentacio: 0
-ops_grua: 3
+espera: [L30, M20, N30, O20]
+fragmentacio: 1
+ops_grua: 10
 
 filera 0
 ---------
 pis 2                                         
 pis 1                                         
-pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
+pis 0  C30 C30 C30 F30 F30 F30 I30 I30 I30 J10
         0   1   2   3   4   5   6   7   8   9  
 ##espera: [L30, M20, N30, O20]
 ##fragmentacio: 1
@@ -9325,48 +9095,34 @@ pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_82 terminal 1 10 3
 ###!
 #insereix_c cA30
-debug fil 0
 #insereix_c cB30
-debug fil 0
 #insereix_c cC30
-debug fil 0
 #insereix_c cD30
-debug fil -1
 #insereix_c cE30
-debug fil -1
 #insereix_c cF30
-debug fil -1
 #insereix_c cG30
-debug fil -1
 #insereix_c cH30
-debug fil -1
 #insereix_c cI30
-debug fil -1
 #insereix_c cL30
-debug fil -1
 #insereix_c cM20
-debug fil -1
 #insereix_c cN30
-debug fil -1
 #insereix_c cO20
-debug fil -1
 #insereix_c cJ20
-debug fil -1
 ###!
 #on J20
 <-1, 0, 0>
 ##<-1, 0, 0>
 ###!
 #mapa
-espera: [D30, E30, F30, G30, H30, I30, J20, L30, M20, N30, O20]
-fragmentacio: 0
-ops_grua: 3
+espera: [J20, L30, M20, N30, O20]
+fragmentacio: 1
+ops_grua: 9
 
 filera 0
 ---------
 pis 2                                         
 pis 1                                         
-pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
+pis 0  C30 C30 C30 F30 F30 F30 I30 I30 I30 ___
         0   1   2   3   4   5   6   7   8   9  
 ##espera: [J20, L30, M20, N30, O20]
 ##fragmentacio: 1
@@ -9386,48 +9142,34 @@ pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_83 terminal 1 10 3
 ###!
 #insereix_c cA30
-debug fil 0
 #insereix_c cB30
-debug fil 0
 #insereix_c cC30
-debug fil 0
 #insereix_c cD30
-debug fil -1
 #insereix_c cE30
-debug fil -1
 #insereix_c cF30
-debug fil -1
 #insereix_c cG30
-debug fil -1
 #insereix_c cH30
-debug fil -1
 #insereix_c cI30
-debug fil -1
 #insereix_c cL30
-debug fil -1
 #insereix_c cM20
-debug fil -1
 #insereix_c cN30
-debug fil -1
 #insereix_c cO20
-debug fil -1
 #insereix_c cJ30
-debug fil -1
 ###!
 #on J30
 <-1, 0, 0>
 ##<-1, 0, 0>
 ###!
 #mapa
-espera: [D30, E30, F30, G30, H30, I30, J30, L30, M20, N30, O20]
-fragmentacio: 0
-ops_grua: 3
+espera: [J30, L30, M20, N30, O20]
+fragmentacio: 1
+ops_grua: 9
 
 filera 0
 ---------
 pis 2                                         
 pis 1                                         
-pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
+pis 0  C30 C30 C30 F30 F30 F30 I30 I30 I30 ___
         0   1   2   3   4   5   6   7   8   9  
 ##espera: [J30, L30, M20, N30, O20]
 ##fragmentacio: 1
@@ -9460,44 +9202,32 @@ pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_91 terminal 1 10 3
 ###!
 #insereix_c cA30
-debug fil 0
 #insereix_c cB30
-debug fil 0
 #insereix_c cC30
-debug fil 0
 #insereix_c cD30
-debug fil -1
 #insereix_c cE30
-debug fil -1
 #insereix_c cF30
-debug fil -1
 #insereix_c cG30
-debug fil -1
 #insereix_c cH30
-debug fil -1
 #insereix_c cI30
-debug fil -1
 #insereix_c cM20
-debug fil -1
 #insereix_c cO20
-debug fil -1
 #insereix_c cJ10
-debug fil -1
 ###!
 #on J10
-<-1, 0, 0>
+<0, 9, 0>
 ##<0, 9, 0>
 ###!
 #mapa 
-espera: [D30, E30, F30, G30, H30, I30, J10, M20, O20]
-fragmentacio: 0
-ops_grua: 3
+espera: [M20, O20]
+fragmentacio: 1
+ops_grua: 10
 
 filera 0
 ---------
 pis 2                                         
 pis 1                                         
-pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
+pis 0  C30 C30 C30 F30 F30 F30 I30 I30 I30 J10
         0   1   2   3   4   5   6   7   8   9  
 ##espera: [M20, O20]
 ##fragmentacio: 1
@@ -9517,44 +9247,32 @@ pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_92 terminal 1 10 3
 ###!
 #insereix_c cA30
-debug fil 0
 #insereix_c cB30
-debug fil 0
 #insereix_c cC30
-debug fil 0
 #insereix_c cD30
-debug fil -1
 #insereix_c cE30
-debug fil -1
 #insereix_c cF30
-debug fil -1
 #insereix_c cG30
-debug fil -1
 #insereix_c cH30
-debug fil -1
 #insereix_c cI30
-debug fil -1
 #insereix_c cM20
-debug fil -1
 #insereix_c cO20
-debug fil -1
 #insereix_c cJ20
-debug fil -1
 ###!
 #on J20
 <-1, 0, 0>
 ##<-1, 0, 0>
 ###!
 #mapa 
-espera: [D30, E30, F30, G30, H30, I30, J20, M20, O20]
-fragmentacio: 0
-ops_grua: 3
+espera: [J20, M20, O20]
+fragmentacio: 1
+ops_grua: 9
 
 filera 0
 ---------
 pis 2                                         
 pis 1                                         
-pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
+pis 0  C30 C30 C30 F30 F30 F30 I30 I30 I30 ___
         0   1   2   3   4   5   6   7   8   9  
 ##espera: [J20, M20, O20]
 ##fragmentacio: 1
@@ -9574,44 +9292,32 @@ pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_93 terminal 1 10 3
 ###!
 #insereix_c cA30
-debug fil 0
 #insereix_c cB30
-debug fil 0
 #insereix_c cC30
-debug fil 0
 #insereix_c cD30
-debug fil -1
 #insereix_c cE30
-debug fil -1
 #insereix_c cF30
-debug fil -1
 #insereix_c cG30
-debug fil -1
 #insereix_c cH30
-debug fil -1
 #insereix_c cI30
-debug fil -1
 #insereix_c cM20
-debug fil -1
 #insereix_c cO20
-debug fil -1
 #insereix_c cJ30
-debug fil -1
 ###!
 #on J30
 <-1, 0, 0>
 ##<-1, 0, 0>
 ###!
 #mapa
-espera: [D30, E30, F30, G30, H30, I30, J30, M20, O20]
-fragmentacio: 0
-ops_grua: 3
+espera: [J30, M20, O20]
+fragmentacio: 1
+ops_grua: 9
 
 filera 0
 ---------
 pis 2                                         
 pis 1                                         
-pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
+pis 0  C30 C30 C30 F30 F30 F30 I30 I30 I30 ___
         0   1   2   3   4   5   6   7   8   9  
 ##espera: [J30, M20, O20]
 ##fragmentacio: 1
@@ -9645,44 +9351,32 @@ pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_101 terminal 1 10 3
 ###!
 #insereix_c cA30
-debug fil 0
 #insereix_c cB30
-debug fil 0
 #insereix_c cC30
-debug fil 0
 #insereix_c cD30
-debug fil -1
 #insereix_c cE30
-debug fil -1
 #insereix_c cF30
-debug fil -1
 #insereix_c cG30
-debug fil -1
 #insereix_c cH30
-debug fil -1
 #insereix_c cI30
-debug fil -1
 #insereix_c cL30
-debug fil -1
 #insereix_c cN30
-debug fil -1
 #insereix_c cJ10
-debug fil -1
 ###!
 #on J10
-<-1, 0, 0>
+<0, 9, 0>
 ##<0, 9, 0>
 ###!
 #mapa
-espera: [D30, E30, F30, G30, H30, I30, J10, L30, N30]
-fragmentacio: 0
-ops_grua: 3
+espera: [L30, N30]
+fragmentacio: 1
+ops_grua: 10
 
 filera 0
 ---------
 pis 2                                         
 pis 1                                         
-pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
+pis 0  C30 C30 C30 F30 F30 F30 I30 I30 I30 J10
         0   1   2   3   4   5   6   7   8   9  
 ##espera: [L30, N30]
 ##fragmentacio: 1
@@ -9702,44 +9396,32 @@ pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_102 terminal 1 10 3
 ###!
 #insereix_c cA30
-debug fil 0
 #insereix_c cB30
-debug fil 0
 #insereix_c cC30
-debug fil 0
 #insereix_c cD30
-debug fil -1
 #insereix_c cE30
-debug fil -1
 #insereix_c cF30
-debug fil -1
 #insereix_c cG30
-debug fil -1
 #insereix_c cH30
-debug fil -1
 #insereix_c cI30
-debug fil -1
 #insereix_c cL30
-debug fil -1
 #insereix_c cN30
-debug fil -1
 #insereix_c cJ20
-debug fil -1
 ###!
 #on J20
 <-1, 0, 0>
 ##<-1, 0, 0>
 ###!
 #mapa
-espera: [D30, E30, F30, G30, H30, I30, J20, L30, N30]
-fragmentacio: 0
-ops_grua: 3
+espera: [J20, L30, N30]
+fragmentacio: 1
+ops_grua: 9
 
 filera 0
 ---------
 pis 2                                         
 pis 1                                         
-pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
+pis 0  C30 C30 C30 F30 F30 F30 I30 I30 I30 ___
         0   1   2   3   4   5   6   7   8   9  
 ##espera: [J20, L30, N30]
 ##fragmentacio: 1
@@ -9759,44 +9441,32 @@ pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_103 terminal 1 10 3
 ###!
 #insereix_c cA30
-debug fil 0
 #insereix_c cB30
-debug fil 0
 #insereix_c cC30
-debug fil 0
 #insereix_c cD30
-debug fil -1
 #insereix_c cE30
-debug fil -1
 #insereix_c cF30
-debug fil -1
 #insereix_c cG30
-debug fil -1
 #insereix_c cH30
-debug fil -1
 #insereix_c cI30
-debug fil -1
 #insereix_c cL30
-debug fil -1
 #insereix_c cN30
-debug fil -1
 #insereix_c cJ30
-debug fil -1
 ###!
 #on J30
 <-1, 0, 0>
 ##<-1, 0, 0>
 ###!
 #mapa
-espera: [D30, E30, F30, G30, H30, I30, J30, L30, N30]
-fragmentacio: 0
-ops_grua: 3
+espera: [J30, L30, N30]
+fragmentacio: 1
+ops_grua: 9
 
 filera 0
 ---------
 pis 2                                         
 pis 1                                         
-pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
+pis 0  C30 C30 C30 F30 F30 F30 I30 I30 I30 ___
         0   1   2   3   4   5   6   7   8   9  
 ##espera: [J30, L30, N30]
 ##fragmentacio: 1
@@ -9829,43 +9499,27 @@ pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_111 terminal 1 10 3
 ###!
 #insereix_c cA30
-debug fil 0
 #insereix_c cB30
-debug fil 0
 #insereix_c cC30
-debug fil 0
 #insereix_c cD30
-debug fil -1
 #insereix_c cE30
-debug fil -1
 #insereix_c cF30
-debug fil -1
 #insereix_c cG10
-debug fil -1
 #insereix_c cH10
-debug fil -1
 #insereix_c cI10
-debug fil -1
 #insereix_c cX10
-debug fil -1
 #insereix_c cY10
-debug fil -1
 #insereix_c cZ10
-debug fil -1
 #insereix_c cJ10
-debug fil -1
 #retira_c Z10
 #retira_c Y10
 #retira_c X10
 #insereix_c cM20
-debug fil -1
 #insereix_c cO20
-debug fil -1
 #insereix_c cK10
-debug fil -1
 ###!
 #on K10
-<-1, 0, 0>
+<0, 7, 0>
 ##<0, 7, 0>
 #on O20
 <-1, 0, 0>
@@ -9875,15 +9529,15 @@ debug fil -1
 ##<0, 7, 2>
 ###!
 #mapa
-espera: [D30, E30, F30, G10, H10, I10, J10, K10, M20, O20]
-fragmentacio: 0
-ops_grua: 3
+espera: [M20, O20]
+fragmentacio: 1
+ops_grua: 17
 
 filera 0
 ---------
 pis 2                                         
 pis 1                                         
-pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
+pis 0  C30 C30 C30 F30 F30 F30 I10 K10 J10 ___
         0   1   2   3   4   5   6   7   8   9  
 ##espera: []
 ##fragmentacio: 1
@@ -9903,47 +9557,29 @@ pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_112 terminal 1 10 3
 ###!
 #insereix_c cA30
-debug fil 0
 #insereix_c cB30
-debug fil 0
 #insereix_c cC30
-debug fil 0
 #insereix_c cD30
-debug fil -1
 #insereix_c cE30
-debug fil -1
 #insereix_c cF30
-debug fil -1
 #insereix_c cG10
-debug fil -1
 #insereix_c cH10
-debug fil -1
 #insereix_c cI10
-debug fil -1
 #insereix_c cX10
-debug fil -1
 #insereix_c cY10
-debug fil -1
 #insereix_c cZ10
-debug fil -1
 #insereix_c cJ10
-debug fil -1
 #retira_c Z10
 #retira_c Y10
 #retira_c X10
 #insereix_c cL30
-debug fil -1
 #insereix_c cM20
-debug fil -1
 #insereix_c cN30
-debug fil -1
 #insereix_c cO20
-debug fil -1
 #insereix_c cK10
-debug fil -1
 ###!
 #on K10
-<-1, 0, 0>
+<0, 7, 0>
 ##<0, 7, 0>
 #on O20
 <-1, 0, 0>
@@ -9953,15 +9589,15 @@ debug fil -1
 ##<0, 7, 2>
 ###!
 #mapa 
-espera: [D30, E30, F30, G10, H10, I10, J10, K10, L30, M20, N30, O20]
-fragmentacio: 0
-ops_grua: 3
+espera: [L30, M20, N30, O20]
+fragmentacio: 1
+ops_grua: 17
 
 filera 0
 ---------
 pis 2                                         
 pis 1                                         
-pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
+pis 0  C30 C30 C30 F30 F30 F30 I10 K10 J10 ___
         0   1   2   3   4   5   6   7   8   9  
 ##espera: [L30, N30]
 ##fragmentacio: 1
@@ -9981,45 +9617,29 @@ pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_113 terminal 1 10 3
 ###!
 #insereix_c cA30
-debug fil 0
 #insereix_c cB30
-debug fil 0
 #insereix_c cC30
-debug fil 0
 #insereix_c cD30
-debug fil -1
 #insereix_c cE30
-debug fil -1
 #insereix_c cF30
-debug fil -1
 #insereix_c cX20
-debug fil -1
 #insereix_c cY20
-debug fil -1
 #insereix_c cZ20
-debug fil -1
 #insereix_c cJ20
-debug fil -1
 #insereix_c cU10
-debug fil -1
 #insereix_c cW10
-debug fil -1
 #insereix_c cH10
-debug fil -1
 #retira_c Z20
 #retira_c Y20
 #retira_c X20
 #retira_c W10
 #retira_c U10
 #insereix_c cL30
-debug fil -1
 #insereix_c cN30
-debug fil -1
 #insereix_c cK20
-debug fil -1
 ###!
 #on K20
-<-1, 0, 0>
+<0, 6, 0>
 ##<0, 6, 0>
 #on N30
 <-1, 0, 0>
@@ -10029,15 +9649,15 @@ debug fil -1
 ##<0, 6, 2>
 ###!
 #mapa
-espera: [D30, E30, F30, H10, J20, K20, L30, N30]
-fragmentacio: 0
-ops_grua: 3
+espera: [L30, N30]
+fragmentacio: 1
+ops_grua: 19
 
 filera 0
 ---------
 pis 2                                         
 pis 1                                         
-pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
+pis 0  C30 C30 C30 F30 F30 F30 K20 K20 ___ H10
         0   1   2   3   4   5   6   7   8   9  
 ##espera: []
 ##fragmentacio: 1
@@ -10072,54 +9692,35 @@ pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_121 terminal 1 10 3
 ###!
 #insereix_c cA30
-debug fil 0
 #insereix_c cB30
-debug fil 0
 #insereix_c cC30
-debug fil 0
 #insereix_c cD30
-debug fil -1
 #insereix_c cE30
-debug fil -1
 #insereix_c cF30
-debug fil -1
 #insereix_c cG30
-debug fil -1
 #insereix_c cH30
-debug fil -1
 #insereix_c cI30
-debug fil -1
 #insereix_c cJ10
-debug fil -1
 #insereix_c cK10
-debug fil -1
 #insereix_c cL10
-debug fil -1
 #insereix_c cM30
-debug fil -1
 #insereix_c cN30
-debug fil -1
 #insereix_c cO20
-debug fil -1
 #insereix_c cP20
-debug fil -1
 #insereix_c cQ10
-debug fil -1
 #insereix_c cR10
-debug fil -1
 #insereix_c cS10
-debug fil -1
 ###!
 #mapa
-espera: [D30, E30, F30, G30, H30, I30, J10, K10, L10, M30, N30, O20, P20, Q10, R10, S10]
+espera: [M30, N30, O20, P20, Q10, R10, S10]
 fragmentacio: 0
-ops_grua: 3
+ops_grua: 12
 
 filera 0
 ---------
 pis 2                                         
 pis 1                                         
-pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
+pis 0  C30 C30 C30 F30 F30 F30 I30 I30 I30 L10
         0   1   2   3   4   5   6   7   8   9  
 ##espera: [M30, N30, O20, P20, Q10, R10, S10]
 ##fragmentacio: 0
@@ -10139,54 +9740,35 @@ pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_122 terminal 1 10 3
 ###!
 #insereix_c cA30
-debug fil 0
 #insereix_c cB30
-debug fil 0
 #insereix_c cC30
-debug fil 0
 #insereix_c cD30
-debug fil -1
 #insereix_c cE30
-debug fil -1
 #insereix_c cF30
-debug fil -1
 #insereix_c cG30
-debug fil -1
 #insereix_c cH30
-debug fil -1
 #insereix_c cI30
-debug fil -1
 #insereix_c cJ10
-debug fil -1
 #insereix_c cK10
-debug fil -1
 #insereix_c cL10
-debug fil -1
 #insereix_c cM30
-debug fil -1
 #insereix_c cN30
-debug fil -1
 #insereix_c cO20
-debug fil -1
 #insereix_c cP20
-debug fil -1
 #insereix_c cQ10
-debug fil -1
 #insereix_c cR10
-debug fil -1
 #insereix_c cS20
-debug fil -1
 ###!
 #mapa
-espera: [D30, E30, F30, G30, H30, I30, J10, K10, L10, M30, N30, O20, P20, Q10, R10, S20]
+espera: [M30, N30, O20, P20, Q10, R10, S20]
 fragmentacio: 0
-ops_grua: 3
+ops_grua: 12
 
 filera 0
 ---------
 pis 2                                         
 pis 1                                         
-pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
+pis 0  C30 C30 C30 F30 F30 F30 I30 I30 I30 L10
         0   1   2   3   4   5   6   7   8   9  
 ##espera: [M30, N30, O20, P20, Q10, R10, S20]
 ##fragmentacio: 0
@@ -10206,59 +9788,40 @@ pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_123 terminal 1 10 3
 ###!
 #insereix_c cA30
-debug fil 0
 #insereix_c cB30
-debug fil 0
 #insereix_c cC30
-debug fil 0
 #insereix_c cD30
-debug fil -1
 #insereix_c cE30
-debug fil -1
 #insereix_c cF30
-debug fil -1
 #insereix_c cG30
-debug fil -1
 #insereix_c cH30
-debug fil -1
 #insereix_c cI30
-debug fil -1
 #insereix_c cJ10
-debug fil -1
 #insereix_c cK10
-debug fil -1
 #insereix_c cL10
-debug fil -1
 #insereix_c cM30
-debug fil -1
 #insereix_c cN30
-debug fil -1
 #insereix_c cO20
-debug fil -1
 #insereix_c cP20
-debug fil -1
 #insereix_c cQ10
-debug fil -1
 #insereix_c cR10
-debug fil -1
 ###!
 #long_terminal Q10
 10
 ##10
 ###!
 #insereix_c cS30
-debug fil -1
 ###!
 #mapa
-espera: [D30, E30, F30, G30, H30, I30, J10, K10, L10, M30, N30, O20, P20, Q10, R10, S30]
+espera: [M30, N30, O20, P20, Q10, R10, S30]
 fragmentacio: 0
-ops_grua: 3
+ops_grua: 12
 
 filera 0
 ---------
 pis 2                                         
 pis 1                                         
-pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
+pis 0  C30 C30 C30 F30 F30 F30 I30 I30 I30 L10
         0   1   2   3   4   5   6   7   8   9  
 ##espera: [M30, N30, O20, P20, Q10, R10, S30]
 ##fragmentacio: 0
@@ -10293,55 +9856,38 @@ pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_131 terminal 1 10 3
 ###!
 #insereix_c cA30
-debug fil 0
 #insereix_c cB30
-debug fil 0
 #insereix_c cC30
-debug fil 0
 #insereix_c cD30
-debug fil -1
 #insereix_c cE30
-debug fil -1
 #insereix_c cF30
-debug fil -1
 #insereix_c cG30
-debug fil -1
 #insereix_c cH30
-debug fil -1
 #insereix_c cI30
-debug fil -1
 #insereix_c cJ10
-debug fil -1
 #insereix_c cK10
-debug fil -1
 #insereix_c cL10
-debug fil -1
 #insereix_c cO20
-debug fil -1
 #insereix_c cP20
-debug fil -1
 #insereix_c cQ10
-debug fil -1
 #insereix_c cR10
-debug fil -1
 ###!
 #long_terminal P20
 20
 ##20
 ###!
 #insereix_c cS10
-debug fil -1
 ###!
 #mapa
-espera: [D30, E30, F30, G30, H30, I30, J10, K10, L10, O20, P20, Q10, R10, S10]
+espera: [O20, P20, Q10, R10, S10]
 fragmentacio: 0
-ops_grua: 3
+ops_grua: 12
 
 filera 0
 ---------
 pis 2                                         
 pis 1                                         
-pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
+pis 0  C30 C30 C30 F30 F30 F30 I30 I30 I30 L10
         0   1   2   3   4   5   6   7   8   9  
 ##espera: [O20, P20, Q10, R10, S10]
 ##fragmentacio: 0
@@ -10361,50 +9907,33 @@ pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_132 terminal 1 10 3
 ###!
 #insereix_c cA30
-debug fil 0
 #insereix_c cB30
-debug fil 0
 #insereix_c cC30
-debug fil 0
 #insereix_c cD30
-debug fil -1
 #insereix_c cE30
-debug fil -1
 #insereix_c cF30
-debug fil -1
 #insereix_c cG30
-debug fil -1
 #insereix_c cH30
-debug fil -1
 #insereix_c cI30
-debug fil -1
 #insereix_c cJ10
-debug fil -1
 #insereix_c cK10
-debug fil -1
 #insereix_c cL10
-debug fil -1
 #insereix_c cO20
-debug fil -1
 #insereix_c cP20
-debug fil -1
 #insereix_c cQ10
-debug fil -1
 #insereix_c cR10
-debug fil -1
 #insereix_c cS20
-debug fil -1
 ###!
 #mapa
-espera: [D30, E30, F30, G30, H30, I30, J10, K10, L10, O20, P20, Q10, R10, S20]
+espera: [O20, P20, Q10, R10, S20]
 fragmentacio: 0
-ops_grua: 3
+ops_grua: 12
 
 filera 0
 ---------
 pis 2                                         
 pis 1                                         
-pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
+pis 0  C30 C30 C30 F30 F30 F30 I30 I30 I30 L10
         0   1   2   3   4   5   6   7   8   9  
 ##espera: [O20, P20, Q10, R10, S20]
 ##fragmentacio: 0
@@ -10424,50 +9953,33 @@ pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_133 terminal 1 10 3
 ###!
 #insereix_c cA30
-debug fil 0
 #insereix_c cB30
-debug fil 0
 #insereix_c cC30
-debug fil 0
 #insereix_c cD30
-debug fil -1
 #insereix_c cE30
-debug fil -1
 #insereix_c cF30
-debug fil -1
 #insereix_c cG30
-debug fil -1
 #insereix_c cH30
-debug fil -1
 #insereix_c cI30
-debug fil -1
 #insereix_c cJ10
-debug fil -1
 #insereix_c cK10
-debug fil -1
 #insereix_c cL10
-debug fil -1
 #insereix_c cO20
-debug fil -1
 #insereix_c cP20
-debug fil -1
 #insereix_c cQ10
-debug fil -1
 #insereix_c cR10
-debug fil -1
 #insereix_c cS30
-debug fil -1
 ###!
 #mapa
-espera: [D30, E30, F30, G30, H30, I30, J10, K10, L10, O20, P20, Q10, R10, S30]
+espera: [O20, P20, Q10, R10, S30]
 fragmentacio: 0
-ops_grua: 3
+ops_grua: 12
 
 filera 0
 ---------
 pis 2                                         
 pis 1                                         
-pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
+pis 0  C30 C30 C30 F30 F30 F30 I30 I30 I30 L10
         0   1   2   3   4   5   6   7   8   9  
 ##espera: [O20, P20, Q10, R10, S30]
 ##fragmentacio: 0
@@ -10502,50 +10014,33 @@ pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_141 terminal 1 10 3
 ###!
 #insereix_c cA30
-debug fil 0
 #insereix_c cB30
-debug fil 0
 #insereix_c cC30
-debug fil 0
 #insereix_c cD30
-debug fil -1
 #insereix_c cE30
-debug fil -1
 #insereix_c cF30
-debug fil -1
 #insereix_c cG30
-debug fil -1
 #insereix_c cH30
-debug fil -1
 #insereix_c cI30
-debug fil -1
 #insereix_c cJ10
-debug fil -1
 #insereix_c cK10
-debug fil -1
 #insereix_c cL10
-debug fil -1
 #insereix_c cM30
-debug fil -1
 #insereix_c cN30
-debug fil -1
 #insereix_c cQ10
-debug fil -1
 #insereix_c cR10
-debug fil -1
 #insereix_c cS10
-debug fil -1
 ###!
 #mapa
-espera: [D30, E30, F30, G30, H30, I30, J10, K10, L10, M30, N30, Q10, R10, S10]
+espera: [M30, N30, Q10, R10, S10]
 fragmentacio: 0
-ops_grua: 3
+ops_grua: 12
 
 filera 0
 ---------
 pis 2                                         
 pis 1                                         
-pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
+pis 0  C30 C30 C30 F30 F30 F30 I30 I30 I30 L10
         0   1   2   3   4   5   6   7   8   9  
 ##espera: [M30, N30, Q10, R10, S10]
 ##fragmentacio: 0
@@ -10565,50 +10060,33 @@ pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_142 terminal 1 10 3
 ###!
 #insereix_c cA30
-debug fil 0
 #insereix_c cB30
-debug fil 0
 #insereix_c cC30
-debug fil 0
 #insereix_c cD30
-debug fil -1
 #insereix_c cE30
-debug fil -1
 #insereix_c cF30
-debug fil -1
 #insereix_c cG30
-debug fil -1
 #insereix_c cH30
-debug fil -1
 #insereix_c cI30
-debug fil -1
 #insereix_c cJ10
-debug fil -1
 #insereix_c cK10
-debug fil -1
 #insereix_c cL10
-debug fil -1
 #insereix_c cM30
-debug fil -1
 #insereix_c cN30
-debug fil -1
 #insereix_c cQ10
-debug fil -1
 #insereix_c cR10
-debug fil -1
 #insereix_c cS20
-debug fil -1
 ###!
 #mapa
-espera: [D30, E30, F30, G30, H30, I30, J10, K10, L10, M30, N30, Q10, R10, S20]
+espera: [M30, N30, Q10, R10, S20]
 fragmentacio: 0
-ops_grua: 3
+ops_grua: 12
 
 filera 0
 ---------
 pis 2                                         
 pis 1                                         
-pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
+pis 0  C30 C30 C30 F30 F30 F30 I30 I30 I30 L10
         0   1   2   3   4   5   6   7   8   9  
 ##espera: [M30, N30, Q10, R10, S20]
 ##fragmentacio: 0
@@ -10628,50 +10106,33 @@ pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_143 terminal 1 10 3
 ###!
 #insereix_c cA30
-debug fil 0
 #insereix_c cB30
-debug fil 0
 #insereix_c cC30
-debug fil 0
 #insereix_c cD30
-debug fil -1
 #insereix_c cE30
-debug fil -1
 #insereix_c cF30
-debug fil -1
 #insereix_c cG30
-debug fil -1
 #insereix_c cH30
-debug fil -1
 #insereix_c cI30
-debug fil -1
 #insereix_c cJ10
-debug fil -1
 #insereix_c cK10
-debug fil -1
 #insereix_c cL10
-debug fil -1
 #insereix_c cM30
-debug fil -1
 #insereix_c cN30
-debug fil -1
 #insereix_c cQ10
-debug fil -1
 #insereix_c cR10
-debug fil -1
 #insereix_c cS30
-debug fil -1
 ###!
 #mapa
-espera: [D30, E30, F30, G30, H30, I30, J10, K10, L10, M30, N30, Q10, R10, S30]
+espera: [M30, N30, Q10, R10, S30]
 fragmentacio: 0
-ops_grua: 3
+ops_grua: 12
 
 filera 0
 ---------
 pis 2                                         
 pis 1                                         
-pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
+pis 0  C30 C30 C30 F30 F30 F30 I30 I30 I30 L10
         0   1   2   3   4   5   6   7   8   9  
 ##espera: [M30, N30, Q10, R10, S30]
 ##fragmentacio: 0
@@ -10706,46 +10167,31 @@ pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_151 terminal 1 10 3
 ###!
 #insereix_c cA30
-debug fil 0
 #insereix_c cB30
-debug fil 0
 #insereix_c cC30
-debug fil 0
 #insereix_c cD30
-debug fil -1
 #insereix_c cE30
-debug fil -1
 #insereix_c cF30
-debug fil -1
 #insereix_c cG30
-debug fil -1
 #insereix_c cH30
-debug fil -1
 #insereix_c cI30
-debug fil -1
 #insereix_c cJ10
-debug fil -1
 #insereix_c cK10
-debug fil -1
 #insereix_c cL10
-debug fil -1
 #insereix_c cQ10
-debug fil -1
 #insereix_c cR10
-debug fil -1
 #insereix_c cS10
-debug fil -1
 ###!
 #mapa
-espera: [D30, E30, F30, G30, H30, I30, J10, K10, L10, Q10, R10, S10]
+espera: [Q10, R10, S10]
 fragmentacio: 0
-ops_grua: 3
+ops_grua: 12
 
 filera 0
 ---------
 pis 2                                         
 pis 1                                         
-pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
+pis 0  C30 C30 C30 F30 F30 F30 I30 I30 I30 L10
         0   1   2   3   4   5   6   7   8   9  
 ##espera: [Q10, R10, S10]
 ##fragmentacio: 0
@@ -10765,46 +10211,31 @@ pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_152 terminal 1 10 3
 ###!
 #insereix_c cA30
-debug fil 0
 #insereix_c cB30
-debug fil 0
 #insereix_c cC30
-debug fil 0
 #insereix_c cD30
-debug fil -1
 #insereix_c cE30
-debug fil -1
 #insereix_c cF30
-debug fil -1
 #insereix_c cG30
-debug fil -1
 #insereix_c cH30
-debug fil -1
 #insereix_c cI30
-debug fil -1
 #insereix_c cJ10
-debug fil -1
 #insereix_c cK10
-debug fil -1
 #insereix_c cL10
-debug fil -1
 #insereix_c cQ10
-debug fil -1
 #insereix_c cR10
-debug fil -1
 #insereix_c cS20
-debug fil -1
 ###!
 #mapa
-espera: [D30, E30, F30, G30, H30, I30, J10, K10, L10, Q10, R10, S20]
+espera: [Q10, R10, S20]
 fragmentacio: 0
-ops_grua: 3
+ops_grua: 12
 
 filera 0
 ---------
 pis 2                                         
 pis 1                                         
-pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
+pis 0  C30 C30 C30 F30 F30 F30 I30 I30 I30 L10
         0   1   2   3   4   5   6   7   8   9  
 ##espera: [Q10, R10, S20]
 ##fragmentacio: 0
@@ -10824,46 +10255,31 @@ pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_153 terminal 1 10 3
 ###!
 #insereix_c cA30
-debug fil 0
 #insereix_c cB30
-debug fil 0
 #insereix_c cC30
-debug fil 0
 #insereix_c cD30
-debug fil -1
 #insereix_c cE30
-debug fil -1
 #insereix_c cF30
-debug fil -1
 #insereix_c cG30
-debug fil -1
 #insereix_c cH30
-debug fil -1
 #insereix_c cI30
-debug fil -1
 #insereix_c cJ10
-debug fil -1
 #insereix_c cK10
-debug fil -1
 #insereix_c cL10
-debug fil -1
 #insereix_c cQ10
-debug fil -1
 #insereix_c cR10
-debug fil -1
 #insereix_c cS30
-debug fil -1
 ###!
 #mapa
-espera: [D30, E30, F30, G30, H30, I30, J10, K10, L10, Q10, R10, S30]
+espera: [Q10, R10, S30]
 fragmentacio: 0
-ops_grua: 3
+ops_grua: 12
 
 filera 0
 ---------
 pis 2                                         
 pis 1                                         
-pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
+pis 0  C30 C30 C30 F30 F30 F30 I30 I30 I30 L10
         0   1   2   3   4   5   6   7   8   9  
 ##espera: [Q10, R10, S30]
 ##fragmentacio: 0
@@ -10898,50 +10314,33 @@ pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_161 terminal 1 10 3
 ###!
 #insereix_c cA30
-debug fil 0
 #insereix_c cB30
-debug fil 0
 #insereix_c cC30
-debug fil 0
 #insereix_c cD30
-debug fil -1
 #insereix_c cE30
-debug fil -1
 #insereix_c cF30
-debug fil -1
 #insereix_c cG30
-debug fil -1
 #insereix_c cH30
-debug fil -1
 #insereix_c cI30
-debug fil -1
 #insereix_c cJ10
-debug fil -1
 #insereix_c cK10
-debug fil -1
 #insereix_c cL10
-debug fil -1
 #insereix_c cM30
-debug fil -1
 #insereix_c cN30
-debug fil -1
 #insereix_c cO20
-debug fil -1
 #insereix_c cP20
-debug fil -1
 #insereix_c cS10
-debug fil -1
 ###!
 #mapa
-espera: [D30, E30, F30, G30, H30, I30, J10, K10, L10, M30, N30, O20, P20, S10]
+espera: [M30, N30, O20, P20, S10]
 fragmentacio: 0
-ops_grua: 3
+ops_grua: 12
 
 filera 0
 ---------
 pis 2                                         
 pis 1                                         
-pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
+pis 0  C30 C30 C30 F30 F30 F30 I30 I30 I30 L10
         0   1   2   3   4   5   6   7   8   9  
 ##espera: [M30, N30, O20, P20, S10]
 ##fragmentacio: 0
@@ -10961,49 +10360,32 @@ pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_162 terminal 1 10 3
 ###!
 #insereix_c cA30
-debug fil 0
 #insereix_c cB30
-debug fil 0
 #insereix_c cC30
-debug fil 0
 #insereix_c cD30
-debug fil -1
 #insereix_c cE30
-debug fil -1
 #insereix_c cF30
-debug fil -1
 #insereix_c cG30
-debug fil -1
 #insereix_c cH30
-debug fil -1
 #insereix_c cI30
-debug fil -1
 #insereix_c cJ10
-debug fil -1
 #insereix_c cK10
-debug fil -1
 #insereix_c cL10
-debug fil -1
 #insereix_c cM30
-debug fil -1
 #insereix_c cN30
-debug fil -1
 #insereix_c cO20
-debug fil -1
 #insereix_c cP20
-debug fil -1
 #insereix_c cS20
-debug fil -1
 #mapa
-espera: [D30, E30, F30, G30, H30, I30, J10, K10, L10, M30, N30, O20, P20, S20]
+espera: [M30, N30, O20, P20, S20]
 fragmentacio: 0
-ops_grua: 3
+ops_grua: 12
 
 filera 0
 ---------
 pis 2                                         
 pis 1                                         
-pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
+pis 0  C30 C30 C30 F30 F30 F30 I30 I30 I30 L10
         0   1   2   3   4   5   6   7   8   9  
 ##espera: [M30, N30, O20, P20, S20]
 ##fragmentacio: 0
@@ -11023,50 +10405,33 @@ pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_163 terminal 1 10 3
 ###!
 #insereix_c cA30
-debug fil 0
 #insereix_c cB30
-debug fil 0
 #insereix_c cC30
-debug fil 0
 #insereix_c cD30
-debug fil -1
 #insereix_c cE30
-debug fil -1
 #insereix_c cF30
-debug fil -1
 #insereix_c cG30
-debug fil -1
 #insereix_c cH30
-debug fil -1
 #insereix_c cI30
-debug fil -1
 #insereix_c cJ10
-debug fil -1
 #insereix_c cK10
-debug fil -1
 #insereix_c cL10
-debug fil -1
 #insereix_c cM30
-debug fil -1
 #insereix_c cN30
-debug fil -1
 #insereix_c cO20
-debug fil -1
 #insereix_c cP20
-debug fil -1
 #insereix_c cS30
-debug fil -1
 ###!
 #mapa
-espera: [D30, E30, F30, G30, H30, I30, J10, K10, L10, M30, N30, O20, P20, S30]
+espera: [M30, N30, O20, P20, S30]
 fragmentacio: 0
-ops_grua: 3
+ops_grua: 12
 
 filera 0
 ---------
 pis 2                                         
 pis 1                                         
-pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
+pis 0  C30 C30 C30 F30 F30 F30 I30 I30 I30 L10
         0   1   2   3   4   5   6   7   8   9  
 ##espera: [M30, N30, O20, P20, S30]
 ##fragmentacio: 0
@@ -11101,46 +10466,31 @@ pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_171 terminal 1 10 3
 ###!
 #insereix_c cA30
-debug fil 0
 #insereix_c cB30
-debug fil 0
 #insereix_c cC30
-debug fil 0
 #insereix_c cD30
-debug fil -1
 #insereix_c cE30
-debug fil -1
 #insereix_c cF30
-debug fil -1
 #insereix_c cG30
-debug fil -1
 #insereix_c cH30
-debug fil -1
 #insereix_c cI30
-debug fil -1
 #insereix_c cJ10
-debug fil -1
 #insereix_c cK10
-debug fil -1
 #insereix_c cL10
-debug fil -1
 #insereix_c cO20
-debug fil -1
 #insereix_c cP20
-debug fil -1
 #insereix_c cS10
-debug fil -1
 ###!
 #mapa
-espera: [D30, E30, F30, G30, H30, I30, J10, K10, L10, O20, P20, S10]
+espera: [O20, P20, S10]
 fragmentacio: 0
-ops_grua: 3
+ops_grua: 12
 
 filera 0
 ---------
 pis 2                                         
 pis 1                                         
-pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
+pis 0  C30 C30 C30 F30 F30 F30 I30 I30 I30 L10
         0   1   2   3   4   5   6   7   8   9  
 ##espera: [O20, P20, S10]
 ##fragmentacio: 0
@@ -11160,46 +10510,31 @@ pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_172 terminal 1 10 3
 ###!
 #insereix_c cA30
-debug fil 0
 #insereix_c cB30
-debug fil 0
 #insereix_c cC30
-debug fil 0
 #insereix_c cD30
-debug fil -1
 #insereix_c cE30
-debug fil -1
 #insereix_c cF30
-debug fil -1
 #insereix_c cG30
-debug fil -1
 #insereix_c cH30
-debug fil -1
 #insereix_c cI30
-debug fil -1
 #insereix_c cJ10
-debug fil -1
 #insereix_c cK10
-debug fil -1
 #insereix_c cL10
-debug fil -1
 #insereix_c cO20
-debug fil -1
 #insereix_c cP20
-debug fil -1
 #insereix_c cS20
-debug fil -1
 ###!
 #mapa
-espera: [D30, E30, F30, G30, H30, I30, J10, K10, L10, O20, P20, S20]
+espera: [O20, P20, S20]
 fragmentacio: 0
-ops_grua: 3
+ops_grua: 12
 
 filera 0
 ---------
 pis 2                                         
 pis 1                                         
-pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
+pis 0  C30 C30 C30 F30 F30 F30 I30 I30 I30 L10
         0   1   2   3   4   5   6   7   8   9  
 ##espera: [O20, P20, S20]
 ##fragmentacio: 0
@@ -11219,46 +10554,31 @@ pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_173 terminal 1 10 3
 ###!
 #insereix_c cA30
-debug fil 0
 #insereix_c cB30
-debug fil 0
 #insereix_c cC30
-debug fil 0
 #insereix_c cD30
-debug fil -1
 #insereix_c cE30
-debug fil -1
 #insereix_c cF30
-debug fil -1
 #insereix_c cG30
-debug fil -1
 #insereix_c cH30
-debug fil -1
 #insereix_c cI30
-debug fil -1
 #insereix_c cJ10
-debug fil -1
 #insereix_c cK10
-debug fil -1
 #insereix_c cL10
-debug fil -1
 #insereix_c cO20
-debug fil -1
 #insereix_c cP20
-debug fil -1
 #insereix_c cS30
-debug fil -1
 ###!
 #mapa
-espera: [D30, E30, F30, G30, H30, I30, J10, K10, L10, O20, P20, S30]
+espera: [O20, P20, S30]
 fragmentacio: 0
-ops_grua: 3
+ops_grua: 12
 
 filera 0
 ---------
 pis 2                                         
 pis 1                                         
-pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
+pis 0  C30 C30 C30 F30 F30 F30 I30 I30 I30 L10
         0   1   2   3   4   5   6   7   8   9  
 ##espera: [O20, P20, S30]
 ##fragmentacio: 0
@@ -11293,46 +10613,31 @@ pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_181 terminal 1 10 3
 ###!
 #insereix_c cA30
-debug fil 0
 #insereix_c cB30
-debug fil 0
 #insereix_c cC30
-debug fil 0
 #insereix_c cD30
-debug fil -1
 #insereix_c cE30
-debug fil -1
 #insereix_c cF30
-debug fil -1
 #insereix_c cG30
-debug fil -1
 #insereix_c cH30
-debug fil -1
 #insereix_c cI30
-debug fil -1
 #insereix_c cJ10
-debug fil -1
 #insereix_c cK10
-debug fil -1
 #insereix_c cL10
-debug fil -1
 #insereix_c cM30
-debug fil -1
 #insereix_c cN30
-debug fil -1
 #insereix_c cS10
-debug fil -1
 ###!
 #mapa
-espera: [D30, E30, F30, G30, H30, I30, J10, K10, L10, M30, N30, S10]
+espera: [M30, N30, S10]
 fragmentacio: 0
-ops_grua: 3
+ops_grua: 12
 
 filera 0
 ---------
 pis 2                                         
 pis 1                                         
-pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
+pis 0  C30 C30 C30 F30 F30 F30 I30 I30 I30 L10
         0   1   2   3   4   5   6   7   8   9  
 ##espera: [M30, N30, S10]
 ##fragmentacio: 0
@@ -11352,46 +10657,31 @@ pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_182 terminal 1 10 3
 ###!
 #insereix_c cA30
-debug fil 0
 #insereix_c cB30
-debug fil 0
 #insereix_c cC30
-debug fil 0
 #insereix_c cD30
-debug fil -1
 #insereix_c cE30
-debug fil -1
 #insereix_c cF30
-debug fil -1
 #insereix_c cG30
-debug fil -1
 #insereix_c cH30
-debug fil -1
 #insereix_c cI30
-debug fil -1
 #insereix_c cJ10
-debug fil -1
 #insereix_c cK10
-debug fil -1
 #insereix_c cL10
-debug fil -1
 #insereix_c cM30
-debug fil -1
 #insereix_c cN30
-debug fil -1
 #insereix_c cS20
-debug fil -1
 ###!
 #mapa
-espera: [D30, E30, F30, G30, H30, I30, J10, K10, L10, M30, N30, S20]
+espera: [M30, N30, S20]
 fragmentacio: 0
-ops_grua: 3
+ops_grua: 12
 
 filera 0
 ---------
 pis 2                                         
 pis 1                                         
-pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
+pis 0  C30 C30 C30 F30 F30 F30 I30 I30 I30 L10
         0   1   2   3   4   5   6   7   8   9  
 ##espera: [M30, N30, S20]
 ##fragmentacio: 0
@@ -11411,46 +10701,31 @@ pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t1103_183 terminal 1 10 3
 ###!
 #insereix_c cA30
-debug fil 0
 #insereix_c cB30
-debug fil 0
 #insereix_c cC30
-debug fil 0
 #insereix_c cD30
-debug fil -1
 #insereix_c cE30
-debug fil -1
 #insereix_c cF30
-debug fil -1
 #insereix_c cG30
-debug fil -1
 #insereix_c cH30
-debug fil -1
 #insereix_c cI30
-debug fil -1
 #insereix_c cJ10
-debug fil -1
 #insereix_c cK10
-debug fil -1
 #insereix_c cL10
-debug fil -1
 #insereix_c cM30
-debug fil -1
 #insereix_c cN30
-debug fil -1
 #insereix_c cS30
-debug fil -1
 ###!
 #mapa
-espera: [D30, E30, F30, G30, H30, I30, J10, K10, L10, M30, N30, S30]
+espera: [M30, N30, S30]
 fragmentacio: 0
-ops_grua: 3
+ops_grua: 12
 
 filera 0
 ---------
 pis 2                                         
 pis 1                                         
-pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
+pis 0  C30 C30 C30 F30 F30 F30 I30 I30 I30 L10
         0   1   2   3   4   5   6   7   8   9  
 ##espera: [M30, N30, S30]
 ##fragmentacio: 0
@@ -11488,49 +10763,38 @@ pis 0  C30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t352_11 terminal 3 5 2
 ###!
 #insereix_c cA10
-debug fil 0
 #insereix_c cC30
-debug fil 0
 #insereix_c cB10
-debug fil -1
 #insereix_c cD20
-debug fil -1
 #insereix_c cE20
-debug fil -1
 #insereix_c cF20
-debug fil -1
 #insereix_c cG20
-debug fil -1
 #insereix_c cH30
-debug fil -1
 #insereix_c cI30
-debug fil -1
 #insereix_c cJ20
-debug fil -1
 #insereix_c cK20
-debug fil -1
 ###!
 #mapa
-espera: [B10, D20, E20, F20, G20, H30, I30, J20, K20]
-fragmentacio: 0
-ops_grua: 2
+espera: []
+fragmentacio: 3
+ops_grua: 11
 
 filera 0
 ---------
 pis 1                     
-pis 0  C30 ___ ___ ___ ___
+pis 0  B10 D20 D20 C30 ___
         0   1   2   3   4  
 
 filera 1
 ---------
 pis 1                     
-pis 0  ___ ___ ___ ___ ___
+pis 0  F20 F20 J20 J20 ___
         0   1   2   3   4  
 
 filera 2
 ---------
 pis 1                     
-pis 0  ___ ___ ___ ___ ___
+pis 0  I30 I30 I30 K20 K20
         0   1   2   3   4  
 ##espera: []
 ##fragmentacio: 3
@@ -11564,39 +10828,33 @@ pis 0  ___ ___ ___ ___ ___
 #init t352_12 terminal 3 5 2
 ###!
 #insereix_c cA30
-debug fil 0
 #insereix_c cB20
-debug fil 0
 #insereix_c cC30
-debug fil -1
 #insereix_c cB30
-debug fil -1
 #insereix_c cE30
-debug fil -1
 #insereix_c cA20
-debug fil -1
 ###!
 #mapa
-espera: [A20, B30, C30, E30]
-fragmentacio: 1
-ops_grua: 2
+espera: []
+fragmentacio: 0
+ops_grua: 6
 
 filera 0
 ---------
 pis 1                     
-pis 0  B20 ___ ___ ___ ___
+pis 0  B20 B20 A30 A20 A20
         0   1   2   3   4  
 
 filera 1
 ---------
 pis 1                     
-pis 0  ___ ___ ___ ___ ___
+pis 0  B30 B30 B30 ___ ___
         0   1   2   3   4  
 
 filera 2
 ---------
 pis 1                     
-pis 0  ___ ___ ___ ___ ___
+pis 0  E30 E30 E30 ___ ___
         0   1   2   3   4  
 ##espera: []
 ##fragmentacio: 0
@@ -11661,7 +10919,6 @@ Error::terminal:45:Matricula inexistent.
 #init t111_21 terminal 1 1 1
 ###!
 #insereix_c cB20
-debug fil 0
 ###!
 #retira_c B20
 ###!
@@ -11690,17 +10947,11 @@ pis 0  ___
 #init t111_22 terminal 1 1 1
 ###!
 #insereix_c cB10
-debug fil 0
 #insereix_c cC20
-debug fil -1
 #insereix_c cD30
-debug fil -1
 #insereix_c cE20
-debug fil -1
 #insereix_c cF20
-debug fil -1
 #insereix_c cG10
-debug fil -1
 ###!
 #retira_c G10
 ###!
@@ -11729,17 +10980,11 @@ pis 0  B10
 #init t111_23 terminal 1 1 1
 ###!
 #insereix_c cB10
-debug fil 0
 #insereix_c cC20
-debug fil -1
 #insereix_c cD30
-debug fil -1
 #insereix_c cE20
-debug fil -1
 #insereix_c cF20
-debug fil -1
 #insereix_c cG10
-debug fil -1
 ###!
 #retira_c C20
 ###!
@@ -11768,17 +11013,11 @@ pis 0  B10
 #init t111_24 terminal 1 1 1
 ###!
 #insereix_c cB10
-debug fil 0
 #insereix_c cC20
-debug fil -1
 #insereix_c cD30
-debug fil -1
 #insereix_c cE20
-debug fil -1
 #insereix_c cF20
-debug fil -1
 #insereix_c cG10
-debug fil -1
 ###!
 #retira_c E20
 ###!
@@ -11823,35 +11062,23 @@ pis 0  B10
 #init t111_31 terminal 1 10 3
 ###!
 #insereix_c cA20
-debug fil 0
 #insereix_c cB20
-debug fil 0
 #insereix_c cC20
-debug fil 0
 #insereix_c cD30
-debug fil -1
 #insereix_c cE30
-debug fil -1
 ###!
 #retira_c C20
-debug _t antes C20
-debug fil 0
-debug _t despues 
-debug _u10d -100
-debug _u20 -100
-debug _u30 -100
-debug fil -1
 ###!
 #mapa
-espera: [D30, E30]
+espera: []
 fragmentacio: 0
-ops_grua: 3
+ops_grua: 6
 
 filera 0
 ---------
 pis 2                                         
 pis 1                                         
-pis 0  ___ ___ ___ ___ ___ ___ ___ ___ ___ ___
+pis 0  ___ ___ E30 E30 E30 ___ ___ ___ ___ ___
         0   1   2   3   4   5   6   7   8   9  
 ##espera: []
 ##fragmentacio: 0
@@ -11871,42 +11098,30 @@ pis 0  ___ ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t111_32 terminal 1 10 3
 ###!
 #insereix_c cA10
-debug fil 0
 #insereix_c cB10
-debug fil 0
 #insereix_c cD10
-debug fil 0
 #insereix_c cE30
-debug fil -1
 #insereix_c cF30
-debug fil -1
 #insereix_c cL30
-debug fil -1
 #insereix_c cG20
-debug fil -1
 #insereix_c cH20
-debug fil -1
 #insereix_c cC20
-debug fil -1
 #insereix_c cI30
-debug fil -1
 #insereix_c cJ30
-debug fil -1
 #insereix_c cK30
-debug fil -1
 ###!
 #retira_c C20
 ###!
 #mapa
-espera: [E30, F30, G20, H20, I30, J30, K30, L30]
-fragmentacio: 0
-ops_grua: 3
+espera: []
+fragmentacio: 1
+ops_grua: 13
 
 filera 0
 ---------
 pis 2                                         
 pis 1                                         
-pis 0  D10 ___ ___ ___ ___ ___ ___ ___ ___ ___
+pis 0  D10 L30 L30 L30 ___ ___ K30 K30 K30 ___
         0   1   2   3   4   5   6   7   8   9  
 ##espera: []
 ##fragmentacio: 1
@@ -11926,42 +11141,30 @@ pis 0  D10 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t111_33 terminal 1 10 3
 ###!
 #insereix_c cA20
-debug fil 0
 #insereix_c cB20
-debug fil 0
 #insereix_c cD20
-debug fil 0
 #insereix_c cE30
-debug fil -1
 #insereix_c cF30
-debug fil -1
 #insereix_c cG30
-debug fil -1
 #insereix_c cH30
-debug fil -1
 #insereix_c cI30
-debug fil -1
 #insereix_c cJ30
-debug fil -1
 #insereix_c cK20
-debug fil -1
 #insereix_c cL20
-debug fil -1
 #insereix_c cC20
-debug fil -1
 ###!
 #retira_c C20
 ###!
 #mapa
-espera: [E30, F30, G30, H30, I30, J30, K20, L20]
+espera: []
 fragmentacio: 0
-ops_grua: 3
+ops_grua: 13
 
 filera 0
 ---------
 pis 2                                         
 pis 1                                         
-pis 0  D20 ___ ___ ___ ___ ___ ___ ___ ___ ___
+pis 0  D20 D20 G30 G30 G30 J30 J30 J30 ___ ___
         0   1   2   3   4   5   6   7   8   9  
 ##espera: []
 ##fragmentacio: 0
@@ -11981,43 +11184,24 @@ pis 0  D20 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t111_34 terminal 1 10 3
 ###!
 #insereix_c cA20
-debug fil 0
 #insereix_c cC20
-debug fil 0
 #insereix_c cX20
-debug fil 0
 #insereix_c cB30
-debug fil -1
 #insereix_c cD30
-debug fil -1
 ###!
 #retira_c X20
-debug _t antes X20
-debug fil 0
-debug _t despues 
-debug _u10d -100
-debug _u20 -100
-debug _u30 -100
-debug fil -1
 #retira_c C20
-debug _t antes 
-debug fil 0
-debug _t despues 
-debug _u10d -100
-debug _u20 -100
-debug _u30 -100
-debug fil -1
 ###!
 #mapa
-espera: [B30, D30]
+espera: []
 fragmentacio: 0
-ops_grua: 3
+ops_grua: 7
 
 filera 0
 ---------
 pis 2                                         
 pis 1                                         
-pis 0  ___ ___ ___ ___ ___ ___ ___ ___ ___ ___
+pis 0  ___ ___ D30 D30 D30 ___ ___ ___ ___ ___
         0   1   2   3   4   5   6   7   8   9  
 ##espera: []
 ##fragmentacio: 0
@@ -12037,43 +11221,31 @@ pis 0  ___ ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t111_35 terminal 1 10 3
 ###!
 #insereix_c cA10
-debug fil 0
 #insereix_c cB10
-debug fil 0
 #insereix_c cD10
-debug fil 0
 #insereix_c cE30
-debug fil -1
 #insereix_c cF30
-debug fil -1
 #insereix_c cX30
-debug fil -1
 #insereix_c cG20
-debug fil -1
 #insereix_c cH20
-debug fil -1
 #insereix_c cC20
-debug fil -1
 #insereix_c cI30
-debug fil -1
 #insereix_c cJ30
-debug fil -1
 #insereix_c cK30
-debug fil -1
 ###!
 #retira_c X30
 #retira_c C20
 ###!
 #mapa
-espera: [E30, F30, G20, H20, I30, J30, K30]
-fragmentacio: 0
-ops_grua: 3
+espera: []
+fragmentacio: 1
+ops_grua: 14
 
 filera 0
 ---------
 pis 2                                         
 pis 1                                         
-pis 0  D10 ___ ___ ___ ___ ___ ___ ___ ___ ___
+pis 0  D10 ___ ___ ___ ___ ___ K30 K30 K30 ___
         0   1   2   3   4   5   6   7   8   9  
 ##espera: []
 ##fragmentacio: 1
@@ -12093,39 +11265,29 @@ pis 0  D10 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t111_36 terminal 1 10 3
 ###!
 #insereix_c cA20
-debug fil 0
 #insereix_c cB20
-debug fil 0
 #insereix_c cD20
-debug fil 0
 #insereix_c cE30
-debug fil -1
 #insereix_c cF30
-debug fil -1
 #insereix_c cG30
-debug fil -1
 #insereix_c cH20
-debug fil -1
 #insereix_c cC20
-debug fil -1
 #insereix_c cX20
-debug fil -1
 #insereix_c cI30
-debug fil -1
 ###!
 #retira_c X20
 #retira_c C20
 ###!
 #mapa
-espera: [E30, F30, G30, H20, I30]
+espera: []
 fragmentacio: 0
-ops_grua: 3
+ops_grua: 12
 
 filera 0
 ---------
 pis 2                                         
 pis 1                                         
-pis 0  D20 ___ ___ ___ ___ ___ ___ ___ ___ ___
+pis 0  D20 D20 G30 G30 G30 ___ ___ I30 I30 I30
         0   1   2   3   4   5   6   7   8   9  
 ##espera: []
 ##fragmentacio: 0
@@ -12145,39 +11307,29 @@ pis 0  D20 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t111_37 terminal 1 10 3
 ###!
 #insereix_c cA30
-debug fil 0
 #insereix_c cB30
-debug fil 0
 #insereix_c cD30
-debug fil 0
 #insereix_c cE20
-debug fil -1
 #insereix_c cF20
-debug fil -1
 #insereix_c cG20
-debug fil -1
 #insereix_c cX30
-debug fil -1
 #insereix_c cY30
-debug fil -1
 #insereix_c cZ30
-debug fil -1
 #insereix_c cC20
-debug fil -1
 #retira_c Z30
 #retira_c Y30
 #retira_c X30
 #retira_c C20
 #mapa
-espera: [E20, F20, G20]
+espera: []
 fragmentacio: 0
-ops_grua: 3
+ops_grua: 14
 
 filera 0
 ---------
 pis 2                                         
 pis 1                                         
-pis 0  D30 ___ ___ ___ ___ ___ ___ ___ ___ ___
+pis 0  D30 D30 D30 G20 G20 ___ ___ ___ ___ ___
         0   1   2   3   4   5   6   7   8   9  
 ##espera: []
 ##fragmentacio: 0
@@ -12197,49 +11349,28 @@ pis 0  D30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t111_38 terminal 1 10 3
 ###!
 #insereix_c cA30
-debug fil 0
 #insereix_c cX30
-debug fil 0
 #insereix_c cY30
-debug fil 0
 #insereix_c cD20
-debug fil -1
 #insereix_c cC20
-debug fil -1
 #insereix_c cZ20
-debug fil -1
 #insereix_c cE30
-debug fil -1
 ###!
 #retira_c Z20
 #retira_c Y30
-debug _t antes Y30
-debug fil 0
-debug _t despues 
-debug _u10d -100
-debug _u20 -100
-debug _u30 -100
-debug fil -1
 #retira_c X30
-debug _t antes 
-debug fil 0
-debug _t despues 
-debug _u10d -100
-debug _u20 -100
-debug _u30 -100
-debug fil -1
 #retira_c C20
 ###!
 #mapa
-espera: [D20, E30]
+espera: []
 fragmentacio: 0
-ops_grua: 3
+ops_grua: 11
 
 filera 0
 ---------
 pis 2                                         
 pis 1                                         
-pis 0  ___ ___ ___ ___ ___ ___ ___ ___ ___ ___
+pis 0  ___ ___ ___ ___ ___ E30 E30 E30 ___ ___
         0   1   2   3   4   5   6   7   8   9  
 ##espera: []
 ##fragmentacio: 0
@@ -12279,37 +11410,24 @@ pis 0  ___ ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t41 terminal 1 3 3
 ###!
 #insereix_c cA10
-debug fil 0
 #insereix_c cB20
-debug fil 0
 #insereix_c cC30
-debug fil 0
 #insereix_c cD10
-debug fil -1
 #insereix_c cE10
-debug fil -1
 #insereix_c cF10
-debug fil -1
 ###!
 #retira_c A10
-debug _t antes C30
-debug fil 0
-debug _t despues 
-debug _u10d -100
-debug _u20 -100
-debug _u30 -100
-debug fil -1
 ###!
 #mapa
-espera: [D10, E10, F10]
+espera: [C30]
 fragmentacio: 1
-ops_grua: 3
+ops_grua: 6
 
 filera 0
 ---------
 pis 2             
 pis 1             
-pis 0  ___ ___ ___
+pis 0  ___ F10 B20
         0   1   2  
 ##espera: []
 ##fragmentacio: 1
@@ -12329,54 +11447,30 @@ pis 0  ___ ___ ___
 #init t42 terminal 1 4 3
 ###!
 #insereix_c cA10
-debug fil 0
 #insereix_c cB20
-debug fil 0
 #insereix_c cC20
-debug fil 0
 #insereix_c cD20
-debug fil -1
 #insereix_c cE10
-debug fil -1
 #insereix_c cF10
-debug fil -1
 #insereix_c cG10
-debug fil -1
 ###!
 #retira_c F10
 #retira_c E10
 ###!
 #insereix_c cH20
-debug fil -1
 #insereix_c cI10
-debug fil -1
 #insereix_c cJ10
-debug fil -1
 ###!
 #retira_c I10
 #retira_c D20
 #retira_c C20
-debug _t antes C20
-debug fil 0
-debug _t despues 
-debug _u10d -100
-debug _u20 -100
-debug _u30 -100
-debug fil -1
 #retira_c A10
-debug _t antes 
-debug fil 0
-debug _t despues 
-debug _u10d -100
-debug _u20 -100
-debug _u30 -100
-debug fil -1
 #retira_c G10
 ###!
 #mapa
-espera: [H20, J10]
-fragmentacio: 0
-ops_grua: 3
+espera: []
+fragmentacio: 2
+ops_grua: 17
 
 filera 0
 ---------
@@ -12402,25 +11496,15 @@ pis 0  ___ ___ ___ ___
 #init t43 terminal 1 7 2
 ###!
 #insereix_c cA20
-debug fil 0
 #insereix_c cB10
-debug fil 0
 #insereix_c cC10
-debug fil -1
 #insereix_c cD10
-debug fil -1
 #insereix_c cE10
-debug fil -1
 #insereix_c cF10
-debug fil -1
 #insereix_c cG10
-debug fil -1
 #insereix_c cH10
-debug fil -1
 #insereix_c cI20
-debug fil -1
 #insereix_c cJ10
-debug fil -1
 ###!
 #retira_c G10
 #retira_c E10
@@ -12429,14 +11513,14 @@ debug fil -1
 #retira_c H10
 ###!
 #mapa
-espera: [F10, I20, J10]
-fragmentacio: 1
-ops_grua: 2
+espera: []
+fragmentacio: 2
+ops_grua: 15
 
 filera 0
 ---------
 pis 1                             
-pis 0  B10 ___ ___ ___ ___ ___ ___
+pis 0  B10 ___ ___ ___ ___ I20 I20
         0   1   2   3   4   5   6  
 ##espera: []
 ##fragmentacio: 3
@@ -12455,73 +11539,42 @@ pis 0  B10 ___ ___ ___ ___ ___ ___
 #init t44 terminal 1 8 3
 ###!
 #insereix_c cA10
-debug fil 0
 #insereix_c cB10
-debug fil 0
 #insereix_c cC10
-debug fil 0
 #insereix_c cD10
-debug fil -1
 #insereix_c cE10
-debug fil -1
 #insereix_c cF10
-debug fil -1
 #insereix_c cG10
-debug fil -1
 #insereix_c cH10
-debug fil -1
 #insereix_c cI10
-debug fil -1
 #insereix_c cJ10
-debug fil -1
 #insereix_c cK10
-debug fil -1
 #insereix_c cL10
-debug fil -1
 #insereix_c cM10
-debug fil -1
 #retira_c L10
 #retira_c K10
 #retira_c I10
 #retira_c H10
 #insereix_c cN30
-debug fil -1
 #insereix_c cO10
-debug fil -1
 #insereix_c cP10
-debug fil -1
 #insereix_c cQ10
-debug fil -1
 #retira_c F10
 #retira_c E10
 #retira_c D10
 #retira_c C10
-debug _t antes C10
-debug fil 0
-debug _t despues 
-debug _u10d -100
-debug _u20 -100
-debug _u30 -100
-debug fil -1
 #retira_c B10
-debug _t antes 
-debug fil 0
-debug _t despues 
-debug _u10d -100
-debug _u20 -100
-debug _u30 -100
-debug fil -1
 #retira_c J10
 #mapa
-espera: [G10, M10, N30, O10, P10, Q10]
-fragmentacio: 1
-ops_grua: 3
+espera: []
+fragmentacio: 3
+ops_grua: 27
 
 filera 0
 ---------
 pis 2                                 
 pis 1                                 
-pis 0  ___ ___ ___ ___ ___ ___ ___ ___
+pis 0  ___ ___ O10 ___ Q10 ___ ___ ___
         0   1   2   3   4   5   6   7  
 ##espera: []
 ##fragmentacio: 1
@@ -12541,43 +11594,24 @@ pis 0  ___ ___ ___ ___ ___ ___ ___ ___
 #init t45 terminal 1 8 2
 ###!
 #insereix_c cA20
-debug fil 0
 #insereix_c cB20
-debug fil 0
 #insereix_c cC10
-debug fil -1
 #insereix_c cD20
-debug fil -1
 #insereix_c cE30
-debug fil -1
 ###!
 #retira_c B20
-debug _t antes B20
-debug fil 0
-debug _t despues 
-debug _u10d -100
-debug _u20 -100
-debug _u30 -100
-debug fil -1
 #retira_c A20
-debug _t antes 
-debug fil 0
-debug _t despues 
-debug _u10d -100
-debug _u20 -100
-debug _u30 -100
-debug fil -1
 #retira_c C10
 ###!
 #mapa
-espera: [D20, E30]
-fragmentacio: 0
-ops_grua: 2
+espera: []
+fragmentacio: 1
+ops_grua: 8
 
 filera 0
 ---------
 pis 1                                 
-pis 0  ___ ___ ___ ___ ___ ___ ___ ___
+pis 0  ___ ___ ___ E30 E30 ___ ___ ___
         0   1   2   3   4   5   6   7  
 ##espera: []
 ##fragmentacio: 0
@@ -12596,62 +11630,35 @@ pis 0  ___ ___ ___ ___ ___ ___ ___ ___
 #init t46 terminal 1 6 3
 ###!
 #insereix_c cA20
-debug fil 0
 #insereix_c cB10
-debug fil 0
 #insereix_c cC20
-debug fil 0
 #insereix_c cD30
-debug fil -1
 #insereix_c cE30
-debug fil -1
 #insereix_c cF10
-debug fil -1
 #insereix_c cG10
-debug fil -1
 #insereix_c cH10
-debug fil -1
 #insereix_c cI10
-debug fil -1
 #insereix_c cJ10
-debug fil -1
 ###!
 #retira_c I10
 #retira_c H10
 ###!
 #insereix_c cK20
-debug fil -1
 #insereix_c cL10
-debug fil -1
 #insereix_c cM10
-debug fil -1
 ###!
 #retira_c E30
 #retira_c F10
 #retira_c L10
 #retira_c D30
 #retira_c C20
-debug _t antes C20
-debug fil 0
-debug _t despues 
-debug _u10d -100
-debug _u20 -100
-debug _u30 -100
-debug fil -1
 #retira_c B10
-debug _t antes 
-debug fil 0
-debug _t despues 
-debug _u10d -100
-debug _u20 -100
-debug _u30 -100
-debug fil -1
 #retira_c J10
 ###!
 #mapa
-espera: [G10, K20, M10]
+espera: []
 fragmentacio: 0
-ops_grua: 3
+ops_grua: 22
 
 filera 0
 ---------
@@ -12677,24 +11684,15 @@ pis 0  ___ ___ ___ ___ ___ ___
 #init t47 terminal 1 2 3
 ###!
 #insereix_c cA10
-debug fil 0
 #insereix_c cB10
-debug fil 0
 #insereix_c cC10
-debug fil 0
 ###!
 #retira_c A10
-debug _t antes C10
-debug fil 0
-debug _t despues 
-debug _u10d -100
-debug _u20 -100
-debug _u30 -100
 ###!
 #mapa
 espera: []
 fragmentacio: 2
-ops_grua: 3
+ops_grua: 4
 
 filera 0
 ---------
@@ -12720,48 +11718,28 @@ pis 0  ___ ___
 #init t48 terminal 1 7 2
 ###!
 #insereix_c cA20
-debug fil 0
 #insereix_c cB20
-debug fil 0
 #insereix_c cC20
-debug fil -1
 #insereix_c cD20
-debug fil -1
 #insereix_c cE10
-debug fil -1
 ###!
 #retira_c D20
 ###!
 #insereix_c cF30
-debug fil -1
 ###!
 #retira_c B20
-debug _t antes B20
-debug fil 0
-debug _t despues 
-debug _u10d -100
-debug _u20 -100
-debug _u30 -100
-debug fil -1
 #retira_c A20
-debug _t antes 
-debug fil 0
-debug _t despues 
-debug _u10d -100
-debug _u20 -100
-debug _u30 -100
-debug fil -1
 #retira_c E10
 ###!
 #mapa
-espera: [C20, F30]
-fragmentacio: 0
-ops_grua: 2
+espera: []
+fragmentacio: 1
+ops_grua: 10
 
 filera 0
 ---------
 pis 1                             
-pis 0  ___ ___ ___ ___ ___ ___ ___
+pis 0  ___ ___ F30 F30 ___ ___ ___
         0   1   2   3   4   5   6  
 ##espera: []
 ##fragmentacio: 0
@@ -12800,32 +11778,21 @@ pis 0  ___ ___ ___ ___ ___ ___ ___
 #init t51 terminal 1 3 2
 ###!
 #insereix_c cA20
-debug fil 0
 #insereix_c cB10
-debug fil 0
 #insereix_c cC10
-debug fil -1
 #insereix_c cD10
-debug fil -1
 ###!
 #retira_c A20
-debug _t antes B10
-debug fil 0
-debug _t despues 
-debug _u10d -100
-debug _u20 -100
-debug _u30 -100
-debug fil -1
 ###!
 #mapa
-espera: [C10, D10]
-fragmentacio: 1
-ops_grua: 2
+espera: []
+fragmentacio: 0
+ops_grua: 5
 
 filera 0
 ---------
 pis 1             
-pis 0  ___ ___ ___
+pis 0  ___ ___ D10
         0   1   2  
 ##espera: []
 ##fragmentacio: 2
@@ -12844,32 +11811,21 @@ pis 0  ___ ___ ___
 #init t52 terminal 1 4 2
 ###!
 #insereix_c cA20
-debug fil 0
 #insereix_c cB10
-debug fil 0
 #insereix_c cC20
-debug fil -1
 #insereix_c cD20
-debug fil -1
 ###!
 #retira_c A20
-debug _t antes B10
-debug fil 0
-debug _t despues 
-debug _u10d -100
-debug _u20 -100
-debug _u30 -100
-debug fil -1
 ###!
 #mapa
-espera: [C20, D20]
+espera: []
 fragmentacio: 1
-ops_grua: 2
+ops_grua: 5
 
 filera 0
 ---------
 pis 1                 
-pis 0  ___ ___ ___ ___
+pis 0  ___ ___ D20 C20
         0   1   2   3  
 ##espera: []
 ##fragmentacio: 0
@@ -12888,34 +11844,27 @@ pis 0  ___ ___ ___ ___
 #init t53 terminal 1 5 2
 ###!
 #insereix_c cA20
-debug fil 0
 #insereix_c cB20
-debug fil 0
 #insereix_c cD10
-debug fil -1
 #insereix_c cE10
-debug fil -1
 #insereix_c cF20
-debug fil -1
 ###!
 #retira_c E10
 ###!
 #insereix_c cG20
-debug fil -1
 #insereix_c cH10
-debug fil -1
 ###!
 #retira_c F20
 ###!
 #mapa
-espera: [D10, G20, H10]
+espera: []
 fragmentacio: 0
-ops_grua: 2
+ops_grua: 9
 
 filera 0
 ---------
 pis 1                     
-pis 0  B20 ___ ___ ___ ___
+pis 0  B20 B20 G20 ___ ___
         0   1   2   3   4  
 ##espera: []
 ##fragmentacio: 0
@@ -12934,38 +11883,29 @@ pis 0  B20 ___ ___ ___ ___
 #init t54 terminal 1 4 3
 ###!
 #insereix_c cA10
-debug fil 0
 #insereix_c cB10
-debug fil 0
 #insereix_c cC10
-debug fil 0
 #insereix_c cD20
-debug fil -1
 #insereix_c cE10
-debug fil -1
 #insereix_c cF10
-debug fil -1
 #insereix_c cG10
-debug fil -1
 #insereix_c cH10
-debug fil -1
 #insereix_c cI10
-debug fil -1
 ###!
 #retira_c H10
 #retira_c G10
 #retira_c D20
 ###!
 #mapa
-espera: [E10, F10, I10]
-fragmentacio: 0
-ops_grua: 3
+espera: []
+fragmentacio: 3
+ops_grua: 12
 
 filera 0
 ---------
 pis 2                 
 pis 1                 
-pis 0  C10 ___ ___ ___
+pis 0  C10 ___ ___ I10
         0   1   2   3  
 ##espera: []
 ##fragmentacio: 3
@@ -12985,38 +11925,19 @@ pis 0  C10 ___ ___ ___
 #init t55 terminal 1 3 2
 ###!
 #insereix_c cA10
-debug fil 0
 #insereix_c cB10
-debug fil 0
 #insereix_c cC20
-debug fil -1
 #insereix_c cD10
-debug fil -1
 #insereix_c cE10
-debug fil -1
 ###!
 #retira_c B10
-debug _t antes B10
-debug fil 0
-debug _t despues 
-debug _u10d -100
-debug _u20 -100
-debug _u30 -100
-debug fil -1
 #retira_c A10
-debug _t antes 
-debug fil 0
-debug _t despues 
-debug _u10d -100
-debug _u20 -100
-debug _u30 -100
-debug fil -1
 #retira_c C20
 ###!
 #mapa
-espera: [D10, E10]
-fragmentacio: 0
-ops_grua: 2
+espera: []
+fragmentacio: 1
+ops_grua: 8
 
 filera 0
 ---------
@@ -13040,39 +11961,24 @@ pis 0  ___ ___ ___
 #init t56 terminal 1 6 3
 ###!
 #insereix_c cA20
-debug fil 0
 #insereix_c cB10
-debug fil 0
 #insereix_c cC10
-debug fil 0
 #insereix_c cX10
-debug fil -1
 #insereix_c cY10
-debug fil -1
 #insereix_c cZ10
-debug fil -1
 #insereix_c cD20
-debug fil -1
 #insereix_c cT10
-debug fil -1
 #insereix_c cW10
-debug fil -1
 #insereix_c cS20
-debug fil -1
 #insereix_c cR20
-debug fil -1
 #insereix_c cE10
-debug fil -1
 ###!
 #retira_c R20
 #retira_c S20
 ###!
 #insereix_c cF30
-debug fil -1
 #insereix_c cG10
-debug fil -1
 #insereix_c cH20
-debug fil -1
 ###!
 #retira_c Y10
 #retira_c X10
@@ -13082,15 +11988,15 @@ debug fil -1
 #retira_c D20
 ###!
 #mapa
-espera: [E10, F30, G10, H20]
-fragmentacio: 1
-ops_grua: 3
+espera: []
+fragmentacio: 2
+ops_grua: 23
 
 filera 0
 ---------
 pis 2                         
 pis 1                         
-pis 0  C10 ___ ___ ___ ___ ___
+pis 0  C10 ___ ___ ___ ___ H20
         0   1   2   3   4   5  
 ##espera: []
 ##fragmentacio: 1
@@ -13110,39 +12016,20 @@ pis 0  C10 ___ ___ ___ ___ ___
 #init t57 terminal 1 3 3
 ###!
 #insereix_c cA20
-debug fil 0
 #insereix_c cB10
-debug fil 0
 #insereix_c cX10
-debug fil 0
 #insereix_c cC10
-debug fil -1
 ###!
 #retira_c X10
-debug _t antes X10
-debug fil 0
-debug _t despues 
-debug _u10d -100
-debug _u20 -100
-debug _u30 -100
-debug fil -1
 ###!
 #insereix_c cD20
-debug fil -1
 ###!
 #retira_c A20
-debug _t antes 
-debug fil 0
-debug _t despues 
-debug _u10d -100
-debug _u20 -100
-debug _u30 -100
-debug fil -1
 ###!
 #mapa
-espera: [C10, D20]
+espera: []
 fragmentacio: 1
-ops_grua: 3
+ops_grua: 7
 
 filera 0
 ---------
@@ -13168,30 +12055,20 @@ pis 0  ___ ___ ___
 #init t58 terminal 1 5 2
 ###!
 #insereix_c cA10
-debug fil 0
 #insereix_c cB20
-debug fil 0
 #insereix_c cC30
-debug fil -1
 ###!
 #retira_c B20
-debug _t antes B20
-debug fil 0
-debug _t despues 
-debug _u10d -100
-debug _u20 -100
-debug _u30 -100
-debug fil -1
 ###!
 #mapa
-espera: [C30]
-fragmentacio: 1
-ops_grua: 2
+espera: []
+fragmentacio: 0
+ops_grua: 4
 
 filera 0
 ---------
 pis 1                     
-pis 0  ___ ___ ___ ___ ___
+pis 0  C30 ___ ___ ___ ___
         0   1   2   3   4  
 ##espera: []
 ##fragmentacio: 1
@@ -13230,32 +12107,21 @@ pis 0  ___ ___ ___ ___ ___
 #init t61 terminal 1 4 2
 ###!
 #insereix_c cA30
-debug fil 0
 #insereix_c cB20
-debug fil 0
 #insereix_c cC10
-debug fil -1
 #insereix_c cD10
-debug fil -1
 ###!
 #retira_c A30
-debug _t antes B20
-debug fil 0
-debug _t despues 
-debug _u10d -100
-debug _u20 -100
-debug _u30 -100
-debug fil -1
 ###!
 #mapa
-espera: [C10, D10]
+espera: []
 fragmentacio: 0
-ops_grua: 2
+ops_grua: 5
 
 filera 0
 ---------
 pis 1                 
-pis 0  ___ ___ ___ ___
+pis 0  ___ ___ ___ D10
         0   1   2   3  
 ##espera: []
 ##fragmentacio: 0
@@ -13274,49 +12140,32 @@ pis 0  ___ ___ ___ ___
 #init t62 terminal 1 4 3
 ###!
 #insereix_c cA30
-debug fil 0
 #insereix_c cB10
-debug fil 0
 #insereix_c cC10
-debug fil 0
 #insereix_c cX10
-debug fil -1
 #insereix_c cD10
-debug fil -1
 ###!
 #retira_c X10
 ###!
 #insereix_c cE20
-debug fil -1
 #insereix_c cX10
-debug fil -1
 #insereix_c cF10
-debug fil -1
 #insereix_c cG10
-debug fil -1
 #insereix_c cH10
-debug fil -1
 ###!
 #retira_c X10
 #retira_c A30
-debug _t antes C10
-debug fil 0
-debug _t despues 
-debug _u10d -100
-debug _u20 -100
-debug _u30 -100
-debug fil -1
 ###!
 #mapa
-espera: [D10, E20, F10, G10, H10]
-fragmentacio: 1
-ops_grua: 3
+espera: [E20]
+fragmentacio: 4
+ops_grua: 12
 
 filera 0
 ---------
 pis 2                 
 pis 1                 
-pis 0  ___ ___ ___ ___
+pis 0  ___ ___ ___ H10
         0   1   2   3  
 ##espera: [E20]
 ##fragmentacio: 3
@@ -13336,48 +12185,27 @@ pis 0  ___ ___ ___ ___
 #init t63 terminal 1 6 2
 ###!
 #insereix_c cX20
-debug fil 0
 #insereix_c cY20
-debug fil 0
 #insereix_c cA10
-debug fil -1
 #insereix_c cB30
-debug fil -1
 #insereix_c cC20
-debug fil -1
 #insereix_c cZ10
-debug fil -1
 #insereix_c cD10
-debug fil -1
 ###!
 #retira_c Z10
 #retira_c Y20
-debug _t antes Y20
-debug fil 0
-debug _t despues 
-debug _u10d -100
-debug _u20 -100
-debug _u30 -100
-debug fil -1
 #retira_c X20
-debug _t antes 
-debug fil 0
-debug _t despues 
-debug _u10d -100
-debug _u20 -100
-debug _u30 -100
-debug fil -1
 #retira_c B30
 ###!
 #mapa
-espera: [A10, C20, D10]
-fragmentacio: 0
-ops_grua: 2
+espera: []
+fragmentacio: 3
+ops_grua: 11
 
 filera 0
 ---------
 pis 1                         
-pis 0  ___ ___ ___ ___ ___ ___
+pis 0  ___ ___ C20 ___ ___ ___
         0   1   2   3   4   5  
 ##espera: []
 ##fragmentacio: 3
@@ -13396,53 +12224,30 @@ pis 0  ___ ___ ___ ___ ___ ___
 #init t64 terminal 1 7 2
 ###!
 #insereix_c cX10
-debug fil 0
 #insereix_c cY10
-debug fil 0
 #insereix_c cA10
-debug fil -1
 #insereix_c cB30
-debug fil -1
 #insereix_c cC20
-debug fil -1
 #insereix_c cZ10
-debug fil -1
 #insereix_c cT10
-debug fil -1
 #insereix_c cD10
-debug fil -1
 #insereix_c cE20
-debug fil -1
 ###!
 #retira_c Y10
-debug _t antes Y10
-debug fil 0
-debug _t despues 
-debug _u10d -100
-debug _u20 -100
-debug _u30 -100
-debug fil -1
 #retira_c X10
-debug _t antes 
-debug fil 0
-debug _t despues 
-debug _u10d -100
-debug _u20 -100
-debug _u30 -100
-debug fil -1
 #retira_c T10
 #retira_c Z10
 #retira_c B30
 ###!
 #mapa
-espera: [A10, C20, D10, E20]
-fragmentacio: 0
-ops_grua: 2
+espera: []
+fragmentacio: 5
+ops_grua: 14
 
 filera 0
 ---------
 pis 1                             
-pis 0  ___ ___ ___ ___ ___ ___ ___
+pis 0  ___ C20 ___ ___ ___ E20 ___
         0   1   2   3   4   5   6  
 ##espera: []
 ##fragmentacio: 5
@@ -13461,36 +12266,18 @@ pis 0  ___ ___ ___ ___ ___ ___ ___
 #init t65 terminal 1 5 2
 ###!
 #insereix_c cX20
-debug fil 0
 #insereix_c cA30
-debug fil 0
 #insereix_c cY20
-debug fil -1
 #insereix_c cB30
-debug fil -1
 ###!
 #retira_c Y20
 #retira_c X20
-debug _t antes A30
-debug fil 0
-debug _t despues 
-debug _u10d -100
-debug _u20 -100
-debug _u30 -100
-debug fil -1
 #retira_c A30
-debug _t antes 
-debug fil 0
-debug _t despues 
-debug _u10d -100
-debug _u20 -100
-debug _u30 -100
-debug fil -1
 ###!
 #mapa
-espera: [B30]
+espera: []
 fragmentacio: 0
-ops_grua: 2
+ops_grua: 7
 
 filera 0
 ---------
@@ -13514,50 +12301,22 @@ pis 0  ___ ___ ___ ___ ___
 #init t66 terminal 1 4 3
 ###!
 #insereix_c cZ10
-debug fil 0
 #insereix_c cX10
-debug fil 0
 #insereix_c cA30
-debug fil 0
 #insereix_c cB10
-debug fil -1
 #insereix_c cY20
-debug fil -1
 #insereix_c cC20
-debug fil -1
 #insereix_c cD20
-debug fil -1
 ###!
 #retira_c Y20
 #retira_c X10
-debug _t antes A30
-debug fil 0
-debug _t despues 
-debug _u10d -100
-debug _u20 -100
-debug _u30 -100
-debug fil -1
 #retira_c Z10
-debug _t antes 
-debug fil 0
-debug _t despues 
-debug _u10d -100
-debug _u20 -100
-debug _u30 -100
-debug fil -1
 #retira_c A30
-debug _t antes 
-debug fil 0
-debug _t despues 
-debug _u10d -100
-debug _u20 -100
-debug _u30 -100
-debug fil -1
 ###!
 #mapa
-espera: [B10, C20, D20]
-fragmentacio: 0
-ops_grua: 3
+espera: []
+fragmentacio: 2
+ops_grua: 11
 
 filera 0
 ---------
@@ -13600,55 +12359,28 @@ pis 0  ___ ___ ___ ___
 #init t71 terminal 1 4 3
 ###!
 #insereix_c cA20
-debug fil 0
 #insereix_c cX20
-debug fil 0
 #insereix_c cY20
-debug fil 0
 #insereix_c cB20
-debug fil -1
 ###!
 #retira_c Y20
-debug _t antes Y20
-debug fil 0
-debug _t despues 
-debug _u10d -100
-debug _u20 -100
-debug _u30 -100
-debug fil -1
 #retira_c X20
-debug _t antes 
-debug fil 0
-debug _t despues 
-debug _u10d -100
-debug _u20 -100
-debug _u30 -100
-debug fil -1
 ###!
 #insereix_c cC30
-debug fil -1
 #insereix_c cD10
-debug fil -1
 ###!
 #retira_c A20
-debug _t antes 
-debug fil 0
-debug _t despues 
-debug _u10d -100
-debug _u20 -100
-debug _u30 -100
-debug fil -1
 ###!
 #mapa
-espera: [B20, C30, D10]
-fragmentacio: 0
-ops_grua: 3
+espera: []
+fragmentacio: 4
+ops_grua: 9
 
 filera 0
 ---------
 pis 2                 
 pis 1                 
-pis 0  ___ ___ ___ ___
+pis 0  ___ ___ C30 B20
         0   1   2   3  
 ##espera: [C30]
 ##fragmentacio: 2
@@ -13668,48 +12400,28 @@ pis 0  ___ ___ ___ ___
 #init t72 terminal 1 4 3
 ###!
 #insereix_c cA20
-debug fil 0
 #insereix_c cX20
-debug fil 0
 #insereix_c cY20
-debug fil 0
 #insereix_c cB20
-debug fil -1
 ###!
 #retira_c Y20
-debug _t antes Y20
-debug fil 0
-debug _t despues 
-debug _u10d -100
-debug _u20 -100
-debug _u30 -100
-debug fil -1
 #retira_c X20
-debug _t antes 
-debug fil 0
-debug _t despues 
-debug _u10d -100
-debug _u20 -100
-debug _u30 -100
-debug fil -1
 ###!
 #insereix_c cC30
-debug fil -1
 #insereix_c cD10
-debug fil -1
 ###!
 #retira_c B20
 ###!
 #mapa
-espera: [C30, D10]
-fragmentacio: 0
-ops_grua: 3
+espera: []
+fragmentacio: 3
+ops_grua: 9
 
 filera 0
 ---------
 pis 2                 
 pis 1                 
-pis 0  ___ ___ ___ ___
+pis 0  D10 C30 ___ ___
         0   1   2   3  
 ##espera: [C30]
 ##fragmentacio: 2
@@ -13729,71 +12441,38 @@ pis 0  ___ ___ ___ ___
 #init t73 terminal 1 5 3
 ###!
 #insereix_c cX10
-debug fil 0
 #insereix_c cY10
-debug fil 0
 #insereix_c cZ10
-debug fil 0
 #insereix_c cA20
-debug fil -1
 #insereix_c cX20
-debug fil -1
 #insereix_c cY20
-debug fil -1
 #insereix_c cB10
-debug fil -1
 ###!
 #retira_c Y20
 #retira_c X20
 ###!
 #insereix_c cC30
-debug fil -1
 #insereix_c cD10
-debug fil -1
 #insereix_c cE10
-debug fil -1
 #insereix_c cF10
-debug fil -1
 ###!
 #retira_c Z10
-debug _t antes Z10
-debug fil 0
-debug _t despues 
-debug _u10d -100
-debug _u20 -100
-debug _u30 -100
-debug fil -1
 #retira_c Y10
-debug _t antes 
-debug fil 0
-debug _t despues 
-debug _u10d -100
-debug _u20 -100
-debug _u30 -100
-debug fil -1
 #retira_c X10
-debug _t antes 
-debug fil 0
-debug _t despues 
-debug _u10d -100
-debug _u20 -100
-debug _u30 -100
-debug fil -1
 #retira_c B10
 ###!
 #insereix_c cG30
-debug fil -1
 ###!
 #mapa
-espera: [A20, C30, D10, E10, F10, G30]
-fragmentacio: 0
-ops_grua: 3
+espera: [G30]
+fragmentacio: 3
+ops_grua: 17
 
 filera 0
 ---------
 pis 2                     
 pis 1                     
-pis 0  ___ ___ ___ ___ ___
+pis 0  ___ D10 E10 ___ ___
         0   1   2   3   4  
 ##espera: [G30]
 ##fragmentacio: 1
@@ -13826,54 +12505,36 @@ pis 0  ___ ___ ___ ___ ___
 #init t81 terminal 1 10 3
 ###!
 #insereix_c cA30
-debug fil 0
 #insereix_c cB30
-debug fil 0
 #insereix_c cD30
-debug fil 0
 #insereix_c cE20
-debug fil -1
 #insereix_c cF20
-debug fil -1
 #insereix_c cG20
-debug fil -1
 #insereix_c cH10
-debug fil -1
 #insereix_c cI10
-debug fil -1
 #insereix_c cC10
-debug fil -1
 #insereix_c cJ30
-debug fil -1
 #insereix_c cK30
-debug fil -1
 #insereix_c cL30
-debug fil -1
 #insereix_c cM10
-debug fil -1
 #insereix_c cN10
-debug fil -1
 #insereix_c cO10
-debug fil -1
 #insereix_c cT30
-debug fil -1
 #insereix_c cQ10
-debug fil -1
 #insereix_c cS20
-debug fil -1
 ###!
 #retira_c C10
 ###!
 #mapa
-espera: [E20, F20, G20, H10, I10, J30, K30, L30, M10, N10, O10, Q10, S20, T30]
-fragmentacio: 0
-ops_grua: 3
+espera: [Q10, S20, T30]
+fragmentacio: 1
+ops_grua: 16
 
 filera 0
 ---------
 pis 2                                         
 pis 1                                         
-pis 0  D30 ___ ___ ___ ___ ___ ___ ___ ___ ___
+pis 0  D30 D30 D30 G20 G20 ___ L30 L30 L30 O10
         0   1   2   3   4   5   6   7   8   9  
 ##espera: [S20, T30]
 ##fragmentacio: 0
@@ -13893,53 +12554,37 @@ pis 0  D30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t82 terminal 1 10 3
 ###!
 #insereix_c cA30
-debug fil 0
 #insereix_c cB30
-debug fil 0
 #insereix_c cD30
-debug fil 0
 #insereix_c cE20
-debug fil -1
 #insereix_c cP20
-debug fil -1
 #insereix_c cC10
-debug fil -1
 #insereix_c cX10
-debug fil -1
 #insereix_c cF20
-debug fil -1
 #insereix_c cG20
-debug fil -1
 #insereix_c cH20
-debug fil -1
 #insereix_c cI20
-debug fil -1
 #insereix_c cJ20
-debug fil -1
 #insereix_c cK20
-debug fil -1
 ###!
 #retira_c X10
 ###!
 #insereix_c cQ30
-debug fil -1
 #insereix_c cN30
-debug fil -1
 #insereix_c cL20
-debug fil -1
 ###!
 #retira_c C10
 ###!
 #mapa
-espera: [E20, F20, G20, H20, I20, J20, K20, L20, N30, P20, Q30]
-fragmentacio: 0
-ops_grua: 3
+espera: [N30, Q30]
+fragmentacio: 1
+ops_grua: 16
 
 filera 0
 ---------
 pis 2                                         
 pis 1                                         
-pis 0  D30 ___ ___ ___ ___ ___ ___ ___ ___ ___
+pis 0  D30 D30 D30 L20 L20 H20 H20 K20 K20 ___
         0   1   2   3   4   5   6   7   8   9  
 ##espera: [N30, Q30]
 ##fragmentacio: 1
@@ -13959,52 +12604,37 @@ pis 0  D30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t83 terminal 1 10 3
 ###!
 #insereix_c cA30
-debug fil 0
 #insereix_c cB30
-debug fil 0
 #insereix_c cD30
-debug fil 0
 #insereix_c cE30
-debug fil -1
 #insereix_c cF30
-debug fil -1
 #insereix_c cG10
-debug fil -1
 #insereix_c cX10
-debug fil -1
 #insereix_c cC10
-debug fil -1
 #insereix_c cH30
-debug fil -1
 #insereix_c cI30
-debug fil -1
 #insereix_c cY10
-debug fil -1
 #insereix_c cJ20
-debug fil -1
 ###!
 #retira_c X10
 #retira_c Y10
 ###!
 #insereix_c cM30
-debug fil -1
 #insereix_c cN30
-debug fil -1
 #insereix_c cL20
-debug fil -1
 ###!
 #retira_c C10
 ###!
 #mapa
-espera: [E30, F30, G10, H30, I30, J20, L20, M30, N30]
-fragmentacio: 0
-ops_grua: 3
+espera: [M30, N30]
+fragmentacio: 2
+ops_grua: 16
 
 filera 0
 ---------
 pis 2                                         
 pis 1                                         
-pis 0  D30 ___ ___ ___ ___ ___ ___ ___ ___ ___
+pis 0  D30 D30 D30 G10 L20 L20 ___ J20 J20 ___
         0   1   2   3   4   5   6   7   8   9  
 ##espera: [M30, N30]
 ##fragmentacio: 2
@@ -14024,53 +12654,32 @@ pis 0  D30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t84 terminal 1 10 3
 ###!
 #insereix_c cA10
-debug fil 0
 #insereix_c cB10
-debug fil 0
 #insereix_c cC10
-debug fil 0
 #insereix_c cD30
-debug fil -1
 #insereix_c cE30
-debug fil -1
 #insereix_c cF30
-debug fil -1
 #insereix_c cG30
-debug fil -1
 #insereix_c cH30
-debug fil -1
 #insereix_c cI30
-debug fil -1
 #insereix_c cJ30
-debug fil -1
 #insereix_c cK30
-debug fil -1
 #insereix_c cL30
-debug fil -1
 #insereix_c cP30
-debug fil -1
 #insereix_c cQ20
-debug fil -1
 ###!
 #retira_c C10
-debug _t antes C10
-debug fil 0
-debug _t despues 
-debug _u10d -100
-debug _u20 -100
-debug _u30 -100
-debug fil -1
 ###!
 #mapa
-espera: [D30, E30, F30, G30, H30, I30, J30, K30, L30, P30, Q20]
+espera: [P30, Q20]
 fragmentacio: 1
-ops_grua: 3
+ops_grua: 13
 
 filera 0
 ---------
 pis 2                                         
 pis 1                                         
-pis 0  ___ ___ ___ ___ ___ ___ ___ ___ ___ ___
+pis 0  ___ F30 F30 F30 I30 I30 I30 L30 L30 L30
         0   1   2   3   4   5   6   7   8   9  
 ##espera: [P30, Q20]
 ##fragmentacio: 1
@@ -14090,48 +12699,33 @@ pis 0  ___ ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t85 terminal 1 10 3
 ###!
 #insereix_c cA30
-debug fil 0
 #insereix_c cB30
-debug fil 0
 #insereix_c cD30
-debug fil 0
 #insereix_c cE30
-debug fil -1
 #insereix_c cF30
-debug fil -1
 #insereix_c cG30
-debug fil -1
 #insereix_c cH30
-debug fil -1
 #insereix_c cI30
-debug fil -1
 #insereix_c cJ30
-debug fil -1
 #insereix_c cK10
-debug fil -1
 #insereix_c cL10
-debug fil -1
 #insereix_c cC10
-debug fil -1
 #insereix_c cM20
-debug fil -1
 #insereix_c cN30
-debug fil -1
 #insereix_c cO30
-debug fil -1
 ###!
 #retira_c C10
 ###!
 #mapa
-espera: [E30, F30, G30, H30, I30, J30, K10, L10, M20, N30, O30]
-fragmentacio: 0
-ops_grua: 3
+espera: [M20, N30, O30]
+fragmentacio: 1
+ops_grua: 13
 
 filera 0
 ---------
 pis 2                                         
 pis 1                                         
-pis 0  D30 ___ ___ ___ ___ ___ ___ ___ ___ ___
+pis 0  D30 D30 D30 G30 G30 G30 J30 J30 J30 ___
         0   1   2   3   4   5   6   7   8   9  
 ##espera: [M20, N30, O30]
 ##fragmentacio: 1
@@ -14151,52 +12745,35 @@ pis 0  D30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t86 terminal 1 10 3
 ###!
 #insereix_c cA30
-debug fil 0
 #insereix_c cB30
-debug fil 0
 #insereix_c cD30
-debug fil 0
 #insereix_c cE20
-debug fil -1
 #insereix_c cF20
-debug fil -1
 #insereix_c cG20
-debug fil -1
 #insereix_c cH10
-debug fil -1
 #insereix_c cI10
-debug fil -1
 #insereix_c cC10
-debug fil -1
 #insereix_c cJ30
-debug fil -1
 #insereix_c cK30
-debug fil -1
 #insereix_c cL30
-debug fil -1
 #insereix_c cM10
-debug fil -1
 #insereix_c cN10
-debug fil -1
 #insereix_c cO10
-debug fil -1
 #insereix_c cT30
-debug fil -1
 #insereix_c cS20
-debug fil -1
 ###!
 #retira_c C10
 ###!
 #mapa
-espera: [E20, F20, G20, H10, I10, J30, K30, L30, M10, N10, O10, S20, T30]
-fragmentacio: 0
-ops_grua: 3
+espera: [S20, T30]
+fragmentacio: 1
+ops_grua: 16
 
 filera 0
 ---------
 pis 2                                         
 pis 1                                         
-pis 0  D30 ___ ___ ___ ___ ___ ___ ___ ___ ___
+pis 0  D30 D30 D30 G20 G20 ___ L30 L30 L30 O10
         0   1   2   3   4   5   6   7   8   9  
 ##espera: [S20, T30]
 ##fragmentacio: 1
@@ -14216,53 +12793,37 @@ pis 0  D30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t87 terminal 1 10 3
 ###!
 #insereix_c cA20
-debug fil 0
 #insereix_c cB20
-debug fil 0
 #insereix_c cD20
-debug fil 0
 #insereix_c cE30
-debug fil -1
 #insereix_c cF30
-debug fil -1
 #insereix_c cG30
-debug fil -1
 #insereix_c cH30
-debug fil -1
 #insereix_c cI30
-debug fil -1
 #insereix_c cJ30
-debug fil -1
 #insereix_c cK20
-debug fil -1
 #insereix_c cM20
-debug fil -1
 #insereix_c cX10
-debug fil -1
 #insereix_c cC10
-debug fil -1
 ###!
 #retira_c X10
 ###!
 #insereix_c cO30
-debug fil -1
 #insereix_c cN30
-debug fil -1
 #insereix_c cL30
-debug fil -1
 ###!
 #retira_c C10
 ###!
 #mapa
-espera: [E30, F30, G30, H30, I30, J30, K20, L30, M20, N30, O30]
+espera: [L30, N30, O30]
 fragmentacio: 0
-ops_grua: 3
+ops_grua: 15
 
 filera 0
 ---------
 pis 2                                         
 pis 1                                         
-pis 0  D20 ___ ___ ___ ___ ___ ___ ___ ___ ___
+pis 0  D20 D20 G30 G30 G30 J30 J30 J30 ___ ___
         0   1   2   3   4   5   6   7   8   9  
 ##espera: [L30, N30, O30]
 ##fragmentacio: 0
@@ -14282,31 +12843,18 @@ pis 0  D20 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t88 terminal 1 10 3
 ###!
 #insereix_c cA30
-debug fil 0
 #insereix_c cB30
-debug fil 0
 #insereix_c cD30
-debug fil 0
 #insereix_c cX10
-debug fil -1
 #insereix_c cY10
-debug fil -1
 #insereix_c cZ10
-debug fil -1
 #insereix_c cC10
-debug fil -1
 #insereix_c cW10
-debug fil -1
 #insereix_c cU10
-debug fil -1
 #insereix_c cE30
-debug fil -1
 #insereix_c cF30
-debug fil -1
 #insereix_c cV10
-debug fil -1
 #insereix_c cG20
-debug fil -1
 ###!
 #retira_c V10
 #retira_c U10
@@ -14316,24 +12864,21 @@ debug fil -1
 #retira_c X10
 ###!
 #insereix_c cR30
-debug fil -1
 #insereix_c cQ30
-debug fil -1
 #insereix_c cP30
-debug fil -1
 ###!
 #retira_c C10
 ###!
 #mapa
-espera: [E30, F30, G20, P30, Q30, R30]
-fragmentacio: 0
-ops_grua: 3
+espera: [P30, Q30, R30]
+fragmentacio: 1
+ops_grua: 20
 
 filera 0
 ---------
 pis 2                                         
 pis 1                                         
-pis 0  D30 ___ ___ ___ ___ ___ ___ ___ ___ ___
+pis 0  D30 D30 D30 ___ ___ ___ G20 G20 ___ ___
         0   1   2   3   4   5   6   7   8   9  
 ##espera: [P30, Q30, R30]
 ##fragmentacio: 1
@@ -14353,56 +12898,35 @@ pis 0  D30 ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t89 terminal 1 10 3
 ###!
 #insereix_c cA30
-debug fil 0
 #insereix_c cB30
-debug fil 0
 #insereix_c cC10
-debug fil 0
 #insereix_c cX10
-debug fil -1
 #insereix_c cK10
-debug fil -1
 #insereix_c cD30
-debug fil -1
 #insereix_c cE30
-debug fil -1
 #insereix_c cF30
-debug fil -1
 #insereix_c cG30
-debug fil -1
 #insereix_c cH30
-debug fil -1
 #insereix_c cI30
-debug fil -1
 ###!
 #retira_c X10
 ###!
 #insereix_c cL30
-debug fil -1
 #insereix_c cM30
-debug fil -1
 #insereix_c cR30
-debug fil -1
 ###!
 #retira_c C10
-debug _t antes C10
-debug fil 0
-debug _t despues 
-debug _u10d -100
-debug _u20 -100
-debug _u30 -100
-debug fil -1
 ###!
 #mapa
-espera: [D30, E30, F30, G30, H30, I30, K10, L30, M30, R30]
-fragmentacio: 0
-ops_grua: 3
+espera: [L30, M30, R30]
+fragmentacio: 1
+ops_grua: 13
 
 filera 0
 ---------
 pis 2                                         
 pis 1                                         
-pis 0  ___ ___ ___ ___ ___ ___ ___ ___ ___ ___
+pis 0  ___ ___ K10 F30 F30 F30 I30 I30 I30 ___
         0   1   2   3   4   5   6   7   8   9  
 ##espera: [L30, M30, R30]
 ##fragmentacio: 1
@@ -14422,51 +12946,36 @@ pis 0  ___ ___ ___ ___ ___ ___ ___ ___ ___ ___
 #init t810 terminal 1 10 3
 ###!
 #insereix_c cA30
-debug fil 0
 #insereix_c cB30
-debug fil 0
 #insereix_c cD30
-debug fil 0
 #insereix_c cE20
-debug fil -1
 #insereix_c cP20
-debug fil -1
 #insereix_c cC10
-debug fil -1
 #insereix_c cX10
-debug fil -1
 #insereix_c cF20
-debug fil -1
 #insereix_c cG20
-debug fil -1
 #insereix_c cH20
-debug fil -1
 #insereix_c cI20
-debug fil -1
 #insereix_c cJ20
-debug fil -1
 #insereix_c cK20
-debug fil -1
 ###!
 #retira_c X10
 ###!
 #insereix_c cN30
-debug fil -1
 #insereix_c cQ30
-debug fil -1
 ###!
 #retira_c C10
 ###!
 #mapa
-espera: [E20, F20, G20, H20, I20, J20, K20, N30, P20, Q30]
-fragmentacio: 0
-ops_grua: 3
+espera: [N30, Q30]
+fragmentacio: 1
+ops_grua: 15
 
 filera 0
 ---------
 pis 2                                         
 pis 1                                         
-pis 0  D30 ___ ___ ___ ___ ___ ___ ___ ___ ___
+pis 0  D30 D30 D30 ___ ___ H20 H20 K20 K20 ___
         0   1   2   3   4   5   6   7   8   9  
 ##espera: [N30, Q30]
 ##fragmentacio: 1
