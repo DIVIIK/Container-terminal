@@ -9,29 +9,29 @@
 
 
 //A partir d'una filera, busca la seguent posició on es pot inserir un contenidor de 10 peus
-void terminal::actualitza_pos(int fil, bool retirar) {
+void terminal::actualitza_pos(int fil) {
     bool trobat10 = false, trobat20 = false, trobat30 = false;
-    int placa = 0, pis = 0, x;
-    //Comprovem si es necesari actualitzar les posicions.
+    int placa = 0, x;
+    // Comprovem si es necesari actualitzar les posicions.
 
-    if(!retirar) {
-        if(_u10.filera() < fil or fil == -1) trobat10 = true;
-        if(_u20.filera() < fil or fil == -1) trobat20 = true;
-        if(_u30.filera() < fil or fil == -1) trobat30 = true;
-    }
+    if(_u10.filera() < fil) trobat10 = true;
+    if(_u20.filera() < fil) trobat20 = true;
+    if(_u30.filera() < fil) trobat30 = true;
+
+    // std::cout << "Antes _u10: " << _u10.filera() << _u10.placa() << _u10.pis() << " | _u20: " << _u20.filera() << _u20.placa() << _u20.pis() << " | _u30: " << _u30.filera() << _u30.placa() << _u30.pis() << std::endl;
 
     while(not trobat30 or not trobat20 or not trobat10) {
         if(_p[fil][placa] < _h) {
             if(not trobat10) {
-                _u10 = ubicacio(fil, placa, pis);
+                _u10 = ubicacio(fil, placa, _p[fil][placa]);
                 trobat10 = true;
             }
             if(not trobat20 and placa < _m - 1 and _p[fil][placa] == _p[fil][placa+1]) {
-                _u20 = ubicacio(fil, placa, pis);
+                _u20 = ubicacio(fil, placa, _p[fil][placa]);
                 trobat20 = true;
             }
             if(not trobat30 and placa < _m - 2 and _p[fil][placa] == _p[fil][placa+1] and _p[fil][placa] == _p[fil][placa+2]) {
-                _u30 = ubicacio(fil, placa, pis);
+                _u30 = ubicacio(fil, placa, _p[fil][placa]);
                 trobat30 = true;
             }
         }
@@ -52,8 +52,9 @@ void terminal::actualitza_pos(int fil, bool retirar) {
                 trobat10 = true;
             }
         }
-
     }
+
+    // std::cout << "Despues _u10: " << _u10.filera() << _u10.placa() << _u10.pis() << " | _u20: " << _u20.filera() << _u20.placa() << _u20.pis() << " | _u30: " << _u30.filera() << _u30.placa() << _u30.pis() << std::endl;
 }
 
 void terminal::retira_contenidor_superior(const string &m) {
@@ -117,6 +118,37 @@ void terminal::act_fragmentacio(const nat& filera) {
         }
     }
     _f += _fFila[filera];
+}
+
+void terminal::recolocarAreaEspera() {
+    ubicacio areaEspera(-1,0,0);
+    list<contenidor>::const_iterator it;
+    bool fi = false, b10 = true, b20 = true, b30 = true;
+    it = _areaEspera.end();
+    while(not fi and (b10 or b20 or b30)) {
+        if(_c10 == 0 or _u10 == areaEspera) b10 = false;
+        if(_c20 == 0 or _u20 == areaEspera) b20 = false;
+        if(_c30 == 0 or _u30 == areaEspera) b30 = false;
+
+        if(b10 and (*it).longitud() == 10) {
+            insereix_contenidor(*it);
+            _areaEspera.remove(*it);
+            --_c10;
+        }
+        else if(b20 and (*it).longitud() == 20) {
+            insereix_contenidor(*it);
+            _areaEspera.remove(*it);
+            --_c20;
+        }
+        else if(b30 and (*it).longitud() == 30) {
+            insereix_contenidor(*it);
+            _areaEspera.remove(*it);
+            --_c30;
+        }
+
+        if (it == _areaEspera.begin()) fi = true;
+        --it;
+    }
 }
 
 //-----------------------------------------------------
@@ -277,7 +309,9 @@ void terminal::insereix_contenidor(const contenidor &c) throw(error) {
             }
             std::pair<nat, ubicacio> p = std::make_pair(c.longitud(), u);
             _c.assig(c.matricula(), p);
-            actualitza_pos(_u10.filera(), false);
+            actualitza_pos(_u10.filera());
+            recolocarAreaEspera();
+
         }
         else { // Altra estrategia
 
@@ -323,7 +357,7 @@ void terminal::retira_contenidor(const string &m) throw(error) {
             _c.elimina(m);
 
             // 4. Buscar seguent ubicacio lliure
-            actualitza_pos(u.filera(), true);
+            actualitza_pos(u.filera());
 
             // 5. Actualizar fragmentacio
             act_fragmentacio(u.filera());
@@ -332,46 +366,7 @@ void terminal::retira_contenidor(const string &m) throw(error) {
             _opsGrua++;
 
             // 7. Recolocar contenidors del Area d'espera
-            list<contenidor>::const_iterator it;
-        	bool b10 = true, b20 = true, b30 = true;
-            /*if(_u10 == areaEspera)  b10 = false;
-            if(_u20 == areaEspera)  b20 = false;
-            if(_u30 == areaEspera)  b30 = false;*/
-
-            it = _areaEspera.end();
-            while(it != _areaEspera.begin() and (b10 or b20 or b30)) {
-                if(_c10 == 0 or _u10 == areaEspera) b10 = false;
-                if(_c20 == 0 or _u20 == areaEspera) b20 = false;
-                if(_c30 == 0 or _u30 == areaEspera) b30 = false;
-
-                if(b10 and (*it).longitud() == 10) {
-                    // std::cout << "ara 1" << std::endl;
-                    insereix_contenidor(*it);
-                    _areaEspera.remove(*it);
-                    --_c10;
-                }
-                else if(b20 and (*it).longitud() == 20) {
-                    // std::cout << "ara 2" << std::endl;
-                    insereix_contenidor(*it);
-                    _areaEspera.remove(*it);
-                    --_c20;
-                }
-                else if(b30 and (*it).longitud() == 30) {
-                    // std::cout << "ara 3" << std::endl;
-                    insereix_contenidor(*it);
-                    _areaEspera.remove(*it);
-                    --_c30;
-                }
-
-                --it;
-            }
-
-            // while (not _areaEspera.empty() and anterior != _areaEspera.back().matricula() ) {
-            //     std::cout << "Ara ara~" << std::endl;
-            //     anterior = _areaEspera.back().matricula();
-            //     insereix_contenidor(_areaEspera.back());
-            //     _areaEspera.pop_back();
-            // }
+            recolocarAreaEspera();
 
         }
         else

@@ -29,6 +29,7 @@ nat _f;
 nat *_fFila;
 
 //Métodes Privats
-void actualitza_pos(int fil, bool retirar);
+void actualitza_pos(int fil);
 void retira_contenidor_superior(const string &m);
 void act_fragmentacio(const nat &filera);
+void recolocarAreaEspera();
