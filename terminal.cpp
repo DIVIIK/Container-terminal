@@ -10,15 +10,17 @@
 
 //A partir d'una filera, busca la seguent posició on es pot inserir un contenidor de 10 peus
 void terminal::actualitza_pos(int fil) {
+    // std::cout << "_u10: " << _u10.filera() << _u10.placa() << _u10.pis() << " | _u20: " << _u20.filera() << _u20.placa() << _u20.pis() << " | _u30: " << _u30.filera() << _u30.placa() << _u30.pis() << std::endl;
     bool trobat10 = false, trobat20 = false, trobat30 = false;
     int placa = 0, x;
     // Comprovem si es necesari actualitzar les posicions.
 
-    if(_u10.filera() < fil) trobat10 = true;
-    if(_u20.filera() < fil) trobat20 = true;
-    if(_u30.filera() < fil) trobat30 = true;
+    //std::cout << _u10.filera() << " " << _u20.filera() << " " << _u30.filera() << " fil: " << fil << std::endl;
+    if(_u10.filera() < fil and _u10.filera() != -1) trobat10 = true;
+    if((_u20.filera() < fil and _u20.filera() != -1) or (_u20.filera() == -1 and _m < 2)) trobat20 = true;
+    if((_u30.filera() < fil and _u30.filera() != -1) or (_u30.filera() == -1 and _m < 3)) trobat30 = true;
 
-    // std::cout << "Antes _u10: " << _u10.filera() << _u10.placa() << _u10.pis() << " | _u20: " << _u20.filera() << _u20.placa() << _u20.pis() << " | _u30: " << _u30.filera() << _u30.placa() << _u30.pis() << std::endl;
+    // if(fil == -1) fil = 0;
 
     while(not trobat30 or not trobat20 or not trobat10) {
         if(_p[fil][placa] < _h) {
@@ -26,7 +28,7 @@ void terminal::actualitza_pos(int fil) {
                 _u10 = ubicacio(fil, placa, _p[fil][placa]);
                 trobat10 = true;
             }
-            if(not trobat20 and placa < _m - 1 and _p[fil][placa] == _p[fil][placa+1]) {
+            if(not trobat20 and placa < _m - 1 and _p[fil][placa] == _p[fil][placa+1]) { // fixme
                 _u20 = ubicacio(fil, placa, _p[fil][placa]);
                 trobat20 = true;
             }
@@ -53,8 +55,7 @@ void terminal::actualitza_pos(int fil) {
             }
         }
     }
-
-    // std::cout << "Despues _u10: " << _u10.filera() << _u10.placa() << _u10.pis() << " | _u20: " << _u20.filera() << _u20.placa() << _u20.pis() << " | _u30: " << _u30.filera() << _u30.placa() << _u30.pis() << std::endl;
+    // std::cout << "DEBUG: _u10: " << _u10.filera() << _u10.placa() << _u10.pis() << " | _u20: " << _u20.filera() << _u20.placa() << _u20.pis() << " | _u30: " << _u30.filera() << _u30.placa() << _u30.pis() << std::endl;
 }
 
 void terminal::retira_contenidor_superior(const string &m) {
@@ -125,6 +126,7 @@ void terminal::recolocarAreaEspera() {
     list<contenidor>::const_iterator it;
     bool fi = false, b10 = true, b20 = true, b30 = true;
     it = _areaEspera.end();
+
     while(not fi and (b10 or b20 or b30)) {
         if(_c10 == 0 or _u10 == areaEspera) b10 = false;
         if(_c20 == 0 or _u20 == areaEspera) b20 = false;
@@ -258,6 +260,9 @@ terminal::~terminal() throw() {
    usant. Finalment, genera un error si ja existís a la terminal un
    contenidor amb una matrícula idèntica que la del contenidor c. */
 void terminal::insereix_contenidor(const contenidor &c) throw(error) {
+    // std::cout << "DEBUG: Inserir contenidor " << c.matricula() << std::endl;
+    // std::cout << "_u10: " << _u10.filera() << _u10.placa() << _u10.pis() << " | _u20: " << _u20.filera() << _u20.placa() << _u20.pis() << " | _u30: " << _u30.filera() << _u30.placa() << _u30.pis() << std::endl;
+
     ubicacio u = on(c.matricula());
 	if(u == ubicacio(-1,-1,-1) or u == ubicacio(-1,0,0)) {
         u = ubicacio(-1,0,0);
@@ -309,9 +314,9 @@ void terminal::insereix_contenidor(const contenidor &c) throw(error) {
             }
             std::pair<nat, ubicacio> p = std::make_pair(c.longitud(), u);
             _c.assig(c.matricula(), p);
-            actualitza_pos(_u10.filera());
+            if (_u10.filera() != -1)
+                actualitza_pos(_u10.filera());
             recolocarAreaEspera();
-
         }
         else { // Altra estrategia
 
