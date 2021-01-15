@@ -58,41 +58,58 @@ void terminal::actualitza_pos(int fil) {
     // std::cout << "DEBUG: _u10: " << _u10.filera() << _u10.placa() << _u10.pis() << " | _u20: " << _u20.filera() << _u20.placa() << _u20.pis() << " | _u30: " << _u30.filera() << _u30.placa() << _u30.pis() << std::endl;
 }
 
-void terminal::retira_contenidor_superior(const string &m) {
+void terminal::retira_contenidor_superior(const string &m, bool primer) {
     ubicacio u = on(m);
-
     if (_c.existeix(m)) {
         nat l = _c[m].first/10;
 
         // Mateixa filera <i, j, k>
         nat i = u.filera();
         nat j = u.placa();
-        nat k = u.pis() + 1;
+        nat k = u.pis();
+
+        // Retirar els contenidors que hi han a sobre primer
+        if (k+1 < _h) {
+            for (nat x = 0; x < l; x++) {
+                string mat = _t[i][j+x][k+1];
+                if (mat != "") retira_contenidor_superior(mat,false);
+            }
+        }
+
+        // Retirar aquest contenidor
         if (k < _h) {
             for (nat x = 0; x < l; x++) {
-                string mat = _t[i][j+x][k];
+                // 1. Eliminar de l'area de emmagatzematge
+                _t[i][j+x][k] = "";
 
-                if (mat != "") {
-                    retira_contenidor_superior(mat);
+                // 2. Actualitzar estructura auxiliar _p
+                --_p[u.filera()][u.placa() + x];
+            }
 
-                    // Retirar aquest contenidor
-                    for (nat z = 0; z < l; z++) {
-                        // 1. Eliminar de l'area de emmagatzematge
-                        _t[i][j+z][k] = "";
+            // 3. Actualitzar cataleg
+            if (primer)
+                _c.elimina(m);
+            else {
+                _c[m].second = ubicacio(-1,0,0);
 
-                        // 2. Actualitzar estructura auxiliar _p
-                        --_p[u.filera()][u.placa() + z];
-                    }
+                // 4. Afegir a l'area d'espera
+                contenidor c = contenidor(m,l*10);
+                _areaEspera.push_back(c);
+            }
 
-                    // 3. Indicar nova ubicacio al cataleg de contenidors
-                    _c[m].second = ubicacio(-1,0,0);
+            // 5. Indicar nova operacio grua
+            _opsGrua++;
 
-                    // 4. Afegir a l'area d'espera
-                    _areaEspera.push_back(contenidor(mat,_c[m].first));
+            // Nomes pel contenidor base
+            if (primer) {
+                // 6. Buscar seguent ubicacio lliure
+                actualitza_pos(u.filera());
 
-                    // 5. Indicar nova operacio grua
-                    _opsGrua++;
-                }
+                // 5. Actualizar fragmentacio
+                act_fragmentacio(u.filera());
+
+                // 7. Recolocar contenidors del Area d'espera
+                recolocarAreaEspera();
             }
         }
     }
@@ -122,37 +139,37 @@ void terminal::act_fragmentacio(const nat& filera) {
 }
 
 void terminal::recolocarAreaEspera() {
-    // std::cout << "Recolocar" << std::endl;
-
-    ubicacio areaEspera(-1,0,0);
-    list<contenidor>::const_iterator it;
-    bool fi = false, b10 = true, b20 = true, b30 = true;
-    it = _areaEspera.end();
-
-    while(not fi and (b10 or b20 or b30)) {
-        if(_c10 == 0 or _u10 == areaEspera) b10 = false;
-        if(_c20 == 0 or _u20 == areaEspera) b20 = false;
-        if(_c30 == 0 or _u30 == areaEspera) b30 = false;
-
-        if(b10 and (*it).longitud() == 10) {
-            _areaEspera.remove(*it);
-            --_c10;
-            insereix_contenidor(*it);
-        }
-        else if(b20 and (*it).longitud() == 20) {
-            // std::cout << " insereix contenidor de 20 " << std::endl;
-            _areaEspera.remove(*it);
-            --_c20;
-            insereix_contenidor(*it);
-        }
-        else if(b30 and (*it).longitud() == 30) {
-            _areaEspera.remove(*it);
-            --_c30;
-            insereix_contenidor(*it);
-        }
-
-        if (it == _areaEspera.begin()) fi = true;
+    if (_areaEspera.size()) {
+        ubicacio areaEspera(-1,0,0);
+        list<contenidor>::const_iterator it;
+        bool fi = false, b10 = true, b20 = true, b30 = true;
+        it = _areaEspera.end();
         --it;
+
+        while(not fi and (b10 or b20 or b30)) {
+            if(_c10 == 0 or _u10 == areaEspera) b10 = false;
+            if(_c20 == 0 or _u20 == areaEspera) b20 = false;
+            if(_c30 == 0 or _u30 == areaEspera) b30 = false;
+
+            if(b10 and (*it).longitud() == 10) {
+                _areaEspera.remove(*it);
+                --_c10;
+                insereix_contenidor(*it);
+            }
+            else if(b20 and (*it).longitud() == 20) {
+                _areaEspera.remove(*it);
+                --_c20;
+                insereix_contenidor(*it);
+            }
+            else if(b30 and (*it).longitud() == 30) {
+                _areaEspera.remove(*it);
+                --_c30;
+                insereix_contenidor(*it);
+            }
+
+            if (it == _areaEspera.begin()) fi = true;
+            --it;
+        }
     }
 }
 
@@ -263,9 +280,8 @@ terminal::~terminal() throw() {
    usant. Finalment, genera un error si ja existís a la terminal un
    contenidor amb una matrícula idèntica que la del contenidor c. */
 void terminal::insereix_contenidor(const contenidor &c) throw(error) {
-    //std::cout << "DEBUG: Inserir contenidor " << c.matricula() << " " << on(c.matricula()).filera() << on(c.matricula()).placa() << on(c.matricula()).pis() << std::endl;
+    // std::cout << "DEBUG: Inserir contenidor " << c.matricula() << " " << on(c.matricula()).filera() << on(c.matricula()).placa() << on(c.matricula()).pis() << std::endl;
     // std::cout << "_u10: " << _u10.filera() << _u10.placa() << _u10.pis() << " | _u20: " << _u20.filera() << _u20.placa() << _u20.pis() << " | _u30: " << _u30.filera() << _u30.placa() << _u30.pis() << std::endl;
-
     ubicacio u = on(c.matricula());
 	if(u == ubicacio(-1,-1,-1) or u == ubicacio(-1,0,0)) {
         u = ubicacio(-1,0,0);
@@ -345,41 +361,10 @@ void terminal::retira_contenidor(const string &m) throw(error) {
 
     if (u != areaEspera) {
         if (_c.existeix(m)) {
-            retira_contenidor_superior(m);
-
-		 	nat lon = _c[m].first/10;
-			nat i = u.filera();
-            nat j = u.placa();
-            nat k = u.pis();
-
-            // Retirar aquest contenidor
-            for (nat z = 0; z < lon; z++) {
-                // 1. Eliminar de l'area de emmagatzematge
-                _t[i][j+z][k] = "";
-
-                // 2. Actualitzar estructura auxiliar _p
-                --_p[u.filera()][u.placa() + z];
-            }
-
-            // 3. Retirar del cataleg de contenidors
-            _c.elimina(m);
-
-            // 4. Buscar seguent ubicacio lliure
-            actualitza_pos(u.filera());
-
-            // 5. Actualizar fragmentacio
-            act_fragmentacio(u.filera());
-
-            // 6. Indicar nova operacio grua
-            _opsGrua++;
-
-            // 7. Recolocar contenidors del Area d'espera
-            recolocarAreaEspera();
-
+            retira_contenidor_superior(m,true);
         }
         else
             throw error(MatriculaInexistent);
-
     } else {
     	list<contenidor>::const_iterator it;
     	bool fi = false;
