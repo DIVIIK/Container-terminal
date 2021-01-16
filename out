@@ -6173,7 +6173,7 @@ pis 0  B10 D10
 ###!
 #mapa
 espera: [B20, B30, C20, C30, D20, D30]
-fragmentacio: 0
+fragmentacio: 1
 ops_grua: 5
 
 filera 0
@@ -6682,7 +6682,7 @@ pis 0  C10 B20 B20
 ###!
 #mapa
 espera: [B30, C20, C30, D20, D30]
-fragmentacio: 0
+fragmentacio: 1
 ops_grua: 7
 
 filera 0
@@ -7369,7 +7369,7 @@ pis 0  B10 B20 B20 E20 E20 ___ C10 C20 C20 D10
 ###!
 #mapa
 espera: [C30, D20, D30]
-fragmentacio: 1
+fragmentacio: 2
 ops_grua: 9
 
 filera 0
@@ -7601,7 +7601,7 @@ pis 0  D30 D30 D30 E20 E20 ___ ___ C20 C20 D10
 ###!
 #mapa
 espera: [C30]
-fragmentacio: 0
+fragmentacio: 1
 ops_grua: 15
 
 filera 0
@@ -7853,7 +7853,7 @@ pis 0  ___ ___ ___ E20 E20 F10 C30 C30 C30 ___
 ###!
 #mapa
 espera: []
-fragmentacio: 1
+fragmentacio: 0
 ops_grua: 20
 
 filera 0
@@ -7914,7 +7914,7 @@ pis 0  ___ ___ ___ E20 E20 F10 ___ ___ ___ ___
 ###!
 #mapa
 espera: []
-fragmentacio: 1
+fragmentacio: 0
 ops_grua: 21
 
 filera 0
@@ -7975,7 +7975,7 @@ pis 0  ___ ___ ___ ___ ___ F10 ___ ___ ___ ___
 ###!
 #mapa
 espera: []
-fragmentacio: 1
+fragmentacio: 0
 ops_grua: 22
 
 filera 0
@@ -12672,7 +12672,7 @@ pis 0  A30 A30 A30 E30 E30 E30 H30 H30 H30 ___
 ###!
 #mapa
 espera: [P30, Q20]
-fragmentacio: 0
+fragmentacio: 1
 ops_grua: 13
 
 filera 0
@@ -12718,7 +12718,7 @@ pis 0  A10 D30 D30 D30 G30 G30 G30 J30 J30 J30
 ###!
 #mapa
 espera: [M20, N30, O30]
-fragmentacio: 0
+fragmentacio: 1
 ops_grua: 13
 
 filera 0
@@ -12766,7 +12766,7 @@ pis 0  A30 A30 A30 E30 E30 E30 H30 H30 H30 K10
 ###!
 #mapa
 espera: [S20, T30]
-fragmentacio: 0
+fragmentacio: 1
 ops_grua: 16
 
 filera 0
@@ -12871,7 +12871,7 @@ pis 0  A20 A20 E30 E30 E30 H30 H30 H30 K20 K20
 ###!
 #mapa
 espera: [P30, Q30, R30]
-fragmentacio: 0
+fragmentacio: 1
 ops_grua: 20
 
 filera 0

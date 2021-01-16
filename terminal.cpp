@@ -110,7 +110,7 @@ void terminal::retira_contenidor_superior(const string &m, bool primer) {
             actualitza_pos(u.filera());
 
             // 5. Actualizar fragmentacio
-            // act_fragmentacio(u.filera());
+            act_fragmentacio(u.filera());
 
             // 7. Recolocar contenidors del Area d'espera
             recolocarAreaEspera();
@@ -149,30 +149,22 @@ void terminal::recolocarAreaEspera() {
         it = _areaEspera.end();
         --it;
 
-        // list<contenidor>::const_iterator it2;
-        // it2 = _areaEspera.begin();
-        // std::cout << "Recolca primero" << (*it2).matricula() << std::endl;
-
         while(not fi and (b10 or b20 or b30)) {
             if(_c10 == 0 or _u10 == areaEspera) b10 = false;
             if(_c20 == 0 or _u20 == areaEspera) b20 = false;
             if(_c30 == 0 or _u30 == areaEspera) b30 = false;
 
             if(b10 and (*it).longitud() == 10) {
-                // std::cout << "Quiero insertar el " << (*it).matricula() << std::endl;
-
                 _areaEspera.remove(*it);
                 --_c10;
                 insereix_contenidor(*it);
             }
             else if(b20 and (*it).longitud() == 20) {
-                // std::cout << "Quiero insertar el " << (*it).matricula() << std::endl;
                 _areaEspera.remove(*it);
                 --_c20;
                 insereix_contenidor(*it);
             }
             else if(b30 and (*it).longitud() == 30) {
-                // std::cout << "Quiero insertar el " << (*it).matricula() << std::endl;
                 _areaEspera.remove(*it);
                 --_c30;
                 insereix_contenidor(*it);
@@ -291,10 +283,7 @@ terminal::~terminal() throw() {
    usant. Finalment, genera un error si ja existís a la terminal un
    contenidor amb una matrícula idèntica que la del contenidor c. */
 void terminal::insereix_contenidor(const contenidor &c) throw(error) {
-    // std::cout << "DEBUG: Inserir contenidor " << c.matricula() << " " << on(c.matricula()).filera() << on(c.matricula()).placa() << on(c.matricula()).pis() << std::endl;
-    // std::cout << "_u10: " << _u10.filera() << _u10.placa() << _u10.pis() << " | _u20: " << _u20.filera() << _u20.placa() << _u20.pis() << " | _u30: " << _u30.filera() << _u30.placa() << _u30.pis() << std::endl;
     ubicacio u = on(c.matricula());
-    // std::cout << "Inserto " << c.matricula() << " " << u.filera() << u.placa() << u.pis()  << std::endl;
 	if(u == ubicacio(-1,-1,-1) or u == ubicacio(-1,0,0)) {
         u = ubicacio(-1,0,0);
         if(_st == FIRST_FIT) {
