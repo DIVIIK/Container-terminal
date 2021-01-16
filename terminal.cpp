@@ -14,23 +14,23 @@ void terminal::actualitza_pos(ubicacio u) {
 
 
     // Comprovem si es necesari actualitzar les posicions.
-    if(_u10.filera() < fil and _u10.filera() != -1) trobat10 = true;
-    if((_u20.filera() < fil and _u20.filera() != -1) or (_u20.filera() == -1 and _m < 2)) trobat20 = true;
-    if((_u30.filera() < fil and _u30.filera() != -1) or (_u30.filera() == -1 and _m < 3)) trobat30 = true;
+    if (_u10.filera() < fil and _u10.filera() != -1) trobat10 = true;
+    if ( (_u20.filera() < fil and _u20.filera() != -1) or (_u20.filera() == -1 and _m < 2) ) trobat20 = true;
+    if ( (_u30.filera() < fil and _u30.filera() != -1) or (_u30.filera() == -1 and _m < 3) ) trobat30 = true;
 
-    if(_st == FIRST_FIT) {
+    if (_st == FIRST_FIT) {
         int placa = 0;
         while(not trobat30 or not trobat20 or not trobat10) {
-            if(_p[fil][placa] < _h) {
-                if(not trobat10) {
+            if (_p[fil][placa] < _h) {
+                if (not trobat10) {
                     _u10 = ubicacio(fil, placa, _p[fil][placa]);
                     trobat10 = true;
                 }
-                if(not trobat20 and placa < _m - 1 and _p[fil][placa] == _p[fil][placa+1]) {
+                if (not trobat20 and placa < _m - 1 and _p[fil][placa] == _p[fil][placa+1]) {
                     _u20 = ubicacio(fil, placa, _p[fil][placa]);
                     trobat20 = true;
                 }
-                if(not trobat30 and placa < _m - 2 and _p[fil][placa] == _p[fil][placa+1] and _p[fil][placa] == _p[fil][placa+2]) {
+                if (not trobat30 and placa < _m - 2 and _p[fil][placa] == _p[fil][placa+1] and _p[fil][placa] == _p[fil][placa+2]) {
                     _u30 = ubicacio(fil, placa, _p[fil][placa]);
                     trobat30 = true;
                 }
@@ -39,16 +39,16 @@ void terminal::actualitza_pos(ubicacio u) {
             // Avançar a la seguent placa o fila
             ++placa;
             nat x;
-            if(not trobat10) x = 0;
-            else if(not trobat20) x = 1;
-            else if(not trobat30) x = 2;
-            if(placa >= _m - x ) {
+            if (not trobat10) x = 0;
+            else if (not trobat20) x = 1;
+            else if (not trobat30) x = 2;
+            if (placa >= _m - x ) {
                 ++fil;
                 placa = 0;
-                if(fil >= _n) {
-                    if(not trobat10) _u10 = ubicacio(-1,0,0);
-                    if(not trobat20) _u20 = ubicacio(-1,0,0);
-                    if(not trobat30) _u30 = ubicacio(-1,0,0);
+                if (fil >= _n) {
+                    if (not trobat10) _u10 = ubicacio(-1,0,0);
+                    if (not trobat20) _u20 = ubicacio(-1,0,0);
+                    if (not trobat30) _u30 = ubicacio(-1,0,0);
                     trobat30 = true;
                     trobat20 = true;
                     trobat10 = true;
@@ -56,36 +56,41 @@ void terminal::actualitza_pos(ubicacio u) {
             }
         }
     }
-    else if(_st == LLIURE) {
+    else if (_st == LLIURE) {
         int pis = 0, placa, l;
         while(not trobat30 or not trobat20 or not trobat10) { //recorremos _lliures
             if (not trobat10) l = 1;
-            else if(not trobat20) l = 2;
-            else if(not trobat30) l = 3;
+            else if (not trobat20) l = 2;
+            else if (not trobat30) l = 3;
 
             // Si hi han posicions lliures en aquesta filera
-            if(_lliures[fil][pis] >= l) {
+            if (_lliures[fil][pis] >= l) {
                 placa = 0;
-                bool actualizat = false;
-                while (not actualizat and placa <= _m - l) { //recorremos _p
-                    if (_p[fil][placa] == pis) {
+                while ( (not trobat10 or not trobat20 or not trobat30) and (placa <= _m - l) ) { //recorremos _p
+                    if (not trobat10 and _p[fil][placa] == pis) {
                         _u10 = ubicacio(fil, placa, pis);
-                        actualizat = true;
-                        trobat30 = true;
-                        trobat20 = true;
                         trobat10 = true;
                     }
-                    else ++placa;
+                    if ( (not trobat20) and (placa < _m - 1) and (_p[fil][placa] == pis) and (_p[fil][placa+1] == pis) ) {
+                        _u20 = ubicacio(fil, placa, pis);
+                        trobat20 = true;
+                    }
+                    if ( (not trobat30) and (placa < _m - 2) and (_p[fil][placa] == pis) and (_p[fil][placa+1] == pis) and (_p[fil][placa+2] == pis) ) {
+                        _u30 = ubicacio(fil, placa, pis);
+                        trobat30 = true;
+                    }
+                    ++placa;
                 }
-                if(not actualizat) {
+
+                if (not trobat10 or not trobat20 or not trobat30) {
                     ++fil;
-                    if(fil >= _n) {
+                    if (fil >= _n) {
                         fil = 0;
                         ++pis;
-                        if(pis >= _m) {
-                            if(not trobat10) _u10 = ubicacio(-1,0,0);
-                            if(not trobat20) _u20 = ubicacio(-1,0,0);
-                            if(not trobat30) _u30 = ubicacio(-1,0,0);
+                        if (pis >= _m) {
+                            if (not trobat10) _u10 = ubicacio(-1,0,0);
+                            if (not trobat20) _u20 = ubicacio(-1,0,0);
+                            if (not trobat30) _u30 = ubicacio(-1,0,0);
                             trobat30 = true;
                             trobat20 = true;
                             trobat10 = true;
@@ -97,13 +102,13 @@ void terminal::actualitza_pos(ubicacio u) {
             // Mirem la seguent filera
             else {
                 ++fil;
-                if(fil >= _n) {
+                if (fil >= _n) {
                     fil = 0;
                     ++pis;
-                    if(pis >= _m) {
-                        if(not trobat10) _u10 = ubicacio(-1,0,0);
-                        if(not trobat20) _u20 = ubicacio(-1,0,0);
-                        if(not trobat30) _u30 = ubicacio(-1,0,0);
+                    if (pis >= _m) {
+                        if (not trobat10) _u10 = ubicacio(-1,0,0);
+                        if (not trobat20) _u20 = ubicacio(-1,0,0);
+                        if (not trobat30) _u30 = ubicacio(-1,0,0);
                         trobat30 = true;
                         trobat20 = true;
                         trobat10 = true;
@@ -185,7 +190,7 @@ void terminal::act_fragmentacio(const nat& filera) {
 
     for (nat i = 0; i < _m; i++) {
         if (desnivell) {
-            if(i < _m-1) {
+            if (i < _m-1) {
                 if ( _p[filera][i] != _p[filera][i+1] ) {
                     if (_p[filera][i] != _h) ++_fFila[filera];
                 }
@@ -213,9 +218,9 @@ void terminal::recolocarAreaEspera() {
         --it;
 
         while(not fi and (b10 or b20 or b30)) {
-            if(_c10 == 0 or _u10 == areaEspera) b10 = false;
-            if(_c20 == 0 or _u20 == areaEspera) b20 = false;
-            if(_c30 == 0 or _u30 == areaEspera) b30 = false;
+            if (_c10 == 0 or _u10 == areaEspera) b10 = false;
+            if (_c20 == 0 or _u20 == areaEspera) b20 = false;
+            if (_c30 == 0 or _u30 == areaEspera) b30 = false;
 
             if (b10 and (*it).longitud() == 10) {
                 _areaEspera.remove(*it);
@@ -246,13 +251,13 @@ void terminal::recolocarAreaEspera() {
 //-----------------------------------------------------
 
 terminal::terminal(nat n, nat m, nat h, estrategia st) throw(error) : _c(n*m*h), _u10(0,0,0), _u20(0,0,0), _u30(0,0,0) {
-    if(n == 0) throw error(NumFileresIncorr);
+    if (n == 0) throw error(NumFileresIncorr);
     else _n = n;
-    if(m == 0) throw error(NumPlacesIncorr);
+    if (m == 0) throw error(NumPlacesIncorr);
     else _m = m;
-    if(h == 0 or h > HMAX) throw error(AlcadaMaxIncorr);
+    if (h == 0 or h > HMAX) throw error(AlcadaMaxIncorr);
     else _h = h;
-    if(st != FIRST_FIT and st != LLIURE) throw error(EstrategiaIncorr);
+    if (st != FIRST_FIT and st != LLIURE) throw error(EstrategiaIncorr);
     else _st = st;
 
     if (m < 3) {
@@ -358,11 +363,11 @@ terminal::~terminal() throw() {
 void terminal::insereix_contenidor(const contenidor &c) throw(error) {
     ubicacio u = on(c.matricula());
 
-	if(u == ubicacio(-1,-1,-1) or u == ubicacio(-1,0,0)) {
+	if (u == ubicacio(-1,-1,-1) or u == ubicacio(-1,0,0)) {
         u = ubicacio(-1,0,0);
 
-        if(c.longitud() == 10) {
-            if(_u10 != u) {
+        if (c.longitud() == 10) {
+            if (_u10 != u) {
                 _t[_u10.filera()][_u10.placa()][_u10.pis()] = c.matricula();
                 ++_p[_u10.filera()][_u10.placa()];
                 u = _u10;
@@ -374,8 +379,8 @@ void terminal::insereix_contenidor(const contenidor &c) throw(error) {
                 ++_c10;
             }
         }
-        else if(c.longitud() == 20) {
-            if(_u20 != u) {
+        else if (c.longitud() == 20) {
+            if (_u20 != u) {
                 _t[_u20.filera()][_u20.placa()][_u20.pis()] = c.matricula();
                 _t[_u20.filera()][_u20.placa()+1][_u20.pis()] = c.matricula();
                 ++_p[_u20.filera()][_u20.placa()];
@@ -390,7 +395,7 @@ void terminal::insereix_contenidor(const contenidor &c) throw(error) {
             }
         }
         else {
-            if(_u30 != u) {
+            if (_u30 != u) {
                 _t[_u30.filera()][_u30.placa()][_u30.pis()] = c.matricula();
                 _t[_u30.filera()][_u30.placa()+1][_u30.pis()] = c.matricula();
                 _t[_u30.filera()][_u30.placa()+2][_u30.pis()] = c.matricula();
@@ -444,7 +449,7 @@ void terminal::retira_contenidor(const string &m) throw(error) {
     	bool fi = false;
     	it = _areaEspera.begin();
     	while(it != _areaEspera.end() and not fi) {
-            if((*it).matricula() == m) {
+            if ((*it).matricula() == m) {
                 _areaEspera.remove(*it);
                 _c.elimina(m);
                 fi = true;

@@ -136,7 +136,7 @@ ops_grua: 0
 filera 0
 ---------
 pis 0  ___
-        0  
+        0
 ##espera: []
 ##fragmentacio: 1
 ##ops_grua: 0
@@ -171,7 +171,7 @@ ops_grua: 1
 filera 0
 ---------
 pis 0  A10
-        0  
+        0
 ##espera: [A30, B10, D20]
 ##fragmentacio: 0
 ##ops_grua: 1
@@ -208,7 +208,7 @@ ops_grua: 1
 filera 0
 ---------
 pis 0  A10
-        0  
+        0
 ##espera: [A30, B10]
 ##fragmentacio: 0
 ##ops_grua: 1
@@ -236,7 +236,7 @@ ops_grua: 3
 filera 0
 ---------
 pis 0  B10
-        0  
+        0
 ##espera: [A30]
 ##fragmentacio: 0
 ##ops_grua: 3
@@ -273,7 +273,7 @@ ops_grua: 0
 filera 0
 ---------
 pis 0  ___ ___
-        0   1  
+        0   1
 ##espera: []
 ##fragmentacio: 0
 ##ops_grua: 0
@@ -315,7 +315,7 @@ ops_grua: 2
 filera 0
 ---------
 pis 0  B10 C10
-        0   1  
+        0   1
 ##espera: [B20, B30, C20, C30, D10, D20, D30]
 ##fragmentacio: 0
 ##ops_grua: 2
@@ -349,7 +349,7 @@ ops_grua: 4
 filera 0
 ---------
 pis 0  B10 D10
-        0   1  
+        0   1
 ##espera: [B20, B30, C20, C30, D20, D30]
 ##fragmentacio: 0
 ##ops_grua: 4
@@ -380,7 +380,7 @@ ops_grua: 5
 filera 0
 ---------
 pis 0  ___ D10
-        0   1  
+        0   1
 ##espera: [B20, B30, C20, C30, D20, D30]
 ##fragmentacio: 1
 ##ops_grua: 5
@@ -408,7 +408,7 @@ ops_grua: 7
 filera 0
 ---------
 pis 0  D20 D20
-        0   1  
+        0   1
 ##espera: [B20, B30, C20, C30, D30]
 ##fragmentacio: 0
 ##ops_grua: 7
@@ -439,7 +439,7 @@ ops_grua: 9
 filera 0
 ---------
 pis 0  C20 C20
-        0   1  
+        0   1
 ##espera: [B20, B30, C30, D30]
 ##fragmentacio: 0
 ##ops_grua: 9
@@ -470,7 +470,7 @@ ops_grua: 11
 filera 0
 ---------
 pis 0  B20 B20
-        0   1  
+        0   1
 ##espera: [B30, C30, D30]
 ##fragmentacio: 0
 ##ops_grua: 11
@@ -501,7 +501,7 @@ ops_grua: 12
 filera 0
 ---------
 pis 0  ___ ___
-        0   1  
+        0   1
 ##espera: [B30, C30, D30]
 ##fragmentacio: 0
 ##ops_grua: 12
@@ -527,3 +527,5 @@ pis 0  ___ ___
 #clear_all
 ###!
 ###!
+#exit
+[0/0]**
