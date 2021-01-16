@@ -12,13 +12,12 @@ void terminal::actualitza_pos(ubicacio u) {
     bool trobat10 = false, trobat20 = false, trobat30 = false;
     int fil = u.filera();
 
-
-    // Comprovem si es necesari actualitzar les posicions.
-    if (_u10.filera() < fil and _u10.filera() != -1) trobat10 = true;
-    if ( (_u20.filera() < fil and _u20.filera() != -1) or (_u20.filera() == -1 and _m < 2) ) trobat20 = true;
-    if ( (_u30.filera() < fil and _u30.filera() != -1) or (_u30.filera() == -1 and _m < 3) ) trobat30 = true;
-
     if (_st == FIRST_FIT) {
+        // Comprovem si es necesari actualitzar les posicions.
+        if (_u10.filera() < fil and _u10.filera() != -1) trobat10 = true;
+        if ( (_u20.filera() < fil and _u20.filera() != -1) or (_u20.filera() == -1 and _m < 2) ) trobat20 = true;
+        if ( (_u30.filera() < fil and _u30.filera() != -1) or (_u30.filera() == -1 and _m < 3) ) trobat30 = true;
+
         int placa = 0;
         while(not trobat30 or not trobat20 or not trobat10) {
             if (_p[fil][placa] < _h) {
