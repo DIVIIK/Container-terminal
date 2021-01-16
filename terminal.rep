@@ -18,8 +18,11 @@ cataleg<std::pair<nat,ubicacio> > _c;
 // s'indica la matricula del contenidor que l'ocupa
 string ***_t;
 
-// Matriu de _n*_m on guardem el número de pisos ocupats per cada plaça.
+// Matriu de fileres*places on guardem el número de pisos ocupats per cada plaça.
 int **_p;
+
+// Matriu de fileres*pisos amb el numero de llocs lliures
+int **_lliures;
 
 // Primera ubicació lliure per a cada tipus de contenidor
 ubicacio _u10, _u20, _u30;
@@ -50,7 +53,7 @@ nat *_fFila;
 /****************************************************/
 /*                  Métodes Privats                 */
 /****************************************************/
-void actualitza_pos(int fil);
+void actualitza_pos(ubicacio u);
 void retira_contenidor_superior(const string &m, bool primer);
 void act_fragmentacio(const nat &filera);
 void recolocarAreaEspera();
