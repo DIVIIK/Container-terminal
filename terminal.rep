@@ -1,34 +1,55 @@
-nat _n; // Fileres
-nat _m; // Places
-nat _h; // Pisos
+// Fileres, places i pisos respectivament
+nat _n, _m, _h;
+
+// Tipus de estrategia que  segueix el terminal
 estrategia _st;
 
-// Operacions de grua
+// Numero d'operacions de grua
 nat _opsGrua;
 
 // Cataleg de contenidors
 cataleg<std::pair<nat,ubicacio> > _c;
 
-// Àrea d'espera
-list<contenidor> _areaEspera;
-nat _c10, _c20, _c30;
+/****************************************************/
+/*                Area d'emmagatzematge             */
+/****************************************************/
 
-// Area emmagatzematge de tipus [_n][_m][_h]
+// Area emmagatzematge de tipus [_n][_m][_h] on
+// s'indica la matricula del contenidor que l'ocupa
 string ***_t;
 
-//Matriu de _n*_m on guardem el número de pisos ocupats per cada plaça.
+// Matriu de _n*_m on guardem el número de pisos ocupats per cada plaça.
 int **_p;
 
-// Forats o llocs lliures
-ubicacio _u10; //Primera ubicació lliure per un contenidor de 10 peus
-ubicacio _u20; //Primera ubicació lliure per un contenidor de 20 peus
-ubicacio _u30; //Primera ubicació lliure per un contenidor de 30 peus
+// Primera ubicació lliure per a cada tipus de contenidor
+ubicacio _u10, _u20, _u30;
 
-// Fragmentacio
+/****************************************************/
+/*                Area d'espera                     */
+/****************************************************/
+
+// Area d'espera
+list<contenidor> _areaEspera;
+
+// Número de contenidors de 10, 20 i 30 a l'area d'espera
+nat _c10, _c20, _c30;
+
+
+/****************************************************/
+/*                  Fragmentació                    */
+/****************************************************/
+
+// El número d'ubicacions on es pot introduir un
+// contenidor de 10 pero no un de 20 o 30
 nat _f;
+
+// Array amb el número de fragmentació per cada filera
 nat *_fFila;
 
-//Métodes Privats
+
+/****************************************************/
+/*                  Métodes Privats                 */
+/****************************************************/
 void actualitza_pos(int fil);
 void retira_contenidor_superior(const string &m, bool primer);
 void act_fragmentacio(const nat &filera);

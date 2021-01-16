@@ -6,60 +6,58 @@
 //
 //-----------------------------------------------------
 
-
-
-//A partir d'una filera, busca la seguent posició on es pot inserir un contenidor de 10 peus
+// A partir d'una filera, busca la seguent posició on es poden inserir els seguents contenidors de
+// 10, 20 i 30 peus respectivament
 void terminal::actualitza_pos(int fil) {
-    // std::cout << "_u10: " << _u10.filera() << _u10.placa() << _u10.pis() << " | _u20: " << _u20.filera() << _u20.placa() << _u20.pis() << " | _u30: " << _u30.filera() << _u30.placa() << _u30.pis() << std::endl;
-    bool trobat10 = false, trobat20 = false, trobat30 = false;
-    int placa = 0, x;
-    // Comprovem si es necesari actualitzar les posicions.
+    if(_st == FIRST_FIT) {
+        bool trobat10 = false, trobat20 = false, trobat30 = false;
+        int placa = 0, x;
+        // Comprovem si es necesari actualitzar les posicions.
+        if(_u10.filera() < fil and _u10.filera() != -1) trobat10 = true;
+        if((_u20.filera() < fil and _u20.filera() != -1) or (_u20.filera() == -1 and _m < 2)) trobat20 = true;
+        if((_u30.filera() < fil and _u30.filera() != -1) or (_u30.filera() == -1 and _m < 3)) trobat30 = true;
 
-    //std::cout << _u10.filera() << " " << _u20.filera() << " " << _u30.filera() << " fil: " << fil << std::endl;
-    if(_u10.filera() < fil and _u10.filera() != -1) trobat10 = true;
-    if((_u20.filera() < fil and _u20.filera() != -1) or (_u20.filera() == -1 and _m < 2)) trobat20 = true;
-    if((_u30.filera() < fil and _u30.filera() != -1) or (_u30.filera() == -1 and _m < 3)) trobat30 = true;
-
-    // if(fil == -1) fil = 0;
-
-    while(not trobat30 or not trobat20 or not trobat10) {
-        if(_p[fil][placa] < _h) {
-            if(not trobat10) {
-                _u10 = ubicacio(fil, placa, _p[fil][placa]);
-                trobat10 = true;
+        while(not trobat30 or not trobat20 or not trobat10) {
+            if(_p[fil][placa] < _h) {
+                if(not trobat10) {
+                    _u10 = ubicacio(fil, placa, _p[fil][placa]);
+                    trobat10 = true;
+                }
+                if(not trobat20 and placa < _m - 1 and _p[fil][placa] == _p[fil][placa+1]) { // fixme
+                    _u20 = ubicacio(fil, placa, _p[fil][placa]);
+                    trobat20 = true;
+                }
+                if(not trobat30 and placa < _m - 2 and _p[fil][placa] == _p[fil][placa+1] and _p[fil][placa] == _p[fil][placa+2]) {
+                    _u30 = ubicacio(fil, placa, _p[fil][placa]);
+                    trobat30 = true;
+                }
             }
-            if(not trobat20 and placa < _m - 1 and _p[fil][placa] == _p[fil][placa+1]) { // fixme
-                _u20 = ubicacio(fil, placa, _p[fil][placa]);
-                trobat20 = true;
-            }
-            if(not trobat30 and placa < _m - 2 and _p[fil][placa] == _p[fil][placa+1] and _p[fil][placa] == _p[fil][placa+2]) {
-                _u30 = ubicacio(fil, placa, _p[fil][placa]);
-                trobat30 = true;
-            }
-        }
 
-        ++placa;
-        if(not trobat10) x = 0;
-        else if(not trobat20) x = 1;
-        else if(not trobat30) x = 2;
-        if(placa >= _m - x ) {
-            ++fil;
-            placa = 0;
-            if(fil >= _n) {
-                if(not trobat10) _u10 = ubicacio(-1,0,0);
-                if(not trobat20) _u20 = ubicacio(-1,0,0);
-                if(not trobat30) _u30 = ubicacio(-1,0,0);
-                trobat30 = true;
-                trobat20 = true;
-                trobat10 = true;
+            ++placa;
+            if(not trobat10) x = 0;
+            else if(not trobat20) x = 1;
+            else if(not trobat30) x = 2;
+            if(placa >= _m - x ) {
+                ++fil;
+                placa = 0;
+                if(fil >= _n) {
+                    if(not trobat10) _u10 = ubicacio(-1,0,0);
+                    if(not trobat20) _u20 = ubicacio(-1,0,0);
+                    if(not trobat30) _u30 = ubicacio(-1,0,0);
+                    trobat30 = true;
+                    trobat20 = true;
+                    trobat10 = true;
+                }
             }
         }
     }
-    // std::cout << "DEBUG: _u10: " << _u10.filera() << _u10.placa() << _u10.pis() << " | _u20: " << _u20.filera() << _u20.placa() << _u20.pis() << " | _u30: " << _u30.filera() << _u30.placa() << _u30.pis() << std::endl;
+    else if(_st == LLIURE) {
+
+    }
+
 }
 
 void terminal::retira_contenidor_superior(const string &m, bool primer) {
-    // std::cout << "Retira contenedor " << m << std::endl;
     ubicacio u = on(m);
     nat l = _c[m].first/10;
 
@@ -87,8 +85,9 @@ void terminal::retira_contenidor_superior(const string &m, bool primer) {
         }
 
         // 3. Actualitzar cataleg
-        if (primer)
+        if (primer) {
             _c.elimina(m);
+        }
         else {
             std::pair<nat, ubicacio> p = std::make_pair(l, ubicacio(-1,0,0));
             _c.assig(m, p);
@@ -122,20 +121,23 @@ void terminal::act_fragmentacio(const nat& filera) {
     _f -= _fFila[filera];
     _fFila[filera] = 0;
     bool desnivell = true;
+
     for (nat i = 0; i < _m; i++) {
-        if(desnivell) {
+        if (desnivell) {
             if(i < _m-1) {
-                if(_p[filera][i] != _p[filera][i+1]) {
-                    if(_p[filera][i] != _h)  ++_fFila[filera];
+                if ( _p[filera][i] != _p[filera][i+1] ) {
+                    if (_p[filera][i] != _h) ++_fFila[filera];
                 }
-                else desnivell = false;
+                else {
+                    desnivell = false;
+                }
             }
-            else if(i == _m-1 and _p[filera][i] != _h) ++_fFila[filera];
+            else if (i == _m-1 and _p[filera][i] != _h) {
+                ++_fFila[filera];
+            }
         }
-        else {
-            if(i < _m-1) {
-                if(_p[filera][i] != _p[filera][i+1]) desnivell = true;
-            }
+        else if ( (i < _m-1) and (_p[filera][i] != _p[filera][i+1]) ) {
+            desnivell = true;
         }
     }
     _f += _fFila[filera];
@@ -154,17 +156,17 @@ void terminal::recolocarAreaEspera() {
             if(_c20 == 0 or _u20 == areaEspera) b20 = false;
             if(_c30 == 0 or _u30 == areaEspera) b30 = false;
 
-            if(b10 and (*it).longitud() == 10) {
+            if (b10 and (*it).longitud() == 10) {
                 _areaEspera.remove(*it);
                 --_c10;
                 insereix_contenidor(*it);
             }
-            else if(b20 and (*it).longitud() == 20) {
+            else if (b20 and (*it).longitud() == 20) {
                 _areaEspera.remove(*it);
                 --_c20;
                 insereix_contenidor(*it);
             }
-            else if(b30 and (*it).longitud() == 30) {
+            else if (b30 and (*it).longitud() == 30) {
                 _areaEspera.remove(*it);
                 --_c30;
                 insereix_contenidor(*it);
@@ -284,63 +286,61 @@ terminal::~terminal() throw() {
    contenidor amb una matrícula idèntica que la del contenidor c. */
 void terminal::insereix_contenidor(const contenidor &c) throw(error) {
     ubicacio u = on(c.matricula());
+
 	if(u == ubicacio(-1,-1,-1) or u == ubicacio(-1,0,0)) {
         u = ubicacio(-1,0,0);
-        if(_st == FIRST_FIT) {
-            if(c.longitud() == 10) {
-                if(_u10 != u) {
-                    _t[_u10.filera()][_u10.placa()][_u10.pis()] = c.matricula();
-                    ++_p[_u10.filera()][_u10.placa()];
-                    u = _u10;
-                    ++_opsGrua;
-                    act_fragmentacio(_u10.filera());
-                }
-                else {
-                    _areaEspera.push_back(c);
-                    ++_c10;
-                }
-            }
-            else if(c.longitud() == 20) {
-                if(_u20 != u) {
-                    _t[_u20.filera()][_u20.placa()][_u20.pis()] = c.matricula();
-                    _t[_u20.filera()][_u20.placa()+1][_u20.pis()] = c.matricula();
-                    ++_p[_u20.filera()][_u20.placa()];
-                    ++_p[_u20.filera()][_u20.placa()+1];
-                    u = _u20;
-                    ++_opsGrua;
-                    act_fragmentacio(_u20.filera());
-                }
-                else {
-                    _areaEspera.push_back(c);
-                    ++_c20;
-                }
+
+        if(c.longitud() == 10) {
+            if(_u10 != u) {
+                _t[_u10.filera()][_u10.placa()][_u10.pis()] = c.matricula();
+                ++_p[_u10.filera()][_u10.placa()];
+                u = _u10;
+                ++_opsGrua;
+                act_fragmentacio(_u10.filera());
             }
             else {
-                if(_u30 != u) {
-                    _t[_u30.filera()][_u30.placa()][_u30.pis()] = c.matricula();
-                    _t[_u30.filera()][_u30.placa()+1][_u30.pis()] = c.matricula();
-                    _t[_u30.filera()][_u30.placa()+2][_u30.pis()] = c.matricula();
-                    ++_p[_u30.filera()][_u30.placa()];
-                    ++_p[_u30.filera()][_u30.placa()+1];
-                    ++_p[_u30.filera()][_u30.placa()+2];
-                    u = _u30;
-                    ++_opsGrua;
-                    act_fragmentacio(_u30.filera());
-                }
-                else {
-                    _areaEspera.push_back(c);
-                    ++_c30;
-                }
+                _areaEspera.push_back(c);
+                ++_c10;
             }
-            std::pair<nat, ubicacio> p = std::make_pair(c.longitud(), u);
-            _c.assig(c.matricula(), p);
-            if (_u10.filera() != -1)
-                actualitza_pos(_u10.filera());
-            recolocarAreaEspera();
         }
-        else { // Altra estrategia
+        else if(c.longitud() == 20) {
+            if(_u20 != u) {
+                _t[_u20.filera()][_u20.placa()][_u20.pis()] = c.matricula();
+                _t[_u20.filera()][_u20.placa()+1][_u20.pis()] = c.matricula();
+                ++_p[_u20.filera()][_u20.placa()];
+                ++_p[_u20.filera()][_u20.placa()+1];
+                u = _u20;
+                ++_opsGrua;
+                act_fragmentacio(_u20.filera());
+            }
+            else {
+                _areaEspera.push_back(c);
+                ++_c20;
+            }
+        }
+        else {
+            if(_u30 != u) {
+                _t[_u30.filera()][_u30.placa()][_u30.pis()] = c.matricula();
+                _t[_u30.filera()][_u30.placa()+1][_u30.pis()] = c.matricula();
+                _t[_u30.filera()][_u30.placa()+2][_u30.pis()] = c.matricula();
+                ++_p[_u30.filera()][_u30.placa()];
+                ++_p[_u30.filera()][_u30.placa()+1];
+                ++_p[_u30.filera()][_u30.placa()+2];
+                u = _u30;
+                ++_opsGrua;
+                act_fragmentacio(_u30.filera());
+            }
+            else {
+                _areaEspera.push_back(c);
+                ++_c30;
+            }
+        }
+        std::pair<nat, ubicacio> p = std::make_pair(c.longitud(), u);
+        _c.assig(c.matricula(), p);
+        if (_u10.filera() != -1)
+            actualitza_pos(_u10.filera());
+        recolocarAreaEspera();
 
-        }
     }
     else throw error(MatriculaDuplicada);
 }
@@ -364,19 +364,24 @@ void terminal::retira_contenidor(const string &m) throw(error) {
         if (_c.existeix(m)) {
             retira_contenidor_superior(m,true);
         }
-        else
+        else {
             throw error(MatriculaInexistent);
-    } else {
+        }
+    }
+    else {
     	list<contenidor>::const_iterator it;
     	bool fi = false;
     	it = _areaEspera.begin();
-    	while(it != _areaEspera.end() and not fi)
-        	if((*it).matricula() == m) {
-        		_areaEspera.remove(*it);
-        		_c.elimina(m);
-        		fi = true;
-        	} else
-        		 ++it;
+    	while(it != _areaEspera.end() and not fi) {
+            if((*it).matricula() == m) {
+                _areaEspera.remove(*it);
+                _c.elimina(m);
+                fi = true;
+            }
+            else {
+                ++it;
+            }
+        }
   	}
 }
 
@@ -420,10 +425,12 @@ void terminal::contenidor_ocupa(const ubicacio &u, string &m) const throw(error)
     int k = u.pis();
 
     try {
-        if ( (i < _n) and (j < _m) and (k < _h) )
+        if ( (i < _n) and (j < _m) and (k < _h) ) {
             m = _t[i][j][k];
-        else
+        }
+        else {
             throw error();
+        }
     } catch (...) {
         throw error(UbicacioNoMagatzem);
     }
@@ -455,8 +462,9 @@ nat terminal::ops_grua() const throw() {
    de l'àrea d'espera de la terminal, en ordre alfabètic creixent. */
 void terminal::area_espera(list<string> &l) const throw() {
     list<contenidor>::const_iterator it;
-    for (it = _areaEspera.begin(); it != _areaEspera.end(); ++it)
+    for (it = _areaEspera.begin(); it != _areaEspera.end(); ++it) {
         l.push_back((*it).matricula());
+    }
 
     l.sort();
 }
