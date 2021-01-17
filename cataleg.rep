@@ -1,37 +1,25 @@
 // Hem escollit la taula de dispersió perquè compleix molt bé respecte a altres opcions per implementar aquesta classe.
-// La taula de dispersió generalment garanteix en les operacions d'inserir, consultar i eliminar costs constants. Per tant, son molt bons costos.
+// La taula de dispersió garanteix en les operacions d'inserir, consultar i eliminar costs constants.
 // Des d'un principi ha sigut la primera opció d'implementació en la qual vam pensar i creiem que es la millor opció que hi ha d'implementar aquesta classe de totes les que hem estudiat.
 // Hem decidit implementar la versió amb sinònims encadenats per evitar la degeneració amb insercions i eliminacions.
+
+// Taula de dispersió de sinònims encadenats
 struct node {
     string _k; 		// Clau
     Valor _v; 		// Valor
     node* _seg;     // Node seguent
     node(const string &k, const Valor &v, node* seg = NULL);	// Constructor de node
 };
-
 node ** _taula; // taula amb punters a les llistes
 nat _M; // mida de la taula
 nat _quants; // nº d'elements guardats al diccionari
 
-
-int hash(const string &k) const throw() {
-	int x = 0;
-    for (size_t i = 0; i < k.length(); i++)  {
-        x = x + k[i]*i;
-    }
-    return x % _M;
-}
-
-// Borra tots els encadenaments.
-void esborra_nodes(node **taula, nat tamany); // Cost lineal respecte a _M
-
-// Copia tots els nodes d'una llista.
-static node* copia_nodes(node* m); // Cost lineal respecte a _M
-
-int segPrim(int N);
-
-bool esPrim(int n);
-
-// Funcio que redispersiona la taula.
-// Cost lineal respecte a _M
+/****************************************************/
+/*                  Métodes Privats                 */
+/****************************************************/
+int hash(const string &k) const;
+static node* copia_nodes(const node* m);
+static void esborra_nodes(node **taula, const nat tamany);
 void redispersio();
+bool esPrim(const int n) const;
+int segPrim(const int N) const;

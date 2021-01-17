@@ -1,5 +1,24 @@
+/****************************************************/
+/*                                                  */
+/*                  METODES PRIVATS                 */
+/*                                                  */
+/****************************************************/
+
+// Funcio de dispersió
+// Cost: Lineal respecte a la longitud de k
 template <typename Valor>
-typename cataleg<Valor>::node* cataleg<Valor>::copia_nodes(node* n) { // Cost lineal respecte al numero de nodes encadenats
+int cataleg<Valor>::hash(const string &k) const {
+	int x = 0;
+    for (nat i = 0 ; i < k.length() ; i++)  {
+        x = x + k[i] * i;
+    }
+    return x % _M;
+}
+
+// Funcio que rep un node de la taula i retorna una copia amb tots els seus encadenaments.
+// Cost lineal respecte al numero de nodes encadenats
+template <typename Valor>
+typename cataleg<Valor>::node* cataleg<Valor>::copia_nodes(const node* n) {
     node* aux = NULL;
     if (n) {
         aux = new node(n->_k, n->_v, copia_nodes(n->_seg));
@@ -7,11 +26,13 @@ typename cataleg<Valor>::node* cataleg<Valor>::copia_nodes(node* n) { // Cost li
     return aux;
 }
 
+// Esborra tots els nodes encadenats de la taula n
+// Cost mig: lineal en funcio del tamany si no hi han col·lisions.
 template <typename Valor>
-void cataleg<Valor>::esborra_nodes(node** n, nat tamany) {
+void cataleg<Valor>::esborra_nodes(node** n, const nat tamany) {
     node *m;
     node *aux;
-    for (nat i = 0; i < tamany; ++i) {
+    for (nat i = 0 ; i < tamany ; ++i) {
         m = n[i];
         while (m != NULL) {
             aux = m->_seg;
@@ -21,38 +42,11 @@ void cataleg<Valor>::esborra_nodes(node** n, nat tamany) {
     }
 }
 
-template <typename Valor>
-cataleg<Valor>::node::node(const string &k, const Valor &v, node* seg) : _k(k), _v(v), _seg(seg) { }
-
-template <typename Valor>
-bool cataleg<Valor>::esPrim(int n) {
-    if (n <= 1)  return false;
-    if (n <= 3)  return true;
-
-    if (n%2 == 0 || n%3 == 0) return false;
-
-    for (int i=5; i*i<=n; i=i+6)
-        if (n%i == 0 || n%(i+2) == 0)
-           return false;
-
-    return true;
-}
-
-// Retorna el seguent numero prim
-template <typename Valor>
-int cataleg<Valor>::segPrim(int N) {
-    int prim = N;
-    bool trobat = false;
-    while (!trobat) {
-        prim++;
-        if (esPrim(prim))
-            trobat = true;
-    }
-    return prim;
-}
-
-// Funcio que redispersiona la taula
-// Cost lineal respecte a _M
+// Funcio que comproba si cal redispersionar la taula
+// En cas de que sigui necesari, la fa creixer o decreixer
+// I recoloca els elements a la nova taula
+// Cost mig: Θ(1)
+// Cost pitjor: Cost lineal respecte a _M (Si es fa la redispersio)
 template <typename Valor>
 void cataleg<Valor>::redispersio() {
 
@@ -97,15 +91,45 @@ void cataleg<Valor>::redispersio() {
     }
 }
 
+// Indica si n es un numero prim o no
+// Cost mig: lineal en funcio de n
+template <typename Valor>
+bool cataleg<Valor>::esPrim(const int n) const {
+    if (n <= 1)  return false;
+    if (n <= 3)  return true;
 
-//
-//
-//      METODES PUBLICS
-//
-//
+    if (n%2 == 0 || n%3 == 0) return false;
+
+    for (int i=5 ; i * i <= n ; i=i+6)
+        if (n%i == 0 || n%(i+2) == 0)
+           return false;
+
+    return true;
+}
+
+// Retorna el seguent numero prim
+// Cost mig: lineal en funcio de n
+template <typename Valor>
+int cataleg<Valor>::segPrim(const int N) const {
+    int prim = N;
+    bool trobat = false;
+    while (!trobat) {
+        prim++;
+        if (esPrim(prim))
+            trobat = true;
+    }
+    return prim;
+}
+
+/****************************************************/
+/*                                                  */
+/*            METODES PUBLICS DE CLASSE             */
+/*                                                  */
+/****************************************************/
 
 /* Constructora. Crea un catàleg buit on numelems és el nombre
    aproximat d'elements que com a màxim s'inseriran al catàleg. */
+// Cost: lineal respecte a _M
 template <typename Valor>
 cataleg<Valor>::cataleg(nat numelems) throw(error) : _quants(0) {
     if (!numelems%2) numelems++;
@@ -120,7 +144,13 @@ cataleg<Valor>::cataleg(nat numelems) throw(error) : _quants(0) {
         _taula[i] = NULL;
 }
 
+// Constructor de node
+// Cost: Θ(1)
+template <typename Valor>
+cataleg<Valor>::node::node(const string &k, const Valor &v, node* seg) : _k(k), _v(v), _seg(seg) { }
+
 /* Constructora per còpia, assignació i destructora. */
+// Cost mig: lineal respecte a _M  si no hi han col·lisions.
 template <typename Valor>
 cataleg<Valor>::cataleg(const cataleg& c) throw(error) {
     _taula = new node*[c._M];
@@ -132,6 +162,7 @@ cataleg<Valor>::cataleg(const cataleg& c) throw(error) {
     _quants = c._quants;
  }
 
+// Cost mig: lineal en funcio del tamany (_M) si no hi han col·lisions.
 template <typename Valor>
 cataleg<Valor>& cataleg<Valor>::operator=(const cataleg& c) throw(error) {
     if (this != &c) {
@@ -144,6 +175,7 @@ cataleg<Valor>& cataleg<Valor>::operator=(const cataleg& c) throw(error) {
     return *this;
 }
 
+// Cost mig: lineal en funcio del tamany (_M) si no hi han col·lisions.
 template <typename Valor>
 cataleg<Valor>::~cataleg() throw() {
     esborra_nodes(_taula, _M);
@@ -153,6 +185,8 @@ cataleg<Valor>::~cataleg() throw() {
 /* Mètode modificador. Insereix el parell <clau, valor> indicat.
    En cas que la clau k ja existeixi en el catàleg actualitza el valor
    associat. Genera un error en cas que la clau sigui l'string buit. */
+// Cost mig: Θ(1)
+// Cost pitjor: Cost lineal respecte a _M (Si es fa la redispersio)
 template <typename Valor>
 void cataleg<Valor>::assig(const string &k, const Valor &v) throw(error) {
     int i = hash(k);
@@ -179,6 +213,8 @@ void cataleg<Valor>::assig(const string &k, const Valor &v) throw(error) {
 
 /* Elimina del catàleg el parell que té com a clau k.
     En cas que la clau k no existeixi en el catàleg genera un error. */
+// Cost mig: Θ(1)
+// Cost pitjor: Cost lineal respecte a _M (Si es fa la redispersio)
 template <typename Valor>
 void cataleg<Valor>::elimina(const string &k) throw(error) {
     nat i = hash(k);
@@ -213,6 +249,7 @@ void cataleg<Valor>::elimina(const string &k) throw(error) {
 
 /* Retorna true si i només si la clau k existeix dins del catàleg; false
    en cas contrari. */
+// Cost mig: Θ(1)
 template <typename Valor>
 bool cataleg<Valor>::existeix(const string &k) const throw() {
     int i = hash(k);
@@ -234,6 +271,7 @@ bool cataleg<Valor>::existeix(const string &k) const throw() {
      cataleg<int> ct;
      ...
      int n = ct["dia"]; */
+// Cost mig: Θ(1)
 template <typename Valor>
 Valor cataleg<Valor>::operator[](const string &k) const throw(error) {
     int i = hash(k);
@@ -255,6 +293,7 @@ Valor cataleg<Valor>::operator[](const string &k) const throw(error) {
 
 /* Retorna el nombre d'elements que s'han inserit en el catàleg
    fins aquest moment. */
+// Cost: Θ(1)
 template <typename Valor>
 nat cataleg<Valor>::quants() const throw() {
     return _quants;

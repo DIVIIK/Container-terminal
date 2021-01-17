@@ -19,12 +19,15 @@ cataleg<std::pair<nat,ubicacio> > _c;
 string ***_t;
 
 // Matriu de fileres*places on guardem el número de pisos ocupats per cada plaça.
+// La fem servir per estalviar-nos comprobacions que requereixen recorre cada pis
 int **_p;
 
-// Matriu de fileres*pisos amb el numero de llocs lliures
+// Matriu de fileres*pisos amb el numero de places lliures
+// La fem servir a l'estrategia LLIURE per saber quantes places lliures hi han a cada pis de cada filera
 int **_lliures;
 
 // Primera ubicació lliure per a cada tipus de contenidor
+// Les fem servir per saber on anira el seguent contenidor que inserim
 ubicacio _u10, _u20, _u30;
 
 /****************************************************/
@@ -35,6 +38,7 @@ ubicacio _u10, _u20, _u30;
 list<contenidor> _areaEspera;
 
 // Número de contenidors de 10, 20 i 30 a l'area d'espera
+// Les fem servir per saber quants contenidors de cada tamany hi han a l'area d'espera
 nat _c10, _c20, _c30;
 
 
@@ -49,11 +53,10 @@ nat _f;
 // Array amb el número de fragmentació per cada filera
 nat *_fFila;
 
-
 /****************************************************/
 /*                  Métodes Privats                 */
 /****************************************************/
-void actualitza_pos(ubicacio u);
-void retira_contenidor_superior(const string &m, bool primer);
+void actualitza_pos(const ubicacio &u);
+void retira_contenidor_superior(const string &m, const bool primer);
 void act_fragmentacio(const nat &filera);
 void recolocarAreaEspera();

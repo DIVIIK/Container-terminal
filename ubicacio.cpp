@@ -3,6 +3,7 @@
 /* Constructora. Crea la ubicació <i, j, k>. Genera un error si
   <i, j, k> no pertany a {<u, v, w> | u >= 0 ^ v >= 0 ^ w >= 0}
    o a {<-1, 0, 0>,  <-1,-1,-1>}. */
+// Cost: Θ(1)
 ubicacio::ubicacio(int i, int j, int k) throw(error) {
     if (
         (i >= 0 and j >= 0 and k >= 0) or
@@ -18,12 +19,14 @@ ubicacio::ubicacio(int i, int j, int k) throw(error) {
 }
 
 /* Constructora per còpia, assignació i destructora. */
+// Cost: Θ(1)
 ubicacio::ubicacio(const ubicacio& u) throw(error) {
     _filera = u._filera;
     _placa = u._placa;
     _pis = u._pis;
 }
 
+// Cost: Θ(1)
 ubicacio& ubicacio::operator=(const ubicacio& u) throw(error) {
     _filera = u._filera;
     _placa = u._placa;
@@ -31,18 +34,22 @@ ubicacio& ubicacio::operator=(const ubicacio& u) throw(error) {
     return *this;
 }
 
+// Cost: Θ(1)
 ubicacio::~ubicacio() throw() { }
 
 /* Consultors. Retornen respectivament el primer, segon i tercer
    component de la ubicació. */
+// Cost: Θ(1)
 int ubicacio::filera() const throw() {
     return _filera;
 }
 
+// Cost: Θ(1)
 int ubicacio::placa() const throw() {
     return _placa;
 }
 
+// Cost: Θ(1)
 int ubicacio::pis() const throw() {
     return _pis;
 }
@@ -55,26 +62,32 @@ int ubicacio::pis() const throw() {
    implícit és més petita que la d'u, o si les fileres i les places
    coincideixen i el pis del paràmetre implícit és més petit que el d'u.
    La resta d'operadors es defineixen consistentment respecte <. */
+// Cost: Θ(1)
 bool ubicacio::operator==(const ubicacio &u) const throw() {
     return (_filera == u._filera) and (_placa == u._placa) and (_pis == u._pis);
 }
 
+// Cost: Θ(1)
 bool ubicacio::operator!=(const ubicacio &u) const throw() {
     return !(*this==u);
 }
 
+// Cost: Θ(1)
 bool ubicacio::operator<(const ubicacio &u) const throw() {
     return (_filera < u._filera) or (_filera == u._filera and _placa < u._placa) or (_filera == u._filera and _placa == u._placa and _pis < u._pis);
 }
 
+// Cost: Θ(1)
 bool ubicacio::operator<=(const ubicacio &u) const throw() {
     return !(*this>u);
 }
 
+// Cost: Θ(1)
 bool ubicacio::operator>(const ubicacio &u) const throw() {
     return (!(*this<u) && (*this!=u));
 }
 
+// Cost: Θ(1)
 bool ubicacio::operator>=(const ubicacio &u) const throw() {
     return !(*this<u);
 }

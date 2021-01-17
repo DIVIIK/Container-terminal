@@ -1,14 +1,16 @@
 #include "terminal.hpp"
 
-//-----------------------------------------------------
-//
-//  Métodes Privats
-//
-//-----------------------------------------------------
+/****************************************************/
+/*                                                  */
+/*                  METODES PRIVATS                 */
+/*                                                  */
+/****************************************************/
 
-// A partir d'una filera, busca la seguent posició on es poden inserir els seguents contenidors de
-// 10, 20 i 30 peus respectivament
-void terminal::actualitza_pos(ubicacio u) {
+// A partir d'una filera, busca la seguent posició on es poden inserir els seguents
+// contenidors de 10, 20 i 30 peus respectivament
+// Cost mig: Θ(m) Nomes recorrem les places de la filera modificada
+// Cost pitjor: Θ(n * m) Recorrem les places i fileres del area d'emmagatzematge
+void terminal::actualitza_pos(const ubicacio &u) {
     bool trobat10 = false, trobat20 = false, trobat30 = false;
     int fil = u.filera();
 
@@ -45,6 +47,8 @@ void terminal::actualitza_pos(ubicacio u) {
             if (placa >= _m - x ) {
                 ++fil;
                 placa = 0;
+
+                // En el cas de que no trobem posicions valides, assignem l'area d'espera
                 if (fil >= _n) {
                     if (not trobat10) _u10 = ubicacio(-1,0,0);
                     if (not trobat20) _u20 = ubicacio(-1,0,0);
@@ -58,15 +62,17 @@ void terminal::actualitza_pos(ubicacio u) {
     }
     else if (_st == LLIURE) {
         int pis = 0, placa, l;
-        while(not trobat30 or not trobat20 or not trobat10) { //recorremos _lliures
+        while(not trobat30 or not trobat20 or not trobat10) {
             if (not trobat10) l = 1;
             else if (not trobat20) l = 2;
             else if (not trobat30) l = 3;
 
-            // Si hi han posicions lliures en aquesta filera
+            // Mirem si hi han places a la filera 'fil' i pis 'pis'
             if (_lliures[fil][pis] >= l) {
                 placa = 0;
-                while ( (not trobat10 or not trobat20 or not trobat30) and (placa <= _m - l) ) { //recorremos _p
+
+                // Mirem fins que trobem les seguents posicion lliures
+                while ( (not trobat10 or not trobat20 or not trobat30) and (placa <= _m - l) ) {
                     if (not trobat10 and _p[fil][placa] == pis) {
                         _u10 = ubicacio(fil, placa, pis);
                         trobat10 = true;
@@ -82,11 +88,14 @@ void terminal::actualitza_pos(ubicacio u) {
                     ++placa;
                 }
 
+                // Avançar a la seguent fila o pis
                 if (not trobat10 or not trobat20 or not trobat30) {
                     ++fil;
                     if (fil >= _n) {
                         fil = 0;
                         ++pis;
+
+                        // En el cas de que no trobem posicions valides, assignem l'area d'espera
                         if (pis >= _m) {
                             if (not trobat10) _u10 = ubicacio(-1,0,0);
                             if (not trobat20) _u20 = ubicacio(-1,0,0);
@@ -99,12 +108,15 @@ void terminal::actualitza_pos(ubicacio u) {
 
                 }
             }
-            // Mirem la seguent filera
+
+            // Avançar a la seguent fila o pis
             else {
                 ++fil;
                 if (fil >= _n) {
                     fil = 0;
                     ++pis;
+
+                    // En el cas de que no trobem posicions valides, assignem l'area d'espera
                     if (pis >= _m) {
                         if (not trobat10) _u10 = ubicacio(-1,0,0);
                         if (not trobat20) _u20 = ubicacio(-1,0,0);
@@ -116,14 +128,12 @@ void terminal::actualitza_pos(ubicacio u) {
                 }
             }
         }
-
-
-
     }
-
 }
 
-void terminal::retira_contenidor_superior(const string &m, bool primer) {
+// Cost mig: Θ(m) Nomes recorrem les places de la filera modificada (Per que crida a actualitza_pos)
+// Cost pitjor: Θ(n * m) Recorrem les places i fileres del area d'emmagatzematge (Per que crida a actualitza_pos)
+void terminal::retira_contenidor_superior(const string &m, const bool primer) {
     ubicacio u = on(m);
     nat l = _c[m].first/10;
 
@@ -184,9 +194,10 @@ void terminal::retira_contenidor_superior(const string &m, bool primer) {
 }
 
 // Actualitza la fragmentació de la terminal només mirant la filera modificada
+// Cost: Θ(_m)
 void terminal::act_fragmentacio(const nat& filera) {
-    _f -= _fFila[filera];   // Es resta la fragmentacio que es troba a la filera modificada després d'actualitzar la fragmentació de la
-    _fFila[filera] = 0;     // filera modificada es tornará a sumar a la fragmentació total.
+    _f -= _fFila[filera];   // Es resta la fragmentacio que es troba a la filera modificada, després d'actualitzar
+    _fFila[filera] = 0;     // la fragmentació de la filera modificada es tornará a sumar a la fragmentació total.
     bool desnivell = true;
 
     for (nat i = 0; i < _m; i++) {
@@ -210,6 +221,9 @@ void terminal::act_fragmentacio(const nat& filera) {
     _f += _fFila[filera];
 }
 
+// Coloca els contenidors de l'area d'espera a l'area d'emmagatzematge si hi ha lloc
+// Cost mig: Θ(m) (Per que crida a insereix_contenidor)
+// Cost pitjor: Θ(n * m) (Per que crida a insereix_contenidor)
 void terminal::recolocarAreaEspera() {
     if (_areaEspera.size()) {
         ubicacio areaEspera(-1,0,0);
@@ -245,12 +259,14 @@ void terminal::recolocarAreaEspera() {
     }
 }
 
-//-----------------------------------------------------
-//
-//  Métodes de Classe
-//
-//-----------------------------------------------------
+/****************************************************/
+/*                                                  */
+/*            METODES PUBLICS DE CLASSE             */
+/*                                                  */
+/****************************************************/
 
+/* Constructora */
+// Cost: Θ(n * m * h)
 terminal::terminal(nat n, nat m, nat h, estrategia st) throw(error) : _c(n*m*h), _u10(0,0,0), _u20(0,0,0), _u30(0,0,0) {
     if (n == 0) throw error(NumFileresIncorr);
     else _n = n;
@@ -272,15 +288,21 @@ terminal::terminal(nat n, nat m, nat h, estrategia st) throw(error) : _c(n*m*h),
     _p = new int*[_n];
     _lliures = new int*[_n];
     _fFila = new nat[_n];
+
     for (int i = 0 ; i < _n ; ++i) {
+
         _t[i] = new string*[_m];
         _p[i] = new int[_m];
         _lliures[i] = new int[_h];
+
         if (_m == 1) _fFila[i] = 1;
         else _fFila[i] = 0;
+
         for (int j = 0; j < _m; ++j) {
+
             _t[i][j] = new string[_h];
             _p[i][j] = 0;
+
             for(int k = 0; k < _h; k++) {
                _t[i][j][k] = "";
             }
@@ -304,6 +326,7 @@ terminal::terminal(nat n, nat m, nat h, estrategia st) throw(error) : _c(n*m*h),
 }
 
 /* Constructora per còpia, assignació i destructora. */
+// Cost: Θ(1)
 terminal::terminal(const terminal& b) throw(error) : _c(1), _u10(0,0,0), _u20(0,0,0), _u30(0,0,0) {
     _n = b._n;
     _m = b._m;
@@ -321,6 +344,7 @@ terminal::terminal(const terminal& b) throw(error) : _c(1), _u10(0,0,0), _u20(0,
     _c30 = b._c30;
 }
 
+// Cost: Θ(1)
 terminal& terminal::operator=(const terminal& b) throw(error) {
     _n = b._n;
     _m = b._m;
@@ -339,6 +363,7 @@ terminal& terminal::operator=(const terminal& b) throw(error) {
     return *this;
 }
 
+// Cost: Θ(_n * _m)
 terminal::~terminal() throw() {
     for(int i = 0; i < _n; ++i) {
         for (int j = 0; j < _m; ++j) {
@@ -364,6 +389,8 @@ terminal::~terminal() throw() {
    d'emmagatzematge seguint l'ordre que indiqui l'estratègia que s'està
    usant. Finalment, genera un error si ja existís a la terminal un
    contenidor amb una matrícula idèntica que la del contenidor c. */
+// Cost mig: Θ(m) Nomes recorrem les places de la filera modificada (Per que crida a actualitza_pos)
+// Cost pitjor: Θ(n * m) Recorrem les places i fileres del area d'emmagatzematge (Per que crida a actualitza_pos)
 void terminal::insereix_contenidor(const contenidor &c) throw(error) {
     ubicacio u = on(c.matricula());
 
@@ -383,6 +410,7 @@ void terminal::insereix_contenidor(const contenidor &c) throw(error) {
                 ++_c10;
             }
         }
+
         else if (c.longitud() == 20) {
             if (_u20 != u) {
                 _t[_u20.filera()][_u20.placa()][_u20.pis()] = c.matricula();
@@ -415,15 +443,16 @@ void terminal::insereix_contenidor(const contenidor &c) throw(error) {
                 ++_c30;
             }
         }
+
         std::pair<nat, ubicacio> p = std::make_pair(c.longitud(), u);
         _c.assig(c.matricula(), p);
         if (_u10.filera() != -1)
             actualitza_pos(_u10);
         recolocarAreaEspera();
-
     }
     else throw error(MatriculaDuplicada);
 }
+
 /* Retira de la terminal el contenidor c la matrícula del qual és igual
    a m. Aquest contenidor pot estar a l'àrea d'emmagatzematge o a l'àrea
    d'espera. Si el contenidor estigués a l'àrea d'emmagatzematge llavors
@@ -436,6 +465,8 @@ void terminal::insereix_contenidor(const contenidor &c) throw(error) {
    moure contenidors de l'àrea d'espera a l'àrea d'emmagatzematge, seguint
    l'ordre que indiqui l'estratègia que s'està usant. Genera un error si a
    la terminal no hi ha cap contenidor la matrícula del qual sigui igual a m. */
+// Cost mig: Θ(m) Nomes recorrem les places de la filera modificada (Per que crida a retira_contenidor_superior)
+// Cost pitjor: Θ(n * m) Recorrem les places i fileres del area d'emmagatzematge (Per que crida a retira_contenidor_superior)
 void terminal::retira_contenidor(const string &m) throw(error) {
     ubicacio areaEspera(-1,0,0);
     ubicacio u = on(m);
@@ -472,6 +503,7 @@ void terminal::retira_contenidor(const string &m) throw(error) {
    matrícula igual a m.
    Cal recordar que si un contenidor té més de 10 peus, la seva ubicació
    correspon a la plaça que tingui el número de plaça més petit. */
+// Cost: Θ(1)
 ubicacio terminal::on(const string &m) const throw() {
     try {
         return _c[m].second;
@@ -483,6 +515,7 @@ ubicacio terminal::on(const string &m) const throw() {
 /* Retorna la longitud del contenidor la matrícula del qual és igual
    a m. Genera un error si no existeix un contenidor a la terminal
    la matrícula del qual sigui igual a m. */
+// Cost: Θ(1)
 nat terminal::longitud(const string &m) const throw(error) {
     try {
         return _c[m].first;
@@ -499,6 +532,7 @@ nat terminal::longitud(const string &m) const throw(error) {
    la cadena buida) pot succeir que u != t.on(m), ja que un contenidor pot
    ocupar diverses places i la seva ubicació es correspon amb la de la
    plaça ocupada amb número de plaça més baix. */
+// Cost: Θ(1)
 void terminal::contenidor_ocupa(const ubicacio &u, string &m) const throw(error) {
     int i = u.filera();
     int j = u.placa();
@@ -522,6 +556,7 @@ void terminal::contenidor_ocupa(const ubicacio &u, string &m) const throw(error)
    7 unitats a la fragmentació total (corresponen a les ubicacions
    <f, 0, 1>, <f, 1, 2>, <f, 2, 1>, <f, 7, 1>, <f, 8, 0>, <f, 9, 1> i
    <f, 10, 0>). */
+// Cost: Θ(1)
 nat terminal::fragmentacio() const throw() {
   return _f;
 }
@@ -534,37 +569,43 @@ nat terminal::fragmentacio() const throw() {
    retirar directament un contenidor de l'àrea d'emmagatzematge.
    En canvi no requereix cap operació de grua inserir o
    retirar directament un contenidor de l'àrea d'espera. */
+// Cost: Θ(1)
 nat terminal::ops_grua() const throw() {
   return _opsGrua;
 }
 
 /* Retorna la llista de les matrícules de tots els contenidors
    de l'àrea d'espera de la terminal, en ordre alfabètic creixent. */
+// Cost: Θ(N*log2(N))
 void terminal::area_espera(list<string> &l) const throw() {
     list<contenidor>::const_iterator it;
     for (it = _areaEspera.begin(); it != _areaEspera.end(); ++it) {
         l.push_back((*it).matricula());
     }
 
-    l.sort();
+    l.sort(); // Cost Θ(N*log2(N))
 }
 
 /* Retorna el número de fileres de la terminal. */
+// Cost: Θ(1)
 nat terminal::num_fileres() const throw() {
   return _n;
 }
 
 /* Retorna el número de places per filera de la terminal. */
+// Cost: Θ(1)
 nat terminal::num_places() const throw() {
   return _m;
 }
 
 /* Retorna l'alçada màxima d'apilament de la terminal. */
+// Cost: Θ(1)
 nat terminal::num_pisos() const throw() {
   return _h;
 }
 
 /* Retorna l'estratègia d'inserció i retirada de contenidors de la terminal. */
+// Cost: Θ(1)
 terminal::estrategia terminal::quina_estrategia() const throw() {
   return _st;
 }
