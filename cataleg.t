@@ -58,7 +58,8 @@ void cataleg<Valor>::redispersio() {
     // Mirem si cal redispersionar. Factor ideal: 0.75
     double factor = 0;
 
-    // El tamany minim de cataleg que hem decidit es 11
+    // Per sota de 11 elements no volem fer redispersions
+    // Aquest valor es decisio propia, pot ser cualsevol
     if (_quants > 11) {
         double factorCarrega = (double) _quants / (double) _M;
         if (factorCarrega > 0.95)
@@ -93,14 +94,6 @@ void cataleg<Valor>::redispersio() {
         delete[] _taula;
         _taula = nova_taula;
         _M = nova_size;
-
-        // std::cout << std::endl;
-        // std::cout << "Debug: Redispersiona la tabla" << std::endl;
-        // std::cout << "Factor: " << factor << std::endl;
-        // std::cout << "_quants: " << _quants << std::endl;
-        // std::cout << "_M: " << tamanyAnt << std::endl;
-        // std::cout << "Nueva _M: " << nova_size << std::endl;
-        // std::cout << std::endl;
     }
 }
 
