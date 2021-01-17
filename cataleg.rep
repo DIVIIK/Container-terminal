@@ -23,7 +23,7 @@ int hash(const string &k) const throw() {
 }
 
 // Borra tots els encadenaments.
-void esborra_nodes(node **taula); // Cost lineal respecte a _M
+void esborra_nodes(node **taula, nat tamany); // Cost lineal respecte a _M
 
 // Copia tots els nodes d'una llista.
 static node* copia_nodes(node* m); // Cost lineal respecte a _M

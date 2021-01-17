@@ -3,8 +3,6 @@ OPCIONS = -O0 -Wall -Wextra -Werror -Wno-sign-compare -Wno-deprecated -std=c++11
 program.exe: driver_gestterm.o ubicacio.o contenidor.o terminal.o
 	g++ -o program.exe driver_gestterm.o ubicacio.o contenidor.o terminal.o -lesin
 	rm *.o
-	clear
-	@./program.exe < jp_public.in > out
 
 driver_gestterm.o: driver_gestterm.cpp terminal.hpp terminal.rep cataleg.hpp cataleg.t ubicacio.hpp ubicacio.rep contenidor.hpp contenidor.rep
 	g++ -c driver_gestterm.cpp $(OPCIONS)

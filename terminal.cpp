@@ -14,6 +14,7 @@ void terminal::actualitza_pos(ubicacio u) {
 
     if (_st == FIRST_FIT) {
         // Comprovem si es necesari actualitzar les posicions.
+        // Si el canvi s'ha fet en una filera(fil) menor a la filera de _u10, _u20 o _u30, no fa falta actualitzar aquella ubicació.
         if (_u10.filera() < fil and _u10.filera() != -1) trobat10 = true;
         if ( (_u20.filera() < fil and _u20.filera() != -1) or (_u20.filera() == -1 and _m < 2) ) trobat20 = true;
         if ( (_u30.filera() < fil and _u30.filera() != -1) or (_u30.filera() == -1 and _m < 3) ) trobat30 = true;
@@ -37,7 +38,7 @@ void terminal::actualitza_pos(ubicacio u) {
 
             // Avançar a la seguent placa o fila
             ++placa;
-            nat x;
+            nat x = 0;
             if (not trobat10) x = 0;
             else if (not trobat20) x = 1;
             else if (not trobat30) x = 2;
@@ -182,9 +183,10 @@ void terminal::retira_contenidor_superior(const string &m, bool primer) {
     }
 }
 
+// Actualitza la fragmentació de la terminal només mirant la filera modificada
 void terminal::act_fragmentacio(const nat& filera) {
-    _f -= _fFila[filera];
-    _fFila[filera] = 0;
+    _f -= _fFila[filera];   // Es resta la fragmentacio que es troba a la filera modificada després d'actualitzar la fragmentació de la
+    _fFila[filera] = 0;     // filera modificada es tornará a sumar a la fragmentació total.
     bool desnivell = true;
 
     for (nat i = 0; i < _m; i++) {
@@ -339,14 +341,17 @@ terminal& terminal::operator=(const terminal& b) throw(error) {
 
 terminal::~terminal() throw() {
     for(int i = 0; i < _n; ++i) {
-        delete _p[i];
         for (int j = 0; j < _m; ++j) {
             delete[] _t[i][j];
         }
         delete[] _t[i];
+        delete[] _p[i];
+        delete[] _lliures[i];
     }
     delete[] _t;
     delete[] _p;
+    delete[] _lliures;
+    delete[] _fFila;
 }
 
 /* Col·loca el contenidor c en l'àrea d'emmagatzematge de la terminal o

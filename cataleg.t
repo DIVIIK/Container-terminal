@@ -8,10 +8,10 @@ typename cataleg<Valor>::node* cataleg<Valor>::copia_nodes(node* n) { // Cost li
 }
 
 template <typename Valor>
-void cataleg<Valor>::esborra_nodes(node** n) {
+void cataleg<Valor>::esborra_nodes(node** n, nat tamany) {
     node *m;
     node *aux;
-    for (nat i = 0; i < _M; ++i) {
+    for (nat i = 0; i < tamany; ++i) {
         m = n[i];
         while (m != NULL) {
             aux = m->_seg;
@@ -55,6 +55,7 @@ int cataleg<Valor>::segPrim(int N) {
 // Cost lineal respecte a _M
 template <typename Valor>
 void cataleg<Valor>::redispersio() {
+
     // Mirem si cal redispersionar. Factor ideal: 0.75
     double factor = 0;
 
@@ -90,10 +91,9 @@ void cataleg<Valor>::redispersio() {
                 p = p->_seg;
             }
         }
-        //esborra_nodes(_taula, _M);
+        esborra_nodes(_taula, tamanyAnt);
         delete[] _taula;
         _taula = nova_taula;
-        _M = nova_size;
     }
 }
 
@@ -136,7 +136,7 @@ template <typename Valor>
 cataleg<Valor>& cataleg<Valor>::operator=(const cataleg& c) throw(error) {
     if (this != &c) {
         cataleg aux(c);
-        esborra_nodes(_taula);
+        esborra_nodes(_taula, _M);
         _taula = aux._taula;
         _quants = aux._quants;
         _M = aux._M;
@@ -146,7 +146,7 @@ cataleg<Valor>& cataleg<Valor>::operator=(const cataleg& c) throw(error) {
 
 template <typename Valor>
 cataleg<Valor>::~cataleg() throw() {
-    esborra_nodes(_taula);
+    esborra_nodes(_taula, _M);
     delete[] _taula;
 }
 
