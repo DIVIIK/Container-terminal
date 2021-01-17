@@ -1,11 +1,8 @@
 template <typename Valor>
 typename cataleg<Valor>::node* cataleg<Valor>::copia_nodes(node* n) { // Cost lineal respecte al numero de nodes encadenats
     node* aux = NULL;
-    if(n) {
-      aux = new node(n->_k,n->_v,copia_nodes(n->_seg));
-      // aux->_v = n->_v;
-      // aux->_k = n->_k;
-      // aux->_seg = copia_nodes(n->_seg);
+    if (n) {
+        aux = new node(n->_k, n->_v, copia_nodes(n->_seg));
     }
     return aux;
 }
@@ -54,44 +51,58 @@ int cataleg<Valor>::segPrim(int N) {
     return prim;
 }
 
-// // Funcio que redispersiona la taula.
-// void cataleg<Valor>::redispersio() { // Cost lineal respecte a _M
-//     // Calcular factor de carrega
-//     double factorCarrega = (double) _quants/ (double) _M;
-//
-//     // Mirem si cal redispersionar i si es de quina forma. Factor ideal: 0.75
-//     double factor = 0;
-//
-//     if (_quants > 31) { // Valor minim de taula es 31
-//     if (factorCarrega > 0.95)
-//         factor = 2;
-//     else if (factorCarrega < 0.4)
-//         factor = 0.5;
-//     }
-//
-//     if (factor) {  //factor != 0
-//         nat nova_size = factor*_M; // seria primo
-//         node *n;
-//         node* p;
-//         node ** nova_taula = new node*[nova_size];
-//         for(nat j = 0; j<nova_size; ++j) nova_taula[j] = NULL;
-//
-//         // Reinsertem els valors de la antiga a la nova taula
-//         for(nat i = 0; i<_M; ++i) {
-//             p = _taula[i];
-//             while(p!=NULL) {
-//                 nat k = hash(p->_v.numero()) % nova_size; //Calculem les noves posicions
-//                 n = nova_taula[k];
-//                 nova_taula[k] = new node(p->_v.numero(),p->_v,n);
-//                 p = p->_seg;
-//             }
-//         }
-//         esborra_nodes(_taula, _M);
-//         delete[] _taula;
-//         _taula = nova_taula;
-//         _M = nova_size;
-//     }
-// }
+// Funcio que redispersiona la taula
+// Cost lineal respecte a _M
+template <typename Valor>
+void cataleg<Valor>::redispersio() {
+    // Mirem si cal redispersionar. Factor ideal: 0.75
+    double factor = 0;
+
+    // El tamany minim de cataleg que hem decidit es 11
+    if (_quants > 11) {
+        double factorCarrega = (double) _quants / (double) _M;
+        if (factorCarrega > 0.95)
+            factor = 2;
+        else if (factorCarrega < 0.4)
+            factor = 0.5;
+    }
+
+    if (factor != 0) {
+        nat nova_size = segPrim(factor * _M);
+        node* n;
+        node* p;
+        node** nova_taula = new node*[nova_size];
+
+        for (nat j = 0 ; j < nova_size; ++j) {
+            nova_taula[j] = NULL;
+        }
+
+        // Reinsertem els valors de la antiga a la nova taula
+        nat tamanyAnt = _M;
+        _M = nova_size;
+        for (nat i = 0 ; i < tamanyAnt ; ++i) {
+            p = _taula[i];
+            while (p != NULL) {
+                int k = hash(p->_k);
+                n = nova_taula[k];
+                nova_taula[k] = new node(p->_k, p->_v, n);
+                p = p->_seg;
+            }
+        }
+        //esborra_nodes(_taula, _M);
+        delete[] _taula;
+        _taula = nova_taula;
+        _M = nova_size;
+
+        // std::cout << std::endl;
+        // std::cout << "Debug: Redispersiona la tabla" << std::endl;
+        // std::cout << "Factor: " << factor << std::endl;
+        // std::cout << "_quants: " << _quants << std::endl;
+        // std::cout << "_M: " << tamanyAnt << std::endl;
+        // std::cout << "Nueva _M: " << nova_size << std::endl;
+        // std::cout << std::endl;
+    }
+}
 
 
 //
@@ -168,6 +179,9 @@ void cataleg<Valor>::assig(const string &k, const Valor &v) throw(error) {
         _taula[i] = new node(k,v,_taula[i]);
         ++_quants;
     }
+
+    // Redispersiona si es que cal
+    redispersio();
 }
 
 /* Elimina del catàleg el parell que té com a clau k.
@@ -199,6 +213,9 @@ void cataleg<Valor>::elimina(const string &k) throw(error) {
         --_quants;
     } else
         throw error(ClauInexistent);
+
+    // Redispersiona si es que cal
+    redispersio();
 }
 
 /* Retorna true si i només si la clau k existeix dins del catàleg; false

@@ -2,9 +2,7 @@
 // La taula de dispersió generalment garanteix en les operacions d'inserir, consultar i eliminar costs constants. Per tant, son molt bons costos.
 // Des d'un principi ha sigut la primera opció d'implementació en la qual vam pensar i creiem que es la millor opció que hi ha d'implementar aquesta classe de totes les que hem estudiat.
 // Hem decidit implementar la versió amb sinònims encadenats per evitar la degeneració amb insercions i eliminacions.
-
-struct node
-{
+struct node {
     string _k; 		// Clau
     Valor _v; 		// Valor
     node* _seg;     // Node seguent
@@ -15,18 +13,12 @@ node ** _taula; // taula amb punters a les llistes
 nat _M; // mida de la taula
 nat _quants; // nº d'elements guardats al diccionari
 
-// Després de realitzar una cerca exhaustiva i de provar moltes funcions, hem escollit aquesta funció de
-// dispersió, ja que proporciona una distribució estadística molt bona.
-// Aquesta funció de dispersió compleix amb els requisits que es demanen per a una bona funció de hash:
-//	● Distribució uniforme
-//	● Independència de l'aparença de la clau
-//	● Exhaustivitat
-//	● Rapidesa de càlcul
-int hash(const string &_k) const throw()
-{
+
+int hash(const string &k) const throw() {
 	int x = 0;
-    for (size_t i = 0; i < _k.length(); i++)
-        x = x + _k[i]*i;
+    for (size_t i = 0; i < k.length(); i++)  {
+        x = x + k[i]*i;
+    }
     return x % _M;
 }
 
@@ -41,4 +33,5 @@ int segPrim(int N);
 bool esPrim(int n);
 
 // Funcio que redispersiona la taula.
-// void redispersio(); // Cost lineal respecte a _M
+// Cost lineal respecte a _M
+void redispersio();
